@@ -1,0 +1,725 @@
+<!DOCTYPE html><html lang="en"><head><meta name="viewport" content="width=device-width"/><meta charSet="utf-8"/><link rel="shortcut icon" href="/images/img/favicon.webp"/><meta name="keywords" content="Blog RUA"/><meta name="description" content="Personal blog."/><meta name="author" content="Arthur,i@rua.plus"/><title>RUA - 第一个SPA的踩坑总结</title><meta name="next-head-count" content="7"/><link rel="preload" href="/_next/static/css/39834862c769c308.css" as="style"/><link rel="stylesheet" href="/_next/static/css/39834862c769c308.css" data-n-g=""/><link rel="preload" href="/_next/static/css/c2a527101433f11d.css" as="style"/><link rel="stylesheet" href="/_next/static/css/c2a527101433f11d.css" data-n-p=""/><link rel="preload" href="/_next/static/css/6e1d66a70b5d9fed.css" as="style"/><link rel="stylesheet" href="/_next/static/css/6e1d66a70b5d9fed.css"/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/_next/static/chunks/polyfills-5cd94c89d3acac5f.js"></script><script defer="" src="/_next/static/chunks/219-ddf2abc0472da9bd.js"></script><script defer="" src="/_next/static/chunks/419.d5302bfd9d8378c2.js"></script><script defer="" src="/_next/static/chunks/771.84a2737df445ba88.js"></script><script defer="" src="/_next/static/chunks/929.b2c0b4f7606bfefe.js"></script><script defer="" src="/_next/static/chunks/485-3e3bf066e6f4a6bd.js"></script><script defer="" src="/_next/static/chunks/189.ee2e569101c160eb.js"></script><script defer="" src="/_next/static/chunks/125.4ff7adc183744312.js"></script><script defer="" src="/_next/static/chunks/780.f3b2fc2ce5caea55.js"></script><script defer="" src="/_next/static/chunks/980.41f5e97cd35a6621.js"></script><script defer="" src="/_next/static/chunks/106.7a94988fd220337e.js"></script><script src="/_next/static/chunks/webpack-c08977534ec7c137.js" defer=""></script><script src="/_next/static/chunks/framework-5cd9e2157a4a6aee.js" defer=""></script><script src="/_next/static/chunks/main-472dbb675bbf7f67.js" defer=""></script><script src="/_next/static/chunks/pages/_app-a34fa0ed9496fbe8.js" defer=""></script><script src="/_next/static/chunks/84-43981acebe84e1d3.js" defer=""></script><script src="/_next/static/chunks/pages/p/%5Bslug%5D-684bfb16186b52fe.js" defer=""></script><script src="/_next/static/k6NIc4JfXUsE09z9QnALx/_buildManifest.js" defer=""></script><script src="/_next/static/k6NIc4JfXUsE09z9QnALx/_ssgManifest.js" defer=""></script><script src="/_next/static/k6NIc4JfXUsE09z9QnALx/_middlewareManifest.js" defer=""></script></head><body><script>(function setScript(initialValue) {
+  var mql = window.matchMedia("(prefers-color-scheme: dark)");
+  var systemPreference = mql.matches ? "dark" : "light";
+  var persistedPreference;
+
+  try {
+    persistedPreference = localStorage.getItem("chakra-ui-color-mode");
+  } catch (error) {
+    console.log("Chakra UI: localStorage is not available. Color mode persistence might not work as expected");
+  }
+
+  var isInStorage = typeof persistedPreference === "string";
+  var colorMode;
+
+  if (isInStorage) {
+    colorMode = persistedPreference;
+  } else {
+    colorMode = initialValue === "system" ? systemPreference : initialValue;
+  }
+
+  if (colorMode) {
+    var root = document.documentElement;
+    root.style.setProperty("--chakra-ui-color-mode", colorMode);
+  }
+})('light')</script><div id="__next"><style data-emotion="css-global 1r47v8">:host,:root{--chakra-ring-inset:var(--chakra-empty,/*!*/ /*!*/);--chakra-ring-offset-width:0px;--chakra-ring-offset-color:#fff;--chakra-ring-color:rgba(66, 153, 225, 0.6);--chakra-ring-offset-shadow:0 0 #0000;--chakra-ring-shadow:0 0 #0000;--chakra-space-x-reverse:0;--chakra-space-y-reverse:0;--chakra-colors-transparent:transparent;--chakra-colors-current:currentColor;--chakra-colors-black:#000000;--chakra-colors-white:#FFFFFF;--chakra-colors-whiteAlpha-50:rgba(255, 255, 255, 0.04);--chakra-colors-whiteAlpha-100:rgba(255, 255, 255, 0.06);--chakra-colors-whiteAlpha-200:rgba(255, 255, 255, 0.08);--chakra-colors-whiteAlpha-300:rgba(255, 255, 255, 0.16);--chakra-colors-whiteAlpha-400:rgba(255, 255, 255, 0.24);--chakra-colors-whiteAlpha-500:rgba(255, 255, 255, 0.36);--chakra-colors-whiteAlpha-600:rgba(255, 255, 255, 0.48);--chakra-colors-whiteAlpha-700:rgba(255, 255, 255, 0.64);--chakra-colors-whiteAlpha-800:rgba(255, 255, 255, 0.80);--chakra-colors-whiteAlpha-900:rgba(255, 255, 255, 0.92);--chakra-colors-blackAlpha-50:rgba(0, 0, 0, 0.04);--chakra-colors-blackAlpha-100:rgba(0, 0, 0, 0.06);--chakra-colors-blackAlpha-200:rgba(0, 0, 0, 0.08);--chakra-colors-blackAlpha-300:rgba(0, 0, 0, 0.16);--chakra-colors-blackAlpha-400:rgba(0, 0, 0, 0.24);--chakra-colors-blackAlpha-500:rgba(0, 0, 0, 0.36);--chakra-colors-blackAlpha-600:rgba(0, 0, 0, 0.48);--chakra-colors-blackAlpha-700:rgba(0, 0, 0, 0.64);--chakra-colors-blackAlpha-800:rgba(0, 0, 0, 0.80);--chakra-colors-blackAlpha-900:rgba(0, 0, 0, 0.92);--chakra-colors-gray-50:#F7FAFC;--chakra-colors-gray-100:#EDF2F7;--chakra-colors-gray-200:#E2E8F0;--chakra-colors-gray-300:#CBD5E0;--chakra-colors-gray-400:#A0AEC0;--chakra-colors-gray-500:#718096;--chakra-colors-gray-600:#4A5568;--chakra-colors-gray-700:#2D3748;--chakra-colors-gray-800:#1A202C;--chakra-colors-gray-900:#171923;--chakra-colors-red-50:#FFF5F5;--chakra-colors-red-100:#FED7D7;--chakra-colors-red-200:#FEB2B2;--chakra-colors-red-300:#FC8181;--chakra-colors-red-400:#F56565;--chakra-colors-red-500:#E53E3E;--chakra-colors-red-600:#C53030;--chakra-colors-red-700:#9B2C2C;--chakra-colors-red-800:#822727;--chakra-colors-red-900:#63171B;--chakra-colors-orange-50:#FFFAF0;--chakra-colors-orange-100:#FEEBC8;--chakra-colors-orange-200:#FBD38D;--chakra-colors-orange-300:#F6AD55;--chakra-colors-orange-400:#ED8936;--chakra-colors-orange-500:#DD6B20;--chakra-colors-orange-600:#C05621;--chakra-colors-orange-700:#9C4221;--chakra-colors-orange-800:#7B341E;--chakra-colors-orange-900:#652B19;--chakra-colors-yellow-50:#FFFFF0;--chakra-colors-yellow-100:#FEFCBF;--chakra-colors-yellow-200:#FAF089;--chakra-colors-yellow-300:#F6E05E;--chakra-colors-yellow-400:#ECC94B;--chakra-colors-yellow-500:#D69E2E;--chakra-colors-yellow-600:#B7791F;--chakra-colors-yellow-700:#975A16;--chakra-colors-yellow-800:#744210;--chakra-colors-yellow-900:#5F370E;--chakra-colors-green-50:#F0FFF4;--chakra-colors-green-100:#C6F6D5;--chakra-colors-green-200:#9AE6B4;--chakra-colors-green-300:#68D391;--chakra-colors-green-400:#48BB78;--chakra-colors-green-500:#38A169;--chakra-colors-green-600:#2F855A;--chakra-colors-green-700:#276749;--chakra-colors-green-800:#22543D;--chakra-colors-green-900:#1C4532;--chakra-colors-teal-50:#E6FFFA;--chakra-colors-teal-100:#B2F5EA;--chakra-colors-teal-200:#81E6D9;--chakra-colors-teal-300:#4FD1C5;--chakra-colors-teal-400:#38B2AC;--chakra-colors-teal-500:#319795;--chakra-colors-teal-600:#2C7A7B;--chakra-colors-teal-700:#285E61;--chakra-colors-teal-800:#234E52;--chakra-colors-teal-900:#1D4044;--chakra-colors-blue-50:#ebf8ff;--chakra-colors-blue-100:#bee3f8;--chakra-colors-blue-200:#90cdf4;--chakra-colors-blue-300:#63b3ed;--chakra-colors-blue-400:#4299e1;--chakra-colors-blue-500:#3182ce;--chakra-colors-blue-600:#2b6cb0;--chakra-colors-blue-700:#2c5282;--chakra-colors-blue-800:#2a4365;--chakra-colors-blue-900:#1A365D;--chakra-colors-cyan-50:#EDFDFD;--chakra-colors-cyan-100:#C4F1F9;--chakra-colors-cyan-200:#9DECF9;--chakra-colors-cyan-300:#76E4F7;--chakra-colors-cyan-400:#0BC5EA;--chakra-colors-cyan-500:#00B5D8;--chakra-colors-cyan-600:#00A3C4;--chakra-colors-cyan-700:#0987A0;--chakra-colors-cyan-800:#086F83;--chakra-colors-cyan-900:#065666;--chakra-colors-purple-50:#FAF5FF;--chakra-colors-purple-100:#E9D8FD;--chakra-colors-purple-200:#D6BCFA;--chakra-colors-purple-300:#B794F4;--chakra-colors-purple-400:#9F7AEA;--chakra-colors-purple-500:#805AD5;--chakra-colors-purple-600:#6B46C1;--chakra-colors-purple-700:#553C9A;--chakra-colors-purple-800:#44337A;--chakra-colors-purple-900:#322659;--chakra-colors-pink-50:#FFF5F7;--chakra-colors-pink-100:#FED7E2;--chakra-colors-pink-200:#FBB6CE;--chakra-colors-pink-300:#F687B3;--chakra-colors-pink-400:#ED64A6;--chakra-colors-pink-500:#D53F8C;--chakra-colors-pink-600:#B83280;--chakra-colors-pink-700:#97266D;--chakra-colors-pink-800:#702459;--chakra-colors-pink-900:#521B41;--chakra-colors-linkedin-50:#E8F4F9;--chakra-colors-linkedin-100:#CFEDFB;--chakra-colors-linkedin-200:#9BDAF3;--chakra-colors-linkedin-300:#68C7EC;--chakra-colors-linkedin-400:#34B3E4;--chakra-colors-linkedin-500:#00A0DC;--chakra-colors-linkedin-600:#008CC9;--chakra-colors-linkedin-700:#0077B5;--chakra-colors-linkedin-800:#005E93;--chakra-colors-linkedin-900:#004471;--chakra-colors-facebook-50:#E8F4F9;--chakra-colors-facebook-100:#D9DEE9;--chakra-colors-facebook-200:#B7C2DA;--chakra-colors-facebook-300:#6482C0;--chakra-colors-facebook-400:#4267B2;--chakra-colors-facebook-500:#385898;--chakra-colors-facebook-600:#314E89;--chakra-colors-facebook-700:#29487D;--chakra-colors-facebook-800:#223B67;--chakra-colors-facebook-900:#1E355B;--chakra-colors-messenger-50:#D0E6FF;--chakra-colors-messenger-100:#B9DAFF;--chakra-colors-messenger-200:#A2CDFF;--chakra-colors-messenger-300:#7AB8FF;--chakra-colors-messenger-400:#2E90FF;--chakra-colors-messenger-500:#0078FF;--chakra-colors-messenger-600:#0063D1;--chakra-colors-messenger-700:#0052AC;--chakra-colors-messenger-800:#003C7E;--chakra-colors-messenger-900:#002C5C;--chakra-colors-whatsapp-50:#dffeec;--chakra-colors-whatsapp-100:#b9f5d0;--chakra-colors-whatsapp-200:#90edb3;--chakra-colors-whatsapp-300:#65e495;--chakra-colors-whatsapp-400:#3cdd78;--chakra-colors-whatsapp-500:#22c35e;--chakra-colors-whatsapp-600:#179848;--chakra-colors-whatsapp-700:#0c6c33;--chakra-colors-whatsapp-800:#01421c;--chakra-colors-whatsapp-900:#001803;--chakra-colors-twitter-50:#E5F4FD;--chakra-colors-twitter-100:#C8E9FB;--chakra-colors-twitter-200:#A8DCFA;--chakra-colors-twitter-300:#83CDF7;--chakra-colors-twitter-400:#57BBF5;--chakra-colors-twitter-500:#1DA1F2;--chakra-colors-twitter-600:#1A94DA;--chakra-colors-twitter-700:#1681BF;--chakra-colors-twitter-800:#136B9E;--chakra-colors-twitter-900:#0D4D71;--chakra-colors-telegram-50:#E3F2F9;--chakra-colors-telegram-100:#C5E4F3;--chakra-colors-telegram-200:#A2D4EC;--chakra-colors-telegram-300:#7AC1E4;--chakra-colors-telegram-400:#47A9DA;--chakra-colors-telegram-500:#0088CC;--chakra-colors-telegram-600:#007AB8;--chakra-colors-telegram-700:#006BA1;--chakra-colors-telegram-800:#005885;--chakra-colors-telegram-900:#003F5E;--chakra-colors-home-bg:#f5f5fa;--chakra-borders-none:0;--chakra-borders-1px:1px solid;--chakra-borders-2px:2px solid;--chakra-borders-4px:4px solid;--chakra-borders-8px:8px solid;--chakra-fonts-heading:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";--chakra-fonts-body:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Helvetica,Segoe UI,Arial,Roboto,'PingFang SC',miui,'Hiragino Sans GB','Microsoft Yahei',sans-serif;--chakra-fonts-mono:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;--chakra-fontSizes-xs:0.75rem;--chakra-fontSizes-sm:0.875rem;--chakra-fontSizes-md:1rem;--chakra-fontSizes-lg:1.125rem;--chakra-fontSizes-xl:1.25rem;--chakra-fontSizes-2xl:1.5rem;--chakra-fontSizes-3xl:1.875rem;--chakra-fontSizes-4xl:2.25rem;--chakra-fontSizes-5xl:3rem;--chakra-fontSizes-6xl:3.75rem;--chakra-fontSizes-7xl:4.5rem;--chakra-fontSizes-8xl:6rem;--chakra-fontSizes-9xl:8rem;--chakra-fontWeights-hairline:100;--chakra-fontWeights-thin:200;--chakra-fontWeights-light:300;--chakra-fontWeights-normal:400;--chakra-fontWeights-medium:500;--chakra-fontWeights-semibold:600;--chakra-fontWeights-bold:700;--chakra-fontWeights-extrabold:800;--chakra-fontWeights-black:900;--chakra-letterSpacings-tighter:-0.05em;--chakra-letterSpacings-tight:-0.025em;--chakra-letterSpacings-normal:0;--chakra-letterSpacings-wide:0.025em;--chakra-letterSpacings-wider:0.05em;--chakra-letterSpacings-widest:0.1em;--chakra-lineHeights-3:.75rem;--chakra-lineHeights-4:1rem;--chakra-lineHeights-5:1.25rem;--chakra-lineHeights-6:1.5rem;--chakra-lineHeights-7:1.75rem;--chakra-lineHeights-8:2rem;--chakra-lineHeights-9:2.25rem;--chakra-lineHeights-10:2.5rem;--chakra-lineHeights-normal:normal;--chakra-lineHeights-none:1;--chakra-lineHeights-shorter:1.25;--chakra-lineHeights-short:1.375;--chakra-lineHeights-base:1.5;--chakra-lineHeights-tall:1.625;--chakra-lineHeights-taller:2;--chakra-radii-none:0;--chakra-radii-sm:0.125rem;--chakra-radii-base:0.25rem;--chakra-radii-md:0.375rem;--chakra-radii-lg:0.5rem;--chakra-radii-xl:0.75rem;--chakra-radii-2xl:1rem;--chakra-radii-3xl:1.5rem;--chakra-radii-full:9999px;--chakra-space-1:0.25rem;--chakra-space-2:0.5rem;--chakra-space-3:0.75rem;--chakra-space-4:1rem;--chakra-space-5:1.25rem;--chakra-space-6:1.5rem;--chakra-space-7:1.75rem;--chakra-space-8:2rem;--chakra-space-9:2.25rem;--chakra-space-10:2.5rem;--chakra-space-12:3rem;--chakra-space-14:3.5rem;--chakra-space-16:4rem;--chakra-space-20:5rem;--chakra-space-24:6rem;--chakra-space-28:7rem;--chakra-space-32:8rem;--chakra-space-36:9rem;--chakra-space-40:10rem;--chakra-space-44:11rem;--chakra-space-48:12rem;--chakra-space-52:13rem;--chakra-space-56:14rem;--chakra-space-60:15rem;--chakra-space-64:16rem;--chakra-space-72:18rem;--chakra-space-80:20rem;--chakra-space-96:24rem;--chakra-space-px:1px;--chakra-space-0\.5:0.125rem;--chakra-space-1\.5:0.375rem;--chakra-space-2\.5:0.625rem;--chakra-space-3\.5:0.875rem;--chakra-shadows-xs:0 0 0 1px rgba(0, 0, 0, 0.05);--chakra-shadows-sm:0 1px 2px 0 rgba(0, 0, 0, 0.05);--chakra-shadows-base:0 1px 3px 0 rgba(0, 0, 0, 0.1),0 1px 2px 0 rgba(0, 0, 0, 0.06);--chakra-shadows-md:0 4px 6px -1px rgba(0, 0, 0, 0.1),0 2px 4px -1px rgba(0, 0, 0, 0.06);--chakra-shadows-lg:0 10px 15px -3px rgba(0, 0, 0, 0.1),0 4px 6px -2px rgba(0, 0, 0, 0.05);--chakra-shadows-xl:0 20px 25px -5px rgba(0, 0, 0, 0.1),0 10px 10px -5px rgba(0, 0, 0, 0.04);--chakra-shadows-2xl:0 25px 50px -12px rgba(0, 0, 0, 0.25);--chakra-shadows-outline:0 0 0 3px rgba(66, 153, 225, 0.6);--chakra-shadows-inner:inset 0 2px 4px 0 rgba(0,0,0,0.06);--chakra-shadows-none:none;--chakra-shadows-dark-lg:rgba(0, 0, 0, 0.1) 0px 0px 0px 1px,rgba(0, 0, 0, 0.2) 0px 5px 10px,rgba(0, 0, 0, 0.4) 0px 15px 40px;--chakra-shadows-card:0px 4px 8px rgba(0, 0, 0, 0.04),0px 0px 2px rgba(0, 0, 0, 0.06),0px 0px 1px rgba(0, 0, 0, 0.04);--chakra-sizes-1:0.25rem;--chakra-sizes-2:0.5rem;--chakra-sizes-3:0.75rem;--chakra-sizes-4:1rem;--chakra-sizes-5:1.25rem;--chakra-sizes-6:1.5rem;--chakra-sizes-7:1.75rem;--chakra-sizes-8:2rem;--chakra-sizes-9:2.25rem;--chakra-sizes-10:2.5rem;--chakra-sizes-12:3rem;--chakra-sizes-14:3.5rem;--chakra-sizes-16:4rem;--chakra-sizes-20:5rem;--chakra-sizes-24:6rem;--chakra-sizes-28:7rem;--chakra-sizes-32:8rem;--chakra-sizes-36:9rem;--chakra-sizes-40:10rem;--chakra-sizes-44:11rem;--chakra-sizes-48:12rem;--chakra-sizes-52:13rem;--chakra-sizes-56:14rem;--chakra-sizes-60:15rem;--chakra-sizes-64:16rem;--chakra-sizes-72:18rem;--chakra-sizes-80:20rem;--chakra-sizes-96:24rem;--chakra-sizes-px:1px;--chakra-sizes-0\.5:0.125rem;--chakra-sizes-1\.5:0.375rem;--chakra-sizes-2\.5:0.625rem;--chakra-sizes-3\.5:0.875rem;--chakra-sizes-max:max-content;--chakra-sizes-min:min-content;--chakra-sizes-full:100%;--chakra-sizes-3xs:14rem;--chakra-sizes-2xs:16rem;--chakra-sizes-xs:20rem;--chakra-sizes-sm:24rem;--chakra-sizes-md:28rem;--chakra-sizes-lg:32rem;--chakra-sizes-xl:36rem;--chakra-sizes-2xl:42rem;--chakra-sizes-3xl:48rem;--chakra-sizes-4xl:56rem;--chakra-sizes-5xl:64rem;--chakra-sizes-6xl:72rem;--chakra-sizes-7xl:80rem;--chakra-sizes-8xl:90rem;--chakra-sizes-container-sm:640px;--chakra-sizes-container-md:768px;--chakra-sizes-container-lg:1024px;--chakra-sizes-container-xl:1280px;--chakra-zIndices-hide:-1;--chakra-zIndices-auto:auto;--chakra-zIndices-base:0;--chakra-zIndices-docked:10;--chakra-zIndices-dropdown:1000;--chakra-zIndices-sticky:1100;--chakra-zIndices-banner:1200;--chakra-zIndices-overlay:1300;--chakra-zIndices-modal:1400;--chakra-zIndices-popover:1500;--chakra-zIndices-skipLink:1600;--chakra-zIndices-toast:1700;--chakra-zIndices-tooltip:1800;--chakra-transition-property-common:background-color,border-color,color,fill,stroke,opacity,box-shadow,transform;--chakra-transition-property-colors:background-color,border-color,color,fill,stroke;--chakra-transition-property-dimensions:width,height;--chakra-transition-property-position:left,right,top,bottom;--chakra-transition-property-background:background-color,background-image,background-position;--chakra-transition-easing-ease-in:cubic-bezier(0.4, 0, 1, 1);--chakra-transition-easing-ease-out:cubic-bezier(0, 0, 0.2, 1);--chakra-transition-easing-ease-in-out:cubic-bezier(0.4, 0, 0.2, 1);--chakra-transition-duration-ultra-fast:50ms;--chakra-transition-duration-faster:100ms;--chakra-transition-duration-fast:150ms;--chakra-transition-duration-normal:200ms;--chakra-transition-duration-slow:300ms;--chakra-transition-duration-slower:400ms;--chakra-transition-duration-ultra-slow:500ms;--chakra-blur-none:0;--chakra-blur-sm:4px;--chakra-blur-base:8px;--chakra-blur-md:12px;--chakra-blur-lg:16px;--chakra-blur-xl:24px;--chakra-blur-2xl:40px;--chakra-blur-3xl:64px;}</style><style data-emotion="css-global 1jqlf9g">html{line-height:1.5;-webkit-text-size-adjust:100%;font-family:system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;-moz-osx-font-smoothing:grayscale;touch-action:manipulation;}body{position:relative;min-height:100%;font-feature-settings:'kern';}*,*::before,*::after{border-width:0;border-style:solid;box-sizing:border-box;}main{display:block;}hr{border-top-width:1px;box-sizing:content-box;height:0;overflow:visible;}pre,code,kbd,samp{font-family:SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:1em;}a{background-color:transparent;color:inherit;-webkit-text-decoration:inherit;text-decoration:inherit;}abbr[title]{border-bottom:none;-webkit-text-decoration:underline;text-decoration:underline;-webkit-text-decoration:underline dotted;-webkit-text-decoration:underline dotted;text-decoration:underline dotted;}b,strong{font-weight:bold;}small{font-size:80%;}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline;}sub{bottom:-0.25em;}sup{top:-0.5em;}img{border-style:none;}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0;}button,input{overflow:visible;}button,select{text-transform:none;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner{border-style:none;padding:0;}fieldset{padding:0.35em 0.75em 0.625em;}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal;}progress{vertical-align:baseline;}textarea{overflow:auto;}[type="checkbox"],[type="radio"]{box-sizing:border-box;padding:0;}[type="number"]::-webkit-inner-spin-button,[type="number"]::-webkit-outer-spin-button{-webkit-appearance:none!important;}input[type="number"]{-moz-appearance:textfield;}[type="search"]{-webkit-appearance:textfield;outline-offset:-2px;}[type="search"]::-webkit-search-decoration{-webkit-appearance:none!important;}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit;}details{display:block;}summary{display:-webkit-box;display:-webkit-list-item;display:-ms-list-itembox;display:list-item;}template{display:none;}[hidden]{display:none!important;}body,blockquote,dl,dd,h1,h2,h3,h4,h5,h6,hr,figure,p,pre{margin:0;}button{background:transparent;padding:0;}fieldset{margin:0;padding:0;}ol,ul{margin:0;padding:0;}textarea{resize:vertical;}button,[role="button"]{cursor:pointer;}button::-moz-focus-inner{border:0!important;}table{border-collapse:collapse;}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit;}button,input,optgroup,select,textarea{padding:0;line-height:inherit;color:inherit;}img,svg,video,canvas,audio,iframe,embed,object{display:block;}img,video{max-width:100%;height:auto;}[data-js-focus-visible] :focus:not([data-focus-visible-added]){outline:none;box-shadow:none;}select::-ms-expand{display:none;}</style><style data-emotion="css-global 1of8e4g">body{font-family:var(--chakra-fonts-body);color:var(--chakra-colors-gray-800);background:var(--chakra-colors-white);transition-property:background-color;transition-duration:var(--chakra-transition-duration-normal);line-height:var(--chakra-lineHeights-base);}*::-webkit-input-placeholder{color:var(--chakra-colors-gray-400);}*::-moz-placeholder{color:var(--chakra-colors-gray-400);}*:-ms-input-placeholder{color:var(--chakra-colors-gray-400);}*::placeholder{color:var(--chakra-colors-gray-400);}*,*::before,::after{border-color:var(--chakra-colors-gray-200);word-wrap:break-word;}html,body{background:var(--chakra-colors-home-bg);}img,#write iframe{-webkit-filter:unset;filter:unset;transition-property:filter;transition-duration:var(--chakra-transition-duration-normal);}div{transition-property:background-color;transition-duration:var(--chakra-transition-duration-normal);}</style><style data-emotion="css 1ghv3an">.css-1ghv3an{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:flex-start;-webkit-box-align:flex-start;-ms-flex-align:flex-start;align-items:flex-start;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;height:unset;overflow:auto;-webkit-box-flex-flow:column;-webkit-flex-flow:column;-ms-flex-flow:column;flex-flow:column;-webkit-padding-start:0.5rem;padding-inline-start:0.5rem;-webkit-padding-end:0.5rem;padding-inline-end:0.5rem;}@media screen and (min-width: 30em){.css-1ghv3an{height:unset;-webkit-box-flex-flow:column;-webkit-flex-flow:column;-ms-flex-flow:column;flex-flow:column;}}@media screen and (min-width: 48em){.css-1ghv3an{height:100vh;-webkit-box-flex-flow:row;-webkit-flex-flow:row;-ms-flex-flow:row;flex-flow:row;}}</style><div class="css-1ghv3an"><style data-emotion="css xte4wg">.css-xte4wg{display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;position:unset;white-space:nowrap;vertical-align:middle;outline:2px solid transparent;outline-offset:2px;width:auto;line-height:1.2;border-radius:var(--chakra-radii-md);font-weight:var(--chakra-fontWeights-semibold);transition-property:var(--chakra-transition-property-common);transition-duration:var(--chakra-transition-duration-normal);height:var(--chakra-sizes-12);min-width:var(--chakra-sizes-12);font-size:var(--chakra-fontSizes-lg);-webkit-padding-start:var(--chakra-space-6);padding-inline-start:var(--chakra-space-6);-webkit-padding-end:var(--chakra-space-6);padding-inline-end:var(--chakra-space-6);background:var(--chakra-colors-gray-100);margin-top:1rem;top:3rem;}@media screen and (min-width: 30em){.css-xte4wg{position:unset;margin-top:1rem;}}@media screen and (min-width: 48em){.css-xte4wg{position:-webkit-sticky;position:sticky;margin-top:3rem;}}.css-xte4wg:focus,.css-xte4wg[data-focus]{box-shadow:var(--chakra-shadows-outline);}.css-xte4wg[disabled],.css-xte4wg[aria-disabled=true],.css-xte4wg[data-disabled]{opacity:0.4;cursor:not-allowed;box-shadow:var(--chakra-shadows-none);}.css-xte4wg:hover,.css-xte4wg[data-hover]{background:var(--chakra-colors-gray-200);}.css-xte4wg:hover[disabled],.css-xte4wg[data-hover][disabled],.css-xte4wg:hover[aria-disabled=true],.css-xte4wg[data-hover][aria-disabled=true],.css-xte4wg:hover[data-disabled],.css-xte4wg[data-hover][data-disabled]{background:var(--chakra-colors-gray-100);}.css-xte4wg:active,.css-xte4wg[data-active]{background:var(--chakra-colors-gray-300);}</style><button type="button" class="chakra-button css-xte4wg">BACK</button><style data-emotion="css a06krq">.css-a06krq{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;width:var(--chakra-sizes-full);-webkit-box-flex-flow:column;-webkit-flex-flow:column;-ms-flex-flow:column;flex-flow:column;-webkit-padding-start:unset;padding-inline-start:unset;-webkit-padding-end:unset;padding-inline-end:unset;}@media screen and (min-width: 30em){.css-a06krq{width:var(--chakra-sizes-full);-webkit-padding-start:unset;padding-inline-start:unset;-webkit-padding-end:unset;padding-inline-end:unset;}}@media screen and (min-width: 48em){.css-a06krq{width:55rem;-webkit-padding-start:1.5rem;padding-inline-start:1.5rem;-webkit-padding-end:1.5rem;padding-inline-end:1.5rem;}}@media screen and (min-width: 62em){.css-a06krq{width:55rem;}}@media screen and (min-width: 80em){.css-a06krq{width:55rem;}}@media screen and (min-width: 96em){.css-a06krq{width:68rem;}}</style><div class="css-a06krq"><style data-emotion="css 1if659q">.css-1if659q{border-radius:10px;margin-top:1rem;box-shadow:var(--chakra-shadows-lg);background:var(--chakra-colors-white);overflow:hidden;-webkit-flex:1;-ms-flex:1;flex:1;}@media screen and (min-width: 30em){.css-1if659q{margin-top:1rem;}}@media screen and (min-width: 48em){.css-1if659q{margin-top:3rem;}}</style><div class="css-1if659q"><style data-emotion="css 81xunj">.css-81xunj{padding:1rem;}@media screen and (min-width: 30em){.css-81xunj{padding:1rem;}}@media screen and (min-width: 48em){.css-81xunj{padding:2rem;}}</style><article class="css-81xunj"><header class="css-0"><style data-emotion="css 1m7qnzk">.css-1m7qnzk{font-family:var(--chakra-fonts-heading);font-weight:var(--chakra-fontWeights-bold);font-size:var(--chakra-fontSizes-3xl);line-height:1.33;margin-bottom:1rem;color:rgba(0, 0, 0, 0.85);}@media screen and (min-width: 48em){.css-1m7qnzk{font-size:var(--chakra-fontSizes-4xl);line-height:1.2;}}</style><h1 class="chakra-heading css-1m7qnzk">第一个SPA的踩坑总结</h1><style data-emotion="css acwcvw">.css-acwcvw{margin-bottom:1rem;}</style><div class="css-acwcvw"><style data-emotion="css ashw53">.css-ashw53{display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;vertical-align:top;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;max-width:100%;font-weight:var(--chakra-fontWeights-medium);line-height:1.2;outline:2px solid transparent;outline-offset:2px;min-height:1.5rem;min-width:1.5rem;font-size:var(--chakra-fontSizes-sm);border-radius:var(--chakra-radii-md);-webkit-padding-start:var(--chakra-space-2);padding-inline-start:var(--chakra-space-2);-webkit-padding-end:var(--chakra-space-2);padding-inline-end:var(--chakra-space-2);background:var(--chakra-colors-gray-100);color:var(--chakra-colors-gray-800);margin-right:0.5rem;}.css-ashw53:focus,.css-ashw53[data-focus]{box-shadow:var(--chakra-shadows-outline);}</style><span class="css-ashw53">JavaScript</span><span class="css-ashw53">Vue</span><span class="css-ashw53">TypeScript</span></div><style data-emotion="css x8djax">.css-x8djax{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;color:var(--chakra-colors-gray-600);}</style><div class="css-x8djax"><style data-emotion="css 1lr2xj">.css-1lr2xj{width:1em;height:1em;display:inline-block;line-height:1em;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;color:currentColor;margin-right:0.5rem;}</style><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" focusable="false" class="chakra-icon css-1lr2xj" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg><style data-emotion="css 129gw94">.css-129gw94{line-height:0;}</style><time dateTime="2021-05-13T14:18:24.000Z" class="css-129gw94">2021/05/13</time></div></header><style data-emotion="css i51og3">.css-i51og3{margin-top:2rem;}</style><section id="write" class="css-i51og3"><h2 id="重制版">重制版</h2>
+<p>在没有写完的情况下弃坑了，后来在写另一个 Vue3 的练手项目时想起来这个曾经入手 Vue2 的入门项目。</p>
+<p>所以打算使用 Vue3 + TypeScript 重构一下。</p>
+<p><style data-emotion="css wox0k7">.css-wox0k7{transition-property:var(--chakra-transition-property-common);transition-duration:var(--chakra-transition-duration-fast);transition-timing-function:var(--chakra-transition-easing-ease-out);cursor:pointer;-webkit-text-decoration:none;text-decoration:none;outline:2px solid transparent;outline-offset:2px;color:inherit;display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}.css-wox0k7:hover,.css-wox0k7[data-hover]{-webkit-text-decoration:underline;text-decoration:underline;}.css-wox0k7:focus,.css-wox0k7[data-focus]{box-shadow:var(--chakra-shadows-outline);}</style><a target="_blank" rel="noopener noreferrer" class="chakra-link css-wox0k7" href="https://github.com/DefectingCat/gugu-mall">仓库地址<style data-emotion="css 2y6psj">.css-2y6psj{width:1em;height:1em;display:inline-block;line-height:1em;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;color:currentColor;vertical-align:middle;-webkit-margin-start:2px;margin-inline-start:2px;-webkit-margin-end:2px;margin-inline-end:2px;}</style><svg viewBox="0 0 24 24" focusable="false" class="chakra-icon css-2y6psj"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><path d="M15 3h6v6"></path><path d="M10 14L21 3"></path></g></svg></a></p>
+<h2 id="typescript">TypeScript</h2>
+<h3 id="vuex">Vuex</h3>
+<p>在 Vuex 中正确的使用了 TypeScript 可以直接静态提示 state 的类型以及属性。而在 Vuex 中为 state 注解需要用到官方的泛型。</p>
+<p>第一步，为 state 做注解：</p>
+<pre><style data-emotion="css 19bp9bt">.css-19bp9bt{display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;position:absolute;white-space:nowrap;vertical-align:middle;outline:2px solid transparent;outline-offset:2px;width:auto;line-height:1.2;border-radius:var(--chakra-radii-md);font-weight:var(--chakra-fontWeights-semibold);transition-property:var(--chakra-transition-property-common);transition-duration:var(--chakra-transition-duration-normal);height:var(--chakra-sizes-6);min-width:var(--chakra-sizes-6);font-size:var(--chakra-fontSizes-xs);-webkit-padding-start:var(--chakra-space-2);padding-inline-start:var(--chakra-space-2);-webkit-padding-end:var(--chakra-space-2);padding-inline-end:var(--chakra-space-2);background:var(--chakra-colors-teal-500);color:var(--chakra-colors-white);top:5px;right:5px;}.css-19bp9bt:focus,.css-19bp9bt[data-focus]{box-shadow:var(--chakra-shadows-outline);}.css-19bp9bt[disabled],.css-19bp9bt[aria-disabled=true],.css-19bp9bt[data-disabled]{opacity:0.4;cursor:not-allowed;box-shadow:var(--chakra-shadows-none);}.css-19bp9bt:hover,.css-19bp9bt[data-hover]{background:var(--chakra-colors-teal-600);}.css-19bp9bt:hover[disabled],.css-19bp9bt[data-hover][disabled],.css-19bp9bt:hover[aria-disabled=true],.css-19bp9bt[data-hover][aria-disabled=true],.css-19bp9bt:hover[data-disabled],.css-19bp9bt[data-hover][data-disabled]{background:var(--chakra-colors-teal-500);}.css-19bp9bt:active,.css-19bp9bt[data-active]{background:var(--chakra-colors-teal-700);}</style><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-comment">// types/state.ts</span>
+<span class="hljs-keyword">type</span> <span class="hljs-title hljs-class">CartObj</span> = {
+  <span class="hljs-attr">iid</span>: <span class="hljs-built_in">string</span> | <span class="hljs-built_in">string</span>[];
+  <span class="hljs-attr">imgURL</span>: <span class="hljs-built_in">string</span>;
+  <span class="hljs-attr">title</span>: <span class="hljs-built_in">string</span> | <span class="hljs-literal">undefined</span>;
+  <span class="hljs-attr">desc</span>: <span class="hljs-built_in">string</span> | <span class="hljs-literal">undefined</span>;
+  <span class="hljs-attr">newPrice</span>: <span class="hljs-built_in">string</span> | <span class="hljs-literal">undefined</span>;
+};
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> <span class="hljs-title hljs-class">State</span> = {
+  <span class="hljs-attr">cartList</span>: <span class="hljs-title hljs-class">CartObj</span>[];
+};
+</code></pre>
+<p>在 store 中，使用<code>createStore()</code>方法创建 store 时，在泛型中传入刚刚定义好的类型：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-comment">// types</span>
+<span class="hljs-keyword">import</span> { <span class="hljs-title hljs-class">State</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@/types/store&#x27;</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> createStore&lt;<span class="hljs-title hljs-class">State</span>&gt;({
+  <span class="hljs-attr">state</span>: {
+    <span class="hljs-attr">cartList</span>: [],
+  },
+  mutations,
+  actions,
+  getters,
+  <span class="hljs-comment">// modules: {},</span>
+});
+</code></pre>
+<p>这时，state 中的数据就已经被注解类型了。</p>
+<p>在官方类型注解文件中可以看到<code>createStore()</code>方法中参数使用的接口，其中 state 直接被注解为泛型 S。而 mutations 等，需要使用各自的接口。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> <span class="hljs-title hljs-class">StoreOptions</span>&lt;S&gt; {
+  state?: S | (<span class="hljs-function">() =&gt;</span> S);
+  getters?: <span class="hljs-title hljs-class">GetterTree</span>&lt;S, S&gt;;
+  actions?: <span class="hljs-title hljs-class">ActionTree</span>&lt;S, S&gt;;
+  mutations?: <span class="hljs-title hljs-class">MutationTree</span>&lt;S&gt;;
+  modules?: <span class="hljs-title hljs-class">ModuleTree</span>&lt;S&gt;;
+  plugins?: <span class="hljs-title hljs-class">Plugin</span>&lt;S&gt;[];
+  strict?: <span class="hljs-built_in">boolean</span>;
+  devtools?: <span class="hljs-built_in">boolean</span>;
+}
+</code></pre>
+<p>到这里仅仅只是注解完了 state，接着就是 mutations。这里的 mutations 使用接口 MutationTree 并传递一个泛型，将刚刚注解的 state 传递过去。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-comment">// mutations.ts</span>
+<span class="hljs-keyword">import</span> { <span class="hljs-title hljs-class">MutationTree</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vuex&#x27;</span>;
+<span class="hljs-comment">// types</span>
+<span class="hljs-keyword">import</span> { <span class="hljs-title hljs-class">CartObj</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@/types/detail&#x27;</span>;
+<span class="hljs-keyword">import</span> { <span class="hljs-title hljs-class">State</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@/types/store&#x27;</span>;
+
+<span class="hljs-keyword">const</span> <span class="hljs-attr">mutations</span>: <span class="hljs-title hljs-class">MutationTree</span>&lt;<span class="hljs-title hljs-class">State</span>&gt; = {
+  <span class="hljs-title hljs-function">addCart</span>(state, <span class="hljs-attr">info</span>: <span class="hljs-title hljs-class">CartObj</span>): <span class="hljs-built_in">void</span> {
+    <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(state);
+  },
+};
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> mutations;
+</code></pre>
+<h3 id="索引签名">索引签名</h3>
+<p>使用下标访问对象时会要求接口中声明了索引签名，否则不允许直接使用下标的方式访问对象属性。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-keyword">interface</span> <span class="hljs-title hljs-class">State</span> {
+  <span class="hljs-attr">goods</span>: {
+    <span class="hljs-attr">pop</span>: <span class="hljs-title hljs-class">GoodsData</span>;
+    <span class="hljs-attr">new</span>: <span class="hljs-title hljs-class">GoodsData</span>;
+    <span class="hljs-attr">sell</span>: <span class="hljs-title hljs-class">GoodsData</span>;
+  };
+}
+<span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">someFunc</span>(<span class="hljs-params"></span>)  {
+  state.<span class="hljs-property">goods</span>[<span class="hljs-keyword">type</span>].<span class="hljs-property">list1</span>.<span class="hljs-title hljs-function">push</span>(...p1);
+  state.<span class="hljs-property">goods</span>[<span class="hljs-keyword">type</span>].<span class="hljs-property">list2</span>.<span class="hljs-title hljs-function">push</span>(...p2);
+  state.<span class="hljs-property">goods</span>[<span class="hljs-keyword">type</span>].<span class="hljs-property">page</span> = page;
+  <span class="hljs-comment">// No index signature with a parameter of type &#x27;string&#x27; was found on type &#x27;{ pop: GoodsData; new: GoodsData; sell: GoodsData; }&#x27;.</span>
+}
+</code></pre>
+<p>强制用户必须明确的写出索引签名的的原因是：在对象上默认执行的 toString 方法是有害的。例如 v8 引擎上总是会返回 <code>[object Object]</code></p>
+<h3 id="声明一个索引签名">声明一个索引签名</h3>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-keyword">interface</span> <span class="hljs-title hljs-class">State</span> {
+  <span class="hljs-attr">goods</span>: {
+    <span class="hljs-attr">pop</span>: <span class="hljs-title hljs-class">GoodsData</span>;
+    <span class="hljs-attr">new</span>: <span class="hljs-title hljs-class">GoodsData</span>;
+    <span class="hljs-attr">sell</span>: <span class="hljs-title hljs-class">GoodsData</span>;
+    <span class="hljs-comment">// 索引签名，通过定义接口用来对对象key的约束</span>
+    [<span class="hljs-attr">key</span>: <span class="hljs-built_in">string</span>]: <span class="hljs-title hljs-class">GoodsData</span>;
+  };
+}
+</code></pre>
+<blockquote>
+<p>TypeScript 的索引签名必须是 string 或者 number。symbols 也是有效的，TypeScript 也支持它。</p>
+</blockquote>
+<h3 id="mouseevent--elemet">mouseEvent &amp; Elemet</h3>
+<p>当使用事件监听器的时候，<code>e.target</code>通常为 Element 类型。而<code>e</code>本身是 mouseevent 类型，所以在<code>e</code>的类型下无法获取到 target 之后的元素方法。</p>
+<p>这时候就可以使用<code>&amp;</code>操作符，在注解类型的时候就将其属性也注解了。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-keyword">const</span> <span class="hljs-title hljs-function">titleClick</span> = (<span class="hljs-params">e: MouseEvent &amp; { target: Element }</span>) =&gt; {
+  <span class="hljs-keyword">const</span> index = e.<span class="hljs-property">target</span>.<span class="hljs-title hljs-function">getAttribute</span>(<span class="hljs-string">&#x27;data-xfy-index&#x27;</span>);
+  state.<span class="hljs-property">currentIndex</span> = (index <span class="hljs-keyword">as</span> unknown) <span class="hljs-keyword">as</span> <span class="hljs-built_in">number</span>;
+};
+</code></pre>
+<h3 id="htmlelement">HTMLElement</h3>
+<p>当需要在页面中获取到 DOM 节点再操作时，有些时候可能需要推断为 HTMLElement 类型。这样才能正确的使用 DOM 方法。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-keyword">type</span> <span class="hljs-title hljs-class">CateData</span> = {
+  <span class="hljs-attr">cateTopYs</span>: <span class="hljs-built_in">number</span>[];
+  <span class="hljs-attr">itemRefs</span>: <span class="hljs-title hljs-class">Record</span>&lt;<span class="hljs-built_in">string</span>, <span class="hljs-title hljs-class">Record</span>&lt;<span class="hljs-built_in">string</span>, <span class="hljs-built_in">number</span>&gt;&gt;[];
+  <span class="hljs-attr">currentIndex</span>: <span class="hljs-built_in">number</span>;
+  <span class="hljs-attr">listRefs</span>: <span class="hljs-title hljs-class">HTMLElement</span>[];
+  <span class="hljs-attr">prePrevious</span>: <span class="hljs-title hljs-class">HTMLElement</span>;
+  <span class="hljs-attr">preNext</span>: <span class="hljs-title hljs-class">HTMLElement</span>;
+};
+</code></pre>
+<p>在创建响应式对象的时候需要直接使用<code>document.createElement()</code>创建一个 HTMLElement</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-keyword">const</span> <span class="hljs-attr">cateData</span>: <span class="hljs-title hljs-class">CateData</span> = <span class="hljs-title hljs-function">reactive</span>({
+  <span class="hljs-attr">cateTopYs</span>: [],
+  <span class="hljs-attr">itemRefs</span>: [],
+  <span class="hljs-attr">currentIndex</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-comment">// 小圆角</span>
+  <span class="hljs-attr">listRefs</span>: [],
+  <span class="hljs-comment">// 获取到的节点类型时HTMLElement，所以这里需要使用createElement创建一个HTMLElement</span>
+  <span class="hljs-attr">prePrevious</span>: <span class="hljs-variable hljs-language">document</span>.<span class="hljs-title hljs-function">createElement</span>(<span class="hljs-string">&#x27;div&#x27;</span>),
+  <span class="hljs-attr">preNext</span>: <span class="hljs-variable hljs-language">document</span>.<span class="hljs-title hljs-function">createElement</span>(<span class="hljs-string">&#x27;div&#x27;</span>),
+});
+</code></pre>
+<h3 id="props-类型">props 类型</h3>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-attr">props</span>: {
+  <span class="hljs-attr">path</span>: {
+    <span class="hljs-comment">// https://stackoverflow.com/questions/64831745/props-typing-in-vue-js-3-with-typescript</span>
+    <span class="hljs-attr">type</span>: <span class="hljs-title hljs-class">Object</span> <span class="hljs-keyword">as</span> <span class="hljs-title hljs-class">PropType</span>&lt;string&gt;,
+  },
+},
+</code></pre>
+<h2 id="v-for">v-for</h2>
+<h3 id="控制-v-for">控制 v-for</h3>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;index of goods.services.length - 2&quot;</span> <span class="hljs-attr">:key</span>=<span class="hljs-string">&quot;index&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span> /&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span> {{ goods.services[index].name }}<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+</code></pre>
+<h3 id="v-for-中的-ref-数组">v-for 中的 Ref 数组</h3>
+<p>在 Vue 3 中获取循环的 DOM 与 Vue 2 略有不同，在官方文档中有提到：<a target="_blank" rel="noopener noreferrer" class="chakra-link css-wox0k7" href="https://v3.cn.vuejs.org/guide/migration/array-refs.html#frontmatter-title">v-for 中的 Ref 数组<svg viewBox="0 0 24 24" focusable="false" class="chakra-icon css-2y6psj"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><path d="M15 3h6v6"></path><path d="M10 14L21 3"></path></g></svg></a>。</p>
+<p>具体操作也不是很复杂，在<code>v-for</code>循环中绑定一个<code>:ref</code> attribute，值为一个方法，方法中能获取到对应的 element。然后 push 到预先准备好的数组内就可以了。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-html">      <span class="hljs-tag">&lt;<span class="hljs-name">SubCategories</span>
+        <span class="hljs-attr">:ref</span>=<span class="hljs-string">&quot;setItemRef&quot;</span>
+        <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;item in subCategories&quot;</span>
+        <span class="hljs-attr">:key</span>=<span class="hljs-string">&quot;item&quot;</span>
+        <span class="hljs-attr">:data</span>=<span class="hljs-string">&quot;item&quot;</span>
+      /&gt;</span>
+</code></pre>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts">  <span class="hljs-keyword">const</span> <span class="hljs-attr">cateData</span>: <span class="hljs-title hljs-class">CateData</span> = <span class="hljs-title hljs-function">reactive</span>({
+    <span class="hljs-attr">listRefs</span>: [],
+  });
+</code></pre>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts">  <span class="hljs-keyword">const</span> <span class="hljs-title hljs-function">setListRef</span> = (<span class="hljs-params">el: HTMLElement</span>) =&gt; {
+    <span class="hljs-keyword">if</span> (el) {
+      cateData.<span class="hljs-property">listRefs</span>.<span class="hljs-title hljs-function">push</span>(el);
+    }
+  };
+</code></pre>
+<p>但是这样有一个问题，那就是这个 setListRef 的执行时机。事实上，这个方法在对应的节点每更新（update）一次，就会执行一次。这样就会导致一个问题，那就是我们通常只需要获取一遍完整的 DOM 节点即可。而每次更新都会将所有的节点 push 到数组内，会导致数组内容成指数型增长，而且内容还是多余的。</p>
+<p>所以通常需要额外添加一个判断：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts">  <span class="hljs-keyword">const</span> <span class="hljs-title hljs-function">setListRef</span> = (<span class="hljs-params">el: HTMLElement</span>) =&gt; {
+    <span class="hljs-comment">// 每次节点改变时，都会触发这个方法，会导致一直push</span>
+    <span class="hljs-comment">// 为了防止长度无限增加，需要添加条件判断</span>
+    <span class="hljs-keyword">if</span> (el &amp;&amp; cateData.<span class="hljs-property">listRefs</span>.<span class="hljs-property">length</span> &lt; <span class="hljs-number">16</span>) {
+      cateData.<span class="hljs-property">listRefs</span>.<span class="hljs-title hljs-function">push</span>(el);
+    }
+  };
+</code></pre>
+<h2 id="keep-alive">keep-alive</h2>
+<p>缓存的组件一定要设置<code>name</code>属性！</p>
+<ul>
+<li><a target="_blank" rel="noopener noreferrer" class="chakra-link css-wox0k7" href="https://segmentfault.com/q/1010000009117672#">vue.js的keep-alive include无效<svg viewBox="0 0 24 24" focusable="false" class="chakra-icon css-2y6psj"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><path d="M15 3h6v6"></path><path d="M10 14L21 3"></path></g></svg></a></li>
+</ul>
+<h3 id="vue-3">Vue 3</h3>
+<p>Vue 3 中的 router-view 与 keep-alive 标签使用方式略有不同。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">router-view</span> <span class="hljs-attr">v-slot</span>=<span class="hljs-string">&quot;{ Component }&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">keep-alive</span> <span class="hljs-attr">exclude</span>=<span class="hljs-string">&quot;Detail&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">component</span> <span class="hljs-attr">:is</span>=<span class="hljs-string">&quot;Component&quot;</span> /&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">keep-alive</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">router-view</span>&gt;</span>
+</code></pre>
+<h3 id="首页滑动位置记录">首页滑动位置记录</h3>
+<p>本来考虑的是使用事件监听器来监听滚动的位置，并保存。在组件激活时再利用<code>window.scrollTo()</code>方法滚动到离开时的位置。</p>
+<p>不过无脑添加事件监听器可能不是一个非常优雅的办法。后来发现一个简单的方式，利用组件内的导航守卫<code>onBeforeRouteLeave()</code>，在路由离开时记录滚动的位置。当组件激活后再直接给<code>document.documentElement.scrollTop</code>赋值，即可实现记录滚动位置。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-comment">// 切换路由时记录首页滚动的位置</span>
+<span class="hljs-title hljs-function">onBeforeRouteLeave</span>(<span class="hljs-function">() =&gt;</span> {
+  homeData.<span class="hljs-property">scrolledY</span> = <span class="hljs-variable hljs-language">document</span>.<span class="hljs-property">documentElement</span>.<span class="hljs-property">scrollTop</span>;
+});
+<span class="hljs-title hljs-function">onActivated</span>(<span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-variable hljs-language">document</span>.<span class="hljs-property">documentElement</span>.<span class="hljs-property">scrollTop</span> = homeData.<span class="hljs-property">scrolledY</span>;
+});
+</code></pre>
+<p>另外也可以使用路由导航守卫来代替<code>onActivated()</code>激活时的方法，在进入路由时为<code>document.documentElement.scrollTop</code>赋值。但这样需要注意路由导航的触发顺序几乎都是在更新 DOM 之前：</p>
+<ol>
+<li>导航被触发。</li>
+<li>在失活的组件里调用 <code>beforeRouteLeave</code> 守卫。</li>
+<li>调用全局的 <code>beforeEach</code> 守卫。</li>
+<li>在重用的组件里调用 <code>beforeRouteUpdate</code> 守卫(2.2+)。</li>
+<li>在路由配置里调用 <code>beforeEnter</code>。</li>
+<li>解析异步路由组件。</li>
+<li>在被激活的组件里调用 <code>beforeRouteEnter</code>。</li>
+<li>调用全局的 <code>beforeResolve</code> 守卫(2.5+)。</li>
+<li>导航被确认。</li>
+<li>调用全局的 <code>afterEach</code> 钩子。</li>
+<li>触发 DOM 更新。</li>
+<li>调用 <code>beforeRouteEnter</code> 守卫中传给 <code>next</code> 的回调函数，创建好的组件实例会作为回调函数的参数传入。</li>
+</ol>
+<p>所以需要使用<code>nextTick()</code>方法来更新。不过既然使用了<code>keepAlive</code>，还是使用对应的生命周期更加方便。</p>
+<h3 id="动态组件">动态组件</h3>
+<p>第一次看到动态组件的时候就很开心，原来组件还能这么玩。这里用到的动态组件主要是用到<code>keep-alive</code>来缓存子组件的状态。商品列表的子组件存在一个三栏切换。之前的方案是使用一个组件，每次切换时向里面传递数据，由于只用了一个子组件，每次数据传递完后，还需要重新下载图片。就算用了加载也会发送很多图片的请求。另外，频繁的切换还可能导致节点渲染出现小问题。</p>
+<p>将三栏的切换分别放到三个子组件中，然后再使用动态组件来进行缓存。虽然这三个子组件展示数据用的还是那一个组件（为了组件代码的复用），但是由于数据和状态都缓存了之后，每次仅仅只需要过一次 diff 算法即可。不用再下载图片。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">keep-alive</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">component</span> <span class="hljs-attr">:is</span>=<span class="hljs-string">&quot;currentTabComponent&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">component</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">keep-alive</span>&gt;</span>
+</code></pre>
+<p>并且将数据单独抽离为一个 hook，直接进行导出。首页不参与数据的修改，本质上修改数据的只有一个组件，数据改动的流向也没有任何变化。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-comment">// hook</span>
+<span class="hljs-comment">// 配合动态组件即可实现商品数据的缓存</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-attr">state</span>: <span class="hljs-title hljs-class">State</span> = <span class="hljs-title hljs-function">reactive</span>({
+  <span class="hljs-attr">banners</span>: [],
+  <span class="hljs-attr">recommend</span>: [],
+  <span class="hljs-attr">goods</span>: {
+    <span class="hljs-attr">pop</span>: {
+      <span class="hljs-attr">page</span>: <span class="hljs-number">0</span>,
+      <span class="hljs-attr">list1</span>: [],
+      <span class="hljs-attr">list2</span>: [],
+    },
+    <span class="hljs-attr">new</span>: {
+      <span class="hljs-attr">page</span>: <span class="hljs-number">0</span>,
+      <span class="hljs-attr">list1</span>: [],
+      <span class="hljs-attr">list2</span>: [],
+    },
+    <span class="hljs-attr">sell</span>: {
+      <span class="hljs-attr">page</span>: <span class="hljs-number">0</span>,
+      <span class="hljs-attr">list1</span>: [],
+      <span class="hljs-attr">list2</span>: [],
+    },
+  },
+});
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">homeRequestEffect</span>(<span class="hljs-params"></span>): <span class="hljs-title hljs-class">HomeData</span> {
+  <span class="hljs-keyword">const</span> <span class="hljs-attr">listData</span>: <span class="hljs-title hljs-class">ListData</span> = <span class="hljs-title hljs-function">reactive</span>({
+    <span class="hljs-attr">loading</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-attr">finished</span>: <span class="hljs-literal">false</span>,
+  });
+
+  <span class="hljs-comment">// 首页的请求</span>
+  <span class="hljs-keyword">const</span> reqSwiper = <span class="hljs-keyword">async</span> (): <span class="hljs-title hljs-class">Promise</span>&lt;<span class="hljs-built_in">void</span>&gt; =&gt; {
+    <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> <span class="hljs-title hljs-function">request</span>({
+      <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/home/multidata&#x27;</span>,
+    });
+    state.<span class="hljs-property">banners</span> = res.<span class="hljs-property">data</span>.<span class="hljs-property">banner</span>.<span class="hljs-property">list</span>;
+    state.<span class="hljs-property">recommend</span> = res.<span class="hljs-property">data</span>.<span class="hljs-property">recommend</span>.<span class="hljs-property">list</span>;
+  };
+
+  <span class="hljs-comment">// 商品的请求</span>
+  <span class="hljs-keyword">const</span> reqGoods = <span class="hljs-keyword">async</span> (<span class="hljs-attr">type</span>: <span class="hljs-built_in">string</span>): <span class="hljs-title hljs-class">Promise</span>&lt;<span class="hljs-built_in">void</span>&gt; =&gt; {
+    <span class="hljs-keyword">const</span> page = state.<span class="hljs-property">goods</span>[<span class="hljs-keyword">type</span>].<span class="hljs-property">page</span> + <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> <span class="hljs-title hljs-function">request</span>({
+      <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/home/data&#x27;</span>,
+      <span class="hljs-attr">params</span>: {
+        <span class="hljs-keyword">type</span>,
+        page,
+      },
+    });
+    <span class="hljs-keyword">const</span> paging = <span class="hljs-title hljs-class">Math</span>.<span class="hljs-title hljs-function">floor</span>(res.<span class="hljs-property">data</span>.<span class="hljs-property">list</span>.<span class="hljs-property">length</span> / <span class="hljs-number">2</span>);
+    <span class="hljs-keyword">const</span> p1 = res.<span class="hljs-property">data</span>.<span class="hljs-property">list</span>.<span class="hljs-title hljs-function">slice</span>(<span class="hljs-number">0</span>, paging);
+    <span class="hljs-keyword">const</span> p2 = res.<span class="hljs-property">data</span>.<span class="hljs-property">list</span>.<span class="hljs-title hljs-function">slice</span>(paging, res.<span class="hljs-property">data</span>.<span class="hljs-property">list</span>.<span class="hljs-property">length</span>);
+    state.<span class="hljs-property">goods</span>[<span class="hljs-keyword">type</span>].<span class="hljs-property">list1</span>.<span class="hljs-title hljs-function">push</span>(...p1);
+    state.<span class="hljs-property">goods</span>[<span class="hljs-keyword">type</span>].<span class="hljs-property">list2</span>.<span class="hljs-title hljs-function">push</span>(...p2);
+    state.<span class="hljs-property">goods</span>[<span class="hljs-keyword">type</span>].<span class="hljs-property">page</span> = page;
+    listData.<span class="hljs-property">loading</span> = <span class="hljs-literal">false</span>;
+  };
+
+  <span class="hljs-keyword">const</span> { loading, finished } = <span class="hljs-title hljs-function">toRefs</span>(listData);
+  <span class="hljs-keyword">return</span> {
+    loading,
+    finished,
+    reqSwiper,
+    reqGoods,
+  };
+}
+</code></pre>
+<h3 id="路由过渡动画">路由过渡动画</h3>
+<p>通过添加 <a target="_blank" rel="noopener noreferrer" class="chakra-link css-wox0k7" href="https://cn.vuejs.org/v2/guide/transitions.html#%E8%BF%87%E6%B8%A1%E6%A8%A1%E5%BC%8F">过渡模式<svg viewBox="0 0 24 24" focusable="false" class="chakra-icon css-2y6psj"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><path d="M15 3h6v6"></path><path d="M10 14L21 3"></path></g></svg></a> 来定义在多个路由或组件中的平滑过渡</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">transition</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;fade&quot;</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">&quot;out-in&quot;</span>&gt;</span>
+  <span class="hljs-comment">&lt;!-- ... the buttons ... --&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">transition</span>&gt;</span>
+</code></pre>
+<p>这种方法在 Vue 3 中使用有限制！Vue 3 支持组件多根节点，但目前 transition 只支持但根节点。则多根节点的组件无法使用 transition。</p>
+<h2 id="router">router</h2>
+<h3 id="route-path">route path</h3>
+<p>在<code>setup()</code>中使用<code>route.path</code>只能获取到<code>/</code>目录，原因是因为在<code>&lt;router-view&gt;</code>外的组件只能等路由内的组件加载完成后获取到路由信息。可以在<code>setup()</code>函数中将<code>route.path</code> return 出来。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-title hljs-function">setup</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> nowPath = <span class="hljs-title hljs-function">computed</span>(<span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-keyword">return</span> route.<span class="hljs-property">path</span>;
+  });
+  <span class="hljs-keyword">return</span> {
+    nowPath,
+  };
+}
+</code></pre>
+<p><a target="_blank" rel="noopener noreferrer" class="chakra-link css-wox0k7" href="https://codesandbox.io/s/router-viewyushengmingzhouqi-wl1jn">demo<svg viewBox="0 0 24 24" focusable="false" class="chakra-icon css-2y6psj"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><path d="M15 3h6v6"></path><path d="M10 14L21 3"></path></g></svg></a></p>
+<h2 id="axios">axios</h2>
+<h3 id="数据拦截器">数据拦截器</h3>
+<p>使用了数据拦截器后还是 <code>AxiosResponse&lt;any&gt;</code> 类型，导致无法使用请求后的数据。需要自定义一个类型声明：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-comment">// types/axios.d.ts</span>
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;axios&#x27;</span>;
+
+<span class="hljs-keyword">declare</span> <span class="hljs-variable hljs-language">module</span> <span class="hljs-string">&#x27;axios&#x27;</span> {
+  <span class="hljs-keyword">interface</span> <span class="hljs-title hljs-class">AxiosInstance</span> {
+    (<span class="hljs-attr">config</span>: <span class="hljs-title hljs-class">AxiosRequestConfig</span>): <span class="hljs-title hljs-class">Promise</span>&lt;<span class="hljs-built_in">any</span>&gt;;
+  }
+}
+</code></pre>
+<p>并在<code>tsconfig.json</code>中将 types 引入。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-json"><span class="hljs-comment">// tsconfig.json</span>
+<span class="hljs-attr">&quot;typeRoots&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
+  <span class="hljs-string">&quot;./node_modules/@types&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-string">&quot;./src/types/&quot;</span><span class="hljs-punctuation">,</span>
+<span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+</code></pre>
+<h2 id="vant-ui">Vant UI</h2>
+<h3 id="list-组件">List 组件</h3>
+<p>在使用 List 组件做瀑布流时，需要注意使用 flxe 或其他布局时，有可能会导致内容无限的加载。</p>
+<p>这是因为 List 在末尾使用了一个 placeholder 来做加载判断。当 placeholder 在视口内的时候，就会触发加载。</p>
+<p>所以当布局被改为横向的时候就会导致无限的触发加载。</p>
+<p>就算 flex 横向排列进行换行也会导致无限加载。如果使用 flex 做横向排列，需要额外再嵌套一个 div 做 wrapper。这个wrapper 内部再使用 flex 横向排列。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">van-list</span>
+    <span class="hljs-attr">v-model:loading</span>=<span class="hljs-string">&quot;loading&quot;</span>
+    <span class="hljs-attr">:finished</span>=<span class="hljs-string">&quot;finished&quot;</span>
+    <span class="hljs-attr">finished-text</span>=<span class="hljs-string">&quot;没有更多了&quot;</span>
+    @<span class="hljs-attr">load</span>=<span class="hljs-string">&quot;onLoad&quot;</span>
+  &gt;</span>
+    <span class="hljs-comment">&lt;!-- 额外嵌套一个div，将van-list的placeholder挤下去，否则会影响上拉加载 --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;goods-list&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;goods-list__col&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">GoodsListItem</span>
+          <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;goods-list__col__item&quot;</span>
+          <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;item of goods[currentTab].list1&quot;</span>
+          <span class="hljs-attr">:key</span>=<span class="hljs-string">&quot;item&quot;</span>
+          <span class="hljs-attr">:item</span>=<span class="hljs-string">&quot;item&quot;</span>
+        /&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;goods-list__col&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">GoodsListItem</span>
+          <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;goods-list__col__item&quot;</span>
+          <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;item of goods[currentTab].list2&quot;</span>
+          <span class="hljs-attr">:key</span>=<span class="hljs-string">&quot;item&quot;</span>
+          <span class="hljs-attr">:item</span>=<span class="hljs-string">&quot;item&quot;</span>
+        /&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">van-list</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</code></pre>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-scss"><span class="hljs-selector-class">.goods-list</span> {
+  <span class="hljs-attribute">display</span>: flex;
+  <span class="hljs-attribute">flex-flow</span>: row wrap;
+  <span class="hljs-attribute">justify-content</span>: space-evenly;
+  <span class="hljs-attribute">margin-bottom</span>: <span class="hljs-number">60px</span>;
+  &amp;__col {
+    <span class="hljs-attribute">width</span>: <span class="hljs-number">45%</span>;
+  }
+}
+</code></pre>
+<h3 id="透传样式">透传样式</h3>
+<p>在 scoped 中的样式是不会直接影响到其他组件的。如果使用了 UI 库，需要针对单个组件内的子组件进行样式修改，可以使用<code>/deep/</code>来对 CSS 进行修饰。使其能够在 scoped 的情况透传到子组件。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-css"><span class="hljs-comment">/* 穿透到子组件 */</span>
+/deep/ <span class="hljs-selector-class">.van-list__loading</span> {
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;
+}
+</code></pre>
+<p>但如果是 dart-scss 的话，需要使用<code>::v-deep</code>进行修饰。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-scss"><span class="hljs-comment">// 穿透到子组件</span>
+::v-deep .van-list__loading {
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;
+}
+</code></pre>
+<h4 id="透传样式的再次更新">透传样式的再次更新</h4>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-scss">  <span class="hljs-comment">// 穿透到子组件</span>
+  :deep(.van-list__loading) {
+    <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;
+  }
+</code></pre>
+<h2 id="ui--其他">UI &amp; 其他</h2>
+<h3 id="px2vw">px2vw</h3>
+<p>上一个 Vue3 的项目使用的是 rem 布局，每次要换算倒不是非常的麻烦。但是最终的效果还是一般般。</p>
+<p>所以这次试了试 vw 布局。使用的是<code>postcss-px-to-viewport</code>的 postcss 插件。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-csharp">yarn <span class="hljs-keyword">add</span> postcss-px-to-viewport -D
+</code></pre>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-variable hljs-language">module</span>.<span class="hljs-property">exports</span> = {
+  <span class="hljs-attr">plugins</span>: {
+    <span class="hljs-attr">autoprefixer</span>: {}, <span class="hljs-comment">// 用来给不同的浏览器自动添加相应前缀，如-webkit-，-moz-等等</span>
+    <span class="hljs-string">&#x27;postcss-px-to-viewport&#x27;</span>: {
+      <span class="hljs-attr">unitToConvert</span>: <span class="hljs-string">&#x27;px&#x27;</span>, <span class="hljs-comment">// 要转化的单位</span>
+      <span class="hljs-attr">viewportWidth</span>: <span class="hljs-number">375</span>, <span class="hljs-comment">// UI设计稿的宽度</span>
+      <span class="hljs-attr">unitPrecision</span>: <span class="hljs-number">6</span>, <span class="hljs-comment">// 转换后的精度，即小数点位数</span>
+      <span class="hljs-attr">propList</span>: [<span class="hljs-string">&#x27;*&#x27;</span>], <span class="hljs-comment">// 指定转换的css属性的单位，*代表全部css属性的单位都进行转换</span>
+      <span class="hljs-attr">viewportUnit</span>: <span class="hljs-string">&#x27;vw&#x27;</span>, <span class="hljs-comment">// 指定需要转换成的视窗单位，默认vw</span>
+      <span class="hljs-attr">fontViewportUnit</span>: <span class="hljs-string">&#x27;vw&#x27;</span>, <span class="hljs-comment">// 指定字体需要转换成的视窗单位，默认vw</span>
+      <span class="hljs-attr">selectorBlackList</span>: [<span class="hljs-string">&#x27;wrap&#x27;</span>], <span class="hljs-comment">// 指定不转换为视窗单位的类名，</span>
+      <span class="hljs-attr">minPixelValue</span>: <span class="hljs-number">1</span>, <span class="hljs-comment">// 默认值1，小于或等于1px则不进行转换</span>
+      <span class="hljs-attr">mediaQuery</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">// 是否在媒体查询的css代码中也进行转换，默认false</span>
+      <span class="hljs-attr">replace</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">// 是否转换后直接更换属性值</span>
+      <span class="hljs-attr">exclude</span>: [<span class="hljs-regexp">/node_modules/</span>], <span class="hljs-comment">// 设置忽略文件，用正则做目录名匹配</span>
+      <span class="hljs-attr">landscape</span>: <span class="hljs-literal">false</span>, <span class="hljs-comment">// 是否处理横屏情况</span>
+    },
+  },
+};
+</code></pre>
+<h3 id="sass-全局变量">sass 全局变量</h3>
+<p>vue-cli 支持 <a target="_blank" rel="noopener noreferrer" class="chakra-link css-wox0k7" href="https://cli.vuejs.org/zh/guide/css.html#%E5%90%91%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8-loader-%E4%BC%A0%E9%80%92%E9%80%89%E9%A1%B9">向预处理器-loader-传递选项<svg viewBox="0 0 24 24" focusable="false" class="chakra-icon css-2y6psj"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><path d="M15 3h6v6"></path><path d="M10 14L21 3"></path></g></svg></a>，从而全局的导入变量文件。</p>
+<p>是不需要额外安装<code>sass-resources-loader</code>的。参考<a target="_blank" rel="noopener noreferrer" class="chakra-link css-wox0k7" href="https://stackoverflow.com/questions/49086021/using-sass-resources-loader-with-vue-cli-v3-x">Using sass-resources-loader with vue-cli v3.x<svg viewBox="0 0 24 24" focusable="false" class="chakra-icon css-2y6psj"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><path d="M15 3h6v6"></path><path d="M10 14L21 3"></path></g></svg></a></p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-comment">// vue.config.js</span>
+<span class="hljs-variable hljs-language">module</span>.<span class="hljs-property">exports</span> = {
+  <span class="hljs-attr">css</span>: {
+    <span class="hljs-attr">loaderOptions</span>: {
+      <span class="hljs-comment">// 给 sass-loader 传递选项</span>
+      <span class="hljs-attr">scss</span>: {
+        <span class="hljs-comment">// @/ 是 src/ 的别名</span>
+        <span class="hljs-comment">// 所以这里假设你有 `src/variables.sass` 这个文件</span>
+        <span class="hljs-comment">// 注意：在 sass-loader v8 中，这个选项名是 &quot;prependData&quot;</span>
+        <span class="hljs-attr">prependData</span>: <span class="hljs-string">`@import &quot;~@/assets/css/_variables.scss&quot;;`</span>,
+      },
+      <span class="hljs-comment">// 默认情况下 `sass` 选项会同时对 `sass` 和 `scss` 语法同时生效</span>
+      <span class="hljs-comment">// 因为 `scss` 语法在内部也是由 sass-loader 处理的</span>
+      <span class="hljs-comment">// 但是在配置 `prependData` 选项的时候</span>
+      <span class="hljs-comment">// `scss` 语法会要求语句结尾必须有分号，`sass` 则要求必须没有分号</span>
+      <span class="hljs-comment">// 在这种情况下，我们可以使用 `scss` 选项，对 `scss` 语法进行单独配置</span>
+      <span class="hljs-comment">// scss: {</span>
+      <span class="hljs-comment">//   additionalData: `@import &quot;~@/variables.scss&quot;;`,</span>
+      <span class="hljs-comment">// },</span>
+    },
+  },
+};
+</code></pre>
+<h3 id="平均空间">平均空间</h3>
+<p>使用 flex 布局，在左右设置等距的 padding，然后使用 space-arorund。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-css"><span class="hljs-selector-class">.goods</span> {
+  <span class="hljs-attribute">display</span>: flex;
+  <span class="hljs-attribute">flex-flow</span>: row wrap;
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">0px</span> <span class="hljs-number">6px</span> <span class="hljs-number">0</span> <span class="hljs-number">6px</span>;
+  <span class="hljs-attribute">justify-content</span>: space-around;
+}
+</code></pre>
+<p>内部的单个项目需要指定宽度小于 50%，为中间留空白的空间</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-html">style=&quot;width: 48%; margin-top: 10px&quot;
+</code></pre>
+<p><picture data-rmiz-wrap="visible"><style data-emotion="css 185nr5j">.css-185nr5j{object-fit:cover;border-radius:10px;-webkit-filter:blur(20px);filter:blur(20px);transition-duration:var(--chakra-transition-duration-slower);height:100%;}</style><img alt="Post image" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" class="chakra-image css-185nr5j"/><button aria-label="Zoom image" data-rmiz-btn-open="true"></button></picture></p>
+<p>当然也可以使用 space-evently</p>
+<h3 id="瀑布流">瀑布流</h3>
+<p>两列的排列，图片的高度不统一。使用<code>flex</code>的横向换行排列会留出空白。</p>
+<p>使用<code>flex</code>将两列图片分别作为两个容器，纵向排列</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;goods&quot;</span>&gt;</span>
+  <span class="hljs-comment">&lt;!-- 从 home 组件接受的 list，循环创建 item --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;col&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">GoodsListItem</span>
+      <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;(item, index) of list1&quot;</span>
+      <span class="hljs-attr">:key</span>=<span class="hljs-string">&quot;item.iid + index&quot;</span>
+      <span class="hljs-attr">:item</span>=<span class="hljs-string">&quot;item&quot;</span>
+      <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;margin-top: 10px&quot;</span>
+    /&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;col&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">GoodsListItem</span>
+      <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;(item, index) of list2&quot;</span>
+      <span class="hljs-attr">:key</span>=<span class="hljs-string">&quot;item.iid + index&quot;</span>
+      <span class="hljs-attr">:item</span>=<span class="hljs-string">&quot;item&quot;</span>
+      <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;margin-top: 10px&quot;</span>
+    /&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-css"><span class="hljs-selector-class">.goods</span> <span class="hljs-selector-class">.col</span> {
+  <span class="hljs-attribute">display</span>: flex;
+  <span class="hljs-attribute">flex-flow</span>: column;
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">48%</span>;
+}
+</code></pre>
+<p><picture data-rmiz-wrap="visible"><img alt="Post image" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" class="chakra-image css-185nr5j"/><button aria-label="Zoom image" data-rmiz-btn-open="true"></button></picture></p>
+<h3 id="动画">动画</h3>
+<p>在尾期的时候，觉得有些地方过渡的不是很自然，于是想添加一些动画。</p>
+<h4 id="滑动缓入动画">滑动缓入动画</h4>
+<p>在商品列表被滑动进入视口时，想添加一个缓入的动画，这样看上去会显得自然一点（应该吧）。既然是进入视口时发生的动画，第一个想到的自然是使用 IntersectionObserver API 来检测是否与视口相交。如果检测到相交之后，则添加对应的行内样式。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts">    <span class="hljs-comment">// 使用 Intersection Observer API 来监听项目是否和视口相交</span>
+    <span class="hljs-keyword">const</span> observer = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">IntersectionObserver</span>(<span class="hljs-function">(<span class="hljs-params">entries, observer</span>) =&gt;</span> {
+      entries.<span class="hljs-title hljs-function">forEach</span>(<span class="hljs-function">(<span class="hljs-params">entry</span>) =&gt;</span> {
+        <span class="hljs-keyword">if</span> (entry.<span class="hljs-property">isIntersecting</span>) {
+          <span class="hljs-comment">// 断言为 HTMLElement 才可操作 style</span>
+          <span class="hljs-keyword">const</span> target = entry.<span class="hljs-property">target</span> <span class="hljs-keyword">as</span> <span class="hljs-title hljs-class">HTMLElement</span>;
+          <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
+            target.<span class="hljs-property">style</span>.<span class="hljs-property">transform</span> = <span class="hljs-string">`translateY(0px)`</span>;
+            target.<span class="hljs-property">style</span>.<span class="hljs-property">opacity</span> = <span class="hljs-string">`1`</span>;
+          }, <span class="hljs-number">300</span>);
+          <span class="hljs-comment">// 动画完成后取消监听</span>
+          observer.<span class="hljs-title hljs-function">unobserve</span>(entry.<span class="hljs-property">target</span>);
+        }
+      });
+    });
+    <span class="hljs-comment">// vfor 循环中使用两个方法添加列表监听</span>
+    <span class="hljs-keyword">const</span> <span class="hljs-title hljs-function">setList1Ref</span> = (<span class="hljs-params">el: { $el: HTMLElement }</span>) =&gt; {
+      el ? observer.<span class="hljs-title hljs-function">observe</span>(el.<span class="hljs-property">$el</span>) : <span class="hljs-built_in">void</span> <span class="hljs-number">0</span>;
+    };
+    <span class="hljs-keyword">const</span> <span class="hljs-title hljs-function">setList2Ref</span> = (<span class="hljs-params">el: { $el: HTMLElement }</span>) =&gt; {
+      el ? observer.<span class="hljs-title hljs-function">observe</span>(el.<span class="hljs-property">$el</span>) : <span class="hljs-built_in">void</span> <span class="hljs-number">0</span>;
+    };
+</code></pre>
+<p>元素本身的样式则提前准备好过渡：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-css">  // 视口相交动画
+  <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateY</span>(<span class="hljs-number">35px</span>);
+  <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">transition</span>: all <span class="hljs-number">0.2s</span> ease;
+</code></pre>
+<p>这里也顺便提一下，Vue3 中使用 ref 拿取<code>v-for</code>循环中的节点需要在节点上绑定一个方法，之后会在更新时自动触发方法。这里就是使用方法来为每个节点添加监视的。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">GoodsListItem</span>
+  <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;goods-list__col__item&quot;</span>
+  <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;item of goods[currentTab].list1&quot;</span>
+  <span class="hljs-attr">:key</span>=<span class="hljs-string">&quot;item&quot;</span>
+  <span class="hljs-attr">:item</span>=<span class="hljs-string">&quot;item&quot;</span>
+  <span class="hljs-attr">:ref</span>=<span class="hljs-string">&quot;setList1Ref&quot;</span>
+/&gt;</span>
+</code></pre>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"> <span class="hljs-keyword">const</span> <span class="hljs-title hljs-function">setList1Ref</span> = (<span class="hljs-params">el: { $el: HTMLElement }</span>) =&gt; {
+   el ? observer.<span class="hljs-title hljs-function">observe</span>(el.<span class="hljs-property">$el</span>) : <span class="hljs-built_in">void</span> <span class="hljs-number">0</span>;
+ };
+</code></pre>
+<h4 id="列表动画">列表动画</h4>
+<p>在个人的 Profile 页面有几个无序列表用来展示对应的选项，由于关于页做了个卡片的效果，所以给它写了个简单的 CSS 动画，在每次进入页面时都会执行一次。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-css"><span class="hljs-keyword">@keyframes</span> slidein {
+  <span class="hljs-selector-tag">from</span> {
+    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateY</span>(<span class="hljs-number">10px</span>);
+  }
+  <span class="hljs-selector-tag">to</span> {
+    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateY</span>(-<span class="hljs-number">20px</span>);
+  }
+}
+<span class="hljs-keyword">@keyframes</span> spin {
+  <span class="hljs-selector-tag">from</span> {
+    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateY</span>(<span class="hljs-number">5px</span>);
+  }
+  <span class="hljs-selector-tag">to</span> {
+    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateY</span>(-<span class="hljs-number">25px</span>);
+  }
+}
+</code></pre>
+<p>但总感觉还少点什么，于是就给列表也加了一些小过渡。但所有列表同时过渡也不是很自然，于是做了点小操作让它们并不是同一时间开始动画，持续时间也略有不同，这样看上去更和谐一点。</p>
+<p>具体的实现方式是使用同样的方式拿到<code>v-for</code>循环中的所有元素节点，然后再<code>onMounted</code>之后触发动画。</p>
+<p>第一个列表的动画持续时间是 200 ms，后面每个的持续时间都增加 100 ms。同时开始也设置了个延迟为 100 ms 后执行，后续每个也递增 100 ms。这样就有了种阶梯的感觉。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts">  <span class="hljs-keyword">const</span> <span class="hljs-title hljs-function">setListItem</span> = (<span class="hljs-params">el: HTMLElement</span>) =&gt; {
+    content.<span class="hljs-property">list</span>?.<span class="hljs-title hljs-function">push</span>(el);
+  };
+  <span class="hljs-keyword">const</span> <span class="hljs-title hljs-function">listAnimat</span> = (<span class="hljs-params"></span>) =&gt; {
+    <span class="hljs-comment">// 手搓动画</span>
+    <span class="hljs-comment">// 每个动画间隔增加100ms，持续实际增加100ms</span>
+    <span class="hljs-keyword">let</span> time = <span class="hljs-number">0.2</span>;
+    <span class="hljs-keyword">let</span> timeout = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> i <span class="hljs-keyword">of</span> content.<span class="hljs-property">list</span>) {
+      <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
+        i.<span class="hljs-property">style</span>.<span class="hljs-property">transform</span> = <span class="hljs-string">`translateY(0px)`</span>;
+        i.<span class="hljs-property">style</span>.<span class="hljs-property">transition</span> = <span class="hljs-string">`all <span class="hljs-subst">${time}</span>s`</span>;
+        i.<span class="hljs-property">style</span>.<span class="hljs-property">opacity</span> = <span class="hljs-string">`1`</span>;
+      }, timeout);
+      time += <span class="hljs-number">0.1</span>;
+      timeout += <span class="hljs-number">100</span>;
+    }
+  };
+
+<span class="hljs-comment">// 组件内使用</span>
+    <span class="hljs-title hljs-function">onMounted</span>(<span class="hljs-keyword">async</span> () =&gt; {
+      <span class="hljs-keyword">await</span> <span class="hljs-title hljs-function">nextTick</span>();
+      <span class="hljs-title hljs-function">listAnimat</span>();
+    });
+</code></pre>
+<h2 id="后端">后端</h2>
+<h3 id="备份-mongodb">备份 mongodb</h3>
+<p>mongodb 的备份与其他的关系型数据库非常类似，使用<code>mongodump</code>命令。不过我当前的测试环境是在 docker on windows 上的，并且忘记映射目录了（虽然他会提示 WSL 目录直接映射会有性能问题，但我还是忘了）。</p>
+<p>无论在什么环境的 docker，都可以使用<code>exec</code>来执行容器的命令。可以使用<code>/bin/sh</code>开打开一个伪终端。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-bash">docker <span class="hljs-built_in">exec</span> -it 979534a50979 /bin/sh
+</code></pre>
+<p>然后在容器内使用<code>mongodump</code>的命令来 dump 一份备份。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-bash">mongodump -h 127.0.0.1 -d guguMall --out /
+</code></pre>
+<p>由于导出的都是 json 与 bson，可以适当的压缩一下</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-bash">tar -zcvf guguMall.tar.gz guguMall
+</code></pre>
+<p>然后使用 docker 自带的 copy 命令<code>docker cp</code>来将文件 copy 到宿主机。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-bash">docker <span class="hljs-built_in">cp</span> 979534a50979:/guguMall.tar.gz /
+</code></pre>
+<blockquote>
+<p>windows （PowerShell）环境下<code>/</code>也就是 C 盘</p>
+</blockquote>
+<h3 id="恢复">恢复</h3>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-bash">mongorestore -h 127.0.0.1 -d guguMall ./guguMall
+</code></pre>
+<h3 id="cors">CORS</h3>
+<p>跨域是经典的问题了，主要是用来保护客户端的。这里使用 CORS 来解决，做了个简单的中间件：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-keyword">import</span> { <span class="hljs-title hljs-class">Context</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;koa&#x27;</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">cors</span>(<span class="hljs-params">ctx: Context, next: () =&gt; <span class="hljs-built_in">Promise</span>&lt;unknown&gt;</span>) {
+  <span class="hljs-comment">// 允许来自所有域名请求</span>
+  ctx.<span class="hljs-title hljs-function">set</span>(<span class="hljs-string">&#x27;Access-Control-Allow-Origin&#x27;</span>, <span class="hljs-string">&#x27;*&#x27;</span>);
+  <span class="hljs-comment">// 这样就能只允许 http://localhost:8080 这个域名的请求了</span>
+  <span class="hljs-comment">// ctx.set(&quot;Access-Control-Allow-Origin&quot;, &quot;http://localhost:8080&quot;);</span>
+  <span class="hljs-comment">// 设置所允许的HTTP请求方法</span>
+  ctx.<span class="hljs-title hljs-function">set</span>(<span class="hljs-string">&#x27;Access-Control-Allow-Methods&#x27;</span>, <span class="hljs-string">&#x27;OPTIONS, GET, PUT, POST, DELETE&#x27;</span>);
+  <span class="hljs-comment">// 字段是必需的。它也是一个逗号分隔的字符串，表明服务器支持的所有头信息字段.</span>
+  ctx.<span class="hljs-title hljs-function">set</span>(
+    <span class="hljs-string">&#x27;Access-Control-Allow-Headers&#x27;</span>,
+    <span class="hljs-string">&#x27;x-requested-with, accept, origin, content-type&#x27;</span>
+  );
+  <span class="hljs-comment">// 服务器收到请求以后，检查了Origin、Access-Control-Request-Method和Access-Control-Request-Headers字段以后，确认允许跨源请求，就可以做出回应。</span>
+  <span class="hljs-comment">// Content-Type表示具体请求中的媒体类型信息</span>
+  ctx.<span class="hljs-title hljs-function">set</span>(<span class="hljs-string">&#x27;Content-Type&#x27;</span>, <span class="hljs-string">&#x27;application/json;charset=utf-8&#x27;</span>);
+  <span class="hljs-comment">/*
+  CORS请求时，XMLHttpRequest对象的getResponseHeader()方法只能拿到6个基本字段：
+      Cache-Control、
+      Content-Language、
+      Content-Type、
+      Expires、
+      Last-Modified、
+      Pragma。
+  */</span>
+  <span class="hljs-comment">// 需要获取其他字段时，使用Access-Control-Expose-Headers，</span>
+  <span class="hljs-comment">// getResponseHeader(&#x27;myData&#x27;)可以返回我们所需的值</span>
+  <span class="hljs-comment">// ctx.set(&#x27;Access-Control-Expose-Headers&#x27;, &#x27;myData&#x27;);</span>
+  <span class="hljs-keyword">await</span> <span class="hljs-title hljs-function">next</span>();
+}
+</code></pre></section></article></div><style data-emotion="css 1i6v8fa">.css-1i6v8fa{min-height:346px;}@media screen and (min-width: 30em){.css-1i6v8fa{min-height:350px;}}</style><div class="css-1i6v8fa"></div><style data-emotion="css 3ydw18">.css-3ydw18{height:3px;width:50px;background:var(--chakra-colors-gray-500);border-radius:var(--chakra-radii-xl);margin-top:2.5rem;}</style><div class="css-3ydw18"></div><style data-emotion="css 1lwvw50">.css-1lwvw50{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-flex-flow:column;-webkit-flex-flow:column;-ms-flex-flow:column;flex-flow:column;padding-top:1.5rem;padding-bottom:1.5rem;}</style><footer class="css-1lwvw50"><style data-emotion="css yld109">.css-yld109{color:var(--chakra-colors-gray-600);font-weight:var(--chakra-fontWeights-bold);margin-bottom:0.5rem;}</style><p class="chakra-text css-yld109">©<!-- -->2022<!-- --> 小肥羊</p><style data-emotion="css 3eyczr">.css-3eyczr{color:var(--chakra-colors-gray-400);font-size:small;}</style><p class="chakra-text css-3eyczr">Powered by Next.js ❤️ Chakra UI</p></footer></div><style data-emotion="css kl7qz4">.css-kl7qz4{display:none;position:-webkit-sticky;position:sticky;top:3rem;margin-top:3rem;}@media screen and (min-width: 30em){.css-kl7qz4{display:none;}}@media screen and (min-width: 48em){.css-kl7qz4{display:none;}}@media screen and (min-width: 62em){.css-kl7qz4{display:block;}}</style><div class="css-kl7qz4"><h2 id="table-of-contents">Table of contents</h2>
+<ul>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#%E9%87%8D%E5%88%B6%E7%89%88">重制版</a></p>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#typescript">TypeScript</a></p>
+<ul>
+<li><a class="chakra-link css-wox0k7" href="#vuex">Vuex</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E7%B4%A2%E5%BC%95%E7%AD%BE%E5%90%8D">索引签名</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E5%A3%B0%E6%98%8E%E4%B8%80%E4%B8%AA%E7%B4%A2%E5%BC%95%E7%AD%BE%E5%90%8D">声明一个索引签名</a></li>
+<li><a class="chakra-link css-wox0k7" href="#mouseevent--elemet">mouseEvent &amp; Elemet</a></li>
+<li><a class="chakra-link css-wox0k7" href="#htmlelement">HTMLElement</a></li>
+<li><a class="chakra-link css-wox0k7" href="#props-%E7%B1%BB%E5%9E%8B">props 类型</a></li>
+</ul>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#v-for">v-for</a></p>
+<ul>
+<li><a class="chakra-link css-wox0k7" href="#%E6%8E%A7%E5%88%B6-v-for">控制 v-for</a></li>
+<li><a class="chakra-link css-wox0k7" href="#v-for-%E4%B8%AD%E7%9A%84-ref-%E6%95%B0%E7%BB%84">v-for 中的 Ref 数组</a></li>
+</ul>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#keep-alive">keep-alive</a></p>
+<ul>
+<li><a class="chakra-link css-wox0k7" href="#vue-3">Vue 3</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E9%A6%96%E9%A1%B5%E6%BB%91%E5%8A%A8%E4%BD%8D%E7%BD%AE%E8%AE%B0%E5%BD%95">首页滑动位置记录</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E5%8A%A8%E6%80%81%E7%BB%84%E4%BB%B6">动态组件</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E8%B7%AF%E7%94%B1%E8%BF%87%E6%B8%A1%E5%8A%A8%E7%94%BB">路由过渡动画</a></li>
+</ul>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#router">router</a></p>
+<ul>
+<li><a class="chakra-link css-wox0k7" href="#route-path">route path</a></li>
+</ul>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#axios">axios</a></p>
+<ul>
+<li><a class="chakra-link css-wox0k7" href="#%E6%95%B0%E6%8D%AE%E6%8B%A6%E6%88%AA%E5%99%A8">数据拦截器</a></li>
+</ul>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#vant-ui">Vant UI</a></p>
+<ul>
+<li><a class="chakra-link css-wox0k7" href="#list-%E7%BB%84%E4%BB%B6">List 组件</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E9%80%8F%E4%BC%A0%E6%A0%B7%E5%BC%8F">透传样式</a></li>
+</ul>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#ui--%E5%85%B6%E4%BB%96">UI &amp; 其他</a></p>
+<ul>
+<li><a class="chakra-link css-wox0k7" href="#px2vw">px2vw</a></li>
+<li><a class="chakra-link css-wox0k7" href="#sass-%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F">sass 全局变量</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E5%B9%B3%E5%9D%87%E7%A9%BA%E9%97%B4">平均空间</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E7%80%91%E5%B8%83%E6%B5%81">瀑布流</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E5%8A%A8%E7%94%BB">动画</a></li>
+</ul>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#%E5%90%8E%E7%AB%AF">后端</a></p>
+<ul>
+<li><a class="chakra-link css-wox0k7" href="#%E5%A4%87%E4%BB%BD-mongodb">备份 mongodb</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E6%81%A2%E5%A4%8D">恢复</a></li>
+<li><a class="chakra-link css-wox0k7" href="#cors">CORS</a></li>
+</ul>
+</li>
+</ul></div></div><span></span></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"postData":{"id":"first-one-SPA","content":"\n## 重制版\n\n在没有写完的情况下弃坑了，后来在写另一个 Vue3 的练手项目时想起来这个曾经入手 Vue2 的入门项目。\n\n所以打算使用 Vue3 + TypeScript 重构一下。\n\n[仓库地址](https://github.com/DefectingCat/gugu-mall)\n\n## TypeScript\n\n### Vuex\n\n在 Vuex 中正确的使用了 TypeScript 可以直接静态提示 state 的类型以及属性。而在 Vuex 中为 state 注解需要用到官方的泛型。\n\n第一步，为 state 做注解：\n\n```ts\n// types/state.ts\ntype CartObj = {\n  iid: string | string[];\n  imgURL: string;\n  title: string | undefined;\n  desc: string | undefined;\n  newPrice: string | undefined;\n};\n\nexport type State = {\n  cartList: CartObj[];\n};\n```\n\n在 store 中，使用`createStore()`方法创建 store 时，在泛型中传入刚刚定义好的类型：\n\n```ts\n// types\nimport { State } from '@/types/store';\n\nexport default createStore\u003cState\u003e({\n  state: {\n    cartList: [],\n  },\n  mutations,\n  actions,\n  getters,\n  // modules: {},\n});\n```\n\n这时，state 中的数据就已经被注解类型了。\n\n在官方类型注解文件中可以看到`createStore()`方法中参数使用的接口，其中 state 直接被注解为泛型 S。而 mutations 等，需要使用各自的接口。\n\n```ts\nexport interface StoreOptions\u003cS\u003e {\n  state?: S | (() =\u003e S);\n  getters?: GetterTree\u003cS, S\u003e;\n  actions?: ActionTree\u003cS, S\u003e;\n  mutations?: MutationTree\u003cS\u003e;\n  modules?: ModuleTree\u003cS\u003e;\n  plugins?: Plugin\u003cS\u003e[];\n  strict?: boolean;\n  devtools?: boolean;\n}\n```\n\n到这里仅仅只是注解完了 state，接着就是 mutations。这里的 mutations 使用接口 MutationTree 并传递一个泛型，将刚刚注解的 state 传递过去。\n\n```ts\n// mutations.ts\nimport { MutationTree } from 'vuex';\n// types\nimport { CartObj } from '@/types/detail';\nimport { State } from '@/types/store';\n\nconst mutations: MutationTree\u003cState\u003e = {\n  addCart(state, info: CartObj): void {\n    console.log(state);\n  },\n};\n\nexport default mutations;\n```\n\n### 索引签名\n\n使用下标访问对象时会要求接口中声明了索引签名，否则不允许直接使用下标的方式访问对象属性。\n\n```ts\ninterface State {\n  goods: {\n    pop: GoodsData;\n    new: GoodsData;\n    sell: GoodsData;\n  };\n}\nfunction someFunc()  {\n  state.goods[type].list1.push(...p1);\n  state.goods[type].list2.push(...p2);\n  state.goods[type].page = page;\n  // No index signature with a parameter of type 'string' was found on type '{ pop: GoodsData; new: GoodsData; sell: GoodsData; }'.\n}\n```\n\n强制用户必须明确的写出索引签名的的原因是：在对象上默认执行的 toString 方法是有害的。例如 v8 引擎上总是会返回 `[object Object]`\n\n### 声明一个索引签名\n\n```ts\ninterface State {\n  goods: {\n    pop: GoodsData;\n    new: GoodsData;\n    sell: GoodsData;\n    // 索引签名，通过定义接口用来对对象key的约束\n    [key: string]: GoodsData;\n  };\n}\n```\n\n\u003eTypeScript 的索引签名必须是 string 或者 number。symbols 也是有效的，TypeScript 也支持它。\n\n### mouseEvent \u0026 Elemet\n\n当使用事件监听器的时候，`e.target`通常为 Element 类型。而`e`本身是 mouseevent 类型，所以在`e`的类型下无法获取到 target 之后的元素方法。\n\n这时候就可以使用`\u0026`操作符，在注解类型的时候就将其属性也注解了。\n\n```ts\nconst titleClick = (e: MouseEvent \u0026 { target: Element }) =\u003e {\n  const index = e.target.getAttribute('data-xfy-index');\n  state.currentIndex = (index as unknown) as number;\n};\n```\n\n### HTMLElement\n\n当需要在页面中获取到 DOM 节点再操作时，有些时候可能需要推断为 HTMLElement 类型。这样才能正确的使用 DOM 方法。\n\n```ts\ntype CateData = {\n  cateTopYs: number[];\n  itemRefs: Record\u003cstring, Record\u003cstring, number\u003e\u003e[];\n  currentIndex: number;\n  listRefs: HTMLElement[];\n  prePrevious: HTMLElement;\n  preNext: HTMLElement;\n};\n```\n\n在创建响应式对象的时候需要直接使用`document.createElement()`创建一个 HTMLElement\n```ts\nconst cateData: CateData = reactive({\n  cateTopYs: [],\n  itemRefs: [],\n  currentIndex: 0,\n  // 小圆角\n  listRefs: [],\n  // 获取到的节点类型时HTMLElement，所以这里需要使用createElement创建一个HTMLElement\n  prePrevious: document.createElement('div'),\n  preNext: document.createElement('div'),\n});\n```\n\n### props 类型\n\n```js\nprops: {\n  path: {\n    // https://stackoverflow.com/questions/64831745/props-typing-in-vue-js-3-with-typescript\n    type: Object as PropType\u003cstring\u003e,\n  },\n},\n```\n\n## v-for\n\n### 控制 v-for\n\n```html\n\u003cspan v-for=\"index of goods.services.length - 2\" :key=\"index\"\u003e\n  \u003cimg src=\"\" alt=\"\" /\u003e\n  \u003cspan\u003e {{ goods.services[index].name }}\u003c/span\u003e\n\u003c/span\u003e\n```\n\n### v-for 中的 Ref 数组\n\n在 Vue 3 中获取循环的 DOM 与 Vue 2 略有不同，在官方文档中有提到：[v-for 中的 Ref 数组](https://v3.cn.vuejs.org/guide/migration/array-refs.html#frontmatter-title)。\n\n具体操作也不是很复杂，在`v-for`循环中绑定一个`:ref` attribute，值为一个方法，方法中能获取到对应的 element。然后 push 到预先准备好的数组内就可以了。\n\n```html\n      \u003cSubCategories\n        :ref=\"setItemRef\"\n        v-for=\"item in subCategories\"\n        :key=\"item\"\n        :data=\"item\"\n      /\u003e\n```\n\n```ts\n  const cateData: CateData = reactive({\n    listRefs: [],\n  });\n```\n\n```ts\n  const setListRef = (el: HTMLElement) =\u003e {\n    if (el) {\n      cateData.listRefs.push(el);\n    }\n  };\n```\n\n但是这样有一个问题，那就是这个 setListRef 的执行时机。事实上，这个方法在对应的节点每更新（update）一次，就会执行一次。这样就会导致一个问题，那就是我们通常只需要获取一遍完整的 DOM 节点即可。而每次更新都会将所有的节点 push 到数组内，会导致数组内容成指数型增长，而且内容还是多余的。\n\n所以通常需要额外添加一个判断：\n\n```ts\n  const setListRef = (el: HTMLElement) =\u003e {\n    // 每次节点改变时，都会触发这个方法，会导致一直push\n    // 为了防止长度无限增加，需要添加条件判断\n    if (el \u0026\u0026 cateData.listRefs.length \u003c 16) {\n      cateData.listRefs.push(el);\n    }\n  };\n```\n\n## keep-alive\n\n缓存的组件一定要设置`name`属性！\n\n* [vue.js的keep-alive include无效](https://segmentfault.com/q/1010000009117672#)\n\n### Vue 3\n\nVue 3 中的 router-view 与 keep-alive 标签使用方式略有不同。\n\n```html\n\u003crouter-view v-slot=\"{ Component }\"\u003e\n  \u003ckeep-alive exclude=\"Detail\"\u003e\n    \u003ccomponent :is=\"Component\" /\u003e\n  \u003c/keep-alive\u003e\n\u003c/router-view\u003e\n```\n\n### 首页滑动位置记录\n\n本来考虑的是使用事件监听器来监听滚动的位置，并保存。在组件激活时再利用`window.scrollTo()`方法滚动到离开时的位置。\n\n不过无脑添加事件监听器可能不是一个非常优雅的办法。后来发现一个简单的方式，利用组件内的导航守卫`onBeforeRouteLeave()`，在路由离开时记录滚动的位置。当组件激活后再直接给`document.documentElement.scrollTop`赋值，即可实现记录滚动位置。\n\n```ts\n// 切换路由时记录首页滚动的位置\nonBeforeRouteLeave(() =\u003e {\n  homeData.scrolledY = document.documentElement.scrollTop;\n});\nonActivated(() =\u003e {\n  document.documentElement.scrollTop = homeData.scrolledY;\n});\n```\n\n另外也可以使用路由导航守卫来代替`onActivated()`激活时的方法，在进入路由时为`document.documentElement.scrollTop`赋值。但这样需要注意路由导航的触发顺序几乎都是在更新 DOM 之前：\n\n1. 导航被触发。\n2. 在失活的组件里调用 `beforeRouteLeave` 守卫。\n3. 调用全局的 `beforeEach` 守卫。\n4. 在重用的组件里调用 `beforeRouteUpdate` 守卫(2.2+)。\n5. 在路由配置里调用 `beforeEnter`。\n6. 解析异步路由组件。\n7. 在被激活的组件里调用 `beforeRouteEnter`。\n8. 调用全局的 `beforeResolve` 守卫(2.5+)。\n9. 导航被确认。\n10. 调用全局的 `afterEach` 钩子。\n11. 触发 DOM 更新。\n12. 调用 `beforeRouteEnter` 守卫中传给 `next` 的回调函数，创建好的组件实例会作为回调函数的参数传入。\n\n所以需要使用`nextTick()`方法来更新。不过既然使用了`keepAlive`，还是使用对应的生命周期更加方便。\n\n### 动态组件\n\n第一次看到动态组件的时候就很开心，原来组件还能这么玩。这里用到的动态组件主要是用到`keep-alive`来缓存子组件的状态。商品列表的子组件存在一个三栏切换。之前的方案是使用一个组件，每次切换时向里面传递数据，由于只用了一个子组件，每次数据传递完后，还需要重新下载图片。就算用了加载也会发送很多图片的请求。另外，频繁的切换还可能导致节点渲染出现小问题。\n\n将三栏的切换分别放到三个子组件中，然后再使用动态组件来进行缓存。虽然这三个子组件展示数据用的还是那一个组件（为了组件代码的复用），但是由于数据和状态都缓存了之后，每次仅仅只需要过一次 diff 算法即可。不用再下载图片。\n\n```html\n\u003ckeep-alive\u003e\n  \u003ccomponent :is=\"currentTabComponent\"\u003e\u003c/component\u003e\n\u003c/keep-alive\u003e\n```\n\n并且将数据单独抽离为一个 hook，直接进行导出。首页不参与数据的修改，本质上修改数据的只有一个组件，数据改动的流向也没有任何变化。\n\n```ts\n// hook\n// 配合动态组件即可实现商品数据的缓存\nexport const state: State = reactive({\n  banners: [],\n  recommend: [],\n  goods: {\n    pop: {\n      page: 0,\n      list1: [],\n      list2: [],\n    },\n    new: {\n      page: 0,\n      list1: [],\n      list2: [],\n    },\n    sell: {\n      page: 0,\n      list1: [],\n      list2: [],\n    },\n  },\n});\n\nexport function homeRequestEffect(): HomeData {\n  const listData: ListData = reactive({\n    loading: false,\n    finished: false,\n  });\n\n  // 首页的请求\n  const reqSwiper = async (): Promise\u003cvoid\u003e =\u003e {\n    const res = await request({\n      url: '/home/multidata',\n    });\n    state.banners = res.data.banner.list;\n    state.recommend = res.data.recommend.list;\n  };\n\n  // 商品的请求\n  const reqGoods = async (type: string): Promise\u003cvoid\u003e =\u003e {\n    const page = state.goods[type].page + 1;\n    const res = await request({\n      url: '/home/data',\n      params: {\n        type,\n        page,\n      },\n    });\n    const paging = Math.floor(res.data.list.length / 2);\n    const p1 = res.data.list.slice(0, paging);\n    const p2 = res.data.list.slice(paging, res.data.list.length);\n    state.goods[type].list1.push(...p1);\n    state.goods[type].list2.push(...p2);\n    state.goods[type].page = page;\n    listData.loading = false;\n  };\n\n  const { loading, finished } = toRefs(listData);\n  return {\n    loading,\n    finished,\n    reqSwiper,\n    reqGoods,\n  };\n}\n```\n\n### 路由过渡动画\n\n通过添加 [过渡模式](https://cn.vuejs.org/v2/guide/transitions.html#%E8%BF%87%E6%B8%A1%E6%A8%A1%E5%BC%8F) 来定义在多个路由或组件中的平滑过渡\n\n```html\n\u003ctransition name=\"fade\" mode=\"out-in\"\u003e\n  \u003c!-- ... the buttons ... --\u003e\n\u003c/transition\u003e\n```\n\n这种方法在 Vue 3 中使用有限制！Vue 3 支持组件多根节点，但目前 transition 只支持但根节点。则多根节点的组件无法使用 transition。\n\n## router\n\n### route path\n\n在`setup()`中使用`route.path`只能获取到`/`目录，原因是因为在`\u003crouter-view\u003e`外的组件只能等路由内的组件加载完成后获取到路由信息。可以在`setup()`函数中将`route.path` return 出来。\n\n```js\nsetup() {\n  const nowPath = computed(() =\u003e {\n    return route.path;\n  });\n  return {\n    nowPath,\n  };\n}\n```\n\n[demo](https://codesandbox.io/s/router-viewyushengmingzhouqi-wl1jn)\n\n\n## axios\n\n### 数据拦截器\n\n使用了数据拦截器后还是 `AxiosResponse\u003cany\u003e` 类型，导致无法使用请求后的数据。需要自定义一个类型声明：\n\n```ts\n// types/axios.d.ts\nimport * as axios from 'axios';\n\ndeclare module 'axios' {\n  interface AxiosInstance {\n    (config: AxiosRequestConfig): Promise\u003cany\u003e;\n  }\n}\n```\n\n并在`tsconfig.json`中将 types 引入。\n\n```json\n// tsconfig.json\n\"typeRoots\": [\n  \"./node_modules/@types\",\n  \"./src/types/\",\n],\n```\n\n## Vant UI\n\n### List 组件\n\n在使用 List 组件做瀑布流时，需要注意使用 flxe 或其他布局时，有可能会导致内容无限的加载。\n\n这是因为 List 在末尾使用了一个 placeholder 来做加载判断。当 placeholder 在视口内的时候，就会触发加载。\n\n所以当布局被改为横向的时候就会导致无限的触发加载。\n\n就算 flex 横向排列进行换行也会导致无限加载。如果使用 flex 做横向排列，需要额外再嵌套一个 div 做 wrapper。这个wrapper 内部再使用 flex 横向排列。\n\n```html\n\u003ctemplate\u003e\n  \u003cvan-list\n    v-model:loading=\"loading\"\n    :finished=\"finished\"\n    finished-text=\"没有更多了\"\n    @load=\"onLoad\"\n  \u003e\n    \u003c!-- 额外嵌套一个div，将van-list的placeholder挤下去，否则会影响上拉加载 --\u003e\n    \u003cdiv class=\"goods-list\"\u003e\n      \u003cdiv class=\"goods-list__col\"\u003e\n        \u003cGoodsListItem\n          class=\"goods-list__col__item\"\n          v-for=\"item of goods[currentTab].list1\"\n          :key=\"item\"\n          :item=\"item\"\n        /\u003e\n      \u003c/div\u003e\n      \u003cdiv class=\"goods-list__col\"\u003e\n        \u003cGoodsListItem\n          class=\"goods-list__col__item\"\n          v-for=\"item of goods[currentTab].list2\"\n          :key=\"item\"\n          :item=\"item\"\n        /\u003e\n      \u003c/div\u003e\n    \u003c/div\u003e\n  \u003c/van-list\u003e\n\u003c/template\u003e\n```\n\n```scss\n.goods-list {\n  display: flex;\n  flex-flow: row wrap;\n  justify-content: space-evenly;\n  margin-bottom: 60px;\n  \u0026__col {\n    width: 45%;\n  }\n}\n```\n\n### 透传样式\n\n在 scoped 中的样式是不会直接影响到其他组件的。如果使用了 UI 库，需要针对单个组件内的子组件进行样式修改，可以使用`/deep/`来对 CSS 进行修饰。使其能够在 scoped 的情况透传到子组件。\n\n```css\n/* 穿透到子组件 */\n/deep/ .van-list__loading {\n  width: 100%;\n}\n```\n\n但如果是 dart-scss 的话，需要使用`::v-deep`进行修饰。\n\n```scss\n// 穿透到子组件\n::v-deep .van-list__loading {\n  width: 100%;\n}\n```\n\n#### 透传样式的再次更新\n\n```scss\n  // 穿透到子组件\n  :deep(.van-list__loading) {\n    width: 100%;\n  }\n```\n\n## UI \u0026 其他\n\n### px2vw\n\n上一个 Vue3 的项目使用的是 rem 布局，每次要换算倒不是非常的麻烦。但是最终的效果还是一般般。\n\n所以这次试了试 vw 布局。使用的是`postcss-px-to-viewport`的 postcss 插件。\n\n```\nyarn add postcss-px-to-viewport -D\n```\n\n```js\nmodule.exports = {\n  plugins: {\n    autoprefixer: {}, // 用来给不同的浏览器自动添加相应前缀，如-webkit-，-moz-等等\n    'postcss-px-to-viewport': {\n      unitToConvert: 'px', // 要转化的单位\n      viewportWidth: 375, // UI设计稿的宽度\n      unitPrecision: 6, // 转换后的精度，即小数点位数\n      propList: ['*'], // 指定转换的css属性的单位，*代表全部css属性的单位都进行转换\n      viewportUnit: 'vw', // 指定需要转换成的视窗单位，默认vw\n      fontViewportUnit: 'vw', // 指定字体需要转换成的视窗单位，默认vw\n      selectorBlackList: ['wrap'], // 指定不转换为视窗单位的类名，\n      minPixelValue: 1, // 默认值1，小于或等于1px则不进行转换\n      mediaQuery: true, // 是否在媒体查询的css代码中也进行转换，默认false\n      replace: true, // 是否转换后直接更换属性值\n      exclude: [/node_modules/], // 设置忽略文件，用正则做目录名匹配\n      landscape: false, // 是否处理横屏情况\n    },\n  },\n};\n```\n\n### sass 全局变量\n\nvue-cli 支持 [向预处理器-loader-传递选项](https://cli.vuejs.org/zh/guide/css.html#%E5%90%91%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8-loader-%E4%BC%A0%E9%80%92%E9%80%89%E9%A1%B9)，从而全局的导入变量文件。\n\n是不需要额外安装`sass-resources-loader`的。参考[Using sass-resources-loader with vue-cli v3.x](https://stackoverflow.com/questions/49086021/using-sass-resources-loader-with-vue-cli-v3-x)\n\n```js\n// vue.config.js\nmodule.exports = {\n  css: {\n    loaderOptions: {\n      // 给 sass-loader 传递选项\n      scss: {\n        // @/ 是 src/ 的别名\n        // 所以这里假设你有 `src/variables.sass` 这个文件\n        // 注意：在 sass-loader v8 中，这个选项名是 \"prependData\"\n        prependData: `@import \"~@/assets/css/_variables.scss\";`,\n      },\n      // 默认情况下 `sass` 选项会同时对 `sass` 和 `scss` 语法同时生效\n      // 因为 `scss` 语法在内部也是由 sass-loader 处理的\n      // 但是在配置 `prependData` 选项的时候\n      // `scss` 语法会要求语句结尾必须有分号，`sass` 则要求必须没有分号\n      // 在这种情况下，我们可以使用 `scss` 选项，对 `scss` 语法进行单独配置\n      // scss: {\n      //   additionalData: `@import \"~@/variables.scss\";`,\n      // },\n    },\n  },\n};\n```\n\n### 平均空间\n\n使用 flex 布局，在左右设置等距的 padding，然后使用 space-arorund。\n\n```css\n.goods {\n  display: flex;\n  flex-flow: row wrap;\n  padding: 0px 6px 0 6px;\n  justify-content: space-around;\n}\n```\n\n内部的单个项目需要指定宽度小于 50%，为中间留空白的空间\n\n```html\nstyle=\"width: 48%; margin-top: 10px\"\n```\n\n![](../images/第一个SPA的总结/2021-03-01-12-15-31.webp)\n\n当然也可以使用 space-evently\n\n### 瀑布流\n\n两列的排列，图片的高度不统一。使用`flex`的横向换行排列会留出空白。\n\n使用`flex`将两列图片分别作为两个容器，纵向排列\n\n```html\n\u003cdiv class=\"goods\"\u003e\n  \u003c!-- 从 home 组件接受的 list，循环创建 item --\u003e\n  \u003cdiv class=\"col\"\u003e\n    \u003cGoodsListItem\n      v-for=\"(item, index) of list1\"\n      :key=\"item.iid + index\"\n      :item=\"item\"\n      style=\"margin-top: 10px\"\n    /\u003e\n  \u003c/div\u003e\n  \u003cdiv class=\"col\"\u003e\n    \u003cGoodsListItem\n      v-for=\"(item, index) of list2\"\n      :key=\"item.iid + index\"\n      :item=\"item\"\n      style=\"margin-top: 10px\"\n    /\u003e\n  \u003c/div\u003e\n\u003c/div\u003e\n```\n\n```css\n.goods .col {\n  display: flex;\n  flex-flow: column;\n  width: 48%;\n}\n```\n\n![](../images/第一个SPA的总结/2021-03-12-10-48-27.webp)\n\n### 动画\n\n在尾期的时候，觉得有些地方过渡的不是很自然，于是想添加一些动画。\n\n#### 滑动缓入动画\n\n在商品列表被滑动进入视口时，想添加一个缓入的动画，这样看上去会显得自然一点（应该吧）。既然是进入视口时发生的动画，第一个想到的自然是使用 IntersectionObserver API 来检测是否与视口相交。如果检测到相交之后，则添加对应的行内样式。\n\n```ts\n    // 使用 Intersection Observer API 来监听项目是否和视口相交\n    const observer = new IntersectionObserver((entries, observer) =\u003e {\n      entries.forEach((entry) =\u003e {\n        if (entry.isIntersecting) {\n          // 断言为 HTMLElement 才可操作 style\n          const target = entry.target as HTMLElement;\n          setTimeout(() =\u003e {\n            target.style.transform = `translateY(0px)`;\n            target.style.opacity = `1`;\n          }, 300);\n          // 动画完成后取消监听\n          observer.unobserve(entry.target);\n        }\n      });\n    });\n    // vfor 循环中使用两个方法添加列表监听\n    const setList1Ref = (el: { $el: HTMLElement }) =\u003e {\n      el ? observer.observe(el.$el) : void 0;\n    };\n    const setList2Ref = (el: { $el: HTMLElement }) =\u003e {\n      el ? observer.observe(el.$el) : void 0;\n    };\n```\n\n元素本身的样式则提前准备好过渡：\n\n```css\n  // 视口相交动画\n  transform: translateY(35px);\n  opacity: 0;\n  transition: all 0.2s ease;\n```\n\n这里也顺便提一下，Vue3 中使用 ref 拿取`v-for`循环中的节点需要在节点上绑定一个方法，之后会在更新时自动触发方法。这里就是使用方法来为每个节点添加监视的。\n\n```html\n\u003cGoodsListItem\n  class=\"goods-list__col__item\"\n  v-for=\"item of goods[currentTab].list1\"\n  :key=\"item\"\n  :item=\"item\"\n  :ref=\"setList1Ref\"\n/\u003e\n```\n\n```ts\n const setList1Ref = (el: { $el: HTMLElement }) =\u003e {\n   el ? observer.observe(el.$el) : void 0;\n };\n```\n\n#### 列表动画\n\n在个人的 Profile 页面有几个无序列表用来展示对应的选项，由于关于页做了个卡片的效果，所以给它写了个简单的 CSS 动画，在每次进入页面时都会执行一次。\n\n```css\n@keyframes slidein {\n  from {\n    transform: translateY(10px);\n  }\n  to {\n    transform: translateY(-20px);\n  }\n}\n@keyframes spin {\n  from {\n    transform: translateY(5px);\n  }\n  to {\n    transform: translateY(-25px);\n  }\n}\n```\n\n但总感觉还少点什么，于是就给列表也加了一些小过渡。但所有列表同时过渡也不是很自然，于是做了点小操作让它们并不是同一时间开始动画，持续时间也略有不同，这样看上去更和谐一点。\n\n具体的实现方式是使用同样的方式拿到`v-for`循环中的所有元素节点，然后再`onMounted`之后触发动画。\n\n第一个列表的动画持续时间是 200 ms，后面每个的持续时间都增加 100 ms。同时开始也设置了个延迟为 100 ms 后执行，后续每个也递增 100 ms。这样就有了种阶梯的感觉。\n\n```ts\n  const setListItem = (el: HTMLElement) =\u003e {\n    content.list?.push(el);\n  };\n  const listAnimat = () =\u003e {\n    // 手搓动画\n    // 每个动画间隔增加100ms，持续实际增加100ms\n    let time = 0.2;\n    let timeout = 0;\n    for (const i of content.list) {\n      setTimeout(() =\u003e {\n        i.style.transform = `translateY(0px)`;\n        i.style.transition = `all ${time}s`;\n        i.style.opacity = `1`;\n      }, timeout);\n      time += 0.1;\n      timeout += 100;\n    }\n  };\n\n// 组件内使用\n    onMounted(async () =\u003e {\n      await nextTick();\n      listAnimat();\n    });\n```\n\n## 后端\n\n###  备份 mongodb\n\nmongodb 的备份与其他的关系型数据库非常类似，使用`mongodump`命令。不过我当前的测试环境是在 docker on windows 上的，并且忘记映射目录了（虽然他会提示 WSL 目录直接映射会有性能问题，但我还是忘了）。\n\n无论在什么环境的 docker，都可以使用`exec`来执行容器的命令。可以使用`/bin/sh`开打开一个伪终端。\n\n```bash\ndocker exec -it 979534a50979 /bin/sh\n```\n\n然后在容器内使用`mongodump`的命令来 dump 一份备份。\n\n```bash\nmongodump -h 127.0.0.1 -d guguMall --out /\n```\n\n由于导出的都是 json 与 bson，可以适当的压缩一下\n\n```bash\ntar -zcvf guguMall.tar.gz guguMall\n```\n\n然后使用 docker 自带的 copy 命令`docker cp`来将文件 copy 到宿主机。\n\n```bash\ndocker cp 979534a50979:/guguMall.tar.gz /\n```\n\n\u003e windows （PowerShell）环境下`/`也就是 C 盘\n\n### 恢复\n\n```bash\nmongorestore -h 127.0.0.1 -d guguMall ./guguMall\n```\n\n### CORS\n\n跨域是经典的问题了，主要是用来保护客户端的。这里使用 CORS 来解决，做了个简单的中间件：\n\n```ts\nimport { Context } from 'koa';\n\nexport async function cors(ctx: Context, next: () =\u003e Promise\u003cunknown\u003e) {\n  // 允许来自所有域名请求\n  ctx.set('Access-Control-Allow-Origin', '*');\n  // 这样就能只允许 http://localhost:8080 这个域名的请求了\n  // ctx.set(\"Access-Control-Allow-Origin\", \"http://localhost:8080\");\n  // 设置所允许的HTTP请求方法\n  ctx.set('Access-Control-Allow-Methods', 'OPTIONS, GET, PUT, POST, DELETE');\n  // 字段是必需的。它也是一个逗号分隔的字符串，表明服务器支持的所有头信息字段.\n  ctx.set(\n    'Access-Control-Allow-Headers',\n    'x-requested-with, accept, origin, content-type'\n  );\n  // 服务器收到请求以后，检查了Origin、Access-Control-Request-Method和Access-Control-Request-Headers字段以后，确认允许跨源请求，就可以做出回应。\n  // Content-Type表示具体请求中的媒体类型信息\n  ctx.set('Content-Type', 'application/json;charset=utf-8');\n  /*\n  CORS请求时，XMLHttpRequest对象的getResponseHeader()方法只能拿到6个基本字段：\n      Cache-Control、\n      Content-Language、\n      Content-Type、\n      Expires、\n      Last-Modified、\n      Pragma。\n  */\n  // 需要获取其他字段时，使用Access-Control-Expose-Headers，\n  // getResponseHeader('myData')可以返回我们所需的值\n  // ctx.set('Access-Control-Expose-Headers', 'myData');\n  await next();\n}\n```","desc":"重制版\n\n在没有写完的情况下弃坑了，后来在写另一个 Vue3 的练手项目时想起来这个曾经入手 Vue2 的入门项目。\n\n所以打算使用 Vue3 + TypeScript 重构一下。\n\n仓库地址\n\nTy...","title":"第一个SPA的踩坑总结","date":"2021-05-13T14:18:24.000Z","tags":["JavaScript","Vue","TypeScript"],"categories":"踩坑","url":"first-one-SPA","index_img":"/images/第一个SPA的总结/logo.webp"}},"__N_SSG":true},"page":"/p/[slug]","query":{"slug":"first-one-SPA"},"buildId":"k6NIc4JfXUsE09z9QnALx","isFallback":false,"dynamicIds":[3419,6929,1189,9125,3780,2980,5106],"gsp":true,"scriptLoader":[]}</script></body></html>

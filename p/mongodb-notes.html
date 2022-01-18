@@ -1,0 +1,556 @@
+<!DOCTYPE html><html lang="en"><head><meta name="viewport" content="width=device-width"/><meta charSet="utf-8"/><link rel="shortcut icon" href="/images/img/favicon.webp"/><meta name="keywords" content="Blog RUA"/><meta name="description" content="Personal blog."/><meta name="author" content="Arthur,i@rua.plus"/><title>RUA - MongoDB零碎笔记</title><meta name="next-head-count" content="7"/><link rel="preload" href="/_next/static/css/39834862c769c308.css" as="style"/><link rel="stylesheet" href="/_next/static/css/39834862c769c308.css" data-n-g=""/><link rel="preload" href="/_next/static/css/c2a527101433f11d.css" as="style"/><link rel="stylesheet" href="/_next/static/css/c2a527101433f11d.css" data-n-p=""/><link rel="preload" href="/_next/static/css/6e1d66a70b5d9fed.css" as="style"/><link rel="stylesheet" href="/_next/static/css/6e1d66a70b5d9fed.css"/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/_next/static/chunks/polyfills-5cd94c89d3acac5f.js"></script><script defer="" src="/_next/static/chunks/219-ddf2abc0472da9bd.js"></script><script defer="" src="/_next/static/chunks/419.d5302bfd9d8378c2.js"></script><script defer="" src="/_next/static/chunks/771.84a2737df445ba88.js"></script><script defer="" src="/_next/static/chunks/929.b2c0b4f7606bfefe.js"></script><script defer="" src="/_next/static/chunks/125.4ff7adc183744312.js"></script><script defer="" src="/_next/static/chunks/485-3e3bf066e6f4a6bd.js"></script><script defer="" src="/_next/static/chunks/189.ee2e569101c160eb.js"></script><script defer="" src="/_next/static/chunks/780.f3b2fc2ce5caea55.js"></script><script defer="" src="/_next/static/chunks/980.41f5e97cd35a6621.js"></script><script defer="" src="/_next/static/chunks/106.7a94988fd220337e.js"></script><script src="/_next/static/chunks/webpack-c08977534ec7c137.js" defer=""></script><script src="/_next/static/chunks/framework-5cd9e2157a4a6aee.js" defer=""></script><script src="/_next/static/chunks/main-472dbb675bbf7f67.js" defer=""></script><script src="/_next/static/chunks/pages/_app-a34fa0ed9496fbe8.js" defer=""></script><script src="/_next/static/chunks/84-43981acebe84e1d3.js" defer=""></script><script src="/_next/static/chunks/pages/p/%5Bslug%5D-684bfb16186b52fe.js" defer=""></script><script src="/_next/static/k6NIc4JfXUsE09z9QnALx/_buildManifest.js" defer=""></script><script src="/_next/static/k6NIc4JfXUsE09z9QnALx/_ssgManifest.js" defer=""></script><script src="/_next/static/k6NIc4JfXUsE09z9QnALx/_middlewareManifest.js" defer=""></script></head><body><script>(function setScript(initialValue) {
+  var mql = window.matchMedia("(prefers-color-scheme: dark)");
+  var systemPreference = mql.matches ? "dark" : "light";
+  var persistedPreference;
+
+  try {
+    persistedPreference = localStorage.getItem("chakra-ui-color-mode");
+  } catch (error) {
+    console.log("Chakra UI: localStorage is not available. Color mode persistence might not work as expected");
+  }
+
+  var isInStorage = typeof persistedPreference === "string";
+  var colorMode;
+
+  if (isInStorage) {
+    colorMode = persistedPreference;
+  } else {
+    colorMode = initialValue === "system" ? systemPreference : initialValue;
+  }
+
+  if (colorMode) {
+    var root = document.documentElement;
+    root.style.setProperty("--chakra-ui-color-mode", colorMode);
+  }
+})('light')</script><div id="__next"><style data-emotion="css-global 1r47v8">:host,:root{--chakra-ring-inset:var(--chakra-empty,/*!*/ /*!*/);--chakra-ring-offset-width:0px;--chakra-ring-offset-color:#fff;--chakra-ring-color:rgba(66, 153, 225, 0.6);--chakra-ring-offset-shadow:0 0 #0000;--chakra-ring-shadow:0 0 #0000;--chakra-space-x-reverse:0;--chakra-space-y-reverse:0;--chakra-colors-transparent:transparent;--chakra-colors-current:currentColor;--chakra-colors-black:#000000;--chakra-colors-white:#FFFFFF;--chakra-colors-whiteAlpha-50:rgba(255, 255, 255, 0.04);--chakra-colors-whiteAlpha-100:rgba(255, 255, 255, 0.06);--chakra-colors-whiteAlpha-200:rgba(255, 255, 255, 0.08);--chakra-colors-whiteAlpha-300:rgba(255, 255, 255, 0.16);--chakra-colors-whiteAlpha-400:rgba(255, 255, 255, 0.24);--chakra-colors-whiteAlpha-500:rgba(255, 255, 255, 0.36);--chakra-colors-whiteAlpha-600:rgba(255, 255, 255, 0.48);--chakra-colors-whiteAlpha-700:rgba(255, 255, 255, 0.64);--chakra-colors-whiteAlpha-800:rgba(255, 255, 255, 0.80);--chakra-colors-whiteAlpha-900:rgba(255, 255, 255, 0.92);--chakra-colors-blackAlpha-50:rgba(0, 0, 0, 0.04);--chakra-colors-blackAlpha-100:rgba(0, 0, 0, 0.06);--chakra-colors-blackAlpha-200:rgba(0, 0, 0, 0.08);--chakra-colors-blackAlpha-300:rgba(0, 0, 0, 0.16);--chakra-colors-blackAlpha-400:rgba(0, 0, 0, 0.24);--chakra-colors-blackAlpha-500:rgba(0, 0, 0, 0.36);--chakra-colors-blackAlpha-600:rgba(0, 0, 0, 0.48);--chakra-colors-blackAlpha-700:rgba(0, 0, 0, 0.64);--chakra-colors-blackAlpha-800:rgba(0, 0, 0, 0.80);--chakra-colors-blackAlpha-900:rgba(0, 0, 0, 0.92);--chakra-colors-gray-50:#F7FAFC;--chakra-colors-gray-100:#EDF2F7;--chakra-colors-gray-200:#E2E8F0;--chakra-colors-gray-300:#CBD5E0;--chakra-colors-gray-400:#A0AEC0;--chakra-colors-gray-500:#718096;--chakra-colors-gray-600:#4A5568;--chakra-colors-gray-700:#2D3748;--chakra-colors-gray-800:#1A202C;--chakra-colors-gray-900:#171923;--chakra-colors-red-50:#FFF5F5;--chakra-colors-red-100:#FED7D7;--chakra-colors-red-200:#FEB2B2;--chakra-colors-red-300:#FC8181;--chakra-colors-red-400:#F56565;--chakra-colors-red-500:#E53E3E;--chakra-colors-red-600:#C53030;--chakra-colors-red-700:#9B2C2C;--chakra-colors-red-800:#822727;--chakra-colors-red-900:#63171B;--chakra-colors-orange-50:#FFFAF0;--chakra-colors-orange-100:#FEEBC8;--chakra-colors-orange-200:#FBD38D;--chakra-colors-orange-300:#F6AD55;--chakra-colors-orange-400:#ED8936;--chakra-colors-orange-500:#DD6B20;--chakra-colors-orange-600:#C05621;--chakra-colors-orange-700:#9C4221;--chakra-colors-orange-800:#7B341E;--chakra-colors-orange-900:#652B19;--chakra-colors-yellow-50:#FFFFF0;--chakra-colors-yellow-100:#FEFCBF;--chakra-colors-yellow-200:#FAF089;--chakra-colors-yellow-300:#F6E05E;--chakra-colors-yellow-400:#ECC94B;--chakra-colors-yellow-500:#D69E2E;--chakra-colors-yellow-600:#B7791F;--chakra-colors-yellow-700:#975A16;--chakra-colors-yellow-800:#744210;--chakra-colors-yellow-900:#5F370E;--chakra-colors-green-50:#F0FFF4;--chakra-colors-green-100:#C6F6D5;--chakra-colors-green-200:#9AE6B4;--chakra-colors-green-300:#68D391;--chakra-colors-green-400:#48BB78;--chakra-colors-green-500:#38A169;--chakra-colors-green-600:#2F855A;--chakra-colors-green-700:#276749;--chakra-colors-green-800:#22543D;--chakra-colors-green-900:#1C4532;--chakra-colors-teal-50:#E6FFFA;--chakra-colors-teal-100:#B2F5EA;--chakra-colors-teal-200:#81E6D9;--chakra-colors-teal-300:#4FD1C5;--chakra-colors-teal-400:#38B2AC;--chakra-colors-teal-500:#319795;--chakra-colors-teal-600:#2C7A7B;--chakra-colors-teal-700:#285E61;--chakra-colors-teal-800:#234E52;--chakra-colors-teal-900:#1D4044;--chakra-colors-blue-50:#ebf8ff;--chakra-colors-blue-100:#bee3f8;--chakra-colors-blue-200:#90cdf4;--chakra-colors-blue-300:#63b3ed;--chakra-colors-blue-400:#4299e1;--chakra-colors-blue-500:#3182ce;--chakra-colors-blue-600:#2b6cb0;--chakra-colors-blue-700:#2c5282;--chakra-colors-blue-800:#2a4365;--chakra-colors-blue-900:#1A365D;--chakra-colors-cyan-50:#EDFDFD;--chakra-colors-cyan-100:#C4F1F9;--chakra-colors-cyan-200:#9DECF9;--chakra-colors-cyan-300:#76E4F7;--chakra-colors-cyan-400:#0BC5EA;--chakra-colors-cyan-500:#00B5D8;--chakra-colors-cyan-600:#00A3C4;--chakra-colors-cyan-700:#0987A0;--chakra-colors-cyan-800:#086F83;--chakra-colors-cyan-900:#065666;--chakra-colors-purple-50:#FAF5FF;--chakra-colors-purple-100:#E9D8FD;--chakra-colors-purple-200:#D6BCFA;--chakra-colors-purple-300:#B794F4;--chakra-colors-purple-400:#9F7AEA;--chakra-colors-purple-500:#805AD5;--chakra-colors-purple-600:#6B46C1;--chakra-colors-purple-700:#553C9A;--chakra-colors-purple-800:#44337A;--chakra-colors-purple-900:#322659;--chakra-colors-pink-50:#FFF5F7;--chakra-colors-pink-100:#FED7E2;--chakra-colors-pink-200:#FBB6CE;--chakra-colors-pink-300:#F687B3;--chakra-colors-pink-400:#ED64A6;--chakra-colors-pink-500:#D53F8C;--chakra-colors-pink-600:#B83280;--chakra-colors-pink-700:#97266D;--chakra-colors-pink-800:#702459;--chakra-colors-pink-900:#521B41;--chakra-colors-linkedin-50:#E8F4F9;--chakra-colors-linkedin-100:#CFEDFB;--chakra-colors-linkedin-200:#9BDAF3;--chakra-colors-linkedin-300:#68C7EC;--chakra-colors-linkedin-400:#34B3E4;--chakra-colors-linkedin-500:#00A0DC;--chakra-colors-linkedin-600:#008CC9;--chakra-colors-linkedin-700:#0077B5;--chakra-colors-linkedin-800:#005E93;--chakra-colors-linkedin-900:#004471;--chakra-colors-facebook-50:#E8F4F9;--chakra-colors-facebook-100:#D9DEE9;--chakra-colors-facebook-200:#B7C2DA;--chakra-colors-facebook-300:#6482C0;--chakra-colors-facebook-400:#4267B2;--chakra-colors-facebook-500:#385898;--chakra-colors-facebook-600:#314E89;--chakra-colors-facebook-700:#29487D;--chakra-colors-facebook-800:#223B67;--chakra-colors-facebook-900:#1E355B;--chakra-colors-messenger-50:#D0E6FF;--chakra-colors-messenger-100:#B9DAFF;--chakra-colors-messenger-200:#A2CDFF;--chakra-colors-messenger-300:#7AB8FF;--chakra-colors-messenger-400:#2E90FF;--chakra-colors-messenger-500:#0078FF;--chakra-colors-messenger-600:#0063D1;--chakra-colors-messenger-700:#0052AC;--chakra-colors-messenger-800:#003C7E;--chakra-colors-messenger-900:#002C5C;--chakra-colors-whatsapp-50:#dffeec;--chakra-colors-whatsapp-100:#b9f5d0;--chakra-colors-whatsapp-200:#90edb3;--chakra-colors-whatsapp-300:#65e495;--chakra-colors-whatsapp-400:#3cdd78;--chakra-colors-whatsapp-500:#22c35e;--chakra-colors-whatsapp-600:#179848;--chakra-colors-whatsapp-700:#0c6c33;--chakra-colors-whatsapp-800:#01421c;--chakra-colors-whatsapp-900:#001803;--chakra-colors-twitter-50:#E5F4FD;--chakra-colors-twitter-100:#C8E9FB;--chakra-colors-twitter-200:#A8DCFA;--chakra-colors-twitter-300:#83CDF7;--chakra-colors-twitter-400:#57BBF5;--chakra-colors-twitter-500:#1DA1F2;--chakra-colors-twitter-600:#1A94DA;--chakra-colors-twitter-700:#1681BF;--chakra-colors-twitter-800:#136B9E;--chakra-colors-twitter-900:#0D4D71;--chakra-colors-telegram-50:#E3F2F9;--chakra-colors-telegram-100:#C5E4F3;--chakra-colors-telegram-200:#A2D4EC;--chakra-colors-telegram-300:#7AC1E4;--chakra-colors-telegram-400:#47A9DA;--chakra-colors-telegram-500:#0088CC;--chakra-colors-telegram-600:#007AB8;--chakra-colors-telegram-700:#006BA1;--chakra-colors-telegram-800:#005885;--chakra-colors-telegram-900:#003F5E;--chakra-colors-home-bg:#f5f5fa;--chakra-borders-none:0;--chakra-borders-1px:1px solid;--chakra-borders-2px:2px solid;--chakra-borders-4px:4px solid;--chakra-borders-8px:8px solid;--chakra-fonts-heading:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";--chakra-fonts-body:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Helvetica,Segoe UI,Arial,Roboto,'PingFang SC',miui,'Hiragino Sans GB','Microsoft Yahei',sans-serif;--chakra-fonts-mono:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;--chakra-fontSizes-xs:0.75rem;--chakra-fontSizes-sm:0.875rem;--chakra-fontSizes-md:1rem;--chakra-fontSizes-lg:1.125rem;--chakra-fontSizes-xl:1.25rem;--chakra-fontSizes-2xl:1.5rem;--chakra-fontSizes-3xl:1.875rem;--chakra-fontSizes-4xl:2.25rem;--chakra-fontSizes-5xl:3rem;--chakra-fontSizes-6xl:3.75rem;--chakra-fontSizes-7xl:4.5rem;--chakra-fontSizes-8xl:6rem;--chakra-fontSizes-9xl:8rem;--chakra-fontWeights-hairline:100;--chakra-fontWeights-thin:200;--chakra-fontWeights-light:300;--chakra-fontWeights-normal:400;--chakra-fontWeights-medium:500;--chakra-fontWeights-semibold:600;--chakra-fontWeights-bold:700;--chakra-fontWeights-extrabold:800;--chakra-fontWeights-black:900;--chakra-letterSpacings-tighter:-0.05em;--chakra-letterSpacings-tight:-0.025em;--chakra-letterSpacings-normal:0;--chakra-letterSpacings-wide:0.025em;--chakra-letterSpacings-wider:0.05em;--chakra-letterSpacings-widest:0.1em;--chakra-lineHeights-3:.75rem;--chakra-lineHeights-4:1rem;--chakra-lineHeights-5:1.25rem;--chakra-lineHeights-6:1.5rem;--chakra-lineHeights-7:1.75rem;--chakra-lineHeights-8:2rem;--chakra-lineHeights-9:2.25rem;--chakra-lineHeights-10:2.5rem;--chakra-lineHeights-normal:normal;--chakra-lineHeights-none:1;--chakra-lineHeights-shorter:1.25;--chakra-lineHeights-short:1.375;--chakra-lineHeights-base:1.5;--chakra-lineHeights-tall:1.625;--chakra-lineHeights-taller:2;--chakra-radii-none:0;--chakra-radii-sm:0.125rem;--chakra-radii-base:0.25rem;--chakra-radii-md:0.375rem;--chakra-radii-lg:0.5rem;--chakra-radii-xl:0.75rem;--chakra-radii-2xl:1rem;--chakra-radii-3xl:1.5rem;--chakra-radii-full:9999px;--chakra-space-1:0.25rem;--chakra-space-2:0.5rem;--chakra-space-3:0.75rem;--chakra-space-4:1rem;--chakra-space-5:1.25rem;--chakra-space-6:1.5rem;--chakra-space-7:1.75rem;--chakra-space-8:2rem;--chakra-space-9:2.25rem;--chakra-space-10:2.5rem;--chakra-space-12:3rem;--chakra-space-14:3.5rem;--chakra-space-16:4rem;--chakra-space-20:5rem;--chakra-space-24:6rem;--chakra-space-28:7rem;--chakra-space-32:8rem;--chakra-space-36:9rem;--chakra-space-40:10rem;--chakra-space-44:11rem;--chakra-space-48:12rem;--chakra-space-52:13rem;--chakra-space-56:14rem;--chakra-space-60:15rem;--chakra-space-64:16rem;--chakra-space-72:18rem;--chakra-space-80:20rem;--chakra-space-96:24rem;--chakra-space-px:1px;--chakra-space-0\.5:0.125rem;--chakra-space-1\.5:0.375rem;--chakra-space-2\.5:0.625rem;--chakra-space-3\.5:0.875rem;--chakra-shadows-xs:0 0 0 1px rgba(0, 0, 0, 0.05);--chakra-shadows-sm:0 1px 2px 0 rgba(0, 0, 0, 0.05);--chakra-shadows-base:0 1px 3px 0 rgba(0, 0, 0, 0.1),0 1px 2px 0 rgba(0, 0, 0, 0.06);--chakra-shadows-md:0 4px 6px -1px rgba(0, 0, 0, 0.1),0 2px 4px -1px rgba(0, 0, 0, 0.06);--chakra-shadows-lg:0 10px 15px -3px rgba(0, 0, 0, 0.1),0 4px 6px -2px rgba(0, 0, 0, 0.05);--chakra-shadows-xl:0 20px 25px -5px rgba(0, 0, 0, 0.1),0 10px 10px -5px rgba(0, 0, 0, 0.04);--chakra-shadows-2xl:0 25px 50px -12px rgba(0, 0, 0, 0.25);--chakra-shadows-outline:0 0 0 3px rgba(66, 153, 225, 0.6);--chakra-shadows-inner:inset 0 2px 4px 0 rgba(0,0,0,0.06);--chakra-shadows-none:none;--chakra-shadows-dark-lg:rgba(0, 0, 0, 0.1) 0px 0px 0px 1px,rgba(0, 0, 0, 0.2) 0px 5px 10px,rgba(0, 0, 0, 0.4) 0px 15px 40px;--chakra-shadows-card:0px 4px 8px rgba(0, 0, 0, 0.04),0px 0px 2px rgba(0, 0, 0, 0.06),0px 0px 1px rgba(0, 0, 0, 0.04);--chakra-sizes-1:0.25rem;--chakra-sizes-2:0.5rem;--chakra-sizes-3:0.75rem;--chakra-sizes-4:1rem;--chakra-sizes-5:1.25rem;--chakra-sizes-6:1.5rem;--chakra-sizes-7:1.75rem;--chakra-sizes-8:2rem;--chakra-sizes-9:2.25rem;--chakra-sizes-10:2.5rem;--chakra-sizes-12:3rem;--chakra-sizes-14:3.5rem;--chakra-sizes-16:4rem;--chakra-sizes-20:5rem;--chakra-sizes-24:6rem;--chakra-sizes-28:7rem;--chakra-sizes-32:8rem;--chakra-sizes-36:9rem;--chakra-sizes-40:10rem;--chakra-sizes-44:11rem;--chakra-sizes-48:12rem;--chakra-sizes-52:13rem;--chakra-sizes-56:14rem;--chakra-sizes-60:15rem;--chakra-sizes-64:16rem;--chakra-sizes-72:18rem;--chakra-sizes-80:20rem;--chakra-sizes-96:24rem;--chakra-sizes-px:1px;--chakra-sizes-0\.5:0.125rem;--chakra-sizes-1\.5:0.375rem;--chakra-sizes-2\.5:0.625rem;--chakra-sizes-3\.5:0.875rem;--chakra-sizes-max:max-content;--chakra-sizes-min:min-content;--chakra-sizes-full:100%;--chakra-sizes-3xs:14rem;--chakra-sizes-2xs:16rem;--chakra-sizes-xs:20rem;--chakra-sizes-sm:24rem;--chakra-sizes-md:28rem;--chakra-sizes-lg:32rem;--chakra-sizes-xl:36rem;--chakra-sizes-2xl:42rem;--chakra-sizes-3xl:48rem;--chakra-sizes-4xl:56rem;--chakra-sizes-5xl:64rem;--chakra-sizes-6xl:72rem;--chakra-sizes-7xl:80rem;--chakra-sizes-8xl:90rem;--chakra-sizes-container-sm:640px;--chakra-sizes-container-md:768px;--chakra-sizes-container-lg:1024px;--chakra-sizes-container-xl:1280px;--chakra-zIndices-hide:-1;--chakra-zIndices-auto:auto;--chakra-zIndices-base:0;--chakra-zIndices-docked:10;--chakra-zIndices-dropdown:1000;--chakra-zIndices-sticky:1100;--chakra-zIndices-banner:1200;--chakra-zIndices-overlay:1300;--chakra-zIndices-modal:1400;--chakra-zIndices-popover:1500;--chakra-zIndices-skipLink:1600;--chakra-zIndices-toast:1700;--chakra-zIndices-tooltip:1800;--chakra-transition-property-common:background-color,border-color,color,fill,stroke,opacity,box-shadow,transform;--chakra-transition-property-colors:background-color,border-color,color,fill,stroke;--chakra-transition-property-dimensions:width,height;--chakra-transition-property-position:left,right,top,bottom;--chakra-transition-property-background:background-color,background-image,background-position;--chakra-transition-easing-ease-in:cubic-bezier(0.4, 0, 1, 1);--chakra-transition-easing-ease-out:cubic-bezier(0, 0, 0.2, 1);--chakra-transition-easing-ease-in-out:cubic-bezier(0.4, 0, 0.2, 1);--chakra-transition-duration-ultra-fast:50ms;--chakra-transition-duration-faster:100ms;--chakra-transition-duration-fast:150ms;--chakra-transition-duration-normal:200ms;--chakra-transition-duration-slow:300ms;--chakra-transition-duration-slower:400ms;--chakra-transition-duration-ultra-slow:500ms;--chakra-blur-none:0;--chakra-blur-sm:4px;--chakra-blur-base:8px;--chakra-blur-md:12px;--chakra-blur-lg:16px;--chakra-blur-xl:24px;--chakra-blur-2xl:40px;--chakra-blur-3xl:64px;}</style><style data-emotion="css-global 1jqlf9g">html{line-height:1.5;-webkit-text-size-adjust:100%;font-family:system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;-moz-osx-font-smoothing:grayscale;touch-action:manipulation;}body{position:relative;min-height:100%;font-feature-settings:'kern';}*,*::before,*::after{border-width:0;border-style:solid;box-sizing:border-box;}main{display:block;}hr{border-top-width:1px;box-sizing:content-box;height:0;overflow:visible;}pre,code,kbd,samp{font-family:SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:1em;}a{background-color:transparent;color:inherit;-webkit-text-decoration:inherit;text-decoration:inherit;}abbr[title]{border-bottom:none;-webkit-text-decoration:underline;text-decoration:underline;-webkit-text-decoration:underline dotted;-webkit-text-decoration:underline dotted;text-decoration:underline dotted;}b,strong{font-weight:bold;}small{font-size:80%;}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline;}sub{bottom:-0.25em;}sup{top:-0.5em;}img{border-style:none;}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0;}button,input{overflow:visible;}button,select{text-transform:none;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner{border-style:none;padding:0;}fieldset{padding:0.35em 0.75em 0.625em;}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal;}progress{vertical-align:baseline;}textarea{overflow:auto;}[type="checkbox"],[type="radio"]{box-sizing:border-box;padding:0;}[type="number"]::-webkit-inner-spin-button,[type="number"]::-webkit-outer-spin-button{-webkit-appearance:none!important;}input[type="number"]{-moz-appearance:textfield;}[type="search"]{-webkit-appearance:textfield;outline-offset:-2px;}[type="search"]::-webkit-search-decoration{-webkit-appearance:none!important;}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit;}details{display:block;}summary{display:-webkit-box;display:-webkit-list-item;display:-ms-list-itembox;display:list-item;}template{display:none;}[hidden]{display:none!important;}body,blockquote,dl,dd,h1,h2,h3,h4,h5,h6,hr,figure,p,pre{margin:0;}button{background:transparent;padding:0;}fieldset{margin:0;padding:0;}ol,ul{margin:0;padding:0;}textarea{resize:vertical;}button,[role="button"]{cursor:pointer;}button::-moz-focus-inner{border:0!important;}table{border-collapse:collapse;}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit;}button,input,optgroup,select,textarea{padding:0;line-height:inherit;color:inherit;}img,svg,video,canvas,audio,iframe,embed,object{display:block;}img,video{max-width:100%;height:auto;}[data-js-focus-visible] :focus:not([data-focus-visible-added]){outline:none;box-shadow:none;}select::-ms-expand{display:none;}</style><style data-emotion="css-global 1of8e4g">body{font-family:var(--chakra-fonts-body);color:var(--chakra-colors-gray-800);background:var(--chakra-colors-white);transition-property:background-color;transition-duration:var(--chakra-transition-duration-normal);line-height:var(--chakra-lineHeights-base);}*::-webkit-input-placeholder{color:var(--chakra-colors-gray-400);}*::-moz-placeholder{color:var(--chakra-colors-gray-400);}*:-ms-input-placeholder{color:var(--chakra-colors-gray-400);}*::placeholder{color:var(--chakra-colors-gray-400);}*,*::before,::after{border-color:var(--chakra-colors-gray-200);word-wrap:break-word;}html,body{background:var(--chakra-colors-home-bg);}img,#write iframe{-webkit-filter:unset;filter:unset;transition-property:filter;transition-duration:var(--chakra-transition-duration-normal);}div{transition-property:background-color;transition-duration:var(--chakra-transition-duration-normal);}</style><style data-emotion="css 1ghv3an">.css-1ghv3an{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:flex-start;-webkit-box-align:flex-start;-ms-flex-align:flex-start;align-items:flex-start;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;height:unset;overflow:auto;-webkit-box-flex-flow:column;-webkit-flex-flow:column;-ms-flex-flow:column;flex-flow:column;-webkit-padding-start:0.5rem;padding-inline-start:0.5rem;-webkit-padding-end:0.5rem;padding-inline-end:0.5rem;}@media screen and (min-width: 30em){.css-1ghv3an{height:unset;-webkit-box-flex-flow:column;-webkit-flex-flow:column;-ms-flex-flow:column;flex-flow:column;}}@media screen and (min-width: 48em){.css-1ghv3an{height:100vh;-webkit-box-flex-flow:row;-webkit-flex-flow:row;-ms-flex-flow:row;flex-flow:row;}}</style><div class="css-1ghv3an"><style data-emotion="css xte4wg">.css-xte4wg{display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;position:unset;white-space:nowrap;vertical-align:middle;outline:2px solid transparent;outline-offset:2px;width:auto;line-height:1.2;border-radius:var(--chakra-radii-md);font-weight:var(--chakra-fontWeights-semibold);transition-property:var(--chakra-transition-property-common);transition-duration:var(--chakra-transition-duration-normal);height:var(--chakra-sizes-12);min-width:var(--chakra-sizes-12);font-size:var(--chakra-fontSizes-lg);-webkit-padding-start:var(--chakra-space-6);padding-inline-start:var(--chakra-space-6);-webkit-padding-end:var(--chakra-space-6);padding-inline-end:var(--chakra-space-6);background:var(--chakra-colors-gray-100);margin-top:1rem;top:3rem;}@media screen and (min-width: 30em){.css-xte4wg{position:unset;margin-top:1rem;}}@media screen and (min-width: 48em){.css-xte4wg{position:-webkit-sticky;position:sticky;margin-top:3rem;}}.css-xte4wg:focus,.css-xte4wg[data-focus]{box-shadow:var(--chakra-shadows-outline);}.css-xte4wg[disabled],.css-xte4wg[aria-disabled=true],.css-xte4wg[data-disabled]{opacity:0.4;cursor:not-allowed;box-shadow:var(--chakra-shadows-none);}.css-xte4wg:hover,.css-xte4wg[data-hover]{background:var(--chakra-colors-gray-200);}.css-xte4wg:hover[disabled],.css-xte4wg[data-hover][disabled],.css-xte4wg:hover[aria-disabled=true],.css-xte4wg[data-hover][aria-disabled=true],.css-xte4wg:hover[data-disabled],.css-xte4wg[data-hover][data-disabled]{background:var(--chakra-colors-gray-100);}.css-xte4wg:active,.css-xte4wg[data-active]{background:var(--chakra-colors-gray-300);}</style><button type="button" class="chakra-button css-xte4wg">BACK</button><style data-emotion="css a06krq">.css-a06krq{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;width:var(--chakra-sizes-full);-webkit-box-flex-flow:column;-webkit-flex-flow:column;-ms-flex-flow:column;flex-flow:column;-webkit-padding-start:unset;padding-inline-start:unset;-webkit-padding-end:unset;padding-inline-end:unset;}@media screen and (min-width: 30em){.css-a06krq{width:var(--chakra-sizes-full);-webkit-padding-start:unset;padding-inline-start:unset;-webkit-padding-end:unset;padding-inline-end:unset;}}@media screen and (min-width: 48em){.css-a06krq{width:55rem;-webkit-padding-start:1.5rem;padding-inline-start:1.5rem;-webkit-padding-end:1.5rem;padding-inline-end:1.5rem;}}@media screen and (min-width: 62em){.css-a06krq{width:55rem;}}@media screen and (min-width: 80em){.css-a06krq{width:55rem;}}@media screen and (min-width: 96em){.css-a06krq{width:68rem;}}</style><div class="css-a06krq"><style data-emotion="css 1if659q">.css-1if659q{border-radius:10px;margin-top:1rem;box-shadow:var(--chakra-shadows-lg);background:var(--chakra-colors-white);overflow:hidden;-webkit-flex:1;-ms-flex:1;flex:1;}@media screen and (min-width: 30em){.css-1if659q{margin-top:1rem;}}@media screen and (min-width: 48em){.css-1if659q{margin-top:3rem;}}</style><div class="css-1if659q"><style data-emotion="css 81xunj">.css-81xunj{padding:1rem;}@media screen and (min-width: 30em){.css-81xunj{padding:1rem;}}@media screen and (min-width: 48em){.css-81xunj{padding:2rem;}}</style><article class="css-81xunj"><header class="css-0"><style data-emotion="css 1m7qnzk">.css-1m7qnzk{font-family:var(--chakra-fonts-heading);font-weight:var(--chakra-fontWeights-bold);font-size:var(--chakra-fontSizes-3xl);line-height:1.33;margin-bottom:1rem;color:rgba(0, 0, 0, 0.85);}@media screen and (min-width: 48em){.css-1m7qnzk{font-size:var(--chakra-fontSizes-4xl);line-height:1.2;}}</style><h1 class="chakra-heading css-1m7qnzk">MongoDB零碎笔记</h1><style data-emotion="css acwcvw">.css-acwcvw{margin-bottom:1rem;}</style><div class="css-acwcvw"><style data-emotion="css 1kpd5c2">.css-1kpd5c2{display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;vertical-align:top;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;max-width:100%;font-weight:var(--chakra-fontWeights-medium);line-height:1.2;outline:2px solid transparent;outline-offset:2px;min-height:1.5rem;min-width:1.5rem;font-size:var(--chakra-fontSizes-sm);border-radius:var(--chakra-radii-md);-webkit-padding-start:var(--chakra-space-2);padding-inline-start:var(--chakra-space-2);-webkit-padding-end:var(--chakra-space-2);padding-inline-end:var(--chakra-space-2);background:var(--chakra-colors-gray-100);color:var(--chakra-colors-gray-800);}.css-1kpd5c2:focus,.css-1kpd5c2[data-focus]{box-shadow:var(--chakra-shadows-outline);}</style><span class="css-1kpd5c2">JavaScript</span></div><style data-emotion="css x8djax">.css-x8djax{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;color:var(--chakra-colors-gray-600);}</style><div class="css-x8djax"><style data-emotion="css 1lr2xj">.css-1lr2xj{width:1em;height:1em;display:inline-block;line-height:1em;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;color:currentColor;margin-right:0.5rem;}</style><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" focusable="false" class="chakra-icon css-1lr2xj" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg><style data-emotion="css 129gw94">.css-129gw94{line-height:0;}</style><time dateTime="2021-06-07T18:08:31.000Z" class="css-129gw94">2021/06/07</time></div></header><style data-emotion="css i51og3">.css-i51og3{margin-top:2rem;}</style><section id="write" class="css-i51og3"><h2 id="数据结构">数据结构</h2>
+<p>数据库</p>
+<p>集合</p>
+<p>文档</p>
+<h2 id="插入数据">插入数据</h2>
+<p>集合为自动创建</p>
+<p>选中数据库，如果不存在则自动创建：</p>
+<pre><style data-emotion="css 19bp9bt">.css-19bp9bt{display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;position:absolute;white-space:nowrap;vertical-align:middle;outline:2px solid transparent;outline-offset:2px;width:auto;line-height:1.2;border-radius:var(--chakra-radii-md);font-weight:var(--chakra-fontWeights-semibold);transition-property:var(--chakra-transition-property-common);transition-duration:var(--chakra-transition-duration-normal);height:var(--chakra-sizes-6);min-width:var(--chakra-sizes-6);font-size:var(--chakra-fontSizes-xs);-webkit-padding-start:var(--chakra-space-2);padding-inline-start:var(--chakra-space-2);-webkit-padding-end:var(--chakra-space-2);padding-inline-end:var(--chakra-space-2);background:var(--chakra-colors-teal-500);color:var(--chakra-colors-white);top:5px;right:5px;}.css-19bp9bt:focus,.css-19bp9bt[data-focus]{box-shadow:var(--chakra-shadows-outline);}.css-19bp9bt[disabled],.css-19bp9bt[aria-disabled=true],.css-19bp9bt[data-disabled]{opacity:0.4;cursor:not-allowed;box-shadow:var(--chakra-shadows-none);}.css-19bp9bt:hover,.css-19bp9bt[data-hover]{background:var(--chakra-colors-teal-600);}.css-19bp9bt:hover[disabled],.css-19bp9bt[data-hover][disabled],.css-19bp9bt:hover[aria-disabled=true],.css-19bp9bt[data-hover][aria-disabled=true],.css-19bp9bt:hover[data-disabled],.css-19bp9bt[data-hover][data-disabled]{background:var(--chakra-colors-teal-500);}.css-19bp9bt:active,.css-19bp9bt[data-active]{background:var(--chakra-colors-teal-700);}</style><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-bash">use <span class="hljs-built_in">test</span>
+<span class="hljs-comment"># &#x27;switched to db test&#x27;</span>
+</code></pre>
+<p>如果不添加数据则数据库不显示</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-bash">show dbs
+admin     41 kB
+config  61.4 kB
+<span class="hljs-built_in">local</span>     41 kB
+</code></pre>
+<p>集合不需要手动进行创建，直接插入数据会自动创建集合</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-bash">db.names.insertOne({name:<span class="hljs-string">&#x27;xfy&#x27;</span>})
+{ acknowledged: <span class="hljs-literal">true</span>,
+  insertedId: ObjectId(<span class="hljs-string">&quot;60371efde948e229844958fb&quot;</span>) }
+</code></pre>
+<h2 id="数据重复时">数据重复时</h2>
+<p>当数据重复时，mongodb使用<code>_id</code>来区分数据。如果没有手动插入<code>_id</code>，则会自动生成一个 id。也可以手动插入。二者不相同。</p>
+<p>id 不可修改。</p>
+<h2 id="关系型数据库">关系型数据库</h2>
+<h3 id="acid-设计模式">ACID 设计模式</h3>
+<p>A（<strong>A</strong>tomicity）：原子性。事务里所做的操作要么全部做完，要么都不做。</p>
+<p>C（<strong>C</strong>onsistency）：一致性。数据库要一直处于一致的状态，事务的运行不会改变数据库原本的一致性约束。</p>
+<p>I（<strong>I</strong>solation）：独立性。并发的事务之间不会互相影响。</p>
+<p>D（<strong>D</strong>urability）：持久性。事务一旦提交后，所作的修改将会永久的保存在数据库上。</p>
+<p>事物：一次性执行多条 SQL 语句的操作。</p>
+<p>这四个特性是关系型数据库要同时满足的。</p>
+<h2 id="非关系型数据库">非关系型数据库</h2>
+<h3 id="cap-定理">CAP 定理</h3>
+<p>在<style data-emotion="css wox0k7">.css-wox0k7{transition-property:var(--chakra-transition-property-common);transition-duration:var(--chakra-transition-duration-fast);transition-timing-function:var(--chakra-transition-easing-ease-out);cursor:pointer;-webkit-text-decoration:none;text-decoration:none;outline:2px solid transparent;outline-offset:2px;color:inherit;display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}.css-wox0k7:hover,.css-wox0k7[data-hover]{-webkit-text-decoration:underline;text-decoration:underline;}.css-wox0k7:focus,.css-wox0k7[data-focus]{box-shadow:var(--chakra-shadows-outline);}</style><a target="_blank" rel="noopener noreferrer" class="chakra-link css-wox0k7" href="https://zh.wikipedia.org/wiki/%E7%90%86%E8%AB%96%E8%A8%88%E7%AE%97%E6%A9%9F%E7%A7%91%E5%AD%B8">理论计算机科学<style data-emotion="css 2y6psj">.css-2y6psj{width:1em;height:1em;display:inline-block;line-height:1em;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;color:currentColor;vertical-align:middle;-webkit-margin-start:2px;margin-inline-start:2px;-webkit-margin-end:2px;margin-inline-end:2px;}</style><svg viewBox="0 0 24 24" focusable="false" class="chakra-icon css-2y6psj"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><path d="M15 3h6v6"></path><path d="M10 14L21 3"></path></g></svg></a>中，<strong>CAP定理</strong>（CAP theorem），又被称作<strong>布鲁尔定理</strong>（Brewer&#x27;s theorem），它指出对于一个<a target="_blank" rel="noopener noreferrer" class="chakra-link css-wox0k7" href="https://zh.wikipedia.org/wiki/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97">分布式计算系统<svg viewBox="0 0 24 24" focusable="false" class="chakra-icon css-2y6psj"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><path d="M15 3h6v6"></path><path d="M10 14L21 3"></path></g></svg></a>来说，不可能同时满足以下三点：</p>
+<ul>
+<li>一致性（<strong>C</strong>onsistency） （等同于所有节点访问同一份最新的数据副本）</li>
+<li><a target="_blank" rel="noopener noreferrer" class="chakra-link css-wox0k7" href="https://zh.wikipedia.org/wiki/%E5%8F%AF%E7%94%A8%E6%80%A7">可用性<svg viewBox="0 0 24 24" focusable="false" class="chakra-icon css-2y6psj"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><path d="M15 3h6v6"></path><path d="M10 14L21 3"></path></g></svg></a>（<strong>A</strong>vailability）（每次请求都能获取到非错的响应——但是不保证获取的数据为最新数据）</li>
+<li><a target="_blank" rel="noopener noreferrer" class="chakra-link css-wox0k7" href="https://zh.wikipedia.org/w/index.php?title=%E7%BD%91%E7%BB%9C%E5%88%86%E5%8C%BA&amp;action=edit&amp;redlink=1">分区容错性<svg viewBox="0 0 24 24" focusable="false" class="chakra-icon css-2y6psj"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><path d="M15 3h6v6"></path><path d="M10 14L21 3"></path></g></svg></a>（<strong>P</strong>artition tolerance）（以实际效果而言，分区相当于对通信的时限要求。系统如果不能在时限内达成数据一致性，就意味着发生了分区的情况，必须就当前操作在C和A之间做出选择。）</li>
+</ul>
+<p><picture data-rmiz-wrap="visible"><style data-emotion="css 185nr5j">.css-185nr5j{object-fit:cover;border-radius:10px;-webkit-filter:blur(20px);filter:blur(20px);transition-duration:var(--chakra-transition-duration-slower);height:100%;}</style><img alt="Post image" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" class="chakra-image css-185nr5j"/><button aria-label="Zoom image" data-rmiz-btn-open="true"></button></picture></p>
+<h3 id="nosql-技术优势">NoSQL 技术优势</h3>
+<p>根据 CAP 的核心定义，可以将 CAP 分成三个部分：CA、CP、AP。</p>
+<p>NoSQL 很好的融合了 CA、CP、AP 定理：</p>
+<ul>
+<li>CA：单点集群，满足一致性，可用性的系统，通常在可扩展性上不够强大。</li>
+<li>CP：满足一致性，分区容错性的系统，通常在性能上不是特别高。</li>
+<li>AP：满足可用性，分区容错性的选题，通常可能对一致性要求低一些。</li>
+</ul>
+<h3 id="优点与缺点">优点与缺点</h3>
+<ul>
+<li>优点：
+<ul>
+<li>高可扩展性*</li>
+<li>分布式计算</li>
+<li>低成本</li>
+<li>架构的灵活性，半结构化数据</li>
+<li>没有复杂的关系</li>
+</ul>
+</li>
+<li>缺点：
+<ul>
+<li>没有标准化</li>
+<li>有限的查询功能（目前）</li>
+</ul>
+</li>
+</ul>
+<h2 id="mongodb">MongoDB</h2>
+<h3 id="基本概念">基本概念</h3>
+<p>文档：是一组键值对（key-value）即（BSON）。</p>
+<p>需要注意：</p>
+<ul>
+<li>文档中的键值对是有序的；</li>
+<li>文档中的值可以是多种类型；</li>
+<li>MongoDB 区分类型和大小写；</li>
+<li>同一个文档中不能有重复的键；</li>
+<li>文档中的键是字符串。</li>
+</ul>
+<blockquote>
+<p>键值对需要注意的部分和 JavaScript 的对象很类似。</p>
+</blockquote>
+<p>集合：MongoDB 集合组，类似于 RDBMS（关系数据库管理系统：Relational Database Management System）中的表格。</p>
+<p>集合命名需要注意：</p>
+<ul>
+<li>集合名不能是空字符串；</li>
+<li>集合名不能含有<code>\0</code>字符串（空字符串），这个字符表示集合名的结尾；</li>
+<li>集合名不能以<code>system.</code>开头，这是为系统保留的前缀；</li>
+<li>用户创建的集合名不能含有保留字符。</li>
+</ul>
+<h3 id="术语">术语</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:left">SQL术语/概念</th><th style="text-align:left">MongoDB术语/概念</th><th style="text-align:left">解释/说明</th></tr></thead><tbody><tr><td style="text-align:left">database</td><td style="text-align:left">database</td><td style="text-align:left">数据库</td></tr><tr><td style="text-align:left">table</td><td style="text-align:left">collection</td><td style="text-align:left">数据库表/集合</td></tr><tr><td style="text-align:left">row</td><td style="text-align:left">document</td><td style="text-align:left">数据记录行/文档</td></tr><tr><td style="text-align:left">column</td><td style="text-align:left">field</td><td style="text-align:left">数据字段/域</td></tr><tr><td style="text-align:left">index</td><td style="text-align:left">index</td><td style="text-align:left">索引</td></tr><tr><td style="text-align:left">table joins</td><td style="text-align:left"></td><td style="text-align:left">表连接,MongoDB不支持</td></tr><tr><td style="text-align:left">primary key</td><td style="text-align:left">primary key</td><td style="text-align:left">主键,MongoDB自动将_id字段设置为主键</td></tr></tbody></table>
+<h3 id="系统保留数据库">系统保留数据库</h3>
+<ol>
+<li>admin：“root” 数据库</li>
+<li>local：这个数据永远不会被复制，可以用来存储限于本地单台服务器的任意集合。</li>
+<li>config：当 mongdo 用于分片时，config 数据库在内部使用，用于保存分片的相关的信息。</li>
+</ol>
+<h3 id="创建集合">创建集合</h3>
+<p>使用<code>createCollection()</code>方法来创建集合。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">db.<span class="hljs-title hljs-function">createCollection</span>(name, options);
+</code></pre>
+<p>options 参数：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:left">字段</th><th style="text-align:left">类型</th><th style="text-align:left">描述</th></tr></thead><tbody><tr><td style="text-align:left">capped</td><td style="text-align:left">布尔</td><td style="text-align:left">（可选）如果为 true，则创建固定集合。固定集合是指有着固定大小的集合，当达到最大值时，它会自动覆盖最早的文档。 <strong>当该值为 true 时，必须指定 size 参数。</strong></td></tr><tr><td style="text-align:left">autoIndexId</td><td style="text-align:left">布尔</td><td style="text-align:left">3.2 之后不再支持该参数。（可选）如为 true，自动在 _id 字段创建索引。默认为 false。</td></tr><tr><td style="text-align:left">size</td><td style="text-align:left">数值</td><td style="text-align:left">（可选）为固定集合指定一个最大值，即字节数。 <strong>如果 capped 为 true，也需要指定该字段。</strong></td></tr><tr><td style="text-align:left">max</td><td style="text-align:left">数值</td><td style="text-align:left">（可选）指定固定集合中包含文档的最大数量。</td></tr></tbody></table>
+<h3 id="集合其他操作">集合其他操作</h3>
+<p>查看当前库中的所有集合</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">show collections
+</code></pre>
+<p>删除集合</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">db.<span class="hljs-property">games</span>.<span class="hljs-title hljs-function">drop</span>()
+</code></pre>
+<h3 id="数据类型">数据类型</h3>
+<p>MongoDB支持以下数据类型:</p>
+<ul>
+<li><strong>String（字符串）</strong>: mongodb中的字符串是UTF-8有效的。</li>
+<li><strong>Integer（整数）</strong>: 存储数值。整数可以是32位或64位，具体取决于您的服务器。</li>
+<li><strong>Boolean（布尔）</strong>: 存储布尔(true/false)值。</li>
+<li><strong>Double（双精度）</strong>: 存储浮点值。</li>
+<li><strong>Min/ Max keys（最小/最大键）</strong>: 将值与最低和最高BSON元素进行比较。</li>
+<li><strong>Arrays（数组）</strong>: 将数组或列表或多个值存储到一个键中。</li>
+<li><strong>Timestamp（时间戳）</strong>: 存储时间戳。</li>
+<li><strong>Object（对象）</strong>: 嵌入式文档。</li>
+<li><strong>Null （空值）</strong>: 存储Null值。</li>
+<li><strong>Symbol（符号）</strong>: 与字符串相同，用于具有特定符号类型的语言。</li>
+<li><strong>Date（日期）</strong>: 以UNIX时间格式存储当前日期或时间。</li>
+<li><strong>Object ID（对象ID）</strong> : 存储文档ID。</li>
+<li><strong>Binary data（二进制数据）</strong>: 存储二进制数据。</li>
+<li><strong>Code（代码）</strong>: 将JavaScript代码存储到文档中。</li>
+<li><strong>Regular expression（正则表达式）</strong>: 存储正则表达式</li>
+</ul>
+<h3 id="更新数据">更新数据</h3>
+<p>语法：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">db.<span class="hljs-property">collection</span>.<span class="hljs-title hljs-function">update</span>(
+   &lt;query&gt;,
+   &lt;update&gt;,
+   {
+     <span class="hljs-attr">upsert</span>: &lt;boolean&gt;,
+     <span class="hljs-attr">multi</span>: &lt;boolean&gt;,
+     <span class="hljs-attr">writeConcern</span>: &lt;<span class="hljs-variable hljs-language">document</span>&gt;,
+     <span class="hljs-attr">collation</span>: &lt;<span class="hljs-variable hljs-language">document</span>&gt;,
+     <span class="hljs-attr">arrayFilters</span>: [ &lt;filterdocument1&gt;, ... ],
+     <span class="hljs-attr">hint</span>:  <span class="xml">&lt;document|string&gt;        // Available starting in MongoDB 4.2
+   }
+)
+</span></code></pre>
+<p><code>updateMany</code>就相当于<code>update</code>使用了<code>multi: true</code>这个可选属性</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">use test
+db.<span class="hljs-property">user</span>.<span class="hljs-title hljs-function">find</span>();
+
+db.<span class="hljs-property">user</span>.<span class="hljs-title hljs-function">insertMany</span>(
+    [
+        {<span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;xfy&#x27;</span>,<span class="hljs-attr">age</span>:<span class="hljs-number">18</span>,<span class="hljs-attr">sex</span>:<span class="hljs-string">&#x27;man&#x27;</span>},
+        {<span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;xfy1&#x27;</span>,<span class="hljs-attr">age</span>:<span class="hljs-number">12</span>,<span class="hljs-attr">sex</span>:<span class="hljs-string">&#x27;man&#x27;</span>},
+        {<span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;xfy2&#x27;</span>,<span class="hljs-attr">age</span>:<span class="hljs-number">16</span>,<span class="hljs-attr">sex</span>:<span class="hljs-string">&#x27;man&#x27;</span>},
+        {<span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;xfy3&#x27;</span>,<span class="hljs-attr">age</span>:<span class="hljs-number">19</span>,<span class="hljs-attr">sex</span>:<span class="hljs-string">&#x27;man&#x27;</span>},
+        {<span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;xfy4&#x27;</span>,<span class="hljs-attr">age</span>:<span class="hljs-number">28</span>,<span class="hljs-attr">sex</span>:<span class="hljs-string">&#x27;man&#x27;</span>},
+    ]
+)
+
+db.<span class="hljs-property">user</span>.<span class="hljs-title hljs-function">updateOne</span>(
+    {<span class="hljs-attr">age</span>: <span class="hljs-number">18</span>},
+    {<span class="hljs-attr">$set</span>:{<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;dfy&#x27;</span>}}
+)
+
+db.<span class="hljs-property">user</span>.<span class="hljs-title hljs-function">findOne</span>({<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;dfy&#x27;</span>})
+
+db.<span class="hljs-property">user</span>.<span class="hljs-title hljs-function">updateMany</span>(
+    {<span class="hljs-attr">sex</span>:<span class="hljs-string">&#x27;man&#x27;</span>},
+    {<span class="hljs-attr">$set</span>:{<span class="hljs-attr">sex</span>:<span class="hljs-string">&#x27;woman&#x27;</span>}}
+)
+</code></pre>
+<h4 id="多个条件">多个条件</h4>
+<p><code>update</code>时，如果有多个条件，则默认是需要所有条件都满足。类似于 sql 中的 <code>and</code>连接。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">db.<span class="hljs-property">user</span>.<span class="hljs-title hljs-function">updateOne</span>(
+    {<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;xfy&#x27;</span>,<span class="hljs-attr">age</span>:<span class="hljs-number">18</span>},
+    {<span class="hljs-attr">$set</span>:{<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;dfy&#x27;</span>}}
+)
+</code></pre>
+<p>如果需要满足其中一个条件，需要使用<code>$or</code>操作符</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">db.<span class="hljs-property">user</span>.<span class="hljs-title hljs-function">updateOne</span>(
+    {<span class="hljs-attr">$or</span>:[<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;xfy&#x27;</span>,<span class="hljs-attr">age</span>:<span class="hljs-number">18</span>]},
+    {<span class="hljs-attr">$set</span>:{<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;dfy&#x27;</span>}}
+)
+</code></pre>
+<h3 id="删除文档">删除文档</h3>
+<p>删除使用<code>remove()</code>方法。接受一个参数<code>justOne</code>，为<code>true</code>时，只删除一个文档。否则删除匹配到的所有文档。默认为<code>false</code></p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">db.<span class="hljs-property">collection</span>.<span class="hljs-title hljs-function">remove</span>(
+   &lt;query&gt;,
+   &lt;justOne&gt;
+)
+</code></pre>
+<p>还有其他选项</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">db.<span class="hljs-property">collection</span>.<span class="hljs-title hljs-function">remove</span>(
+   &lt;query&gt;,
+   {
+     <span class="hljs-attr">justOne</span>: &lt;boolean&gt;,
+     <span class="hljs-attr">writeConcern</span>: &lt;<span class="hljs-variable hljs-language">document</span>&gt;,
+     <span class="hljs-attr">collation</span>: &lt;<span class="hljs-variable hljs-language">document</span>&gt;
+   }
+)
+</code></pre>
+<p>删除集合中的所有数据</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">db.<span class="hljs-property">collectionName</span>.<span class="hljs-title hljs-function">remove</span>({})
+</code></pre>
+<h3 id="查询文档">查询文档</h3>
+<p>查询集合中的文档使用<code>find()</code>方法。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">db.<span class="hljs-property">collection</span>.<span class="hljs-title hljs-function">find</span>()
+</code></pre>
+<p>在没有添加查询条件的情况下，<code>find()</code>方法默认会返回所有的数据。但返回的数据是未格式化的。使用<code>pretty()</code>以格式化显示。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">db.<span class="hljs-property">collection</span>.<span class="hljs-title hljs-function">find</span>().<span class="hljs-title hljs-function">pretty</span>()
+</code></pre>
+<p><code>findOne()</code>默认就只返回一条数据（查询到的第一条），并且就是格式化显示的，所以不能使用<code>pretty()</code>方法。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">db.<span class="hljs-property">user</span>.<span class="hljs-title hljs-function">findOne</span>().<span class="hljs-title hljs-function">pretty</span>()
+<span class="hljs-comment">// TypeError: (intermediate value).pretty is not a function</span>
+</code></pre>
+<h4 id="条件查询">条件查询</h4>
+<p>多个条件同时满足的查询。和更新数据类似，传入多个条件时，默认为同时都需要满足。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">db.<span class="hljs-property">user</span>.<span class="hljs-title hljs-function">find</span>({<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;xfy&#x27;</span>,<span class="hljs-attr">age</span>:<span class="hljs-number">18</span>})
+</code></pre>
+<p>同理，满足单个条件时，使用<code>$or</code>操作符</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">db.<span class="hljs-property">user</span>.<span class="hljs-title hljs-function">find</span>({<span class="hljs-attr">$or</span>:[{<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;xfy&#x27;</span>},{<span class="hljs-attr">age</span>:<span class="hljs-number">18</span>}]})
+</code></pre>
+<h3 id="条件操作符">条件操作符</h3>
+<p>条件操作符用于比较两个表达式，并从 mongodb 集合中获取数据。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:left">$</th><th style="text-align:left">Symbol</th><th style="text-align:left">Words</th></tr></thead><tbody><tr><td style="text-align:left"><code>$gt</code></td><td style="text-align:left">&gt;</td><td style="text-align:left">greater than</td></tr><tr><td style="text-align:left"><code>$lt</code></td><td style="text-align:left">&lt;</td><td style="text-align:left">less than</td></tr><tr><td style="text-align:left"><code>$gte</code></td><td style="text-align:left">≥</td><td style="text-align:left">greater than or equal to</td></tr><tr><td style="text-align:left"><code>$lte</code></td><td style="text-align:left">≤</td><td style="text-align:left">less than or equal to</td></tr><tr><td style="text-align:left"><code>$ne</code></td><td style="text-align:left">!=</td><td style="text-align:left">not equal</td></tr></tbody></table>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">db.<span class="hljs-property">user</span>.<span class="hljs-title hljs-function">find</span>()
+
+db.<span class="hljs-property">user</span>.<span class="hljs-title hljs-function">updateMany</span>({<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;dfy&#x27;</span>,<span class="hljs-attr">age</span>:<span class="hljs-number">18</span>}, {<span class="hljs-attr">$set</span>:{<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;xfy&#x27;</span>}})
+
+db.<span class="hljs-property">user</span>.<span class="hljs-title hljs-function">find</span>({<span class="hljs-attr">$or</span>:[{<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;xfy&#x27;</span>},{<span class="hljs-attr">age</span>:<span class="hljs-number">18</span>}]})
+
+db.<span class="hljs-property">user</span>.<span class="hljs-title hljs-function">find</span>(
+    {<span class="hljs-attr">age</span>:{<span class="hljs-attr">$lt</span>:<span class="hljs-number">18</span>}}
+)
+
+db.<span class="hljs-property">user</span>.<span class="hljs-title hljs-function">find</span>(
+    {<span class="hljs-attr">age</span>:{<span class="hljs-attr">$gte</span>:<span class="hljs-number">12</span>,<span class="hljs-attr">$lte</span>:<span class="hljs-number">18</span>}}
+)
+
+db.<span class="hljs-property">user</span>.<span class="hljs-title hljs-function">find</span>(
+    {<span class="hljs-attr">$or</span>:[{
+        <span class="hljs-attr">age</span>:{<span class="hljs-attr">$lt</span>: <span class="hljs-number">12</span>}
+        },
+        {
+        <span class="hljs-attr">age</span>:{<span class="hljs-attr">$gt</span>: <span class="hljs-number">18</span>}
+        }
+    ]}
+)
+
+db.<span class="hljs-property">user</span>.<span class="hljs-title hljs-function">find</span>(
+    {<span class="hljs-attr">age</span>:{<span class="hljs-attr">$gt</span>: <span class="hljs-number">20</span>},<span class="hljs-attr">$or</span>:[{<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;xfy4&#x27;</span>}]}
+)
+</code></pre>
+<h3 id="按类型查询">按类型查询</h3>
+<p><code>$type</code>：用来根据类型来匹配对应的结果。</p>
+<p><code>limit()</code>方法：用来指定读取集合中数据的记录数量。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">db.<span class="hljs-property">user</span>.<span class="hljs-title hljs-function">find</span>({<span class="hljs-attr">age</span>:<span class="hljs-number">18</span>}).<span class="hljs-title hljs-function">limit</span>(<span class="hljs-number">2</span>)
+</code></pre>
+<p><code>skip()</code>方法：用来跳过指定数量的记录。默认为 0</p>
+<h3 id="排序查询">排序查询</h3>
+<p><code>sort()</code>方法可以通过参数指定排序的字段。使用参数<code>1</code>升序排列，使用<code>-1</code>降序排列。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">db.<span class="hljs-property">user</span>.<span class="hljs-title hljs-function">find</span>({<span class="hljs-attr">age</span>:{<span class="hljs-attr">$type</span>: <span class="hljs-string">&#x27;number&#x27;</span>}}).<span class="hljs-title hljs-function">sort</span>({<span class="hljs-attr">age</span>: -<span class="hljs-number">1</span>})
+</code></pre>
+<h3 id="聚合操作">聚合操作</h3>
+<p>管道</p>
+<ul>
+<li><code>$project</code>：修改输入文档的结构。可以用来重命名、增加或删除域，也可以用于创建计算结果以及嵌套文档。</li>
+<li><code>$match</code>：用于过滤数据，只输出符合条件的文档。$match使用MongoDB的标准查询操作。</li>
+<li><code>$limit</code>：用来限制MongoDB聚合管道返回的文档数。</li>
+<li><code>$skip</code>：在聚合管道中跳过指定数量的文档，并返回余下的文档。</li>
+<li><code>$unwind</code>：将文档中的某一个数组类型字段拆分成多条，每条包含数组中的一个值。</li>
+<li><code>$group</code>：将集合中的文档分组，可用于统计结果。</li>
+<li><code>$sort</code>：将输入文档排序后输出。</li>
+<li><code>$geoNear</code>：输出接近某一地理位置的有序文档。</li>
+</ul>
+<p>表达式</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th style="text-align:left">表达式</th><th style="text-align:left">描述</th><th style="text-align:left">实例</th></tr></thead><tbody><tr><td style="text-align:left">$sum</td><td style="text-align:left">计算总和。</td><td style="text-align:left">db.mycol.aggregate([{$group : {_id : &quot;$by_user&quot;, num_tutorial : {$sum : &quot;$likes&quot;}}}])</td></tr><tr><td style="text-align:left">$avg</td><td style="text-align:left">计算平均值</td><td style="text-align:left">db.mycol.aggregate([{$group : {_id : &quot;$by_user&quot;, num_tutorial : {$avg : &quot;$likes&quot;}}}])</td></tr><tr><td style="text-align:left">$min</td><td style="text-align:left">获取集合中所有文档对应值得最小值。</td><td style="text-align:left">db.mycol.aggregate([{$group : {_id : &quot;$by_user&quot;, num_tutorial : {$min : &quot;$likes&quot;}}}])</td></tr><tr><td style="text-align:left">$max</td><td style="text-align:left">获取集合中所有文档对应值得最大值。</td><td style="text-align:left">db.mycol.aggregate([{$group : {_id : &quot;$by_user&quot;, num_tutorial : {$max : &quot;$likes&quot;}}}])</td></tr><tr><td style="text-align:left">$push</td><td style="text-align:left">在结果文档中插入值到一个数组中。</td><td style="text-align:left">db.mycol.aggregate([{$group : {_id : &quot;$by_user&quot;, url : {$push: &quot;$url&quot;}}}])</td></tr><tr><td style="text-align:left">$addToSet</td><td style="text-align:left">在结果文档中插入值到一个数组中，但不创建副本。</td><td style="text-align:left">db.mycol.aggregate([{$group : {_id : &quot;$by_user&quot;, url : {$addToSet : &quot;$url&quot;}}}])</td></tr><tr><td style="text-align:left">$first</td><td style="text-align:left">根据资源文档的排序获取第一个文档数据。</td><td style="text-align:left">db.mycol.aggregate([{$group : {_id : &quot;$by_user&quot;, first_url : {$first : &quot;$url&quot;}}}])</td></tr><tr><td style="text-align:left">$last</td><td style="text-align:left">根据资源文档的排序获取最后一个文档数据</td><td style="text-align:left">db.mycol.aggregate([{$group : {_id : &quot;$by_user&quot;, last_url : {$last : &quot;$url&quot;}}}])</td></tr></tbody></table>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">db.<span class="hljs-property">sc</span>.<span class="hljs-title hljs-function">aggregate</span>([
+    {
+        管道:{聚合操作表达式}
+    }
+])
+</code></pre>
+<p>例：以<code>sex</code>属性为分组，求和<code>grade</code>属性：</p>
+<p><code>_id</code>用来指定分组的字段</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">db.<span class="hljs-property">sc</span>.<span class="hljs-title hljs-function">aggregate</span>([
+    {
+        <span class="hljs-attr">$group</span>:{<span class="hljs-attr">_id</span>:<span class="hljs-string">&#x27;$sex&#x27;</span>, <span class="hljs-attr">sumgrade</span>:{<span class="hljs-attr">$sum</span>:<span class="hljs-string">&#x27;$grade&#x27;</span>}}
+    }
+])
+</code></pre>
+<p><code>$sum:1</code>用于计算整个文档数量</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">db.<span class="hljs-property">sc</span>.<span class="hljs-title hljs-function">aggregate</span>([{
+    <span class="hljs-attr">$group</span>:{<span class="hljs-attr">_id</span>:<span class="hljs-string">&#x27;$sex&#x27;</span>, <span class="hljs-attr">people</span>:{<span class="hljs-attr">$sum</span>:<span class="hljs-number">1</span>}}
+    }])
+</code></pre>
+<p>管道处于平级状态，可以向下传递使用</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">db.<span class="hljs-property">sc</span>.<span class="hljs-title hljs-function">aggregate</span>([
+    {
+        <span class="hljs-attr">$group</span>:{<span class="hljs-attr">_id</span>: <span class="hljs-string">&#x27;$sex&#x27;</span>, <span class="hljs-attr">renshu</span>:{<span class="hljs-attr">$sum</span>: <span class="hljs-number">1</span>}}
+        },
+    {
+        <span class="hljs-attr">$sort</span>: {<span class="hljs-attr">renshu</span>:<span class="hljs-number">1</span>}
+    }
+])
+</code></pre>
+<h3 id="查询指定字段">查询指定字段</h3>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-yaml">{
+	<span class="hljs-attr">_id:</span> <span class="hljs-number">123</span>,
+	<span class="hljs-attr">data:</span> {
+		<span class="hljs-attr">page:</span> <span class="hljs-number">1</span>,
+		<span class="hljs-attr">list:</span> [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>]
+	}
+}
+</code></pre>
+<p>如上述只需要查询出指定<code>page</code>的<code>list </code>属性，可以直接使用<code>find()</code>方法的过滤（projection）操作。</p>
+<p>projection 参数的使用方法</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">db.<span class="hljs-property">collection</span>.<span class="hljs-title hljs-function">find</span>(query, projection)
+</code></pre>
+<p>若不指定 projection，则默认返回所有键，指定 projection 格式如下，有两种模式</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">db.<span class="hljs-property">collection</span>.<span class="hljs-title hljs-function">find</span>(query, {<span class="hljs-attr">title</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">by</span>: <span class="hljs-number">1</span>}) <span class="hljs-comment">// inclusion模式 指定返回的键，不返回其他键</span>
+db.<span class="hljs-property">collection</span>.<span class="hljs-title hljs-function">find</span>(query, {<span class="hljs-attr">title</span>: <span class="hljs-number">0</span>, <span class="hljs-attr">by</span>: <span class="hljs-number">0</span>}) <span class="hljs-comment">// exclusion模式 指定不返回的键,返回其他键</span>
+</code></pre>
+<p>因此：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">db.<span class="hljs-property">pop</span>.<span class="hljs-title hljs-function">find</span>(
+    {<span class="hljs-string">&#x27;data.page&#x27;</span> : <span class="hljs-number">1</span>},
+    {<span class="hljs-string">&#x27;data.list&#x27;</span>:<span class="hljs-number">1</span>}
+)
+</code></pre></section></article></div><style data-emotion="css 1i6v8fa">.css-1i6v8fa{min-height:346px;}@media screen and (min-width: 30em){.css-1i6v8fa{min-height:350px;}}</style><div class="css-1i6v8fa"></div><style data-emotion="css 3ydw18">.css-3ydw18{height:3px;width:50px;background:var(--chakra-colors-gray-500);border-radius:var(--chakra-radii-xl);margin-top:2.5rem;}</style><div class="css-3ydw18"></div><style data-emotion="css 1lwvw50">.css-1lwvw50{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-flex-flow:column;-webkit-flex-flow:column;-ms-flex-flow:column;flex-flow:column;padding-top:1.5rem;padding-bottom:1.5rem;}</style><footer class="css-1lwvw50"><style data-emotion="css yld109">.css-yld109{color:var(--chakra-colors-gray-600);font-weight:var(--chakra-fontWeights-bold);margin-bottom:0.5rem;}</style><p class="chakra-text css-yld109">©<!-- -->2022<!-- --> 小肥羊</p><style data-emotion="css 3eyczr">.css-3eyczr{color:var(--chakra-colors-gray-400);font-size:small;}</style><p class="chakra-text css-3eyczr">Powered by Next.js ❤️ Chakra UI</p></footer></div><style data-emotion="css kl7qz4">.css-kl7qz4{display:none;position:-webkit-sticky;position:sticky;top:3rem;margin-top:3rem;}@media screen and (min-width: 30em){.css-kl7qz4{display:none;}}@media screen and (min-width: 48em){.css-kl7qz4{display:none;}}@media screen and (min-width: 62em){.css-kl7qz4{display:block;}}</style><div class="css-kl7qz4"><h2 id="table-of-contents">Table of contents</h2>
+<ul>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a></p>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE">插入数据</a></p>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#%E6%95%B0%E6%8D%AE%E9%87%8D%E5%A4%8D%E6%97%B6">数据重复时</a></p>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93">关系型数据库</a></p>
+<ul>
+<li><a class="chakra-link css-wox0k7" href="#acid-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F">ACID 设计模式</a></li>
+</ul>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93">非关系型数据库</a></p>
+<ul>
+<li><a class="chakra-link css-wox0k7" href="#cap-%E5%AE%9A%E7%90%86">CAP 定理</a></li>
+<li><a class="chakra-link css-wox0k7" href="#nosql-%E6%8A%80%E6%9C%AF%E4%BC%98%E5%8A%BF">NoSQL 技术优势</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E4%BC%98%E7%82%B9%E4%B8%8E%E7%BC%BA%E7%82%B9">优点与缺点</a></li>
+</ul>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#mongodb">MongoDB</a></p>
+<ul>
+<li><a class="chakra-link css-wox0k7" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5">基本概念</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E6%9C%AF%E8%AF%AD">术语</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E7%B3%BB%E7%BB%9F%E4%BF%9D%E7%95%99%E6%95%B0%E6%8D%AE%E5%BA%93">系统保留数据库</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E5%88%9B%E5%BB%BA%E9%9B%86%E5%90%88">创建集合</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E9%9B%86%E5%90%88%E5%85%B6%E4%BB%96%E6%93%8D%E4%BD%9C">集合其他操作</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">数据类型</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E6%9B%B4%E6%96%B0%E6%95%B0%E6%8D%AE">更新数据</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E5%88%A0%E9%99%A4%E6%96%87%E6%A1%A3">删除文档</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E6%9F%A5%E8%AF%A2%E6%96%87%E6%A1%A3">查询文档</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E6%9D%A1%E4%BB%B6%E6%93%8D%E4%BD%9C%E7%AC%A6">条件操作符</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E6%8C%89%E7%B1%BB%E5%9E%8B%E6%9F%A5%E8%AF%A2">按类型查询</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E6%8E%92%E5%BA%8F%E6%9F%A5%E8%AF%A2">排序查询</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E8%81%9A%E5%90%88%E6%93%8D%E4%BD%9C">聚合操作</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E6%9F%A5%E8%AF%A2%E6%8C%87%E5%AE%9A%E5%AD%97%E6%AE%B5">查询指定字段</a></li>
+</ul>
+</li>
+</ul></div></div><span></span></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"postData":{"id":"mongodb-notes","content":"\n## 数据结构\n\n数据库\n\n集合\n\n文档\n\n## 插入数据\n\n集合为自动创建\n\n选中数据库，如果不存在则自动创建：\n\n```bash\nuse test\n# 'switched to db test'\n```\n\n如果不添加数据则数据库不显示\n\n```bash\nshow dbs\nadmin     41 kB\nconfig  61.4 kB\nlocal     41 kB\n```\n\n集合不需要手动进行创建，直接插入数据会自动创建集合\n\n```bash\ndb.names.insertOne({name:'xfy'})\n{ acknowledged: true,\n  insertedId: ObjectId(\"60371efde948e229844958fb\") }\n```\n\n## 数据重复时\n\n当数据重复时，mongodb使用`_id`来区分数据。如果没有手动插入`_id`，则会自动生成一个 id。也可以手动插入。二者不相同。\n\nid 不可修改。\n\n## 关系型数据库\n\n### ACID 设计模式\n\nA（**A**tomicity）：原子性。事务里所做的操作要么全部做完，要么都不做。\n\nC（**C**onsistency）：一致性。数据库要一直处于一致的状态，事务的运行不会改变数据库原本的一致性约束。\n\nI（**I**solation）：独立性。并发的事务之间不会互相影响。\n\nD（**D**urability）：持久性。事务一旦提交后，所作的修改将会永久的保存在数据库上。\n\n事物：一次性执行多条 SQL 语句的操作。\n\n这四个特性是关系型数据库要同时满足的。\n\n## 非关系型数据库\n\n### CAP 定理\n\n在[理论计算机科学](https://zh.wikipedia.org/wiki/理論計算機科學)中，**CAP定理**（CAP theorem），又被称作**布鲁尔定理**（Brewer's theorem），它指出对于一个[分布式计算系统](https://zh.wikipedia.org/wiki/分布式计算)来说，不可能同时满足以下三点：\n\n- 一致性（**C**onsistency） （等同于所有节点访问同一份最新的数据副本）\n- [可用性](https://zh.wikipedia.org/wiki/可用性)（**A**vailability）（每次请求都能获取到非错的响应——但是不保证获取的数据为最新数据）\n- [分区容错性](https://zh.wikipedia.org/w/index.php?title=网络分区\u0026action=edit\u0026redlink=1)（**P**artition tolerance）（以实际效果而言，分区相当于对通信的时限要求。系统如果不能在时限内达成数据一致性，就意味着发生了分区的情况，必须就当前操作在C和A之间做出选择。）\n\n![1_Br1FrvKnK3hU6Xl_LbDkwg](images/MongoDB%E9%9B%B6%E7%A2%8E%E7%AC%94%E8%AE%B0/1_Br1FrvKnK3hU6Xl_LbDkwg.webp)\n\n### NoSQL 技术优势\n\n根据 CAP 的核心定义，可以将 CAP 分成三个部分：CA、CP、AP。\n\nNoSQL 很好的融合了 CA、CP、AP 定理：\n\n* CA：单点集群，满足一致性，可用性的系统，通常在可扩展性上不够强大。\n* CP：满足一致性，分区容错性的系统，通常在性能上不是特别高。\n* AP：满足可用性，分区容错性的选题，通常可能对一致性要求低一些。\n\n### 优点与缺点\n\n* 优点：\n  * 高可扩展性*\n  * 分布式计算\n  * 低成本\n  * 架构的灵活性，半结构化数据\n  * 没有复杂的关系\n* 缺点：\n  * 没有标准化\n  * 有限的查询功能（目前）\n\n## MongoDB\n\n### 基本概念\n\n文档：是一组键值对（key-value）即（BSON）。\n\n需要注意：\n\n* 文档中的键值对是有序的；\n* 文档中的值可以是多种类型；\n* MongoDB 区分类型和大小写；\n* 同一个文档中不能有重复的键；\n* 文档中的键是字符串。\n\n\u003e 键值对需要注意的部分和 JavaScript 的对象很类似。\n\n集合：MongoDB 集合组，类似于 RDBMS（关系数据库管理系统：Relational Database Management System）中的表格。\n\n集合命名需要注意：\n\n* 集合名不能是空字符串；\n* 集合名不能含有`\\0`字符串（空字符串），这个字符表示集合名的结尾；\n* 集合名不能以`system.`开头，这是为系统保留的前缀；\n* 用户创建的集合名不能含有保留字符。\n\n### 术语\n\n| SQL术语/概念 | MongoDB术语/概念 | 解释/说明                           |\n| :----------- | :--------------- | :---------------------------------- |\n| database     | database         | 数据库                              |\n| table        | collection       | 数据库表/集合                       |\n| row          | document         | 数据记录行/文档                     |\n| column       | field            | 数据字段/域                         |\n| index        | index            | 索引                                |\n| table joins  |                  | 表连接,MongoDB不支持                |\n| primary key  | primary key      | 主键,MongoDB自动将_id字段设置为主键 |\n\n### 系统保留数据库\n\n1. admin：“root” 数据库\n2. local：这个数据永远不会被复制，可以用来存储限于本地单台服务器的任意集合。\n3. config：当 mongdo 用于分片时，config 数据库在内部使用，用于保存分片的相关的信息。\n\n### 创建集合\n\n使用`createCollection()`方法来创建集合。\n\n```js\ndb.createCollection(name, options);\n```\n\noptions 参数：\n\n| 字段        | 类型 | 描述                                                                                                                                                     |\n| :---------- | :--- | :------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| capped      | 布尔 | （可选）如果为 true，则创建固定集合。固定集合是指有着固定大小的集合，当达到最大值时，它会自动覆盖最早的文档。 **当该值为 true 时，必须指定 size 参数。** |\n| autoIndexId | 布尔 | 3.2 之后不再支持该参数。（可选）如为 true，自动在 _id 字段创建索引。默认为 false。                                                                       |\n| size        | 数值 | （可选）为固定集合指定一个最大值，即字节数。 **如果 capped 为 true，也需要指定该字段。**                                                                 |\n| max         | 数值 | （可选）指定固定集合中包含文档的最大数量。                                                                                                               |\n\n### 集合其他操作\n\n查看当前库中的所有集合\n\n```js\nshow collections\n```\n\n删除集合\n\n```js\ndb.games.drop()\n```\n\n### 数据类型\n\nMongoDB支持以下数据类型:\n\n- **String（字符串）**: mongodb中的字符串是UTF-8有效的。\n- **Integer（整数）**: 存储数值。整数可以是32位或64位，具体取决于您的服务器。\n- **Boolean（布尔）**: 存储布尔(true/false)值。\n- **Double（双精度）**: 存储浮点值。\n- **Min/ Max keys（最小/最大键）**: 将值与最低和最高BSON元素进行比较。\n- **Arrays（数组）**: 将数组或列表或多个值存储到一个键中。\n- **Timestamp（时间戳）**: 存储时间戳。\n- **Object（对象）**: 嵌入式文档。\n- **Null （空值）**: 存储Null值。\n- **Symbol（符号）**: 与字符串相同，用于具有特定符号类型的语言。\n- **Date（日期）**: 以UNIX时间格式存储当前日期或时间。\n- **Object ID（对象ID）** : 存储文档ID。\n- **Binary data（二进制数据）**: 存储二进制数据。\n- **Code（代码）**: 将JavaScript代码存储到文档中。\n- **Regular expression（正则表达式）**: 存储正则表达式\n\n### 更新数据\n\n语法：\n\n```js\ndb.collection.update(\n   \u003cquery\u003e,\n   \u003cupdate\u003e,\n   {\n     upsert: \u003cboolean\u003e,\n     multi: \u003cboolean\u003e,\n     writeConcern: \u003cdocument\u003e,\n     collation: \u003cdocument\u003e,\n     arrayFilters: [ \u003cfilterdocument1\u003e, ... ],\n     hint:  \u003cdocument|string\u003e        // Available starting in MongoDB 4.2\n   }\n)\n```\n\n`updateMany`就相当于`update`使用了`multi: true`这个可选属性\n\n```js\nuse test\ndb.user.find();\n\ndb.user.insertMany(\n    [\n        {name: 'xfy',age:18,sex:'man'},\n        {name: 'xfy1',age:12,sex:'man'},\n        {name: 'xfy2',age:16,sex:'man'},\n        {name: 'xfy3',age:19,sex:'man'},\n        {name: 'xfy4',age:28,sex:'man'},\n    ]\n)\n\ndb.user.updateOne(\n    {age: 18},\n    {$set:{name:'dfy'}}\n)\n\ndb.user.findOne({name:'dfy'})\n\ndb.user.updateMany(\n    {sex:'man'},\n    {$set:{sex:'woman'}}\n)\n```\n\n#### 多个条件\n\n`update`时，如果有多个条件，则默认是需要所有条件都满足。类似于 sql 中的 `and`连接。\n\n```js\ndb.user.updateOne(\n    {name:'xfy',age:18},\n    {$set:{name:'dfy'}}\n)\n```\n\n如果需要满足其中一个条件，需要使用`$or`操作符\n\n```js\ndb.user.updateOne(\n    {$or:[name:'xfy',age:18]},\n    {$set:{name:'dfy'}}\n)\n```\n\n### 删除文档\n\n删除使用`remove()`方法。接受一个参数`justOne`，为`true`时，只删除一个文档。否则删除匹配到的所有文档。默认为`false`\n\n```js\ndb.collection.remove(\n   \u003cquery\u003e,\n   \u003cjustOne\u003e\n)\n```\n\n还有其他选项\n\n```js\ndb.collection.remove(\n   \u003cquery\u003e,\n   {\n     justOne: \u003cboolean\u003e,\n     writeConcern: \u003cdocument\u003e,\n     collation: \u003cdocument\u003e\n   }\n)\n```\n\n删除集合中的所有数据\n\n```js\ndb.collectionName.remove({})\n```\n\n### 查询文档\n\n查询集合中的文档使用`find()`方法。\n\n```js\ndb.collection.find()\n```\n\n在没有添加查询条件的情况下，`find()`方法默认会返回所有的数据。但返回的数据是未格式化的。使用`pretty()`以格式化显示。\n\n```js\ndb.collection.find().pretty()\n```\n\n`findOne()`默认就只返回一条数据（查询到的第一条），并且就是格式化显示的，所以不能使用`pretty()`方法。\n\n```js\ndb.user.findOne().pretty()\n// TypeError: (intermediate value).pretty is not a function\n```\n\n#### 条件查询\n\n多个条件同时满足的查询。和更新数据类似，传入多个条件时，默认为同时都需要满足。\n\n```js\ndb.user.find({name:'xfy',age:18})\n```\n\n同理，满足单个条件时，使用`$or`操作符\n\n```js\ndb.user.find({$or:[{name:'xfy'},{age:18}]})\n```\n\n### 条件操作符\n\n条件操作符用于比较两个表达式，并从 mongodb 集合中获取数据。\n\n| $      | Symbol | Words                    |\n| :----- | :----- | :----------------------- |\n| `$gt`  | \u003e      | greater than             |\n| `$lt`  | \u003c      | less than                |\n| `$gte` | ≥      | greater than or equal to |\n| `$lte` | ≤      | less than or equal to    |\n| `$ne`  | !=     | not equal                |\n\n```js\ndb.user.find()\n\ndb.user.updateMany({name:'dfy',age:18}, {$set:{name:'xfy'}})\n\ndb.user.find({$or:[{name:'xfy'},{age:18}]})\n\ndb.user.find(\n    {age:{$lt:18}}\n)\n\ndb.user.find(\n    {age:{$gte:12,$lte:18}}\n)\n\ndb.user.find(\n    {$or:[{\n        age:{$lt: 12}\n        },\n        {\n        age:{$gt: 18}\n        }\n    ]}\n)\n\ndb.user.find(\n    {age:{$gt: 20},$or:[{name:'xfy4'}]}\n)\n```\n\n### 按类型查询\n\n`$type`：用来根据类型来匹配对应的结果。\n\n`limit()`方法：用来指定读取集合中数据的记录数量。\n\n```js\ndb.user.find({age:18}).limit(2)\n```\n\n`skip()`方法：用来跳过指定数量的记录。默认为 0\n\n### 排序查询\n\n`sort()`方法可以通过参数指定排序的字段。使用参数`1`升序排列，使用`-1`降序排列。\n\n```js\ndb.user.find({age:{$type: 'number'}}).sort({age: -1})\n```\n\n### 聚合操作\n\n管道\n\n- `$project`：修改输入文档的结构。可以用来重命名、增加或删除域，也可以用于创建计算结果以及嵌套文档。\n- `$match`：用于过滤数据，只输出符合条件的文档。$match使用MongoDB的标准查询操作。\n- `$limit`：用来限制MongoDB聚合管道返回的文档数。\n- `$skip`：在聚合管道中跳过指定数量的文档，并返回余下的文档。\n- `$unwind`：将文档中的某一个数组类型字段拆分成多条，每条包含数组中的一个值。\n- `$group`：将集合中的文档分组，可用于统计结果。\n- `$sort`：将输入文档排序后输出。\n- `$geoNear`：输出接近某一地理位置的有序文档。\n\n表达式\n\n| 表达式    | 描述                                           | 实例                                                                                  |\n| :-------- | :--------------------------------------------- | :------------------------------------------------------------------------------------ |\n| $sum      | 计算总和。                                     | db.mycol.aggregate([{$group : {_id : \"$by_user\", num_tutorial : {$sum : \"$likes\"}}}]) |\n| $avg      | 计算平均值                                     | db.mycol.aggregate([{$group : {_id : \"$by_user\", num_tutorial : {$avg : \"$likes\"}}}]) |\n| $min      | 获取集合中所有文档对应值得最小值。             | db.mycol.aggregate([{$group : {_id : \"$by_user\", num_tutorial : {$min : \"$likes\"}}}]) |\n| $max      | 获取集合中所有文档对应值得最大值。             | db.mycol.aggregate([{$group : {_id : \"$by_user\", num_tutorial : {$max : \"$likes\"}}}]) |\n| $push     | 在结果文档中插入值到一个数组中。               | db.mycol.aggregate([{$group : {_id : \"$by_user\", url : {$push: \"$url\"}}}])            |\n| $addToSet | 在结果文档中插入值到一个数组中，但不创建副本。 | db.mycol.aggregate([{$group : {_id : \"$by_user\", url : {$addToSet : \"$url\"}}}])       |\n| $first    | 根据资源文档的排序获取第一个文档数据。         | db.mycol.aggregate([{$group : {_id : \"$by_user\", first_url : {$first : \"$url\"}}}])    |\n| $last     | 根据资源文档的排序获取最后一个文档数据         | db.mycol.aggregate([{$group : {_id : \"$by_user\", last_url : {$last : \"$url\"}}}])      |\n\n```js\ndb.sc.aggregate([\n    {\n        管道:{聚合操作表达式}\n    }\n])\n```\n\n例：以`sex`属性为分组，求和`grade`属性：\n\n`_id`用来指定分组的字段\n\n```js\ndb.sc.aggregate([\n    {\n        $group:{_id:'$sex', sumgrade:{$sum:'$grade'}}\n    }\n])\n```\n\n`$sum:1`用于计算整个文档数量\n\n```js\ndb.sc.aggregate([{\n    $group:{_id:'$sex', people:{$sum:1}}\n    }])\n```\n\n管道处于平级状态，可以向下传递使用\n\n```js\ndb.sc.aggregate([\n    {\n        $group:{_id: '$sex', renshu:{$sum: 1}}\n        },\n    {\n        $sort: {renshu:1}\n    }\n])\n```\n\n### 查询指定字段\n\n```\n{\n\t_id: 123,\n\tdata: {\n\t\tpage: 1,\n\t\tlist: [1,2,3,4,5]\n\t}\n}\n```\n\n如上述只需要查询出指定`page`的`list `属性，可以直接使用`find()`方法的过滤（projection）操作。\n\nprojection 参数的使用方法\n\n```js\ndb.collection.find(query, projection)\n```\n\n若不指定 projection，则默认返回所有键，指定 projection 格式如下，有两种模式\n\n```js\ndb.collection.find(query, {title: 1, by: 1}) // inclusion模式 指定返回的键，不返回其他键\ndb.collection.find(query, {title: 0, by: 0}) // exclusion模式 指定不返回的键,返回其他键\n```\n\n因此：\n\n```js\ndb.pop.find(\n    {'data.page' : 1},\n    {'data.list':1}\n)\n```\n\n","desc":"数据结构\n\n数据库\n\n集合\n\n文档\n\n插入数据\n\n集合为自动创建\n\n选中数据库，如果不存在则自动创建：\n\n\n\n如果不添加数据则数据库不显示\n\n\n\n集合不需要手动进行创建，直接插入数据会自动创建集合\n\n...","title":"MongoDB零碎笔记","date":"2021-06-07T18:08:31.000Z","tags":"JavaScript","categories":"笔记","url":"mongodb-notes","index_img":null}},"__N_SSG":true},"page":"/p/[slug]","query":{"slug":"mongodb-notes"},"buildId":"k6NIc4JfXUsE09z9QnALx","isFallback":false,"dynamicIds":[3419,6929,9125,1189,3780,2980,5106],"gsp":true,"scriptLoader":[]}</script></body></html>

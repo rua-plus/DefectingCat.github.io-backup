@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[929],{6929:function(a,b,c){c.r(b);var d=c(5893),e=c(8420),f=c(5313),g=c(8527);b.default=function(a){var b=a.dateString,c=(0,e.Z)(b);return(0,d.jsx)(d.Fragment,{children:(0,d.jsx)(g.xu,{as:"time",lineHeight:"0",dateTime:b,children:(0,f.Z)(c,"yyyy/MM/dd")})})}}}])

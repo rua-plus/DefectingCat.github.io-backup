@@ -1,0 +1,289 @@
+<!DOCTYPE html><html lang="en"><head><meta name="viewport" content="width=device-width"/><meta charSet="utf-8"/><link rel="shortcut icon" href="/images/img/favicon.webp"/><meta name="keywords" content="Blog RUA"/><meta name="description" content="Personal blog."/><meta name="author" content="Arthur,i@rua.plus"/><title>RUA - Vue3!</title><meta name="next-head-count" content="7"/><link rel="preload" href="/_next/static/css/39834862c769c308.css" as="style"/><link rel="stylesheet" href="/_next/static/css/39834862c769c308.css" data-n-g=""/><link rel="preload" href="/_next/static/css/c2a527101433f11d.css" as="style"/><link rel="stylesheet" href="/_next/static/css/c2a527101433f11d.css" data-n-p=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/_next/static/chunks/polyfills-5cd94c89d3acac5f.js"></script><script defer="" src="/_next/static/chunks/219-ddf2abc0472da9bd.js"></script><script defer="" src="/_next/static/chunks/419.d5302bfd9d8378c2.js"></script><script defer="" src="/_next/static/chunks/771.84a2737df445ba88.js"></script><script defer="" src="/_next/static/chunks/929.b2c0b4f7606bfefe.js"></script><script defer="" src="/_next/static/chunks/125.4ff7adc183744312.js"></script><script defer="" src="/_next/static/chunks/485-3e3bf066e6f4a6bd.js"></script><script defer="" src="/_next/static/chunks/189.ee2e569101c160eb.js"></script><script defer="" src="/_next/static/chunks/980.41f5e97cd35a6621.js"></script><script defer="" src="/_next/static/chunks/106.7a94988fd220337e.js"></script><script src="/_next/static/chunks/webpack-c08977534ec7c137.js" defer=""></script><script src="/_next/static/chunks/framework-5cd9e2157a4a6aee.js" defer=""></script><script src="/_next/static/chunks/main-472dbb675bbf7f67.js" defer=""></script><script src="/_next/static/chunks/pages/_app-a34fa0ed9496fbe8.js" defer=""></script><script src="/_next/static/chunks/84-43981acebe84e1d3.js" defer=""></script><script src="/_next/static/chunks/pages/p/%5Bslug%5D-684bfb16186b52fe.js" defer=""></script><script src="/_next/static/k6NIc4JfXUsE09z9QnALx/_buildManifest.js" defer=""></script><script src="/_next/static/k6NIc4JfXUsE09z9QnALx/_ssgManifest.js" defer=""></script><script src="/_next/static/k6NIc4JfXUsE09z9QnALx/_middlewareManifest.js" defer=""></script></head><body><script>(function setScript(initialValue) {
+  var mql = window.matchMedia("(prefers-color-scheme: dark)");
+  var systemPreference = mql.matches ? "dark" : "light";
+  var persistedPreference;
+
+  try {
+    persistedPreference = localStorage.getItem("chakra-ui-color-mode");
+  } catch (error) {
+    console.log("Chakra UI: localStorage is not available. Color mode persistence might not work as expected");
+  }
+
+  var isInStorage = typeof persistedPreference === "string";
+  var colorMode;
+
+  if (isInStorage) {
+    colorMode = persistedPreference;
+  } else {
+    colorMode = initialValue === "system" ? systemPreference : initialValue;
+  }
+
+  if (colorMode) {
+    var root = document.documentElement;
+    root.style.setProperty("--chakra-ui-color-mode", colorMode);
+  }
+})('light')</script><div id="__next"><style data-emotion="css-global 1r47v8">:host,:root{--chakra-ring-inset:var(--chakra-empty,/*!*/ /*!*/);--chakra-ring-offset-width:0px;--chakra-ring-offset-color:#fff;--chakra-ring-color:rgba(66, 153, 225, 0.6);--chakra-ring-offset-shadow:0 0 #0000;--chakra-ring-shadow:0 0 #0000;--chakra-space-x-reverse:0;--chakra-space-y-reverse:0;--chakra-colors-transparent:transparent;--chakra-colors-current:currentColor;--chakra-colors-black:#000000;--chakra-colors-white:#FFFFFF;--chakra-colors-whiteAlpha-50:rgba(255, 255, 255, 0.04);--chakra-colors-whiteAlpha-100:rgba(255, 255, 255, 0.06);--chakra-colors-whiteAlpha-200:rgba(255, 255, 255, 0.08);--chakra-colors-whiteAlpha-300:rgba(255, 255, 255, 0.16);--chakra-colors-whiteAlpha-400:rgba(255, 255, 255, 0.24);--chakra-colors-whiteAlpha-500:rgba(255, 255, 255, 0.36);--chakra-colors-whiteAlpha-600:rgba(255, 255, 255, 0.48);--chakra-colors-whiteAlpha-700:rgba(255, 255, 255, 0.64);--chakra-colors-whiteAlpha-800:rgba(255, 255, 255, 0.80);--chakra-colors-whiteAlpha-900:rgba(255, 255, 255, 0.92);--chakra-colors-blackAlpha-50:rgba(0, 0, 0, 0.04);--chakra-colors-blackAlpha-100:rgba(0, 0, 0, 0.06);--chakra-colors-blackAlpha-200:rgba(0, 0, 0, 0.08);--chakra-colors-blackAlpha-300:rgba(0, 0, 0, 0.16);--chakra-colors-blackAlpha-400:rgba(0, 0, 0, 0.24);--chakra-colors-blackAlpha-500:rgba(0, 0, 0, 0.36);--chakra-colors-blackAlpha-600:rgba(0, 0, 0, 0.48);--chakra-colors-blackAlpha-700:rgba(0, 0, 0, 0.64);--chakra-colors-blackAlpha-800:rgba(0, 0, 0, 0.80);--chakra-colors-blackAlpha-900:rgba(0, 0, 0, 0.92);--chakra-colors-gray-50:#F7FAFC;--chakra-colors-gray-100:#EDF2F7;--chakra-colors-gray-200:#E2E8F0;--chakra-colors-gray-300:#CBD5E0;--chakra-colors-gray-400:#A0AEC0;--chakra-colors-gray-500:#718096;--chakra-colors-gray-600:#4A5568;--chakra-colors-gray-700:#2D3748;--chakra-colors-gray-800:#1A202C;--chakra-colors-gray-900:#171923;--chakra-colors-red-50:#FFF5F5;--chakra-colors-red-100:#FED7D7;--chakra-colors-red-200:#FEB2B2;--chakra-colors-red-300:#FC8181;--chakra-colors-red-400:#F56565;--chakra-colors-red-500:#E53E3E;--chakra-colors-red-600:#C53030;--chakra-colors-red-700:#9B2C2C;--chakra-colors-red-800:#822727;--chakra-colors-red-900:#63171B;--chakra-colors-orange-50:#FFFAF0;--chakra-colors-orange-100:#FEEBC8;--chakra-colors-orange-200:#FBD38D;--chakra-colors-orange-300:#F6AD55;--chakra-colors-orange-400:#ED8936;--chakra-colors-orange-500:#DD6B20;--chakra-colors-orange-600:#C05621;--chakra-colors-orange-700:#9C4221;--chakra-colors-orange-800:#7B341E;--chakra-colors-orange-900:#652B19;--chakra-colors-yellow-50:#FFFFF0;--chakra-colors-yellow-100:#FEFCBF;--chakra-colors-yellow-200:#FAF089;--chakra-colors-yellow-300:#F6E05E;--chakra-colors-yellow-400:#ECC94B;--chakra-colors-yellow-500:#D69E2E;--chakra-colors-yellow-600:#B7791F;--chakra-colors-yellow-700:#975A16;--chakra-colors-yellow-800:#744210;--chakra-colors-yellow-900:#5F370E;--chakra-colors-green-50:#F0FFF4;--chakra-colors-green-100:#C6F6D5;--chakra-colors-green-200:#9AE6B4;--chakra-colors-green-300:#68D391;--chakra-colors-green-400:#48BB78;--chakra-colors-green-500:#38A169;--chakra-colors-green-600:#2F855A;--chakra-colors-green-700:#276749;--chakra-colors-green-800:#22543D;--chakra-colors-green-900:#1C4532;--chakra-colors-teal-50:#E6FFFA;--chakra-colors-teal-100:#B2F5EA;--chakra-colors-teal-200:#81E6D9;--chakra-colors-teal-300:#4FD1C5;--chakra-colors-teal-400:#38B2AC;--chakra-colors-teal-500:#319795;--chakra-colors-teal-600:#2C7A7B;--chakra-colors-teal-700:#285E61;--chakra-colors-teal-800:#234E52;--chakra-colors-teal-900:#1D4044;--chakra-colors-blue-50:#ebf8ff;--chakra-colors-blue-100:#bee3f8;--chakra-colors-blue-200:#90cdf4;--chakra-colors-blue-300:#63b3ed;--chakra-colors-blue-400:#4299e1;--chakra-colors-blue-500:#3182ce;--chakra-colors-blue-600:#2b6cb0;--chakra-colors-blue-700:#2c5282;--chakra-colors-blue-800:#2a4365;--chakra-colors-blue-900:#1A365D;--chakra-colors-cyan-50:#EDFDFD;--chakra-colors-cyan-100:#C4F1F9;--chakra-colors-cyan-200:#9DECF9;--chakra-colors-cyan-300:#76E4F7;--chakra-colors-cyan-400:#0BC5EA;--chakra-colors-cyan-500:#00B5D8;--chakra-colors-cyan-600:#00A3C4;--chakra-colors-cyan-700:#0987A0;--chakra-colors-cyan-800:#086F83;--chakra-colors-cyan-900:#065666;--chakra-colors-purple-50:#FAF5FF;--chakra-colors-purple-100:#E9D8FD;--chakra-colors-purple-200:#D6BCFA;--chakra-colors-purple-300:#B794F4;--chakra-colors-purple-400:#9F7AEA;--chakra-colors-purple-500:#805AD5;--chakra-colors-purple-600:#6B46C1;--chakra-colors-purple-700:#553C9A;--chakra-colors-purple-800:#44337A;--chakra-colors-purple-900:#322659;--chakra-colors-pink-50:#FFF5F7;--chakra-colors-pink-100:#FED7E2;--chakra-colors-pink-200:#FBB6CE;--chakra-colors-pink-300:#F687B3;--chakra-colors-pink-400:#ED64A6;--chakra-colors-pink-500:#D53F8C;--chakra-colors-pink-600:#B83280;--chakra-colors-pink-700:#97266D;--chakra-colors-pink-800:#702459;--chakra-colors-pink-900:#521B41;--chakra-colors-linkedin-50:#E8F4F9;--chakra-colors-linkedin-100:#CFEDFB;--chakra-colors-linkedin-200:#9BDAF3;--chakra-colors-linkedin-300:#68C7EC;--chakra-colors-linkedin-400:#34B3E4;--chakra-colors-linkedin-500:#00A0DC;--chakra-colors-linkedin-600:#008CC9;--chakra-colors-linkedin-700:#0077B5;--chakra-colors-linkedin-800:#005E93;--chakra-colors-linkedin-900:#004471;--chakra-colors-facebook-50:#E8F4F9;--chakra-colors-facebook-100:#D9DEE9;--chakra-colors-facebook-200:#B7C2DA;--chakra-colors-facebook-300:#6482C0;--chakra-colors-facebook-400:#4267B2;--chakra-colors-facebook-500:#385898;--chakra-colors-facebook-600:#314E89;--chakra-colors-facebook-700:#29487D;--chakra-colors-facebook-800:#223B67;--chakra-colors-facebook-900:#1E355B;--chakra-colors-messenger-50:#D0E6FF;--chakra-colors-messenger-100:#B9DAFF;--chakra-colors-messenger-200:#A2CDFF;--chakra-colors-messenger-300:#7AB8FF;--chakra-colors-messenger-400:#2E90FF;--chakra-colors-messenger-500:#0078FF;--chakra-colors-messenger-600:#0063D1;--chakra-colors-messenger-700:#0052AC;--chakra-colors-messenger-800:#003C7E;--chakra-colors-messenger-900:#002C5C;--chakra-colors-whatsapp-50:#dffeec;--chakra-colors-whatsapp-100:#b9f5d0;--chakra-colors-whatsapp-200:#90edb3;--chakra-colors-whatsapp-300:#65e495;--chakra-colors-whatsapp-400:#3cdd78;--chakra-colors-whatsapp-500:#22c35e;--chakra-colors-whatsapp-600:#179848;--chakra-colors-whatsapp-700:#0c6c33;--chakra-colors-whatsapp-800:#01421c;--chakra-colors-whatsapp-900:#001803;--chakra-colors-twitter-50:#E5F4FD;--chakra-colors-twitter-100:#C8E9FB;--chakra-colors-twitter-200:#A8DCFA;--chakra-colors-twitter-300:#83CDF7;--chakra-colors-twitter-400:#57BBF5;--chakra-colors-twitter-500:#1DA1F2;--chakra-colors-twitter-600:#1A94DA;--chakra-colors-twitter-700:#1681BF;--chakra-colors-twitter-800:#136B9E;--chakra-colors-twitter-900:#0D4D71;--chakra-colors-telegram-50:#E3F2F9;--chakra-colors-telegram-100:#C5E4F3;--chakra-colors-telegram-200:#A2D4EC;--chakra-colors-telegram-300:#7AC1E4;--chakra-colors-telegram-400:#47A9DA;--chakra-colors-telegram-500:#0088CC;--chakra-colors-telegram-600:#007AB8;--chakra-colors-telegram-700:#006BA1;--chakra-colors-telegram-800:#005885;--chakra-colors-telegram-900:#003F5E;--chakra-colors-home-bg:#f5f5fa;--chakra-borders-none:0;--chakra-borders-1px:1px solid;--chakra-borders-2px:2px solid;--chakra-borders-4px:4px solid;--chakra-borders-8px:8px solid;--chakra-fonts-heading:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";--chakra-fonts-body:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Helvetica,Segoe UI,Arial,Roboto,'PingFang SC',miui,'Hiragino Sans GB','Microsoft Yahei',sans-serif;--chakra-fonts-mono:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;--chakra-fontSizes-xs:0.75rem;--chakra-fontSizes-sm:0.875rem;--chakra-fontSizes-md:1rem;--chakra-fontSizes-lg:1.125rem;--chakra-fontSizes-xl:1.25rem;--chakra-fontSizes-2xl:1.5rem;--chakra-fontSizes-3xl:1.875rem;--chakra-fontSizes-4xl:2.25rem;--chakra-fontSizes-5xl:3rem;--chakra-fontSizes-6xl:3.75rem;--chakra-fontSizes-7xl:4.5rem;--chakra-fontSizes-8xl:6rem;--chakra-fontSizes-9xl:8rem;--chakra-fontWeights-hairline:100;--chakra-fontWeights-thin:200;--chakra-fontWeights-light:300;--chakra-fontWeights-normal:400;--chakra-fontWeights-medium:500;--chakra-fontWeights-semibold:600;--chakra-fontWeights-bold:700;--chakra-fontWeights-extrabold:800;--chakra-fontWeights-black:900;--chakra-letterSpacings-tighter:-0.05em;--chakra-letterSpacings-tight:-0.025em;--chakra-letterSpacings-normal:0;--chakra-letterSpacings-wide:0.025em;--chakra-letterSpacings-wider:0.05em;--chakra-letterSpacings-widest:0.1em;--chakra-lineHeights-3:.75rem;--chakra-lineHeights-4:1rem;--chakra-lineHeights-5:1.25rem;--chakra-lineHeights-6:1.5rem;--chakra-lineHeights-7:1.75rem;--chakra-lineHeights-8:2rem;--chakra-lineHeights-9:2.25rem;--chakra-lineHeights-10:2.5rem;--chakra-lineHeights-normal:normal;--chakra-lineHeights-none:1;--chakra-lineHeights-shorter:1.25;--chakra-lineHeights-short:1.375;--chakra-lineHeights-base:1.5;--chakra-lineHeights-tall:1.625;--chakra-lineHeights-taller:2;--chakra-radii-none:0;--chakra-radii-sm:0.125rem;--chakra-radii-base:0.25rem;--chakra-radii-md:0.375rem;--chakra-radii-lg:0.5rem;--chakra-radii-xl:0.75rem;--chakra-radii-2xl:1rem;--chakra-radii-3xl:1.5rem;--chakra-radii-full:9999px;--chakra-space-1:0.25rem;--chakra-space-2:0.5rem;--chakra-space-3:0.75rem;--chakra-space-4:1rem;--chakra-space-5:1.25rem;--chakra-space-6:1.5rem;--chakra-space-7:1.75rem;--chakra-space-8:2rem;--chakra-space-9:2.25rem;--chakra-space-10:2.5rem;--chakra-space-12:3rem;--chakra-space-14:3.5rem;--chakra-space-16:4rem;--chakra-space-20:5rem;--chakra-space-24:6rem;--chakra-space-28:7rem;--chakra-space-32:8rem;--chakra-space-36:9rem;--chakra-space-40:10rem;--chakra-space-44:11rem;--chakra-space-48:12rem;--chakra-space-52:13rem;--chakra-space-56:14rem;--chakra-space-60:15rem;--chakra-space-64:16rem;--chakra-space-72:18rem;--chakra-space-80:20rem;--chakra-space-96:24rem;--chakra-space-px:1px;--chakra-space-0\.5:0.125rem;--chakra-space-1\.5:0.375rem;--chakra-space-2\.5:0.625rem;--chakra-space-3\.5:0.875rem;--chakra-shadows-xs:0 0 0 1px rgba(0, 0, 0, 0.05);--chakra-shadows-sm:0 1px 2px 0 rgba(0, 0, 0, 0.05);--chakra-shadows-base:0 1px 3px 0 rgba(0, 0, 0, 0.1),0 1px 2px 0 rgba(0, 0, 0, 0.06);--chakra-shadows-md:0 4px 6px -1px rgba(0, 0, 0, 0.1),0 2px 4px -1px rgba(0, 0, 0, 0.06);--chakra-shadows-lg:0 10px 15px -3px rgba(0, 0, 0, 0.1),0 4px 6px -2px rgba(0, 0, 0, 0.05);--chakra-shadows-xl:0 20px 25px -5px rgba(0, 0, 0, 0.1),0 10px 10px -5px rgba(0, 0, 0, 0.04);--chakra-shadows-2xl:0 25px 50px -12px rgba(0, 0, 0, 0.25);--chakra-shadows-outline:0 0 0 3px rgba(66, 153, 225, 0.6);--chakra-shadows-inner:inset 0 2px 4px 0 rgba(0,0,0,0.06);--chakra-shadows-none:none;--chakra-shadows-dark-lg:rgba(0, 0, 0, 0.1) 0px 0px 0px 1px,rgba(0, 0, 0, 0.2) 0px 5px 10px,rgba(0, 0, 0, 0.4) 0px 15px 40px;--chakra-shadows-card:0px 4px 8px rgba(0, 0, 0, 0.04),0px 0px 2px rgba(0, 0, 0, 0.06),0px 0px 1px rgba(0, 0, 0, 0.04);--chakra-sizes-1:0.25rem;--chakra-sizes-2:0.5rem;--chakra-sizes-3:0.75rem;--chakra-sizes-4:1rem;--chakra-sizes-5:1.25rem;--chakra-sizes-6:1.5rem;--chakra-sizes-7:1.75rem;--chakra-sizes-8:2rem;--chakra-sizes-9:2.25rem;--chakra-sizes-10:2.5rem;--chakra-sizes-12:3rem;--chakra-sizes-14:3.5rem;--chakra-sizes-16:4rem;--chakra-sizes-20:5rem;--chakra-sizes-24:6rem;--chakra-sizes-28:7rem;--chakra-sizes-32:8rem;--chakra-sizes-36:9rem;--chakra-sizes-40:10rem;--chakra-sizes-44:11rem;--chakra-sizes-48:12rem;--chakra-sizes-52:13rem;--chakra-sizes-56:14rem;--chakra-sizes-60:15rem;--chakra-sizes-64:16rem;--chakra-sizes-72:18rem;--chakra-sizes-80:20rem;--chakra-sizes-96:24rem;--chakra-sizes-px:1px;--chakra-sizes-0\.5:0.125rem;--chakra-sizes-1\.5:0.375rem;--chakra-sizes-2\.5:0.625rem;--chakra-sizes-3\.5:0.875rem;--chakra-sizes-max:max-content;--chakra-sizes-min:min-content;--chakra-sizes-full:100%;--chakra-sizes-3xs:14rem;--chakra-sizes-2xs:16rem;--chakra-sizes-xs:20rem;--chakra-sizes-sm:24rem;--chakra-sizes-md:28rem;--chakra-sizes-lg:32rem;--chakra-sizes-xl:36rem;--chakra-sizes-2xl:42rem;--chakra-sizes-3xl:48rem;--chakra-sizes-4xl:56rem;--chakra-sizes-5xl:64rem;--chakra-sizes-6xl:72rem;--chakra-sizes-7xl:80rem;--chakra-sizes-8xl:90rem;--chakra-sizes-container-sm:640px;--chakra-sizes-container-md:768px;--chakra-sizes-container-lg:1024px;--chakra-sizes-container-xl:1280px;--chakra-zIndices-hide:-1;--chakra-zIndices-auto:auto;--chakra-zIndices-base:0;--chakra-zIndices-docked:10;--chakra-zIndices-dropdown:1000;--chakra-zIndices-sticky:1100;--chakra-zIndices-banner:1200;--chakra-zIndices-overlay:1300;--chakra-zIndices-modal:1400;--chakra-zIndices-popover:1500;--chakra-zIndices-skipLink:1600;--chakra-zIndices-toast:1700;--chakra-zIndices-tooltip:1800;--chakra-transition-property-common:background-color,border-color,color,fill,stroke,opacity,box-shadow,transform;--chakra-transition-property-colors:background-color,border-color,color,fill,stroke;--chakra-transition-property-dimensions:width,height;--chakra-transition-property-position:left,right,top,bottom;--chakra-transition-property-background:background-color,background-image,background-position;--chakra-transition-easing-ease-in:cubic-bezier(0.4, 0, 1, 1);--chakra-transition-easing-ease-out:cubic-bezier(0, 0, 0.2, 1);--chakra-transition-easing-ease-in-out:cubic-bezier(0.4, 0, 0.2, 1);--chakra-transition-duration-ultra-fast:50ms;--chakra-transition-duration-faster:100ms;--chakra-transition-duration-fast:150ms;--chakra-transition-duration-normal:200ms;--chakra-transition-duration-slow:300ms;--chakra-transition-duration-slower:400ms;--chakra-transition-duration-ultra-slow:500ms;--chakra-blur-none:0;--chakra-blur-sm:4px;--chakra-blur-base:8px;--chakra-blur-md:12px;--chakra-blur-lg:16px;--chakra-blur-xl:24px;--chakra-blur-2xl:40px;--chakra-blur-3xl:64px;}</style><style data-emotion="css-global 1jqlf9g">html{line-height:1.5;-webkit-text-size-adjust:100%;font-family:system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;-moz-osx-font-smoothing:grayscale;touch-action:manipulation;}body{position:relative;min-height:100%;font-feature-settings:'kern';}*,*::before,*::after{border-width:0;border-style:solid;box-sizing:border-box;}main{display:block;}hr{border-top-width:1px;box-sizing:content-box;height:0;overflow:visible;}pre,code,kbd,samp{font-family:SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:1em;}a{background-color:transparent;color:inherit;-webkit-text-decoration:inherit;text-decoration:inherit;}abbr[title]{border-bottom:none;-webkit-text-decoration:underline;text-decoration:underline;-webkit-text-decoration:underline dotted;-webkit-text-decoration:underline dotted;text-decoration:underline dotted;}b,strong{font-weight:bold;}small{font-size:80%;}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline;}sub{bottom:-0.25em;}sup{top:-0.5em;}img{border-style:none;}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0;}button,input{overflow:visible;}button,select{text-transform:none;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner{border-style:none;padding:0;}fieldset{padding:0.35em 0.75em 0.625em;}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal;}progress{vertical-align:baseline;}textarea{overflow:auto;}[type="checkbox"],[type="radio"]{box-sizing:border-box;padding:0;}[type="number"]::-webkit-inner-spin-button,[type="number"]::-webkit-outer-spin-button{-webkit-appearance:none!important;}input[type="number"]{-moz-appearance:textfield;}[type="search"]{-webkit-appearance:textfield;outline-offset:-2px;}[type="search"]::-webkit-search-decoration{-webkit-appearance:none!important;}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit;}details{display:block;}summary{display:-webkit-box;display:-webkit-list-item;display:-ms-list-itembox;display:list-item;}template{display:none;}[hidden]{display:none!important;}body,blockquote,dl,dd,h1,h2,h3,h4,h5,h6,hr,figure,p,pre{margin:0;}button{background:transparent;padding:0;}fieldset{margin:0;padding:0;}ol,ul{margin:0;padding:0;}textarea{resize:vertical;}button,[role="button"]{cursor:pointer;}button::-moz-focus-inner{border:0!important;}table{border-collapse:collapse;}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit;}button,input,optgroup,select,textarea{padding:0;line-height:inherit;color:inherit;}img,svg,video,canvas,audio,iframe,embed,object{display:block;}img,video{max-width:100%;height:auto;}[data-js-focus-visible] :focus:not([data-focus-visible-added]){outline:none;box-shadow:none;}select::-ms-expand{display:none;}</style><style data-emotion="css-global 1of8e4g">body{font-family:var(--chakra-fonts-body);color:var(--chakra-colors-gray-800);background:var(--chakra-colors-white);transition-property:background-color;transition-duration:var(--chakra-transition-duration-normal);line-height:var(--chakra-lineHeights-base);}*::-webkit-input-placeholder{color:var(--chakra-colors-gray-400);}*::-moz-placeholder{color:var(--chakra-colors-gray-400);}*:-ms-input-placeholder{color:var(--chakra-colors-gray-400);}*::placeholder{color:var(--chakra-colors-gray-400);}*,*::before,::after{border-color:var(--chakra-colors-gray-200);word-wrap:break-word;}html,body{background:var(--chakra-colors-home-bg);}img,#write iframe{-webkit-filter:unset;filter:unset;transition-property:filter;transition-duration:var(--chakra-transition-duration-normal);}div{transition-property:background-color;transition-duration:var(--chakra-transition-duration-normal);}</style><style data-emotion="css 1ghv3an">.css-1ghv3an{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:flex-start;-webkit-box-align:flex-start;-ms-flex-align:flex-start;align-items:flex-start;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;height:unset;overflow:auto;-webkit-box-flex-flow:column;-webkit-flex-flow:column;-ms-flex-flow:column;flex-flow:column;-webkit-padding-start:0.5rem;padding-inline-start:0.5rem;-webkit-padding-end:0.5rem;padding-inline-end:0.5rem;}@media screen and (min-width: 30em){.css-1ghv3an{height:unset;-webkit-box-flex-flow:column;-webkit-flex-flow:column;-ms-flex-flow:column;flex-flow:column;}}@media screen and (min-width: 48em){.css-1ghv3an{height:100vh;-webkit-box-flex-flow:row;-webkit-flex-flow:row;-ms-flex-flow:row;flex-flow:row;}}</style><div class="css-1ghv3an"><style data-emotion="css xte4wg">.css-xte4wg{display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;position:unset;white-space:nowrap;vertical-align:middle;outline:2px solid transparent;outline-offset:2px;width:auto;line-height:1.2;border-radius:var(--chakra-radii-md);font-weight:var(--chakra-fontWeights-semibold);transition-property:var(--chakra-transition-property-common);transition-duration:var(--chakra-transition-duration-normal);height:var(--chakra-sizes-12);min-width:var(--chakra-sizes-12);font-size:var(--chakra-fontSizes-lg);-webkit-padding-start:var(--chakra-space-6);padding-inline-start:var(--chakra-space-6);-webkit-padding-end:var(--chakra-space-6);padding-inline-end:var(--chakra-space-6);background:var(--chakra-colors-gray-100);margin-top:1rem;top:3rem;}@media screen and (min-width: 30em){.css-xte4wg{position:unset;margin-top:1rem;}}@media screen and (min-width: 48em){.css-xte4wg{position:-webkit-sticky;position:sticky;margin-top:3rem;}}.css-xte4wg:focus,.css-xte4wg[data-focus]{box-shadow:var(--chakra-shadows-outline);}.css-xte4wg[disabled],.css-xte4wg[aria-disabled=true],.css-xte4wg[data-disabled]{opacity:0.4;cursor:not-allowed;box-shadow:var(--chakra-shadows-none);}.css-xte4wg:hover,.css-xte4wg[data-hover]{background:var(--chakra-colors-gray-200);}.css-xte4wg:hover[disabled],.css-xte4wg[data-hover][disabled],.css-xte4wg:hover[aria-disabled=true],.css-xte4wg[data-hover][aria-disabled=true],.css-xte4wg:hover[data-disabled],.css-xte4wg[data-hover][data-disabled]{background:var(--chakra-colors-gray-100);}.css-xte4wg:active,.css-xte4wg[data-active]{background:var(--chakra-colors-gray-300);}</style><button type="button" class="chakra-button css-xte4wg">BACK</button><style data-emotion="css a06krq">.css-a06krq{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;width:var(--chakra-sizes-full);-webkit-box-flex-flow:column;-webkit-flex-flow:column;-ms-flex-flow:column;flex-flow:column;-webkit-padding-start:unset;padding-inline-start:unset;-webkit-padding-end:unset;padding-inline-end:unset;}@media screen and (min-width: 30em){.css-a06krq{width:var(--chakra-sizes-full);-webkit-padding-start:unset;padding-inline-start:unset;-webkit-padding-end:unset;padding-inline-end:unset;}}@media screen and (min-width: 48em){.css-a06krq{width:55rem;-webkit-padding-start:1.5rem;padding-inline-start:1.5rem;-webkit-padding-end:1.5rem;padding-inline-end:1.5rem;}}@media screen and (min-width: 62em){.css-a06krq{width:55rem;}}@media screen and (min-width: 80em){.css-a06krq{width:55rem;}}@media screen and (min-width: 96em){.css-a06krq{width:68rem;}}</style><div class="css-a06krq"><style data-emotion="css 1if659q">.css-1if659q{border-radius:10px;margin-top:1rem;box-shadow:var(--chakra-shadows-lg);background:var(--chakra-colors-white);overflow:hidden;-webkit-flex:1;-ms-flex:1;flex:1;}@media screen and (min-width: 30em){.css-1if659q{margin-top:1rem;}}@media screen and (min-width: 48em){.css-1if659q{margin-top:3rem;}}</style><div class="css-1if659q"><style data-emotion="css 81xunj">.css-81xunj{padding:1rem;}@media screen and (min-width: 30em){.css-81xunj{padding:1rem;}}@media screen and (min-width: 48em){.css-81xunj{padding:2rem;}}</style><article class="css-81xunj"><header class="css-0"><style data-emotion="css 1m7qnzk">.css-1m7qnzk{font-family:var(--chakra-fonts-heading);font-weight:var(--chakra-fontWeights-bold);font-size:var(--chakra-fontSizes-3xl);line-height:1.33;margin-bottom:1rem;color:rgba(0, 0, 0, 0.85);}@media screen and (min-width: 48em){.css-1m7qnzk{font-size:var(--chakra-fontSizes-4xl);line-height:1.2;}}</style><h1 class="chakra-heading css-1m7qnzk">Vue3!</h1><style data-emotion="css acwcvw">.css-acwcvw{margin-bottom:1rem;}</style><div class="css-acwcvw"><style data-emotion="css 1kpd5c2">.css-1kpd5c2{display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;vertical-align:top;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;max-width:100%;font-weight:var(--chakra-fontWeights-medium);line-height:1.2;outline:2px solid transparent;outline-offset:2px;min-height:1.5rem;min-width:1.5rem;font-size:var(--chakra-fontSizes-sm);border-radius:var(--chakra-radii-md);-webkit-padding-start:var(--chakra-space-2);padding-inline-start:var(--chakra-space-2);-webkit-padding-end:var(--chakra-space-2);padding-inline-end:var(--chakra-space-2);background:var(--chakra-colors-gray-100);color:var(--chakra-colors-gray-800);}.css-1kpd5c2:focus,.css-1kpd5c2[data-focus]{box-shadow:var(--chakra-shadows-outline);}</style><span class="css-1kpd5c2">Vue</span></div><style data-emotion="css x8djax">.css-x8djax{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;color:var(--chakra-colors-gray-600);}</style><div class="css-x8djax"><style data-emotion="css 1lr2xj">.css-1lr2xj{width:1em;height:1em;display:inline-block;line-height:1em;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;color:currentColor;margin-right:0.5rem;}</style><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" focusable="false" class="chakra-icon css-1lr2xj" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg><style data-emotion="css 129gw94">.css-129gw94{line-height:0;}</style><time dateTime="2021-05-05T18:08:31.000Z" class="css-129gw94">2021/05/05</time></div></header><style data-emotion="css i51og3">.css-i51og3{margin-top:2rem;}</style><section id="write" class="css-i51og3"><blockquote>
+<p>早期学习 Vue3 API 的笔记。</p>
+</blockquote>
+<h2 id="setup">setup</h2>
+<p>setup 方法在实例被创建（created）之前。</p>
+<h3 id="ref">ref</h3>
+<p>直接在 setup 中定义变量无法自动成为响应式，需要使用 ref 将其通过 proxy 代理为响应式变量。</p>
+<pre><style data-emotion="css 19bp9bt">.css-19bp9bt{display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;position:absolute;white-space:nowrap;vertical-align:middle;outline:2px solid transparent;outline-offset:2px;width:auto;line-height:1.2;border-radius:var(--chakra-radii-md);font-weight:var(--chakra-fontWeights-semibold);transition-property:var(--chakra-transition-property-common);transition-duration:var(--chakra-transition-duration-normal);height:var(--chakra-sizes-6);min-width:var(--chakra-sizes-6);font-size:var(--chakra-fontSizes-xs);-webkit-padding-start:var(--chakra-space-2);padding-inline-start:var(--chakra-space-2);-webkit-padding-end:var(--chakra-space-2);padding-inline-end:var(--chakra-space-2);background:var(--chakra-colors-teal-500);color:var(--chakra-colors-white);top:5px;right:5px;}.css-19bp9bt:focus,.css-19bp9bt[data-focus]{box-shadow:var(--chakra-shadows-outline);}.css-19bp9bt[disabled],.css-19bp9bt[aria-disabled=true],.css-19bp9bt[data-disabled]{opacity:0.4;cursor:not-allowed;box-shadow:var(--chakra-shadows-none);}.css-19bp9bt:hover,.css-19bp9bt[data-hover]{background:var(--chakra-colors-teal-600);}.css-19bp9bt:hover[disabled],.css-19bp9bt[data-hover][disabled],.css-19bp9bt:hover[aria-disabled=true],.css-19bp9bt[data-hover][aria-disabled=true],.css-19bp9bt:hover[data-disabled],.css-19bp9bt[data-hover][data-disabled]{background:var(--chakra-colors-teal-500);}.css-19bp9bt:active,.css-19bp9bt[data-active]{background:var(--chakra-colors-teal-700);}</style><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">const</span> name = <span class="hljs-title hljs-function">ref</span>(<span class="hljs-string">&#x27;xfy&#x27;</span>)
+</code></pre>
+<p>上述是<code>xfy</code>变为<code>Proxy({value: &#x27;xfy&#x27;})</code>这样一个响应式引用。</p>
+<h3 id="reactive">reactive</h3>
+<p>reactive 与 ref 类似，它直接将对象设置为响应式变量。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">const</span> state = <span class="hljs-title hljs-function">reactive</span>({
+    <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;xfy&#x27;</span>
+})
+</code></pre>
+<p>解构会使其失去响应性，需要使用 toRefs。</p>
+<h3 id="toref">toRef</h3>
+<p>使用 toRefs 解构时，如果解构的属性是可选的属性。那么 toRefs 不会自动创建默认值，这种情况下需要使用 toRef 来代替它。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">  <span class="hljs-attr">props</span>: {
+    <span class="hljs-attr">msg</span>: <span class="hljs-title hljs-class">String</span>,
+  },
+  <span class="hljs-title hljs-function">setup</span>(<span class="hljs-params">props</span>) {
+    <span class="hljs-keyword">const</span> name = <span class="hljs-title hljs-function">toRef</span>(props, <span class="hljs-string">&quot;name&quot;</span>);
+    <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(name.<span class="hljs-property">value</span>);
+    <span class="hljs-keyword">return</span> {
+      name,
+    };
+  },
+</code></pre>
+<p>toRef 如果对应的属性不存在，那么 toRef 会为其创建一个响应式的默认值。</p>
+<h3 id="解构-reactive">解构 reactive</h3>
+<p>roRefs 可以解构响应式的变量，使其依然保持响应式。对于 reactive 创建的响应式变量也能使用 toRefs 来解构。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">  <span class="hljs-title hljs-function">setup</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">const</span> state = <span class="hljs-title hljs-function">reactive</span>({
+      <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;xfy&quot;</span>,
+    });
+    <span class="hljs-keyword">const</span> { name } = <span class="hljs-title hljs-function">toRefs</span>(state);
+    <span class="hljs-keyword">return</span> {
+      name,
+    };
+  },
+</code></pre>
+<h2 id="non-props">Non-Props</h2>
+<p>在 Vue3 中，在子组件中可以定义不 Props 属性。在父组件中传递 Props 给子组件时，有多种情况：</p>
+<ul>
+<li>
+<p>单根，<code>inheritAttrs: false</code></p>
+<p>在默认情况下，子组件中不定义 Props 属性时，在父组件中传递的 Attribute 会直接传递给单根的子组件元素上。当定义了<code>inheritAttrs: false</code>时，将不默认转递 Attribute。</p>
+</li>
+<li>
+<p>多根，<code>inheritAttrs: false</code></p>
+<p>在子组件中有多个根元素的情况下，可以指定某个根元素继承 Attribute。使用<code>v-bind</code>方法。也可以直接访问传递的 Props：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>test<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">v-bind</span>=<span class="hljs-string">&quot;$attrs&quot;</span>&gt;</span>{{ $attrs.msg }}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>test<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</code></pre>
+</li>
+</ul>
+<h2 id="context">Context</h2>
+<p>Setup 方法接受两个参数，分别是传递的 Props 和 Context。Context 里分别有三个有用的属性：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">  <span class="hljs-title hljs-function">setup</span>(<span class="hljs-params">props, context</span>) {
+    <span class="hljs-comment">// Attribute (非响应式对象)</span>
+    <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(context.<span class="hljs-property">attrs</span>)
+
+    <span class="hljs-comment">// 插槽 (非响应式对象)</span>
+    <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(context.<span class="hljs-property">slots</span>)
+
+    <span class="hljs-comment">// 触发事件 (方法)</span>
+    <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(context.<span class="hljs-property">emit</span>)
+  }
+</code></pre>
+<h3 id="attrs">attrs</h3>
+<p>attrs 是父组件传递给子组件的 Non-Props，可以直接在 attrs 中进行访问。attrs 和 Props 类型，它是有状态对象。会随组件本身的更新而更新，这意味着应该避免对它们进行解构，并始终以 <code>attrs.x</code> 或 <code>slots.x</code> 的方式引用 property。</p>
+<p>与 <code>props</code> 不同的是，<code>attrs</code> 和 <code>slots</code> 是<strong>非</strong>响应式的。如果打算根据 <code>attrs</code> 或 <code>slots</code> 更改应用副作用，那么应该在 <code>onUpdated</code> 生命周期钩子中执行此操作。</p>
+<h3 id="slots">slots</h3>
+<p>slots 是父组件传递给子组件的插槽内容，可以直接访问具名插槽。</p>
+<p>访问的插槽是一个渲染函数，会直接渲染成虚拟 DOM。还可以直接使用 render 函数来渲染出插槽内容。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-html">  <span class="hljs-comment">&lt;!-- 父组件 --&gt;</span>  
+  <span class="hljs-tag">&lt;<span class="hljs-name">HelloWorld</span> <span class="hljs-attr">msg</span>=<span class="hljs-string">&quot;Hello Vue 3 in CodeSandbox!&quot;</span>
+    &gt;</span>this is a test.
+    <span class="hljs-tag">&lt;<span class="hljs-name">template</span> #<span class="hljs-attr">test</span>&gt;</span> oh,test <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">HelloWorld</span>&gt;</span>
+</code></pre>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-comment">// 子组件内</span>
+<span class="hljs-keyword">import</span> { h } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;vue&quot;</span>;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;HelloWorld&quot;</span>,
+  <span class="hljs-title hljs-function">setup</span>(<span class="hljs-params">props, { attrs, slots }</span>) {
+    <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(slots.<span class="hljs-title hljs-function">default</span>());
+    <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(slots);
+    <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(attrs);
+    <span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> <span class="hljs-title hljs-function">h</span>(<span class="hljs-string">&quot;div&quot;</span>, {}, [slots.<span class="hljs-title hljs-function">default</span>(), slots.<span class="hljs-title hljs-function">test</span>()]);
+  },
+};
+</code></pre>
+<p>相当于<code>this.$slots</code></p>
+<h3 id="emit">emit</h3>
+<p>相当于<code>this.$emit</code>；</p>
+<h2 id="watch">watch</h2>
+<p>watch 是惰性的。</p>
+<p>对于使用 ref 创建的响应式对象，watch 可以直接进行监听。而对于 reactive 的响应式对象，需要返回一个函数才能正常监听。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">  <span class="hljs-title hljs-function">setup</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">const</span> nameObj = <span class="hljs-title hljs-function">reactive</span>({ <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;&quot;</span> });
+    <span class="hljs-keyword">const</span> nameHistory = <span class="hljs-title hljs-function">reactive</span>([]);
+    <span class="hljs-keyword">const</span> { name } = <span class="hljs-title hljs-function">toRefs</span>(nameObj);
+    <span class="hljs-title hljs-function">watch</span>(
+      <span class="hljs-function">() =&gt;</span> nameObj.<span class="hljs-property">name</span>,
+      <span class="hljs-function">(<span class="hljs-params">cur, pre</span>) =&gt;</span> {
+        nameHistory.<span class="hljs-title hljs-function">push</span>(pre);
+      }
+    );
+    <span class="hljs-keyword">return</span> {
+      name,
+      nameHistory,
+    };
+  },
+</code></pre>
+<p>watch 还支持同时监听多个数据的变化，它的两个参数分别都接受数组。不同的是，在回调函数中，参数的顺序是<code>([第一个当前值, 第二个当前值], [第一个上次值, 第二个上次值])</code></p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">    <span class="hljs-title hljs-function">watch</span>(
+      [<span class="hljs-function">() =&gt;</span> nameObj.<span class="hljs-property">name</span>, <span class="hljs-function">() =&gt;</span> nameObj.<span class="hljs-property">engName</span>],
+      <span class="hljs-function">(<span class="hljs-params">[curN, curEn], [preN, preEn]</span>) =&gt;</span> {
+        <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>([curN, curEn], [preN, preEn]);
+      }
+    );
+</code></pre>
+<h3 id="watcheffect">watchEffect</h3>
+<p>为了根据响应式状态<em>自动应用</em>和<em>重新应用</em>副作用，我们可以使用 <code>watchEffect</code> 方法。它立即执行传入的一个函数，同时响应式追踪其依赖，并在其依赖变更时重新运行该函数。</p>
+<p>watchEffect 是非惰性的</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">    <span class="hljs-title hljs-function">watchEffect</span>(<span class="hljs-function">() =&gt;</span> {
+      <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(nameObj.<span class="hljs-property">name</span>);
+    });
+</code></pre>
+<h3 id="停止所有的-watch">停止所有的 watch</h3>
+<p>两个 watch 方法都返回一个方法，通过调用返回的方法就能够取消监听。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">    <span class="hljs-keyword">const</span> stopWacth = <span class="hljs-title hljs-function">watchEffect</span>(<span class="hljs-function">() =&gt;</span> {
+      <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(nameObj.<span class="hljs-property">name</span>);
+      <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
+        <span class="hljs-title hljs-function">stopWacth</span>();
+      }, <span class="hljs-number">5000</span>);
+    });
+</code></pre>
+<h2 id="生命周期函数">生命周期函数</h2>
+<p><code>setup</code> 是围绕 <code>beforeCreate</code> 和 <code>created</code> 生命周期钩子运行的，所以不需要显式地定义它们。换句话说，在这些钩子中编写的任何代码都应该直接在 <code>setup</code> 函数中编写。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>选项式 API</th><th>Hook inside <code>setup</code></th></tr></thead><tbody><tr><td><code>beforeCreate</code></td><td>Not needed*</td></tr><tr><td><code>created</code></td><td>Not needed*</td></tr><tr><td><code>beforeMount</code></td><td><code>onBeforeMount</code></td></tr><tr><td><code>mounted</code></td><td><code>onMounted</code></td></tr><tr><td><code>beforeUpdate</code></td><td><code>onBeforeUpdate</code></td></tr><tr><td><code>updated</code></td><td><code>onUpdated</code></td></tr><tr><td><code>beforeUnmount</code></td><td><code>onBeforeUnmount</code></td></tr><tr><td><code>unmounted</code></td><td><code>onUnmounted</code></td></tr><tr><td><code>errorCaptured</code></td><td><code>onErrorCaptured</code></td></tr><tr><td><code>renderTracked</code></td><td><code>onRenderTracked</code></td></tr><tr><td><code>renderTriggered</code></td><td><code>onRenderTriggered</code></td></tr></tbody></table>
+<p><code>renderTracked</code>：每次渲染之后重新手机响应式依赖；</p>
+<p><code>renderTriggered</code>：每次触发页面重新渲染时自动执行；</p>
+<h2 id="composition-api-获取-dom">Composition API 获取 DOM</h2>
+<p>首先先在 DOM 节点上赋予对应的 ref attr</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&quot;test&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</code></pre>
+<p>然后在 setup 中使用 ref 方法创建一个空的响应式变量（null），变量名需要与获取的 DOM ref 相同。随后直接 return 该变量。</p>
+<p>之后在例如 onMounted 这样的生命周期函数中就能访问到对应的 DOM 元素。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">  <span class="hljs-title hljs-function">setup</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">const</span> test = <span class="hljs-title hljs-function">ref</span>(<span class="hljs-literal">null</span>);
+    <span class="hljs-title hljs-function">onMounted</span>(<span class="hljs-function">() =&gt;</span> {
+      <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(test.<span class="hljs-property">value</span>);
+    });
+    <span class="hljs-keyword">return</span> {
+      test,
+    };
+  },
+</code></pre>
+<p><style data-emotion="css wox0k7">.css-wox0k7{transition-property:var(--chakra-transition-property-common);transition-duration:var(--chakra-transition-duration-fast);transition-timing-function:var(--chakra-transition-easing-ease-out);cursor:pointer;-webkit-text-decoration:none;text-decoration:none;outline:2px solid transparent;outline-offset:2px;color:inherit;display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}.css-wox0k7:hover,.css-wox0k7[data-hover]{-webkit-text-decoration:underline;text-decoration:underline;}.css-wox0k7:focus,.css-wox0k7[data-focus]{box-shadow:var(--chakra-shadows-outline);}</style><a target="_blank" rel="noopener noreferrer" class="chakra-link css-wox0k7" href="https://codesandbox.io/s/composition-api-huoqu-dom-dgvro">Composition API 获取 DOM<style data-emotion="css 2y6psj">.css-2y6psj{width:1em;height:1em;display:inline-block;line-height:1em;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;color:currentColor;vertical-align:middle;-webkit-margin-start:2px;margin-inline-start:2px;-webkit-margin-end:2px;margin-inline-end:2px;}</style><svg viewBox="0 0 24 24" focusable="false" class="chakra-icon css-2y6psj"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><path d="M15 3h6v6"></path><path d="M10 14L21 3"></path></g></svg></a></p>
+<h2 id="一些练习">一些练习</h2>
+<ul>
+<li><a target="_blank" rel="noopener noreferrer" class="chakra-link css-wox0k7" href="https://codesandbox.io/s/composition-api-provide-inject-kbows">composition-api-provide-inject<svg viewBox="0 0 24 24" focusable="false" class="chakra-icon css-2y6psj"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><path d="M15 3h6v6"></path><path d="M10 14L21 3"></path></g></svg></a></li>
+<li><a target="_blank" rel="noopener noreferrer" class="chakra-link css-wox0k7" href="https://codesandbox.io/s/composition-api-huoqu-dom-dgvro">Composition API 获取 DOM<svg viewBox="0 0 24 24" focusable="false" class="chakra-icon css-2y6psj"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><path d="M15 3h6v6"></path><path d="M10 14L21 3"></path></g></svg></a></li>
+<li><a target="_blank" rel="noopener noreferrer" class="chakra-link css-wox0k7" href="https://codesandbox.io/s/composition-api-todolist-f1fv4">composition-api ToDoList<svg viewBox="0 0 24 24" focusable="false" class="chakra-icon css-2y6psj"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><path d="M15 3h6v6"></path><path d="M10 14L21 3"></path></g></svg></a></li>
+</ul></section></article></div><style data-emotion="css 1i6v8fa">.css-1i6v8fa{min-height:346px;}@media screen and (min-width: 30em){.css-1i6v8fa{min-height:350px;}}</style><div class="css-1i6v8fa"></div><style data-emotion="css 3ydw18">.css-3ydw18{height:3px;width:50px;background:var(--chakra-colors-gray-500);border-radius:var(--chakra-radii-xl);margin-top:2.5rem;}</style><div class="css-3ydw18"></div><style data-emotion="css 1lwvw50">.css-1lwvw50{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-flex-flow:column;-webkit-flex-flow:column;-ms-flex-flow:column;flex-flow:column;padding-top:1.5rem;padding-bottom:1.5rem;}</style><footer class="css-1lwvw50"><style data-emotion="css yld109">.css-yld109{color:var(--chakra-colors-gray-600);font-weight:var(--chakra-fontWeights-bold);margin-bottom:0.5rem;}</style><p class="chakra-text css-yld109">©<!-- -->2022<!-- --> 小肥羊</p><style data-emotion="css 3eyczr">.css-3eyczr{color:var(--chakra-colors-gray-400);font-size:small;}</style><p class="chakra-text css-3eyczr">Powered by Next.js ❤️ Chakra UI</p></footer></div><style data-emotion="css kl7qz4">.css-kl7qz4{display:none;position:-webkit-sticky;position:sticky;top:3rem;margin-top:3rem;}@media screen and (min-width: 30em){.css-kl7qz4{display:none;}}@media screen and (min-width: 48em){.css-kl7qz4{display:none;}}@media screen and (min-width: 62em){.css-kl7qz4{display:block;}}</style><div class="css-kl7qz4"><h2 id="table-of-contents">Table of contents</h2>
+<ul>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#setup">setup</a></p>
+<ul>
+<li><a class="chakra-link css-wox0k7" href="#ref">ref</a></li>
+<li><a class="chakra-link css-wox0k7" href="#reactive">reactive</a></li>
+<li><a class="chakra-link css-wox0k7" href="#toref">toRef</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E8%A7%A3%E6%9E%84-reactive">解构 reactive</a></li>
+</ul>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#non-props">Non-Props</a></p>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#context">Context</a></p>
+<ul>
+<li><a class="chakra-link css-wox0k7" href="#attrs">attrs</a></li>
+<li><a class="chakra-link css-wox0k7" href="#slots">slots</a></li>
+<li><a class="chakra-link css-wox0k7" href="#emit">emit</a></li>
+</ul>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#watch">watch</a></p>
+<ul>
+<li><a class="chakra-link css-wox0k7" href="#watcheffect">watchEffect</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E5%81%9C%E6%AD%A2%E6%89%80%E6%9C%89%E7%9A%84-watch">停止所有的 watch</a></li>
+</ul>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%87%BD%E6%95%B0">生命周期函数</a></p>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#composition-api-%E8%8E%B7%E5%8F%96-dom">Composition API 获取 DOM</a></p>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#%E4%B8%80%E4%BA%9B%E7%BB%83%E4%B9%A0">一些练习</a></p>
+</li>
+</ul></div></div><span></span></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"postData":{"id":"vue3-notes","content":"\n\u003e 早期学习 Vue3 API 的笔记。\n\n## setup\n\nsetup 方法在实例被创建（created）之前。\n\n### ref\n\n直接在 setup 中定义变量无法自动成为响应式，需要使用 ref 将其通过 proxy 代理为响应式变量。\n\n```js\nconst name = ref('xfy')\n```\n\n上述是`xfy`变为`Proxy({value: 'xfy'})`这样一个响应式引用。\n\n### reactive\n\nreactive 与 ref 类似，它直接将对象设置为响应式变量。\n\n```js\nconst state = reactive({\n    name: 'xfy'\n})\n```\n\n解构会使其失去响应性，需要使用 toRefs。\n\n### toRef\n\n使用 toRefs 解构时，如果解构的属性是可选的属性。那么 toRefs 不会自动创建默认值，这种情况下需要使用 toRef 来代替它。\n\n```js\n  props: {\n    msg: String,\n  },\n  setup(props) {\n    const name = toRef(props, \"name\");\n    console.log(name.value);\n    return {\n      name,\n    };\n  },\n```\n\ntoRef 如果对应的属性不存在，那么 toRef 会为其创建一个响应式的默认值。\n\n### 解构 reactive\n\nroRefs 可以解构响应式的变量，使其依然保持响应式。对于 reactive 创建的响应式变量也能使用 toRefs 来解构。\n\n```js\n  setup() {\n    const state = reactive({\n      name: \"xfy\",\n    });\n    const { name } = toRefs(state);\n    return {\n      name,\n    };\n  },\n```\n\n## Non-Props\n\n在 Vue3 中，在子组件中可以定义不 Props 属性。在父组件中传递 Props 给子组件时，有多种情况：\n\n* 单根，`inheritAttrs: false`\n\n  在默认情况下，子组件中不定义 Props 属性时，在父组件中传递的 Attribute 会直接传递给单根的子组件元素上。当定义了`inheritAttrs: false`时，将不默认转递 Attribute。\n\n* 多根，`inheritAttrs: false`\n\n  在子组件中有多个根元素的情况下，可以指定某个根元素继承 Attribute。使用`v-bind`方法。也可以直接访问传递的 Props：\n\n  ```html\n  \u003ctemplate\u003e\n    \u003cdiv\u003etest\u003c/div\u003e\n    \u003cdiv v-bind=\"$attrs\"\u003e{{ $attrs.msg }}\u003c/div\u003e\n    \u003cdiv\u003etest\u003c/div\u003e\n  \u003c/template\u003e\n  ```\n\n## Context\n\nSetup 方法接受两个参数，分别是传递的 Props 和 Context。Context 里分别有三个有用的属性：\n\n```js\n  setup(props, context) {\n    // Attribute (非响应式对象)\n    console.log(context.attrs)\n\n    // 插槽 (非响应式对象)\n    console.log(context.slots)\n\n    // 触发事件 (方法)\n    console.log(context.emit)\n  }\n```\n\n### attrs\n\nattrs 是父组件传递给子组件的 Non-Props，可以直接在 attrs 中进行访问。attrs 和 Props 类型，它是有状态对象。会随组件本身的更新而更新，这意味着应该避免对它们进行解构，并始终以 `attrs.x` 或 `slots.x` 的方式引用 property。\n\n与 `props` 不同的是，`attrs` 和 `slots` 是**非**响应式的。如果打算根据 `attrs` 或 `slots` 更改应用副作用，那么应该在 `onUpdated` 生命周期钩子中执行此操作。\n\n### slots\n\nslots 是父组件传递给子组件的插槽内容，可以直接访问具名插槽。\n\n访问的插槽是一个渲染函数，会直接渲染成虚拟 DOM。还可以直接使用 render 函数来渲染出插槽内容。\n\n```html\n  \u003c!-- 父组件 --\u003e  \n  \u003cHelloWorld msg=\"Hello Vue 3 in CodeSandbox!\"\n    \u003ethis is a test.\n    \u003ctemplate #test\u003e oh,test \u003c/template\u003e\n  \u003c/HelloWorld\u003e\n```\n\n```js\n// 子组件内\nimport { h } from \"vue\";\nexport default {\n  name: \"HelloWorld\",\n  setup(props, { attrs, slots }) {\n    console.log(slots.default());\n    console.log(slots);\n    console.log(attrs);\n    return () =\u003e h(\"div\", {}, [slots.default(), slots.test()]);\n  },\n};\n```\n\n相当于`this.$slots`\n\n### emit\n\n相当于`this.$emit`；\n\n## watch\n\nwatch 是惰性的。\n\n对于使用 ref 创建的响应式对象，watch 可以直接进行监听。而对于 reactive 的响应式对象，需要返回一个函数才能正常监听。\n\n```js\n  setup() {\n    const nameObj = reactive({ name: \"\" });\n    const nameHistory = reactive([]);\n    const { name } = toRefs(nameObj);\n    watch(\n      () =\u003e nameObj.name,\n      (cur, pre) =\u003e {\n        nameHistory.push(pre);\n      }\n    );\n    return {\n      name,\n      nameHistory,\n    };\n  },\n```\n\nwatch 还支持同时监听多个数据的变化，它的两个参数分别都接受数组。不同的是，在回调函数中，参数的顺序是`([第一个当前值, 第二个当前值], [第一个上次值, 第二个上次值])`\n\n```js\n    watch(\n      [() =\u003e nameObj.name, () =\u003e nameObj.engName],\n      ([curN, curEn], [preN, preEn]) =\u003e {\n        console.log([curN, curEn], [preN, preEn]);\n      }\n    );\n```\n\n### watchEffect\n\n为了根据响应式状态*自动应用*和*重新应用*副作用，我们可以使用 `watchEffect` 方法。它立即执行传入的一个函数，同时响应式追踪其依赖，并在其依赖变更时重新运行该函数。\n\nwatchEffect 是非惰性的\n\n```js\n    watchEffect(() =\u003e {\n      console.log(nameObj.name);\n    });\n```\n\n### 停止所有的 watch\n\n两个 watch 方法都返回一个方法，通过调用返回的方法就能够取消监听。\n\n```js\n    const stopWacth = watchEffect(() =\u003e {\n      console.log(nameObj.name);\n      setTimeout(() =\u003e {\n        stopWacth();\n      }, 5000);\n    });\n```\n\n## 生命周期函数\n\n`setup` 是围绕 `beforeCreate` 和 `created` 生命周期钩子运行的，所以不需要显式地定义它们。换句话说，在这些钩子中编写的任何代码都应该直接在 `setup` 函数中编写。\n\n| 选项式 API        | Hook inside `setup` |\n| ----------------- | ------------------- |\n| `beforeCreate`    | Not needed*         |\n| `created`         | Not needed*         |\n| `beforeMount`     | `onBeforeMount`     |\n| `mounted`         | `onMounted`         |\n| `beforeUpdate`    | `onBeforeUpdate`    |\n| `updated`         | `onUpdated`         |\n| `beforeUnmount`   | `onBeforeUnmount`   |\n| `unmounted`       | `onUnmounted`       |\n| `errorCaptured`   | `onErrorCaptured`   |\n| `renderTracked`   | `onRenderTracked`   |\n| `renderTriggered` | `onRenderTriggered` |\n\n`renderTracked`：每次渲染之后重新手机响应式依赖；\n\n`renderTriggered`：每次触发页面重新渲染时自动执行；\n\n## Composition API 获取 DOM\n\n首先先在 DOM 节点上赋予对应的 ref attr\n\n```html\n\u003ctemplate\u003e\n  \u003cdiv ref=\"test\"\u003e\u003c/div\u003e\n\u003c/template\u003e\n```\n\n然后在 setup 中使用 ref 方法创建一个空的响应式变量（null），变量名需要与获取的 DOM ref 相同。随后直接 return 该变量。\n\n之后在例如 onMounted 这样的生命周期函数中就能访问到对应的 DOM 元素。\n\n```js\n  setup() {\n    const test = ref(null);\n    onMounted(() =\u003e {\n      console.log(test.value);\n    });\n    return {\n      test,\n    };\n  },\n```\n\n[Composition API 获取 DOM](https://codesandbox.io/s/composition-api-huoqu-dom-dgvro)\n\n## 一些练习\n\n* [composition-api-provide-inject](https://codesandbox.io/s/composition-api-provide-inject-kbows)\n* [Composition API 获取 DOM](https://codesandbox.io/s/composition-api-huoqu-dom-dgvro)\n* [composition-api ToDoList](https://codesandbox.io/s/composition-api-todolist-f1fv4)","desc":"早期学习 Vue3 API 的笔记。\n\nsetup\n\nsetup 方法在实例被创建（created）之前。\n\nref\n\n直接在 setup 中定义变量无法自动成为响应式，需要使用 ref 将其通过 p...","title":"Vue3!","date":"2021-05-05T18:08:31.000Z","tags":"Vue","categories":"实践","url":"vue3-notes","index_img":null}},"__N_SSG":true},"page":"/p/[slug]","query":{"slug":"vue3-notes"},"buildId":"k6NIc4JfXUsE09z9QnALx","isFallback":false,"dynamicIds":[3419,6929,9125,1189,2980,5106],"gsp":true,"scriptLoader":[]}</script></body></html>

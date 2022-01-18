@@ -1,0 +1,413 @@
+<!DOCTYPE html><html lang="en"><head><meta name="viewport" content="width=device-width"/><meta charSet="utf-8"/><link rel="shortcut icon" href="/images/img/favicon.webp"/><meta name="keywords" content="Blog RUA"/><meta name="description" content="Personal blog."/><meta name="author" content="Arthur,i@rua.plus"/><title>RUA - JavaScript-可迭代对象与 for-of</title><meta name="next-head-count" content="7"/><link rel="preload" href="/_next/static/css/39834862c769c308.css" as="style"/><link rel="stylesheet" href="/_next/static/css/39834862c769c308.css" data-n-g=""/><link rel="preload" href="/_next/static/css/c2a527101433f11d.css" as="style"/><link rel="stylesheet" href="/_next/static/css/c2a527101433f11d.css" data-n-p=""/><link rel="preload" href="/_next/static/css/6e1d66a70b5d9fed.css" as="style"/><link rel="stylesheet" href="/_next/static/css/6e1d66a70b5d9fed.css"/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/_next/static/chunks/polyfills-5cd94c89d3acac5f.js"></script><script defer="" src="/_next/static/chunks/219-ddf2abc0472da9bd.js"></script><script defer="" src="/_next/static/chunks/419.d5302bfd9d8378c2.js"></script><script defer="" src="/_next/static/chunks/771.84a2737df445ba88.js"></script><script defer="" src="/_next/static/chunks/929.b2c0b4f7606bfefe.js"></script><script defer="" src="/_next/static/chunks/125.4ff7adc183744312.js"></script><script defer="" src="/_next/static/chunks/780.f3b2fc2ce5caea55.js"></script><script defer="" src="/_next/static/chunks/485-3e3bf066e6f4a6bd.js"></script><script defer="" src="/_next/static/chunks/189.ee2e569101c160eb.js"></script><script defer="" src="/_next/static/chunks/980.41f5e97cd35a6621.js"></script><script defer="" src="/_next/static/chunks/106.7a94988fd220337e.js"></script><script src="/_next/static/chunks/webpack-c08977534ec7c137.js" defer=""></script><script src="/_next/static/chunks/framework-5cd9e2157a4a6aee.js" defer=""></script><script src="/_next/static/chunks/main-472dbb675bbf7f67.js" defer=""></script><script src="/_next/static/chunks/pages/_app-a34fa0ed9496fbe8.js" defer=""></script><script src="/_next/static/chunks/84-43981acebe84e1d3.js" defer=""></script><script src="/_next/static/chunks/pages/p/%5Bslug%5D-684bfb16186b52fe.js" defer=""></script><script src="/_next/static/k6NIc4JfXUsE09z9QnALx/_buildManifest.js" defer=""></script><script src="/_next/static/k6NIc4JfXUsE09z9QnALx/_ssgManifest.js" defer=""></script><script src="/_next/static/k6NIc4JfXUsE09z9QnALx/_middlewareManifest.js" defer=""></script></head><body><script>(function setScript(initialValue) {
+  var mql = window.matchMedia("(prefers-color-scheme: dark)");
+  var systemPreference = mql.matches ? "dark" : "light";
+  var persistedPreference;
+
+  try {
+    persistedPreference = localStorage.getItem("chakra-ui-color-mode");
+  } catch (error) {
+    console.log("Chakra UI: localStorage is not available. Color mode persistence might not work as expected");
+  }
+
+  var isInStorage = typeof persistedPreference === "string";
+  var colorMode;
+
+  if (isInStorage) {
+    colorMode = persistedPreference;
+  } else {
+    colorMode = initialValue === "system" ? systemPreference : initialValue;
+  }
+
+  if (colorMode) {
+    var root = document.documentElement;
+    root.style.setProperty("--chakra-ui-color-mode", colorMode);
+  }
+})('light')</script><div id="__next"><style data-emotion="css-global 1r47v8">:host,:root{--chakra-ring-inset:var(--chakra-empty,/*!*/ /*!*/);--chakra-ring-offset-width:0px;--chakra-ring-offset-color:#fff;--chakra-ring-color:rgba(66, 153, 225, 0.6);--chakra-ring-offset-shadow:0 0 #0000;--chakra-ring-shadow:0 0 #0000;--chakra-space-x-reverse:0;--chakra-space-y-reverse:0;--chakra-colors-transparent:transparent;--chakra-colors-current:currentColor;--chakra-colors-black:#000000;--chakra-colors-white:#FFFFFF;--chakra-colors-whiteAlpha-50:rgba(255, 255, 255, 0.04);--chakra-colors-whiteAlpha-100:rgba(255, 255, 255, 0.06);--chakra-colors-whiteAlpha-200:rgba(255, 255, 255, 0.08);--chakra-colors-whiteAlpha-300:rgba(255, 255, 255, 0.16);--chakra-colors-whiteAlpha-400:rgba(255, 255, 255, 0.24);--chakra-colors-whiteAlpha-500:rgba(255, 255, 255, 0.36);--chakra-colors-whiteAlpha-600:rgba(255, 255, 255, 0.48);--chakra-colors-whiteAlpha-700:rgba(255, 255, 255, 0.64);--chakra-colors-whiteAlpha-800:rgba(255, 255, 255, 0.80);--chakra-colors-whiteAlpha-900:rgba(255, 255, 255, 0.92);--chakra-colors-blackAlpha-50:rgba(0, 0, 0, 0.04);--chakra-colors-blackAlpha-100:rgba(0, 0, 0, 0.06);--chakra-colors-blackAlpha-200:rgba(0, 0, 0, 0.08);--chakra-colors-blackAlpha-300:rgba(0, 0, 0, 0.16);--chakra-colors-blackAlpha-400:rgba(0, 0, 0, 0.24);--chakra-colors-blackAlpha-500:rgba(0, 0, 0, 0.36);--chakra-colors-blackAlpha-600:rgba(0, 0, 0, 0.48);--chakra-colors-blackAlpha-700:rgba(0, 0, 0, 0.64);--chakra-colors-blackAlpha-800:rgba(0, 0, 0, 0.80);--chakra-colors-blackAlpha-900:rgba(0, 0, 0, 0.92);--chakra-colors-gray-50:#F7FAFC;--chakra-colors-gray-100:#EDF2F7;--chakra-colors-gray-200:#E2E8F0;--chakra-colors-gray-300:#CBD5E0;--chakra-colors-gray-400:#A0AEC0;--chakra-colors-gray-500:#718096;--chakra-colors-gray-600:#4A5568;--chakra-colors-gray-700:#2D3748;--chakra-colors-gray-800:#1A202C;--chakra-colors-gray-900:#171923;--chakra-colors-red-50:#FFF5F5;--chakra-colors-red-100:#FED7D7;--chakra-colors-red-200:#FEB2B2;--chakra-colors-red-300:#FC8181;--chakra-colors-red-400:#F56565;--chakra-colors-red-500:#E53E3E;--chakra-colors-red-600:#C53030;--chakra-colors-red-700:#9B2C2C;--chakra-colors-red-800:#822727;--chakra-colors-red-900:#63171B;--chakra-colors-orange-50:#FFFAF0;--chakra-colors-orange-100:#FEEBC8;--chakra-colors-orange-200:#FBD38D;--chakra-colors-orange-300:#F6AD55;--chakra-colors-orange-400:#ED8936;--chakra-colors-orange-500:#DD6B20;--chakra-colors-orange-600:#C05621;--chakra-colors-orange-700:#9C4221;--chakra-colors-orange-800:#7B341E;--chakra-colors-orange-900:#652B19;--chakra-colors-yellow-50:#FFFFF0;--chakra-colors-yellow-100:#FEFCBF;--chakra-colors-yellow-200:#FAF089;--chakra-colors-yellow-300:#F6E05E;--chakra-colors-yellow-400:#ECC94B;--chakra-colors-yellow-500:#D69E2E;--chakra-colors-yellow-600:#B7791F;--chakra-colors-yellow-700:#975A16;--chakra-colors-yellow-800:#744210;--chakra-colors-yellow-900:#5F370E;--chakra-colors-green-50:#F0FFF4;--chakra-colors-green-100:#C6F6D5;--chakra-colors-green-200:#9AE6B4;--chakra-colors-green-300:#68D391;--chakra-colors-green-400:#48BB78;--chakra-colors-green-500:#38A169;--chakra-colors-green-600:#2F855A;--chakra-colors-green-700:#276749;--chakra-colors-green-800:#22543D;--chakra-colors-green-900:#1C4532;--chakra-colors-teal-50:#E6FFFA;--chakra-colors-teal-100:#B2F5EA;--chakra-colors-teal-200:#81E6D9;--chakra-colors-teal-300:#4FD1C5;--chakra-colors-teal-400:#38B2AC;--chakra-colors-teal-500:#319795;--chakra-colors-teal-600:#2C7A7B;--chakra-colors-teal-700:#285E61;--chakra-colors-teal-800:#234E52;--chakra-colors-teal-900:#1D4044;--chakra-colors-blue-50:#ebf8ff;--chakra-colors-blue-100:#bee3f8;--chakra-colors-blue-200:#90cdf4;--chakra-colors-blue-300:#63b3ed;--chakra-colors-blue-400:#4299e1;--chakra-colors-blue-500:#3182ce;--chakra-colors-blue-600:#2b6cb0;--chakra-colors-blue-700:#2c5282;--chakra-colors-blue-800:#2a4365;--chakra-colors-blue-900:#1A365D;--chakra-colors-cyan-50:#EDFDFD;--chakra-colors-cyan-100:#C4F1F9;--chakra-colors-cyan-200:#9DECF9;--chakra-colors-cyan-300:#76E4F7;--chakra-colors-cyan-400:#0BC5EA;--chakra-colors-cyan-500:#00B5D8;--chakra-colors-cyan-600:#00A3C4;--chakra-colors-cyan-700:#0987A0;--chakra-colors-cyan-800:#086F83;--chakra-colors-cyan-900:#065666;--chakra-colors-purple-50:#FAF5FF;--chakra-colors-purple-100:#E9D8FD;--chakra-colors-purple-200:#D6BCFA;--chakra-colors-purple-300:#B794F4;--chakra-colors-purple-400:#9F7AEA;--chakra-colors-purple-500:#805AD5;--chakra-colors-purple-600:#6B46C1;--chakra-colors-purple-700:#553C9A;--chakra-colors-purple-800:#44337A;--chakra-colors-purple-900:#322659;--chakra-colors-pink-50:#FFF5F7;--chakra-colors-pink-100:#FED7E2;--chakra-colors-pink-200:#FBB6CE;--chakra-colors-pink-300:#F687B3;--chakra-colors-pink-400:#ED64A6;--chakra-colors-pink-500:#D53F8C;--chakra-colors-pink-600:#B83280;--chakra-colors-pink-700:#97266D;--chakra-colors-pink-800:#702459;--chakra-colors-pink-900:#521B41;--chakra-colors-linkedin-50:#E8F4F9;--chakra-colors-linkedin-100:#CFEDFB;--chakra-colors-linkedin-200:#9BDAF3;--chakra-colors-linkedin-300:#68C7EC;--chakra-colors-linkedin-400:#34B3E4;--chakra-colors-linkedin-500:#00A0DC;--chakra-colors-linkedin-600:#008CC9;--chakra-colors-linkedin-700:#0077B5;--chakra-colors-linkedin-800:#005E93;--chakra-colors-linkedin-900:#004471;--chakra-colors-facebook-50:#E8F4F9;--chakra-colors-facebook-100:#D9DEE9;--chakra-colors-facebook-200:#B7C2DA;--chakra-colors-facebook-300:#6482C0;--chakra-colors-facebook-400:#4267B2;--chakra-colors-facebook-500:#385898;--chakra-colors-facebook-600:#314E89;--chakra-colors-facebook-700:#29487D;--chakra-colors-facebook-800:#223B67;--chakra-colors-facebook-900:#1E355B;--chakra-colors-messenger-50:#D0E6FF;--chakra-colors-messenger-100:#B9DAFF;--chakra-colors-messenger-200:#A2CDFF;--chakra-colors-messenger-300:#7AB8FF;--chakra-colors-messenger-400:#2E90FF;--chakra-colors-messenger-500:#0078FF;--chakra-colors-messenger-600:#0063D1;--chakra-colors-messenger-700:#0052AC;--chakra-colors-messenger-800:#003C7E;--chakra-colors-messenger-900:#002C5C;--chakra-colors-whatsapp-50:#dffeec;--chakra-colors-whatsapp-100:#b9f5d0;--chakra-colors-whatsapp-200:#90edb3;--chakra-colors-whatsapp-300:#65e495;--chakra-colors-whatsapp-400:#3cdd78;--chakra-colors-whatsapp-500:#22c35e;--chakra-colors-whatsapp-600:#179848;--chakra-colors-whatsapp-700:#0c6c33;--chakra-colors-whatsapp-800:#01421c;--chakra-colors-whatsapp-900:#001803;--chakra-colors-twitter-50:#E5F4FD;--chakra-colors-twitter-100:#C8E9FB;--chakra-colors-twitter-200:#A8DCFA;--chakra-colors-twitter-300:#83CDF7;--chakra-colors-twitter-400:#57BBF5;--chakra-colors-twitter-500:#1DA1F2;--chakra-colors-twitter-600:#1A94DA;--chakra-colors-twitter-700:#1681BF;--chakra-colors-twitter-800:#136B9E;--chakra-colors-twitter-900:#0D4D71;--chakra-colors-telegram-50:#E3F2F9;--chakra-colors-telegram-100:#C5E4F3;--chakra-colors-telegram-200:#A2D4EC;--chakra-colors-telegram-300:#7AC1E4;--chakra-colors-telegram-400:#47A9DA;--chakra-colors-telegram-500:#0088CC;--chakra-colors-telegram-600:#007AB8;--chakra-colors-telegram-700:#006BA1;--chakra-colors-telegram-800:#005885;--chakra-colors-telegram-900:#003F5E;--chakra-colors-home-bg:#f5f5fa;--chakra-borders-none:0;--chakra-borders-1px:1px solid;--chakra-borders-2px:2px solid;--chakra-borders-4px:4px solid;--chakra-borders-8px:8px solid;--chakra-fonts-heading:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";--chakra-fonts-body:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Helvetica,Segoe UI,Arial,Roboto,'PingFang SC',miui,'Hiragino Sans GB','Microsoft Yahei',sans-serif;--chakra-fonts-mono:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;--chakra-fontSizes-xs:0.75rem;--chakra-fontSizes-sm:0.875rem;--chakra-fontSizes-md:1rem;--chakra-fontSizes-lg:1.125rem;--chakra-fontSizes-xl:1.25rem;--chakra-fontSizes-2xl:1.5rem;--chakra-fontSizes-3xl:1.875rem;--chakra-fontSizes-4xl:2.25rem;--chakra-fontSizes-5xl:3rem;--chakra-fontSizes-6xl:3.75rem;--chakra-fontSizes-7xl:4.5rem;--chakra-fontSizes-8xl:6rem;--chakra-fontSizes-9xl:8rem;--chakra-fontWeights-hairline:100;--chakra-fontWeights-thin:200;--chakra-fontWeights-light:300;--chakra-fontWeights-normal:400;--chakra-fontWeights-medium:500;--chakra-fontWeights-semibold:600;--chakra-fontWeights-bold:700;--chakra-fontWeights-extrabold:800;--chakra-fontWeights-black:900;--chakra-letterSpacings-tighter:-0.05em;--chakra-letterSpacings-tight:-0.025em;--chakra-letterSpacings-normal:0;--chakra-letterSpacings-wide:0.025em;--chakra-letterSpacings-wider:0.05em;--chakra-letterSpacings-widest:0.1em;--chakra-lineHeights-3:.75rem;--chakra-lineHeights-4:1rem;--chakra-lineHeights-5:1.25rem;--chakra-lineHeights-6:1.5rem;--chakra-lineHeights-7:1.75rem;--chakra-lineHeights-8:2rem;--chakra-lineHeights-9:2.25rem;--chakra-lineHeights-10:2.5rem;--chakra-lineHeights-normal:normal;--chakra-lineHeights-none:1;--chakra-lineHeights-shorter:1.25;--chakra-lineHeights-short:1.375;--chakra-lineHeights-base:1.5;--chakra-lineHeights-tall:1.625;--chakra-lineHeights-taller:2;--chakra-radii-none:0;--chakra-radii-sm:0.125rem;--chakra-radii-base:0.25rem;--chakra-radii-md:0.375rem;--chakra-radii-lg:0.5rem;--chakra-radii-xl:0.75rem;--chakra-radii-2xl:1rem;--chakra-radii-3xl:1.5rem;--chakra-radii-full:9999px;--chakra-space-1:0.25rem;--chakra-space-2:0.5rem;--chakra-space-3:0.75rem;--chakra-space-4:1rem;--chakra-space-5:1.25rem;--chakra-space-6:1.5rem;--chakra-space-7:1.75rem;--chakra-space-8:2rem;--chakra-space-9:2.25rem;--chakra-space-10:2.5rem;--chakra-space-12:3rem;--chakra-space-14:3.5rem;--chakra-space-16:4rem;--chakra-space-20:5rem;--chakra-space-24:6rem;--chakra-space-28:7rem;--chakra-space-32:8rem;--chakra-space-36:9rem;--chakra-space-40:10rem;--chakra-space-44:11rem;--chakra-space-48:12rem;--chakra-space-52:13rem;--chakra-space-56:14rem;--chakra-space-60:15rem;--chakra-space-64:16rem;--chakra-space-72:18rem;--chakra-space-80:20rem;--chakra-space-96:24rem;--chakra-space-px:1px;--chakra-space-0\.5:0.125rem;--chakra-space-1\.5:0.375rem;--chakra-space-2\.5:0.625rem;--chakra-space-3\.5:0.875rem;--chakra-shadows-xs:0 0 0 1px rgba(0, 0, 0, 0.05);--chakra-shadows-sm:0 1px 2px 0 rgba(0, 0, 0, 0.05);--chakra-shadows-base:0 1px 3px 0 rgba(0, 0, 0, 0.1),0 1px 2px 0 rgba(0, 0, 0, 0.06);--chakra-shadows-md:0 4px 6px -1px rgba(0, 0, 0, 0.1),0 2px 4px -1px rgba(0, 0, 0, 0.06);--chakra-shadows-lg:0 10px 15px -3px rgba(0, 0, 0, 0.1),0 4px 6px -2px rgba(0, 0, 0, 0.05);--chakra-shadows-xl:0 20px 25px -5px rgba(0, 0, 0, 0.1),0 10px 10px -5px rgba(0, 0, 0, 0.04);--chakra-shadows-2xl:0 25px 50px -12px rgba(0, 0, 0, 0.25);--chakra-shadows-outline:0 0 0 3px rgba(66, 153, 225, 0.6);--chakra-shadows-inner:inset 0 2px 4px 0 rgba(0,0,0,0.06);--chakra-shadows-none:none;--chakra-shadows-dark-lg:rgba(0, 0, 0, 0.1) 0px 0px 0px 1px,rgba(0, 0, 0, 0.2) 0px 5px 10px,rgba(0, 0, 0, 0.4) 0px 15px 40px;--chakra-shadows-card:0px 4px 8px rgba(0, 0, 0, 0.04),0px 0px 2px rgba(0, 0, 0, 0.06),0px 0px 1px rgba(0, 0, 0, 0.04);--chakra-sizes-1:0.25rem;--chakra-sizes-2:0.5rem;--chakra-sizes-3:0.75rem;--chakra-sizes-4:1rem;--chakra-sizes-5:1.25rem;--chakra-sizes-6:1.5rem;--chakra-sizes-7:1.75rem;--chakra-sizes-8:2rem;--chakra-sizes-9:2.25rem;--chakra-sizes-10:2.5rem;--chakra-sizes-12:3rem;--chakra-sizes-14:3.5rem;--chakra-sizes-16:4rem;--chakra-sizes-20:5rem;--chakra-sizes-24:6rem;--chakra-sizes-28:7rem;--chakra-sizes-32:8rem;--chakra-sizes-36:9rem;--chakra-sizes-40:10rem;--chakra-sizes-44:11rem;--chakra-sizes-48:12rem;--chakra-sizes-52:13rem;--chakra-sizes-56:14rem;--chakra-sizes-60:15rem;--chakra-sizes-64:16rem;--chakra-sizes-72:18rem;--chakra-sizes-80:20rem;--chakra-sizes-96:24rem;--chakra-sizes-px:1px;--chakra-sizes-0\.5:0.125rem;--chakra-sizes-1\.5:0.375rem;--chakra-sizes-2\.5:0.625rem;--chakra-sizes-3\.5:0.875rem;--chakra-sizes-max:max-content;--chakra-sizes-min:min-content;--chakra-sizes-full:100%;--chakra-sizes-3xs:14rem;--chakra-sizes-2xs:16rem;--chakra-sizes-xs:20rem;--chakra-sizes-sm:24rem;--chakra-sizes-md:28rem;--chakra-sizes-lg:32rem;--chakra-sizes-xl:36rem;--chakra-sizes-2xl:42rem;--chakra-sizes-3xl:48rem;--chakra-sizes-4xl:56rem;--chakra-sizes-5xl:64rem;--chakra-sizes-6xl:72rem;--chakra-sizes-7xl:80rem;--chakra-sizes-8xl:90rem;--chakra-sizes-container-sm:640px;--chakra-sizes-container-md:768px;--chakra-sizes-container-lg:1024px;--chakra-sizes-container-xl:1280px;--chakra-zIndices-hide:-1;--chakra-zIndices-auto:auto;--chakra-zIndices-base:0;--chakra-zIndices-docked:10;--chakra-zIndices-dropdown:1000;--chakra-zIndices-sticky:1100;--chakra-zIndices-banner:1200;--chakra-zIndices-overlay:1300;--chakra-zIndices-modal:1400;--chakra-zIndices-popover:1500;--chakra-zIndices-skipLink:1600;--chakra-zIndices-toast:1700;--chakra-zIndices-tooltip:1800;--chakra-transition-property-common:background-color,border-color,color,fill,stroke,opacity,box-shadow,transform;--chakra-transition-property-colors:background-color,border-color,color,fill,stroke;--chakra-transition-property-dimensions:width,height;--chakra-transition-property-position:left,right,top,bottom;--chakra-transition-property-background:background-color,background-image,background-position;--chakra-transition-easing-ease-in:cubic-bezier(0.4, 0, 1, 1);--chakra-transition-easing-ease-out:cubic-bezier(0, 0, 0.2, 1);--chakra-transition-easing-ease-in-out:cubic-bezier(0.4, 0, 0.2, 1);--chakra-transition-duration-ultra-fast:50ms;--chakra-transition-duration-faster:100ms;--chakra-transition-duration-fast:150ms;--chakra-transition-duration-normal:200ms;--chakra-transition-duration-slow:300ms;--chakra-transition-duration-slower:400ms;--chakra-transition-duration-ultra-slow:500ms;--chakra-blur-none:0;--chakra-blur-sm:4px;--chakra-blur-base:8px;--chakra-blur-md:12px;--chakra-blur-lg:16px;--chakra-blur-xl:24px;--chakra-blur-2xl:40px;--chakra-blur-3xl:64px;}</style><style data-emotion="css-global 1jqlf9g">html{line-height:1.5;-webkit-text-size-adjust:100%;font-family:system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;-moz-osx-font-smoothing:grayscale;touch-action:manipulation;}body{position:relative;min-height:100%;font-feature-settings:'kern';}*,*::before,*::after{border-width:0;border-style:solid;box-sizing:border-box;}main{display:block;}hr{border-top-width:1px;box-sizing:content-box;height:0;overflow:visible;}pre,code,kbd,samp{font-family:SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:1em;}a{background-color:transparent;color:inherit;-webkit-text-decoration:inherit;text-decoration:inherit;}abbr[title]{border-bottom:none;-webkit-text-decoration:underline;text-decoration:underline;-webkit-text-decoration:underline dotted;-webkit-text-decoration:underline dotted;text-decoration:underline dotted;}b,strong{font-weight:bold;}small{font-size:80%;}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline;}sub{bottom:-0.25em;}sup{top:-0.5em;}img{border-style:none;}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0;}button,input{overflow:visible;}button,select{text-transform:none;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner{border-style:none;padding:0;}fieldset{padding:0.35em 0.75em 0.625em;}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal;}progress{vertical-align:baseline;}textarea{overflow:auto;}[type="checkbox"],[type="radio"]{box-sizing:border-box;padding:0;}[type="number"]::-webkit-inner-spin-button,[type="number"]::-webkit-outer-spin-button{-webkit-appearance:none!important;}input[type="number"]{-moz-appearance:textfield;}[type="search"]{-webkit-appearance:textfield;outline-offset:-2px;}[type="search"]::-webkit-search-decoration{-webkit-appearance:none!important;}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit;}details{display:block;}summary{display:-webkit-box;display:-webkit-list-item;display:-ms-list-itembox;display:list-item;}template{display:none;}[hidden]{display:none!important;}body,blockquote,dl,dd,h1,h2,h3,h4,h5,h6,hr,figure,p,pre{margin:0;}button{background:transparent;padding:0;}fieldset{margin:0;padding:0;}ol,ul{margin:0;padding:0;}textarea{resize:vertical;}button,[role="button"]{cursor:pointer;}button::-moz-focus-inner{border:0!important;}table{border-collapse:collapse;}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit;}button,input,optgroup,select,textarea{padding:0;line-height:inherit;color:inherit;}img,svg,video,canvas,audio,iframe,embed,object{display:block;}img,video{max-width:100%;height:auto;}[data-js-focus-visible] :focus:not([data-focus-visible-added]){outline:none;box-shadow:none;}select::-ms-expand{display:none;}</style><style data-emotion="css-global 1of8e4g">body{font-family:var(--chakra-fonts-body);color:var(--chakra-colors-gray-800);background:var(--chakra-colors-white);transition-property:background-color;transition-duration:var(--chakra-transition-duration-normal);line-height:var(--chakra-lineHeights-base);}*::-webkit-input-placeholder{color:var(--chakra-colors-gray-400);}*::-moz-placeholder{color:var(--chakra-colors-gray-400);}*:-ms-input-placeholder{color:var(--chakra-colors-gray-400);}*::placeholder{color:var(--chakra-colors-gray-400);}*,*::before,::after{border-color:var(--chakra-colors-gray-200);word-wrap:break-word;}html,body{background:var(--chakra-colors-home-bg);}img,#write iframe{-webkit-filter:unset;filter:unset;transition-property:filter;transition-duration:var(--chakra-transition-duration-normal);}div{transition-property:background-color;transition-duration:var(--chakra-transition-duration-normal);}</style><style data-emotion="css 1ghv3an">.css-1ghv3an{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:flex-start;-webkit-box-align:flex-start;-ms-flex-align:flex-start;align-items:flex-start;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;height:unset;overflow:auto;-webkit-box-flex-flow:column;-webkit-flex-flow:column;-ms-flex-flow:column;flex-flow:column;-webkit-padding-start:0.5rem;padding-inline-start:0.5rem;-webkit-padding-end:0.5rem;padding-inline-end:0.5rem;}@media screen and (min-width: 30em){.css-1ghv3an{height:unset;-webkit-box-flex-flow:column;-webkit-flex-flow:column;-ms-flex-flow:column;flex-flow:column;}}@media screen and (min-width: 48em){.css-1ghv3an{height:100vh;-webkit-box-flex-flow:row;-webkit-flex-flow:row;-ms-flex-flow:row;flex-flow:row;}}</style><div class="css-1ghv3an"><style data-emotion="css xte4wg">.css-xte4wg{display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;position:unset;white-space:nowrap;vertical-align:middle;outline:2px solid transparent;outline-offset:2px;width:auto;line-height:1.2;border-radius:var(--chakra-radii-md);font-weight:var(--chakra-fontWeights-semibold);transition-property:var(--chakra-transition-property-common);transition-duration:var(--chakra-transition-duration-normal);height:var(--chakra-sizes-12);min-width:var(--chakra-sizes-12);font-size:var(--chakra-fontSizes-lg);-webkit-padding-start:var(--chakra-space-6);padding-inline-start:var(--chakra-space-6);-webkit-padding-end:var(--chakra-space-6);padding-inline-end:var(--chakra-space-6);background:var(--chakra-colors-gray-100);margin-top:1rem;top:3rem;}@media screen and (min-width: 30em){.css-xte4wg{position:unset;margin-top:1rem;}}@media screen and (min-width: 48em){.css-xte4wg{position:-webkit-sticky;position:sticky;margin-top:3rem;}}.css-xte4wg:focus,.css-xte4wg[data-focus]{box-shadow:var(--chakra-shadows-outline);}.css-xte4wg[disabled],.css-xte4wg[aria-disabled=true],.css-xte4wg[data-disabled]{opacity:0.4;cursor:not-allowed;box-shadow:var(--chakra-shadows-none);}.css-xte4wg:hover,.css-xte4wg[data-hover]{background:var(--chakra-colors-gray-200);}.css-xte4wg:hover[disabled],.css-xte4wg[data-hover][disabled],.css-xte4wg:hover[aria-disabled=true],.css-xte4wg[data-hover][aria-disabled=true],.css-xte4wg:hover[data-disabled],.css-xte4wg[data-hover][data-disabled]{background:var(--chakra-colors-gray-100);}.css-xte4wg:active,.css-xte4wg[data-active]{background:var(--chakra-colors-gray-300);}</style><button type="button" class="chakra-button css-xte4wg">BACK</button><style data-emotion="css a06krq">.css-a06krq{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;width:var(--chakra-sizes-full);-webkit-box-flex-flow:column;-webkit-flex-flow:column;-ms-flex-flow:column;flex-flow:column;-webkit-padding-start:unset;padding-inline-start:unset;-webkit-padding-end:unset;padding-inline-end:unset;}@media screen and (min-width: 30em){.css-a06krq{width:var(--chakra-sizes-full);-webkit-padding-start:unset;padding-inline-start:unset;-webkit-padding-end:unset;padding-inline-end:unset;}}@media screen and (min-width: 48em){.css-a06krq{width:55rem;-webkit-padding-start:1.5rem;padding-inline-start:1.5rem;-webkit-padding-end:1.5rem;padding-inline-end:1.5rem;}}@media screen and (min-width: 62em){.css-a06krq{width:55rem;}}@media screen and (min-width: 80em){.css-a06krq{width:55rem;}}@media screen and (min-width: 96em){.css-a06krq{width:68rem;}}</style><div class="css-a06krq"><style data-emotion="css 1if659q">.css-1if659q{border-radius:10px;margin-top:1rem;box-shadow:var(--chakra-shadows-lg);background:var(--chakra-colors-white);overflow:hidden;-webkit-flex:1;-ms-flex:1;flex:1;}@media screen and (min-width: 30em){.css-1if659q{margin-top:1rem;}}@media screen and (min-width: 48em){.css-1if659q{margin-top:3rem;}}</style><div class="css-1if659q"><style data-emotion="css 81xunj">.css-81xunj{padding:1rem;}@media screen and (min-width: 30em){.css-81xunj{padding:1rem;}}@media screen and (min-width: 48em){.css-81xunj{padding:2rem;}}</style><article class="css-81xunj"><header class="css-0"><style data-emotion="css 1m7qnzk">.css-1m7qnzk{font-family:var(--chakra-fonts-heading);font-weight:var(--chakra-fontWeights-bold);font-size:var(--chakra-fontSizes-3xl);line-height:1.33;margin-bottom:1rem;color:rgba(0, 0, 0, 0.85);}@media screen and (min-width: 48em){.css-1m7qnzk{font-size:var(--chakra-fontSizes-4xl);line-height:1.2;}}</style><h1 class="chakra-heading css-1m7qnzk">JavaScript-可迭代对象与 for-of</h1><style data-emotion="css acwcvw">.css-acwcvw{margin-bottom:1rem;}</style><div class="css-acwcvw"><style data-emotion="css 1kpd5c2">.css-1kpd5c2{display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;vertical-align:top;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;max-width:100%;font-weight:var(--chakra-fontWeights-medium);line-height:1.2;outline:2px solid transparent;outline-offset:2px;min-height:1.5rem;min-width:1.5rem;font-size:var(--chakra-fontSizes-sm);border-radius:var(--chakra-radii-md);-webkit-padding-start:var(--chakra-space-2);padding-inline-start:var(--chakra-space-2);-webkit-padding-end:var(--chakra-space-2);padding-inline-end:var(--chakra-space-2);background:var(--chakra-colors-gray-100);color:var(--chakra-colors-gray-800);}.css-1kpd5c2:focus,.css-1kpd5c2[data-focus]{box-shadow:var(--chakra-shadows-outline);}</style><span class="css-1kpd5c2">JavaScript</span></div><style data-emotion="css x8djax">.css-x8djax{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;color:var(--chakra-colors-gray-600);}</style><div class="css-x8djax"><style data-emotion="css 1lr2xj">.css-1lr2xj{width:1em;height:1em;display:inline-block;line-height:1em;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;color:currentColor;margin-right:0.5rem;}</style><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" focusable="false" class="chakra-icon css-1lr2xj" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg><style data-emotion="css 129gw94">.css-129gw94{line-height:0;}</style><time dateTime="2020-10-29T17:15:48.000Z" class="css-129gw94">2020/10/29</time></div></header><style data-emotion="css i51og3">.css-i51og3{margin-top:2rem;}</style><section id="write" class="css-i51og3"><h2 id="iterable-object可迭代对象">Iterable object（可迭代对象）</h2>
+<p>可迭代（Iterable） 对象是数组的泛化。这个概念是说任何对象都可以被定制为可在<code>for...of</code>循环中使用的对象。数组是可迭代的。但不仅仅是数组，很多其他的内建对象也是可迭代的。例如字符串就是可迭代的。</p>
+<h2 id="总最早开始">总最早开始</h2>
+<p>可能十年前或者更加久远的年代，我们遍历一个数组需要这样：</p>
+<pre><style data-emotion="css 19bp9bt">.css-19bp9bt{display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;position:absolute;white-space:nowrap;vertical-align:middle;outline:2px solid transparent;outline-offset:2px;width:auto;line-height:1.2;border-radius:var(--chakra-radii-md);font-weight:var(--chakra-fontWeights-semibold);transition-property:var(--chakra-transition-property-common);transition-duration:var(--chakra-transition-duration-normal);height:var(--chakra-sizes-6);min-width:var(--chakra-sizes-6);font-size:var(--chakra-fontSizes-xs);-webkit-padding-start:var(--chakra-space-2);padding-inline-start:var(--chakra-space-2);-webkit-padding-end:var(--chakra-space-2);padding-inline-end:var(--chakra-space-2);background:var(--chakra-colors-teal-500);color:var(--chakra-colors-white);top:5px;right:5px;}.css-19bp9bt:focus,.css-19bp9bt[data-focus]{box-shadow:var(--chakra-shadows-outline);}.css-19bp9bt[disabled],.css-19bp9bt[aria-disabled=true],.css-19bp9bt[data-disabled]{opacity:0.4;cursor:not-allowed;box-shadow:var(--chakra-shadows-none);}.css-19bp9bt:hover,.css-19bp9bt[data-hover]{background:var(--chakra-colors-teal-600);}.css-19bp9bt:hover[disabled],.css-19bp9bt[data-hover][disabled],.css-19bp9bt:hover[aria-disabled=true],.css-19bp9bt[data-hover][aria-disabled=true],.css-19bp9bt:hover[data-disabled],.css-19bp9bt[data-hover][data-disabled]{background:var(--chakra-colors-teal-500);}.css-19bp9bt:active,.css-19bp9bt[data-active]{background:var(--chakra-colors-teal-700);}</style><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>];
+
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; arr.<span class="hljs-property">length</span>; i++) {
+    <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(arr[i]);
+}
+</code></pre>
+<p>或许也不是很久，在我最初学习js的时候就是这样去尝试理解for循环的。</p>
+<p>后来我们发现这样写或许太复杂了，于是有了<code>for...in</code>。我们遍历一个数组就变成了这样：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i <span class="hljs-keyword">in</span> arr) {
+    <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(arr[i]);
+}
+</code></pre>
+<p>是不是和for循环有点类似，<code>for...in</code>便是循环遍历对象的一个方式。</p>
+<p>ES6也给了我们一个专门操作遍历数组的方法：<code>forEach()</code></p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">arr.<span class="hljs-title hljs-function">forEach</span>(<span class="hljs-function"><span class="hljs-params">element</span> =&gt;</span> {
+    <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(element);
+});
+</code></pre>
+<p>与其他的方法不同的是，<code>forEach()</code>同数组的<code>push()</code>、<code>pop()</code>等方法一样，是在Array对象的原型上的，也就是<code>Array.prototype.forEach()</code>。并且它除了抛出异常以外，没有办法中止或跳出<code>forEach()</code>循环。如果我们需要中止或跳出循环<code>forEach()</code>方法不是应当使用的工具。</p>
+<h3 id="弥补不足">弥补不足</h3>
+<p>我们有多种可以轻松遍历数组的方法，不过他们各有各的不足之处。<code>for...of</code>便是代替<code>for...in</code>来循环数组而诞生的。</p>
+<p>首先来看看<code>for...in</code>对数组的小问题：</p>
+<ol>
+<li><code>for...in</code>是为对象设计的，它遍历的是key，而不是value。</li>
+<li><code>for...in</code>会一直查找可枚举的属性，直至原型链顶端。</li>
+</ol>
+<p>先看第一条，<code>for...in</code>和直接for循环遍历数组类似，他们循环的是数组的key，需要使用数组的标准访问写法才能得到值。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>];
+
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i <span class="hljs-keyword">in</span> arr) {
+    <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(arr[i]);
+    <span class="hljs-comment">// 1, 2, 3, ,4, 5</span>
+}
+
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i <span class="hljs-keyword">in</span> arr) {
+    <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(i);
+    <span class="hljs-comment">// 0, 1, 2, 3, ,4</span>
+}
+</code></pre>
+<p>不过这看上去无伤大雅，第二条的问题就不像这么温柔了。在当前数组的原型链上的所有的可枚举的属性都会被遍历出来。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-title hljs-class">Array</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">arrTest</span> = <span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">test</span>(<span class="hljs-params"></span>) {};
+
+<span class="hljs-title hljs-class">Object</span>.<span class="hljs-title hljs-function">defineProperty</span>(<span class="hljs-title hljs-class">Array</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>, <span class="hljs-string">&#x27;push&#x27;</span>, {
+    <span class="hljs-attr">enumerable</span>: <span class="hljs-literal">true</span>
+})
+
+<span class="hljs-keyword">let</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>];
+
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i <span class="hljs-keyword">in</span> arr) {
+    <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(arr[i]);
+}
+</code></pre>
+<p>无论是我们自定义的函数，还是修改属性为可枚举，<code>for...in</code>一条都不会放过。</p>
+<p><picture data-rmiz-wrap="visible"><style data-emotion="css 185nr5j">.css-185nr5j{object-fit:cover;border-radius:10px;-webkit-filter:blur(20px);filter:blur(20px);transition-duration:var(--chakra-transition-duration-slower);height:100%;}</style><img alt="Post image" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" class="chakra-image css-185nr5j"/><button aria-label="Zoom image" data-rmiz-btn-open="true"></button></picture></p>
+<h2 id="迭代协议">迭代协议</h2>
+<p>通常的对象是不可迭代的，它不是数组。通过自己创建一个不可迭代的对象，我们就可以轻松地掌握可迭代的概念。</p>
+<p>首先来看一个最基本的对象，我们尝试使用<code>for...of</code>去遍历它，会得到一个其不是可迭代对象的是错误：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> obj = {
+    <span class="hljs-attr">start</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-attr">end</span>: <span class="hljs-number">5</span>
+};
+
+<span class="hljs-keyword">for</span> (num <span class="hljs-keyword">of</span> obj) {
+    <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(num);
+}
+</code></pre>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-php">VM155:<span class="hljs-number">6</span> Uncaught <span class="hljs-built_in">TypeError</span>: obj is not <span class="hljs-keyword">iterable</span>
+</code></pre>
+<p>这是因为我们的Object对象不是可迭代的对象。而迭代协议可以使其成为一个可迭代的对象。</p>
+<p>迭代协议作为 ECMAScript 2015 的一组补充规范，迭代协议并不是新的内置实现或语法，而是协议。这些协议可以被任何遵循某些约定的对象来实现。</p>
+<h3 id="迭代器">迭代器</h3>
+<p>为了让<code>obj</code>对象可迭代（也就让<code>for..of</code>可以运行）我们需要为对象添加一个名为<code>Symbol.iterator</code>的方法（一个专门用于使对象可迭代的内置symbol）。</p>
+<ol>
+<li>当 <code>for..of</code> 循环启动时，它会调用这个方法（如果没找到，就会报错）。这个方法必须返回一个 <strong>迭代器（iterator）</strong> —— 一个有 <code>next</code> 方法的对象。</li>
+<li>从此开始，<code>for..of</code> <strong>仅适用于这个被返回的对象</strong>。</li>
+<li>当 <code>for..of</code> 循环希望取得下一个数值，它就调用这个对象的 <code>next()</code> 方法。</li>
+<li><code>next()</code> 方法返回的结果的格式必须是 <code>{done: Boolean, value: any}</code>，当 <code>done=true</code> 时，表示迭代结束，否则 <code>value</code> 是下一个值。</li>
+</ol>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> obj = {
+    <span class="hljs-attr">start</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-attr">end</span>: <span class="hljs-number">5</span>
+};
+
+<span class="hljs-comment">// for..of 调用首先会调用这个：</span>
+obj[<span class="hljs-title hljs-class">Symbol</span>.<span class="hljs-property">iterator</span>] = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">return</span> {
+           <span class="hljs-comment">// 这个function还是属于obj，所以this指向obj。</span>
+        <span class="hljs-comment">//接下来，for..of 仅与此迭代器一起工作，要求它提供下一个值</span>
+        <span class="hljs-attr">current</span>: <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">start</span>,
+        <span class="hljs-attr">last</span>: <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">end</span>,
+        <span class="hljs-comment">// next() 在 for..of 的每一轮循环迭代中被调用</span>
+        <span class="hljs-comment">// 所以通常next都带有一个判断语句</span>
+        <span class="hljs-title hljs-function">next</span>(<span class="hljs-params"></span>) {
+            <span class="hljs-comment">// Symbol.iterator返回的是一个对象，this不会多级指向，所以这里用到了刚刚定义的属性</span>
+            <span class="hljs-keyword">if</span> (<span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">current</span> &lt;= <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">last</span>) {
+                <span class="hljs-keyword">return</span> {
+                    <span class="hljs-attr">value</span>: <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">current</span>++,
+                    <span class="hljs-attr">done</span>: <span class="hljs-literal">false</span>
+                }
+            } <span class="hljs-keyword">else</span> {
+                <span class="hljs-keyword">return</span> {
+                    <span class="hljs-attr">done</span>: <span class="hljs-literal">true</span>
+                }
+            }
+        }       
+    }
+};
+
+<span class="hljs-comment">// 可以迭代啦</span>
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> num <span class="hljs-keyword">of</span> obj) {
+    <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(num);
+};
+</code></pre>
+<p>第一次见到迭代器的时候感觉它还是挺复杂的，但仔细研究过后就会发现，其实它大部分还都是固定搭配的。不过这里的this还是比较容易浑人的。</p>
+<p>仔细观察下其核心的功能，发现迭代器是通过一个名为<code>Symbol.iterator</code>的方法返回的对象中的：</p>
+<ol>
+<li><code>obj</code> 自身没有 <code>next()</code> 方法。</li>
+<li>相反，是通过调用 <code>obj[Symbol.iterator]()</code> 创建了另一个对象，即所谓的“迭代器”对象，并且它的 <code>next</code> 会为迭代生成值</li>
+</ol>
+<p>那么，既然都是对象，所以迭代器应该是可以放在<code>obj</code>自身的。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> obj = {
+    <span class="hljs-attr">start</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-attr">end</span>: <span class="hljs-number">5</span>,
+    <span class="hljs-comment">// Symbol.iterator负责返回一个对象，其对象中包含next方法，这里直接返回this，在obj中定义一个next方法</span>
+    <span class="hljs-comment">// this.count用于计数</span>
+    [<span class="hljs-title hljs-class">Symbol</span>.<span class="hljs-property">iterator</span>]() {
+        <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">count</span> = <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">start</span>;
+        <span class="hljs-keyword">return</span> <span class="hljs-variable hljs-language">this</span>;
+    },
+    <span class="hljs-title hljs-function">next</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-keyword">if</span> (<span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">count</span> &lt;= <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">end</span>) {
+            <span class="hljs-keyword">return</span> {
+                <span class="hljs-attr">value</span>: <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">count</span>++,
+                <span class="hljs-attr">done</span>: <span class="hljs-literal">false</span>
+            }
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-keyword">return</span> {
+                <span class="hljs-attr">done</span>: <span class="hljs-literal">true</span>
+            }
+        }
+    }
+};
+
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> num <span class="hljs-keyword">of</span> obj) {
+    <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(num);
+};
+</code></pre>
+<p>这里的<code>[Symbol.iterator]()</code>定义为<code>obj</code>的一个属性，同时<code>[Symbol.iterator]()</code>需要返回一个带有<code>next()</code>方法的对象。所以直接将<code>next()</code>方法定义在<code>obj</code>身上，<code>[Symbol.iterator]()</code>通过返回this来返回这个对象。</p>
+<p>这样的写法会比在外部定义<code>[Symbol.iterator]()</code>方法更加简洁，this指向也更加清晰。但是在<code>[Symbol.iterator]()</code>方法中定义的属性会被添加到<code>obj</code>上。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">obj.<span class="hljs-property">count</span> <span class="hljs-comment">// 6</span>
+</code></pre>
+<p>并且迭代器只用一个，现在不能在该对象上同时运行多个<code>for...of</code>循环了，它们将共享迭代状态，因为只有一个迭代器，即对象本身。但是两个并行的 for..of 是很罕见的，即使在异步情况下。</p>
+<blockquote>
+<p>无穷迭代器
+无穷迭代器也是可能的。例如，将<code>obj</code>设置为<code>obj.to = Infinity</code>，这时<code>obj</code>则成为了无穷迭代器。或者我们可以创建一个可迭代对象，它生成一个无穷伪随机数序列。也是可能的。
+<code>next</code>没有什么限制，它可以返回越来越多的值，这是正常的。
+当然，迭代这种对象的<code>for..of</code>循环将不会停止。但是我们可以通过使用<code>break</code>来停止它。</p>
+</blockquote>
+<h3 id="展开语法">展开语法</h3>
+<p>展开语法(Spread syntax), 可以在函数调用/数组构造时, 将数组表达式或者string在语法层面展开；还可以在构造字面量对象时, 将对象表达式按key-value的方式展开。</p>
+<p>字面量也就是常见的<code>[1, 2, 3]</code>或者<code>{name: &quot;mdn&quot;}</code>这种简洁的构造方式。</p>
+<p>展开语法与<code>for...of</code>及其相似，无法迭代的对象也无法使用展开语法。错误信息也是一样：</p>
+<p><picture data-rmiz-wrap="visible"><img alt="Post image" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" class="chakra-image css-185nr5j"/><button aria-label="Zoom image" data-rmiz-btn-open="true"></button></picture></p>
+<p>展开语法不仅仅只是和<code>for...of</code>行为比较像，它还有更多的用法。不过在此赘述也是没有多少意义了。</p>
+<h2 id="可迭代的字符串">可迭代的字符串</h2>
+<p>在我最早学习js的基本类型的时候，就被告知字符串可以被循环处理。类似于这样：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> str = <span class="hljs-string">&#x27;xfy&#x27;</span>;
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; str.<span class="hljs-property">length</span>; i++) {
+    <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(str[i]);
+}
+<span class="hljs-comment">// x, f, y;</span>
+</code></pre>
+<p>虽然无法理解是什么一回事，但当时就感觉字符串和数组很相似，非常神奇。</p>
+<p>根据包装对象的原理，很容易就联想到字符串可迭代是因为其构造函数<code>String</code>可迭代（当然也有length属性）。要验证这非常简单，只需要找下<code>String</code>上有没有迭代器必备的<code>[Symbol.iterator]()</code>方法就可以了。</p>
+<p>虽然包装对象的过程我们无法看到，但是我们可以对一个字符串的原型链向上寻找就ok了。直接调用其原型链上的方法便会触发包装对象，就像调用<code>toString()</code>一样，</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> str = <span class="hljs-string">&#x27;xfy&#x27;</span>;
+str.<span class="hljs-property">__proto__</span>[<span class="hljs-title hljs-class">Symbol</span>.<span class="hljs-property">iterator</span>];
+</code></pre>
+<p>直接访问原型链上的<code>[Symbol.iterator]()</code>方法，就会发现有这个方法存在，正是有它的存在，字符串才是可迭代的。</p>
+<h3 id="显式调用迭代器">显式调用迭代器</h3>
+<p>为了能够更加深入的了解迭代器的工作，我们可以不使用<code>for...of</code>，反而使用显式的去操作迭代器：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> str = <span class="hljs-string">&#x27;xfy&#x27;</span>;
+
+<span class="hljs-comment">// 接收迭代器</span>
+<span class="hljs-keyword">let</span> iterator = str[<span class="hljs-title hljs-class">Symbol</span>.<span class="hljs-property">iterator</span>]();
+<span class="hljs-keyword">let</span> res;
+
+<span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>) {
+    res = iterator.<span class="hljs-title hljs-function">next</span>();
+    <span class="hljs-keyword">if</span> (res.<span class="hljs-property">done</span>) <span class="hljs-keyword">break</span>;
+    <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(res.<span class="hljs-property">value</span>);
+}
+</code></pre>
+<p>只要弄弄清楚了迭代器的工作方式，就能很轻松的理解显式调用。最终我们根据<code>next()</code>方法返回的固定格式的值来判断什么适合需要跳出循环以及取值。</p>
+<p>正常情况下我们不需要显式的去迭代一个对象，但是这样做比<code>for...of</code>给了我们更多的控制权。我们可以拆分迭代的步骤，并在中途做一些其他的事情。</p>
+<h2 id="可迭代与类数组">可迭代与类数组</h2>
+<p>可迭代对象与类数组很相似，但他们是两种不同的对象，有着不同的正式术语：</p>
+<ul>
+<li><strong>Iterable</strong> 如上所述，是实现了 <code>Symbol.iterator</code> 方法的对象。</li>
+<li><strong>Array-like</strong> 是有索引和 <code>length</code> 属性的对象，所以它们看起来很像数组。</li>
+</ul>
+<p>当然也有两种特性都有的对象，例如字符串就是可迭代同时也是类数组（有数值索引和 <code>length</code> 属性）。</p>
+<p>当光是类数组的对象是无法迭代的</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> obj = {
+    <span class="hljs-number">0</span>: <span class="hljs-string">&#x27;x&#x27;</span>,
+    <span class="hljs-number">1</span>: <span class="hljs-string">&#x27;f&#x27;</span>,
+    <span class="hljs-number">2</span>: <span class="hljs-string">&#x27;y&#x27;</span>,
+    <span class="hljs-attr">length</span>: <span class="hljs-number">3</span>
+}
+<span class="hljs-comment">// Uncaught TypeError: object is not iterable</span>
+[...obj];
+</code></pre>
+<p>可迭代对象和类数组对象通常都<strong>不是数组</strong>，他们也没有数组的一些方法。不过出了字符串以外，我们手动创建的类数组可以使用<code>call</code>来改变数组方法的指向，从而使其能够使用一些数组的方法：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-title hljs-class">Array</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">push</span>.<span class="hljs-title hljs-function">call</span>(obj, <span class="hljs-number">1</span>);
+obj[<span class="hljs-number">3</span>];
+<span class="hljs-comment">// 1</span>
+</code></pre>
+<p>而包装后的字符串其<code>length</code>属性是只读的，所以我们无法通过数组的方法去操作它：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> str = <span class="hljs-string">&#x27;xfy&#x27;</span>;
+<span class="hljs-comment">// Uncaught TypeError: Cannot assign to read only</span>
+<span class="hljs-title hljs-class">Array</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">push</span>.<span class="hljs-title hljs-function">call</span>(str, <span class="hljs-number">1</span>);
+</code></pre>
+<h3 id="arrayfrom">Array.from</h3>
+<p><code>Array.from</code>可以从一个类似数组或可迭代对象创建一个新的，浅拷贝的数组实例。通过创建一个浅拷贝的数组，就可以对其使用数组的方法了。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> obj = {
+    <span class="hljs-number">0</span>: <span class="hljs-string">&#x27;x&#x27;</span>,
+    <span class="hljs-number">1</span>: <span class="hljs-string">&#x27;f&#x27;</span>,
+    <span class="hljs-number">2</span>: <span class="hljs-string">&#x27;y&#x27;</span>,
+    <span class="hljs-attr">length</span>: <span class="hljs-number">3</span>
+};
+
+<span class="hljs-keyword">let</span> arr = <span class="hljs-title hljs-class">Array</span>.<span class="hljs-title hljs-function">from</span>(obj);
+
+arr.<span class="hljs-title hljs-function">push</span>(<span class="hljs-string">&#x27;嘤嘤嘤&#x27;</span>);
+</code></pre>
+<p>Array.from 方法接受对象，检查它是一个可迭代对象或类数组对象，然后创建一个新数组，并将该对象的所有元素浅拷贝到这个新数组。可迭代的对象也是同理。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> obj = {
+    <span class="hljs-number">0</span>: <span class="hljs-string">&#x27;x&#x27;</span>,
+    <span class="hljs-number">1</span>: <span class="hljs-string">&#x27;f&#x27;</span>,
+    [<span class="hljs-title hljs-class">Symbol</span>.<span class="hljs-property">iterator</span>]() {
+        <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">sw</span> = <span class="hljs-literal">true</span>;
+        <span class="hljs-keyword">return</span> <span class="hljs-variable hljs-language">this</span>;
+    },
+    <span class="hljs-title hljs-function">next</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-keyword">if</span> (<span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">sw</span>) {
+            <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">sw</span> = <span class="hljs-literal">false</span>;
+            <span class="hljs-keyword">return</span> {
+                <span class="hljs-attr">value</span>: <span class="hljs-title hljs-class">Object</span>.<span class="hljs-title hljs-function">keys</span>(<span class="hljs-variable hljs-language">this</span>),
+                <span class="hljs-attr">done</span>: <span class="hljs-literal">false</span>
+            }
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-keyword">return</span> {
+                <span class="hljs-attr">done</span>: <span class="hljs-literal">true</span>
+            }
+        }
+    }
+}
+
+<span class="hljs-keyword">let</span> arr = <span class="hljs-title hljs-class">Array</span>.<span class="hljs-title hljs-function">from</span>(obj);
+</code></pre>
+<p><code>Array.from</code>还有一个可选的参数，提供了类似于<code>forEach</code>的参数选项。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-title hljs-class">Array</span>.<span class="hljs-title hljs-function">from</span>(obj[, mapFn, thisArg])
+</code></pre>
+<p>可选的第二个参数 <code>mapFn</code> 可以是一个函数，该函数会在对象中的元素被添加到数组前，被应用于每个元素，此外 <code>thisArg</code> 允许我们为该函数设置 <code>this</code>。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-title hljs-class">Array</span>.<span class="hljs-title hljs-function">from</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>], <span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x + x);
+<span class="hljs-comment">// [2, 4, 6]</span>
+</code></pre>
+<h3 id="可用于代理对">可用于代理对</h3>
+<p>对于代理对（surrogate pairs）（ UTF-16 的扩展字符），<code>Array.from</code>也可以正常识别并拷贝为数组。对于普通的字符串，虽然能够使用<code>slice()</code>方法，但是对于代理对的操作会导致乱码，两个不同 UTF-16 扩展字符碎片拼接的结果。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> str = <span class="hljs-string">&#x27;𝒳😂𩷶&#x27;</span>;
+
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(str);
+<span class="hljs-comment">// &quot;𝒳😂𩷶&quot;</span>
+str.<span class="hljs-title hljs-function">slice</span>(<span class="hljs-number">1</span>,<span class="hljs-number">3</span>)
+<span class="hljs-comment">// &quot;��&quot;</span>
+</code></pre>
+<p>我们可以利用<code>Array.from</code>对代理对的正确操作特性来重写创建代理感知（surrogate-aware）的<code>slice</code>方法。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> str = <span class="hljs-string">&#x27;𝒳😂𩷶&#x27;</span>;
+<span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">aSlice</span>(<span class="hljs-params">arr, star, end</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-title hljs-class">Array</span>.<span class="hljs-title hljs-function">from</span>(arr).<span class="hljs-title hljs-function">slice</span>(star, end).<span class="hljs-title hljs-function">join</span>(<span class="hljs-string">&#x27;&#x27;</span>);
+}
+</code></pre>
+<h2 id="总结">总结</h2>
+<p>可以应用 <code>for..of</code> 的对象被称为 <strong>可迭代的</strong>。</p>
+<ul>
+<li>技术上来说，可迭代对象必须实现 <code>Symbol.iterator</code>方法。
+<ul>
+<li><code>obj[Symbol.iterator]</code> 的结果被称为 <strong>迭代器（iterator）</strong>。由它处理进一步的迭代过程。</li>
+<li>一个迭代器必须有 <code>next()</code> 方法，它返回一个 <code>{done: Boolean, value: any}</code> 对象，这里 <code>done:true</code> 表明迭代结束，否则 <code>value</code> 就是下一个值。</li>
+</ul>
+</li>
+<li><code>Symbol.iterator</code> 方法会被 <code>for..of</code> 自动调用，但我们也可以直接调用它。</li>
+<li>展开语法的操作结果与<code>for..of</code>类似。</li>
+<li>内置的可迭代对象例如字符串和数组，都实现了 <code>Symbol.iterator</code>。</li>
+<li>字符串迭代器能够识别代理对（surrogate pair）。</li>
+</ul>
+<p>有索引属性和 <code>length</code> 属性的对象被称为 <strong>类数组对象</strong>。这种对象可能还具有其他属性和方法，但是没有数组的内建方法。</p>
+<h2 id="补充">补充</h2>
+<h3 id="this">this</h3>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-keyword">const</span> ourOwnIterator = {
+  <span class="hljs-title hljs-function">next</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">return</span> {
+      <span class="hljs-attr">value</span>: <span class="hljs-string">&quot;It&#x27;s works.&quot;</span>,
+      <span class="hljs-attr">done</span>: <span class="hljs-literal">true</span>,
+    };
+  },
+};
+<span class="hljs-keyword">const</span> myIteratorable = {
+  <span class="hljs-attr">values</span>: <span class="hljs-number">0</span>,
+  [<span class="hljs-title hljs-class">Symbol</span>.<span class="hljs-property">iterator</span>]() {
+    <span class="hljs-comment">// iterator 得将 this return 出去，next 方法才能使用 this</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-variable hljs-language">this</span>;
+  },
+  <span class="hljs-title hljs-function">next</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">if</span> (<span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">values</span> === <span class="hljs-number">10</span>) {
+      <span class="hljs-keyword">return</span> {
+        <span class="hljs-attr">value</span>: <span class="hljs-literal">null</span>,
+        <span class="hljs-attr">done</span>: <span class="hljs-literal">true</span>,
+      };
+    } <span class="hljs-keyword">else</span> {
+      <span class="hljs-keyword">return</span> {
+        <span class="hljs-attr">value</span>: <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">values</span>++,
+        <span class="hljs-attr">done</span>: <span class="hljs-literal">false</span>,
+      };
+    }
+  },
+};
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i <span class="hljs-keyword">of</span> myIteratorable) {
+  <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(i);
+}
+</code></pre>
+<blockquote>
+<p>2021年4月5日 00点28分</p>
+</blockquote>
+<h2 id="参考推荐">参考&amp;推荐</h2>
+<ul>
+<li><style data-emotion="css wox0k7">.css-wox0k7{transition-property:var(--chakra-transition-property-common);transition-duration:var(--chakra-transition-duration-fast);transition-timing-function:var(--chakra-transition-easing-ease-out);cursor:pointer;-webkit-text-decoration:none;text-decoration:none;outline:2px solid transparent;outline-offset:2px;color:inherit;display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}.css-wox0k7:hover,.css-wox0k7[data-hover]{-webkit-text-decoration:underline;text-decoration:underline;}.css-wox0k7:focus,.css-wox0k7[data-focus]{box-shadow:var(--chakra-shadows-outline);}</style><a target="_blank" rel="noopener noreferrer" class="chakra-link css-wox0k7" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Iteration_protocols">迭代协议<style data-emotion="css 2y6psj">.css-2y6psj{width:1em;height:1em;display:inline-block;line-height:1em;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;color:currentColor;vertical-align:middle;-webkit-margin-start:2px;margin-inline-start:2px;-webkit-margin-end:2px;margin-inline-end:2px;}</style><svg viewBox="0 0 24 24" focusable="false" class="chakra-icon css-2y6psj"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><path d="M15 3h6v6"></path><path d="M10 14L21 3"></path></g></svg></a></li>
+<li><a target="_blank" rel="noopener noreferrer" class="chakra-link css-wox0k7" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Iterators_and_Generators">迭代器和生成器<svg viewBox="0 0 24 24" focusable="false" class="chakra-icon css-2y6psj"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><path d="M15 3h6v6"></path><path d="M10 14L21 3"></path></g></svg></a></li>
+<li><a target="_blank" rel="noopener noreferrer" class="chakra-link css-wox0k7" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/yield*">yield*<svg viewBox="0 0 24 24" focusable="false" class="chakra-icon css-2y6psj"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><path d="M15 3h6v6"></path><path d="M10 14L21 3"></path></g></svg></a></li>
+<li><a target="_blank" rel="noopener noreferrer" class="chakra-link css-wox0k7" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Spread_syntax">展开语法<svg viewBox="0 0 24 24" focusable="false" class="chakra-icon css-2y6psj"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><path d="M15 3h6v6"></path><path d="M10 14L21 3"></path></g></svg></a></li>
+<li><a target="_blank" rel="noopener noreferrer" class="chakra-link css-wox0k7" href="https://zh.javascript.info/iterable">Iterable object（可迭代对象）<svg viewBox="0 0 24 24" focusable="false" class="chakra-icon css-2y6psj"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><path d="M15 3h6v6"></path><path d="M10 14L21 3"></path></g></svg></a></li>
+</ul></section></article></div><style data-emotion="css 1i6v8fa">.css-1i6v8fa{min-height:346px;}@media screen and (min-width: 30em){.css-1i6v8fa{min-height:350px;}}</style><div class="css-1i6v8fa"></div><style data-emotion="css 3ydw18">.css-3ydw18{height:3px;width:50px;background:var(--chakra-colors-gray-500);border-radius:var(--chakra-radii-xl);margin-top:2.5rem;}</style><div class="css-3ydw18"></div><style data-emotion="css 1lwvw50">.css-1lwvw50{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-flex-flow:column;-webkit-flex-flow:column;-ms-flex-flow:column;flex-flow:column;padding-top:1.5rem;padding-bottom:1.5rem;}</style><footer class="css-1lwvw50"><style data-emotion="css yld109">.css-yld109{color:var(--chakra-colors-gray-600);font-weight:var(--chakra-fontWeights-bold);margin-bottom:0.5rem;}</style><p class="chakra-text css-yld109">©<!-- -->2022<!-- --> 小肥羊</p><style data-emotion="css 3eyczr">.css-3eyczr{color:var(--chakra-colors-gray-400);font-size:small;}</style><p class="chakra-text css-3eyczr">Powered by Next.js ❤️ Chakra UI</p></footer></div><style data-emotion="css kl7qz4">.css-kl7qz4{display:none;position:-webkit-sticky;position:sticky;top:3rem;margin-top:3rem;}@media screen and (min-width: 30em){.css-kl7qz4{display:none;}}@media screen and (min-width: 48em){.css-kl7qz4{display:none;}}@media screen and (min-width: 62em){.css-kl7qz4{display:block;}}</style><div class="css-kl7qz4"><h2 id="table-of-contents">Table of contents</h2>
+<ul>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#iterable-object%E5%8F%AF%E8%BF%AD%E4%BB%A3%E5%AF%B9%E8%B1%A1">Iterable object（可迭代对象）</a></p>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#%E6%80%BB%E6%9C%80%E6%97%A9%E5%BC%80%E5%A7%8B">总最早开始</a></p>
+<ul>
+<li><a class="chakra-link css-wox0k7" href="#%E5%BC%A5%E8%A1%A5%E4%B8%8D%E8%B6%B3">弥补不足</a></li>
+</ul>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#%E8%BF%AD%E4%BB%A3%E5%8D%8F%E8%AE%AE">迭代协议</a></p>
+<ul>
+<li><a class="chakra-link css-wox0k7" href="#%E8%BF%AD%E4%BB%A3%E5%99%A8">迭代器</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E5%B1%95%E5%BC%80%E8%AF%AD%E6%B3%95">展开语法</a></li>
+</ul>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#%E5%8F%AF%E8%BF%AD%E4%BB%A3%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2">可迭代的字符串</a></p>
+<ul>
+<li><a class="chakra-link css-wox0k7" href="#%E6%98%BE%E5%BC%8F%E8%B0%83%E7%94%A8%E8%BF%AD%E4%BB%A3%E5%99%A8">显式调用迭代器</a></li>
+</ul>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#%E5%8F%AF%E8%BF%AD%E4%BB%A3%E4%B8%8E%E7%B1%BB%E6%95%B0%E7%BB%84">可迭代与类数组</a></p>
+<ul>
+<li><a class="chakra-link css-wox0k7" href="#arrayfrom">Array.from</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E5%8F%AF%E7%94%A8%E4%BA%8E%E4%BB%A3%E7%90%86%E5%AF%B9">可用于代理对</a></li>
+</ul>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#%E6%80%BB%E7%BB%93">总结</a></p>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#%E8%A1%A5%E5%85%85">补充</a></p>
+<ul>
+<li><a class="chakra-link css-wox0k7" href="#this">this</a></li>
+</ul>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#%E5%8F%82%E8%80%83%E6%8E%A8%E8%8D%90">参考&amp;推荐</a></p>
+</li>
+</ul></div></div><span></span></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"postData":{"id":"javascript-iterable-object-and-for-of","content":"\n## Iterable object（可迭代对象）\n\n可迭代（Iterable） 对象是数组的泛化。这个概念是说任何对象都可以被定制为可在`for...of`循环中使用的对象。数组是可迭代的。但不仅仅是数组，很多其他的内建对象也是可迭代的。例如字符串就是可迭代的。\n\n## 总最早开始\n\n可能十年前或者更加久远的年代，我们遍历一个数组需要这样：\n\n```js\nlet arr = [1, 2, 3, 4, 5];\n\nfor (let i = 0; i \u003c arr.length; i++) {\n    console.log(arr[i]);\n}\n```\n\n或许也不是很久，在我最初学习js的时候就是这样去尝试理解for循环的。\n\n后来我们发现这样写或许太复杂了，于是有了`for...in`。我们遍历一个数组就变成了这样：\n\n```js\nfor (let i in arr) {\n    console.log(arr[i]);\n}\n```\n\n是不是和for循环有点类似，`for...in`便是循环遍历对象的一个方式。\n\nES6也给了我们一个专门操作遍历数组的方法：`forEach()`\n\n```js\narr.forEach(element =\u003e {\n    console.log(element);\n});\n```\n\n与其他的方法不同的是，`forEach()`同数组的`push()`、`pop()`等方法一样，是在Array对象的原型上的，也就是`Array.prototype.forEach()`。并且它除了抛出异常以外，没有办法中止或跳出`forEach()`循环。如果我们需要中止或跳出循环`forEach()`方法不是应当使用的工具。\n\n### 弥补不足\n\n我们有多种可以轻松遍历数组的方法，不过他们各有各的不足之处。`for...of`便是代替`for...in`来循环数组而诞生的。\n\n首先来看看`for...in`对数组的小问题：\n\n1. `for...in`是为对象设计的，它遍历的是key，而不是value。\n2. `for...in`会一直查找可枚举的属性，直至原型链顶端。\n\n先看第一条，`for...in`和直接for循环遍历数组类似，他们循环的是数组的key，需要使用数组的标准访问写法才能得到值。\n\n```js\nlet arr = [1, 2, 3, 4, 5];\n\nfor (let i in arr) {\n    console.log(arr[i]);\n    // 1, 2, 3, ,4, 5\n}\n\nfor (let i in arr) {\n    console.log(i);\n    // 0, 1, 2, 3, ,4\n}\n```\n\n不过这看上去无伤大雅，第二条的问题就不像这么温柔了。在当前数组的原型链上的所有的可枚举的属性都会被遍历出来。\n\n```js\nArray.prototype.arrTest = function test() {};\n\nObject.defineProperty(Array.prototype, 'push', {\n    enumerable: true\n})\n\nlet arr = [1, 2, 3, 4, 5];\n\nfor (let i in arr) {\n    console.log(arr[i]);\n}\n```\n\n无论是我们自定义的函数，还是修改属性为可枚举，`for...in`一条都不会放过。\n\n![](../images/JavaScript-可迭代对象与for-of/2020-10-27-15-01-39.webp)\n\n## 迭代协议\n\n通常的对象是不可迭代的，它不是数组。通过自己创建一个不可迭代的对象，我们就可以轻松地掌握可迭代的概念。\n\n首先来看一个最基本的对象，我们尝试使用`for...of`去遍历它，会得到一个其不是可迭代对象的是错误：\n\n```js\nlet obj = {\n    start: 1,\n    end: 5\n};\n\nfor (num of obj) {\n    console.log(num);\n}\n```\n\n```\nVM155:6 Uncaught TypeError: obj is not iterable\n```\n\n这是因为我们的Object对象不是可迭代的对象。而迭代协议可以使其成为一个可迭代的对象。\n\n迭代协议作为 ECMAScript 2015 的一组补充规范，迭代协议并不是新的内置实现或语法，而是协议。这些协议可以被任何遵循某些约定的对象来实现。\n\n### 迭代器\n\n为了让`obj`对象可迭代（也就让`for..of`可以运行）我们需要为对象添加一个名为`Symbol.iterator`的方法（一个专门用于使对象可迭代的内置symbol）。\n\n1. 当 `for..of` 循环启动时，它会调用这个方法（如果没找到，就会报错）。这个方法必须返回一个 **迭代器（iterator）** —— 一个有 `next` 方法的对象。\n2. 从此开始，`for..of` **仅适用于这个被返回的对象**。\n3. 当 `for..of` 循环希望取得下一个数值，它就调用这个对象的 `next()` 方法。\n4. `next()` 方法返回的结果的格式必须是 `{done: Boolean, value: any}`，当 `done=true` 时，表示迭代结束，否则 `value` 是下一个值。\n\n```js\nlet obj = {\n    start: 1,\n    end: 5\n};\n\n// for..of 调用首先会调用这个：\nobj[Symbol.iterator] = function () {\n    return {\n           // 这个function还是属于obj，所以this指向obj。\n        //接下来，for..of 仅与此迭代器一起工作，要求它提供下一个值\n        current: this.start,\n        last: this.end,\n        // next() 在 for..of 的每一轮循环迭代中被调用\n        // 所以通常next都带有一个判断语句\n        next() {\n            // Symbol.iterator返回的是一个对象，this不会多级指向，所以这里用到了刚刚定义的属性\n            if (this.current \u003c= this.last) {\n                return {\n                    value: this.current++,\n                    done: false\n                }\n            } else {\n                return {\n                    done: true\n                }\n            }\n        }       \n    }\n};\n\n// 可以迭代啦\nfor (let num of obj) {\n    console.log(num);\n};\n```\n\n第一次见到迭代器的时候感觉它还是挺复杂的，但仔细研究过后就会发现，其实它大部分还都是固定搭配的。不过这里的this还是比较容易浑人的。\n\n仔细观察下其核心的功能，发现迭代器是通过一个名为`Symbol.iterator`的方法返回的对象中的：\n\n1. `obj` 自身没有 `next()` 方法。\n2. 相反，是通过调用 `obj[Symbol.iterator]()` 创建了另一个对象，即所谓的“迭代器”对象，并且它的 `next` 会为迭代生成值\n\n那么，既然都是对象，所以迭代器应该是可以放在`obj`自身的。\n\n```js\nlet obj = {\n    start: 1,\n    end: 5,\n    // Symbol.iterator负责返回一个对象，其对象中包含next方法，这里直接返回this，在obj中定义一个next方法\n    // this.count用于计数\n    [Symbol.iterator]() {\n        this.count = this.start;\n        return this;\n    },\n    next() {\n        if (this.count \u003c= this.end) {\n            return {\n                value: this.count++,\n                done: false\n            }\n        } else {\n            return {\n                done: true\n            }\n        }\n    }\n};\n\nfor (let num of obj) {\n    console.log(num);\n};\n```\n\n这里的`[Symbol.iterator]()`定义为`obj`的一个属性，同时`[Symbol.iterator]()`需要返回一个带有`next()`方法的对象。所以直接将`next()`方法定义在`obj`身上，`[Symbol.iterator]()`通过返回this来返回这个对象。\n\n这样的写法会比在外部定义`[Symbol.iterator]()`方法更加简洁，this指向也更加清晰。但是在`[Symbol.iterator]()`方法中定义的属性会被添加到`obj`上。\n\n```js\nobj.count // 6\n```\n\n并且迭代器只用一个，现在不能在该对象上同时运行多个`for...of`循环了，它们将共享迭代状态，因为只有一个迭代器，即对象本身。但是两个并行的 for..of 是很罕见的，即使在异步情况下。\n\n\u003e 无穷迭代器\n\u003e 无穷迭代器也是可能的。例如，将`obj`设置为`obj.to = Infinity`，这时`obj`则成为了无穷迭代器。或者我们可以创建一个可迭代对象，它生成一个无穷伪随机数序列。也是可能的。\n\u003e `next`没有什么限制，它可以返回越来越多的值，这是正常的。\n\u003e 当然，迭代这种对象的`for..of`循环将不会停止。但是我们可以通过使用`break`来停止它。\n\n### 展开语法\n\n展开语法(Spread syntax), 可以在函数调用/数组构造时, 将数组表达式或者string在语法层面展开；还可以在构造字面量对象时, 将对象表达式按key-value的方式展开。\n\n字面量也就是常见的`[1, 2, 3]`或者`{name: \"mdn\"}`这种简洁的构造方式。\n\n展开语法与`for...of`及其相似，无法迭代的对象也无法使用展开语法。错误信息也是一样：\n\n![](../images/JavaScript-可迭代对象与for-of/2020-10-29-10-17-49.webp)\n\n展开语法不仅仅只是和`for...of`行为比较像，它还有更多的用法。不过在此赘述也是没有多少意义了。\n\n## 可迭代的字符串\n\n在我最早学习js的基本类型的时候，就被告知字符串可以被循环处理。类似于这样：\n\n```js\nlet str = 'xfy';\nfor (let i = 0; i \u003c str.length; i++) {\n    console.log(str[i]);\n}\n// x, f, y;\n```\n\n虽然无法理解是什么一回事，但当时就感觉字符串和数组很相似，非常神奇。\n\n根据包装对象的原理，很容易就联想到字符串可迭代是因为其构造函数`String`可迭代（当然也有length属性）。要验证这非常简单，只需要找下`String`上有没有迭代器必备的`[Symbol.iterator]()`方法就可以了。\n\n虽然包装对象的过程我们无法看到，但是我们可以对一个字符串的原型链向上寻找就ok了。直接调用其原型链上的方法便会触发包装对象，就像调用`toString()`一样，\n\n```js\nlet str = 'xfy';\nstr.__proto__[Symbol.iterator];\n```\n\n直接访问原型链上的`[Symbol.iterator]()`方法，就会发现有这个方法存在，正是有它的存在，字符串才是可迭代的。\n\n### 显式调用迭代器\n\n为了能够更加深入的了解迭代器的工作，我们可以不使用`for...of`，反而使用显式的去操作迭代器：\n\n```js\nlet str = 'xfy';\n\n// 接收迭代器\nlet iterator = str[Symbol.iterator]();\nlet res;\n\nwhile(true) {\n    res = iterator.next();\n    if (res.done) break;\n    console.log(res.value);\n}\n```\n\n只要弄弄清楚了迭代器的工作方式，就能很轻松的理解显式调用。最终我们根据`next()`方法返回的固定格式的值来判断什么适合需要跳出循环以及取值。\n\n正常情况下我们不需要显式的去迭代一个对象，但是这样做比`for...of`给了我们更多的控制权。我们可以拆分迭代的步骤，并在中途做一些其他的事情。\n\n## 可迭代与类数组\n\n可迭代对象与类数组很相似，但他们是两种不同的对象，有着不同的正式术语：\n\n- **Iterable** 如上所述，是实现了 `Symbol.iterator` 方法的对象。\n- **Array-like** 是有索引和 `length` 属性的对象，所以它们看起来很像数组。\n\n当然也有两种特性都有的对象，例如字符串就是可迭代同时也是类数组（有数值索引和 `length` 属性）。\n\n当光是类数组的对象是无法迭代的\n\n```js\nlet obj = {\n    0: 'x',\n    1: 'f',\n    2: 'y',\n    length: 3\n}\n// Uncaught TypeError: object is not iterable\n[...obj];\n```\n\n可迭代对象和类数组对象通常都**不是数组**，他们也没有数组的一些方法。不过出了字符串以外，我们手动创建的类数组可以使用`call`来改变数组方法的指向，从而使其能够使用一些数组的方法：\n\n```js\nArray.prototype.push.call(obj, 1);\nobj[3];\n// 1\n```\n\n而包装后的字符串其`length`属性是只读的，所以我们无法通过数组的方法去操作它：\n\n```js\nlet str = 'xfy';\n// Uncaught TypeError: Cannot assign to read only\nArray.prototype.push.call(str, 1);\n```\n\n### Array.from\n\n`Array.from`可以从一个类似数组或可迭代对象创建一个新的，浅拷贝的数组实例。通过创建一个浅拷贝的数组，就可以对其使用数组的方法了。\n\n```js\nlet obj = {\n    0: 'x',\n    1: 'f',\n    2: 'y',\n    length: 3\n};\n\nlet arr = Array.from(obj);\n\narr.push('嘤嘤嘤');\n```\n\nArray.from 方法接受对象，检查它是一个可迭代对象或类数组对象，然后创建一个新数组，并将该对象的所有元素浅拷贝到这个新数组。可迭代的对象也是同理。\n\n```js\nlet obj = {\n    0: 'x',\n    1: 'f',\n    [Symbol.iterator]() {\n        this.sw = true;\n        return this;\n    },\n    next() {\n        if (this.sw) {\n            this.sw = false;\n            return {\n                value: Object.keys(this),\n                done: false\n            }\n        } else {\n            return {\n                done: true\n            }\n        }\n    }\n}\n\nlet arr = Array.from(obj);\n```\n\n`Array.from`还有一个可选的参数，提供了类似于`forEach`的参数选项。\n\n```js\nArray.from(obj[, mapFn, thisArg])\n```\n\n可选的第二个参数 `mapFn` 可以是一个函数，该函数会在对象中的元素被添加到数组前，被应用于每个元素，此外 `thisArg` 允许我们为该函数设置 `this`。\n\n```js\nArray.from([1, 2, 3], x =\u003e x + x);\n// [2, 4, 6]\n```\n\n### 可用于代理对\n\n对于代理对（surrogate pairs）（ UTF-16 的扩展字符），`Array.from`也可以正常识别并拷贝为数组。对于普通的字符串，虽然能够使用`slice()`方法，但是对于代理对的操作会导致乱码，两个不同 UTF-16 扩展字符碎片拼接的结果。\n\n```js\nlet str = '𝒳😂𩷶';\n\nconsole.log(str);\n// \"𝒳😂𩷶\"\nstr.slice(1,3)\n// \"��\"\n```\n\n我们可以利用`Array.from`对代理对的正确操作特性来重写创建代理感知（surrogate-aware）的`slice`方法。\n\n```js\nlet str = '𝒳😂𩷶';\nfunction aSlice(arr, star, end) {\n    return Array.from(arr).slice(star, end).join('');\n}\n```\n\n## 总结\n\n可以应用 `for..of` 的对象被称为 **可迭代的**。\n\n- 技术上来说，可迭代对象必须实现 `Symbol.iterator`方法。\n  - `obj[Symbol.iterator]` 的结果被称为 **迭代器（iterator）**。由它处理进一步的迭代过程。\n  - 一个迭代器必须有 `next()` 方法，它返回一个 `{done: Boolean, value: any}` 对象，这里 `done:true` 表明迭代结束，否则 `value` 就是下一个值。\n- `Symbol.iterator` 方法会被 `for..of` 自动调用，但我们也可以直接调用它。\n- 展开语法的操作结果与`for..of`类似。\n- 内置的可迭代对象例如字符串和数组，都实现了 `Symbol.iterator`。\n- 字符串迭代器能够识别代理对（surrogate pair）。\n\n有索引属性和 `length` 属性的对象被称为 **类数组对象**。这种对象可能还具有其他属性和方法，但是没有数组的内建方法。\n\n## 补充\n\n### this\n\n```ts\nconst ourOwnIterator = {\n  next() {\n    return {\n      value: \"It's works.\",\n      done: true,\n    };\n  },\n};\nconst myIteratorable = {\n  values: 0,\n  [Symbol.iterator]() {\n    // iterator 得将 this return 出去，next 方法才能使用 this\n    return this;\n  },\n  next() {\n    if (this.values === 10) {\n      return {\n        value: null,\n        done: true,\n      };\n    } else {\n      return {\n        value: this.values++,\n        done: false,\n      };\n    }\n  },\n};\nfor (let i of myIteratorable) {\n  console.log(i);\n}\n```\n\n\u003e 2021年4月5日 00点28分\n\n## 参考\u0026推荐\n\n* [迭代协议](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Iteration_protocols)\n* [迭代器和生成器](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Iterators_and_Generators)\n* [yield*](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/yield*)\n* [展开语法](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Spread_syntax)\n* [Iterable object（可迭代对象）](https://zh.javascript.info/iterable)","desc":"Iterable object（可迭代对象）\n\n可迭代（Iterable） 对象是数组的泛化。这个概念是说任何对象都可以被定制为可在for...of循环中使用的对象。数组是可迭代的。但不仅仅是数组，很...","title":"JavaScript-可迭代对象与 for-of","date":"2020-10-29T17:15:48.000Z","tags":"JavaScript","categories":"笔记","url":"javascript-iterable-object-and-for-of","index_img":"/images/JavaScript-可迭代对象与for-of/logo.webp"}},"__N_SSG":true},"page":"/p/[slug]","query":{"slug":"javascript-iterable-object-and-for-of"},"buildId":"k6NIc4JfXUsE09z9QnALx","isFallback":false,"dynamicIds":[3419,6929,9125,3780,1189,2980,5106],"gsp":true,"scriptLoader":[]}</script></body></html>

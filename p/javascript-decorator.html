@@ -1,0 +1,375 @@
+<!DOCTYPE html><html lang="en"><head><meta name="viewport" content="width=device-width"/><meta charSet="utf-8"/><link rel="shortcut icon" href="/images/img/favicon.webp"/><meta name="keywords" content="Blog RUA"/><meta name="description" content="Personal blog."/><meta name="author" content="Arthur,i@rua.plus"/><title>RUA - JavaScript 装饰器模式🎊</title><meta name="next-head-count" content="7"/><link rel="preload" href="/_next/static/css/39834862c769c308.css" as="style"/><link rel="stylesheet" href="/_next/static/css/39834862c769c308.css" data-n-g=""/><link rel="preload" href="/_next/static/css/c2a527101433f11d.css" as="style"/><link rel="stylesheet" href="/_next/static/css/c2a527101433f11d.css" data-n-p=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/_next/static/chunks/polyfills-5cd94c89d3acac5f.js"></script><script defer="" src="/_next/static/chunks/219-ddf2abc0472da9bd.js"></script><script defer="" src="/_next/static/chunks/419.d5302bfd9d8378c2.js"></script><script defer="" src="/_next/static/chunks/771.84a2737df445ba88.js"></script><script defer="" src="/_next/static/chunks/929.b2c0b4f7606bfefe.js"></script><script defer="" src="/_next/static/chunks/125.4ff7adc183744312.js"></script><script defer="" src="/_next/static/chunks/485-3e3bf066e6f4a6bd.js"></script><script defer="" src="/_next/static/chunks/189.ee2e569101c160eb.js"></script><script defer="" src="/_next/static/chunks/980.41f5e97cd35a6621.js"></script><script defer="" src="/_next/static/chunks/106.7a94988fd220337e.js"></script><script src="/_next/static/chunks/webpack-c08977534ec7c137.js" defer=""></script><script src="/_next/static/chunks/framework-5cd9e2157a4a6aee.js" defer=""></script><script src="/_next/static/chunks/main-472dbb675bbf7f67.js" defer=""></script><script src="/_next/static/chunks/pages/_app-a34fa0ed9496fbe8.js" defer=""></script><script src="/_next/static/chunks/84-43981acebe84e1d3.js" defer=""></script><script src="/_next/static/chunks/pages/p/%5Bslug%5D-684bfb16186b52fe.js" defer=""></script><script src="/_next/static/k6NIc4JfXUsE09z9QnALx/_buildManifest.js" defer=""></script><script src="/_next/static/k6NIc4JfXUsE09z9QnALx/_ssgManifest.js" defer=""></script><script src="/_next/static/k6NIc4JfXUsE09z9QnALx/_middlewareManifest.js" defer=""></script></head><body><script>(function setScript(initialValue) {
+  var mql = window.matchMedia("(prefers-color-scheme: dark)");
+  var systemPreference = mql.matches ? "dark" : "light";
+  var persistedPreference;
+
+  try {
+    persistedPreference = localStorage.getItem("chakra-ui-color-mode");
+  } catch (error) {
+    console.log("Chakra UI: localStorage is not available. Color mode persistence might not work as expected");
+  }
+
+  var isInStorage = typeof persistedPreference === "string";
+  var colorMode;
+
+  if (isInStorage) {
+    colorMode = persistedPreference;
+  } else {
+    colorMode = initialValue === "system" ? systemPreference : initialValue;
+  }
+
+  if (colorMode) {
+    var root = document.documentElement;
+    root.style.setProperty("--chakra-ui-color-mode", colorMode);
+  }
+})('light')</script><div id="__next"><style data-emotion="css-global 1r47v8">:host,:root{--chakra-ring-inset:var(--chakra-empty,/*!*/ /*!*/);--chakra-ring-offset-width:0px;--chakra-ring-offset-color:#fff;--chakra-ring-color:rgba(66, 153, 225, 0.6);--chakra-ring-offset-shadow:0 0 #0000;--chakra-ring-shadow:0 0 #0000;--chakra-space-x-reverse:0;--chakra-space-y-reverse:0;--chakra-colors-transparent:transparent;--chakra-colors-current:currentColor;--chakra-colors-black:#000000;--chakra-colors-white:#FFFFFF;--chakra-colors-whiteAlpha-50:rgba(255, 255, 255, 0.04);--chakra-colors-whiteAlpha-100:rgba(255, 255, 255, 0.06);--chakra-colors-whiteAlpha-200:rgba(255, 255, 255, 0.08);--chakra-colors-whiteAlpha-300:rgba(255, 255, 255, 0.16);--chakra-colors-whiteAlpha-400:rgba(255, 255, 255, 0.24);--chakra-colors-whiteAlpha-500:rgba(255, 255, 255, 0.36);--chakra-colors-whiteAlpha-600:rgba(255, 255, 255, 0.48);--chakra-colors-whiteAlpha-700:rgba(255, 255, 255, 0.64);--chakra-colors-whiteAlpha-800:rgba(255, 255, 255, 0.80);--chakra-colors-whiteAlpha-900:rgba(255, 255, 255, 0.92);--chakra-colors-blackAlpha-50:rgba(0, 0, 0, 0.04);--chakra-colors-blackAlpha-100:rgba(0, 0, 0, 0.06);--chakra-colors-blackAlpha-200:rgba(0, 0, 0, 0.08);--chakra-colors-blackAlpha-300:rgba(0, 0, 0, 0.16);--chakra-colors-blackAlpha-400:rgba(0, 0, 0, 0.24);--chakra-colors-blackAlpha-500:rgba(0, 0, 0, 0.36);--chakra-colors-blackAlpha-600:rgba(0, 0, 0, 0.48);--chakra-colors-blackAlpha-700:rgba(0, 0, 0, 0.64);--chakra-colors-blackAlpha-800:rgba(0, 0, 0, 0.80);--chakra-colors-blackAlpha-900:rgba(0, 0, 0, 0.92);--chakra-colors-gray-50:#F7FAFC;--chakra-colors-gray-100:#EDF2F7;--chakra-colors-gray-200:#E2E8F0;--chakra-colors-gray-300:#CBD5E0;--chakra-colors-gray-400:#A0AEC0;--chakra-colors-gray-500:#718096;--chakra-colors-gray-600:#4A5568;--chakra-colors-gray-700:#2D3748;--chakra-colors-gray-800:#1A202C;--chakra-colors-gray-900:#171923;--chakra-colors-red-50:#FFF5F5;--chakra-colors-red-100:#FED7D7;--chakra-colors-red-200:#FEB2B2;--chakra-colors-red-300:#FC8181;--chakra-colors-red-400:#F56565;--chakra-colors-red-500:#E53E3E;--chakra-colors-red-600:#C53030;--chakra-colors-red-700:#9B2C2C;--chakra-colors-red-800:#822727;--chakra-colors-red-900:#63171B;--chakra-colors-orange-50:#FFFAF0;--chakra-colors-orange-100:#FEEBC8;--chakra-colors-orange-200:#FBD38D;--chakra-colors-orange-300:#F6AD55;--chakra-colors-orange-400:#ED8936;--chakra-colors-orange-500:#DD6B20;--chakra-colors-orange-600:#C05621;--chakra-colors-orange-700:#9C4221;--chakra-colors-orange-800:#7B341E;--chakra-colors-orange-900:#652B19;--chakra-colors-yellow-50:#FFFFF0;--chakra-colors-yellow-100:#FEFCBF;--chakra-colors-yellow-200:#FAF089;--chakra-colors-yellow-300:#F6E05E;--chakra-colors-yellow-400:#ECC94B;--chakra-colors-yellow-500:#D69E2E;--chakra-colors-yellow-600:#B7791F;--chakra-colors-yellow-700:#975A16;--chakra-colors-yellow-800:#744210;--chakra-colors-yellow-900:#5F370E;--chakra-colors-green-50:#F0FFF4;--chakra-colors-green-100:#C6F6D5;--chakra-colors-green-200:#9AE6B4;--chakra-colors-green-300:#68D391;--chakra-colors-green-400:#48BB78;--chakra-colors-green-500:#38A169;--chakra-colors-green-600:#2F855A;--chakra-colors-green-700:#276749;--chakra-colors-green-800:#22543D;--chakra-colors-green-900:#1C4532;--chakra-colors-teal-50:#E6FFFA;--chakra-colors-teal-100:#B2F5EA;--chakra-colors-teal-200:#81E6D9;--chakra-colors-teal-300:#4FD1C5;--chakra-colors-teal-400:#38B2AC;--chakra-colors-teal-500:#319795;--chakra-colors-teal-600:#2C7A7B;--chakra-colors-teal-700:#285E61;--chakra-colors-teal-800:#234E52;--chakra-colors-teal-900:#1D4044;--chakra-colors-blue-50:#ebf8ff;--chakra-colors-blue-100:#bee3f8;--chakra-colors-blue-200:#90cdf4;--chakra-colors-blue-300:#63b3ed;--chakra-colors-blue-400:#4299e1;--chakra-colors-blue-500:#3182ce;--chakra-colors-blue-600:#2b6cb0;--chakra-colors-blue-700:#2c5282;--chakra-colors-blue-800:#2a4365;--chakra-colors-blue-900:#1A365D;--chakra-colors-cyan-50:#EDFDFD;--chakra-colors-cyan-100:#C4F1F9;--chakra-colors-cyan-200:#9DECF9;--chakra-colors-cyan-300:#76E4F7;--chakra-colors-cyan-400:#0BC5EA;--chakra-colors-cyan-500:#00B5D8;--chakra-colors-cyan-600:#00A3C4;--chakra-colors-cyan-700:#0987A0;--chakra-colors-cyan-800:#086F83;--chakra-colors-cyan-900:#065666;--chakra-colors-purple-50:#FAF5FF;--chakra-colors-purple-100:#E9D8FD;--chakra-colors-purple-200:#D6BCFA;--chakra-colors-purple-300:#B794F4;--chakra-colors-purple-400:#9F7AEA;--chakra-colors-purple-500:#805AD5;--chakra-colors-purple-600:#6B46C1;--chakra-colors-purple-700:#553C9A;--chakra-colors-purple-800:#44337A;--chakra-colors-purple-900:#322659;--chakra-colors-pink-50:#FFF5F7;--chakra-colors-pink-100:#FED7E2;--chakra-colors-pink-200:#FBB6CE;--chakra-colors-pink-300:#F687B3;--chakra-colors-pink-400:#ED64A6;--chakra-colors-pink-500:#D53F8C;--chakra-colors-pink-600:#B83280;--chakra-colors-pink-700:#97266D;--chakra-colors-pink-800:#702459;--chakra-colors-pink-900:#521B41;--chakra-colors-linkedin-50:#E8F4F9;--chakra-colors-linkedin-100:#CFEDFB;--chakra-colors-linkedin-200:#9BDAF3;--chakra-colors-linkedin-300:#68C7EC;--chakra-colors-linkedin-400:#34B3E4;--chakra-colors-linkedin-500:#00A0DC;--chakra-colors-linkedin-600:#008CC9;--chakra-colors-linkedin-700:#0077B5;--chakra-colors-linkedin-800:#005E93;--chakra-colors-linkedin-900:#004471;--chakra-colors-facebook-50:#E8F4F9;--chakra-colors-facebook-100:#D9DEE9;--chakra-colors-facebook-200:#B7C2DA;--chakra-colors-facebook-300:#6482C0;--chakra-colors-facebook-400:#4267B2;--chakra-colors-facebook-500:#385898;--chakra-colors-facebook-600:#314E89;--chakra-colors-facebook-700:#29487D;--chakra-colors-facebook-800:#223B67;--chakra-colors-facebook-900:#1E355B;--chakra-colors-messenger-50:#D0E6FF;--chakra-colors-messenger-100:#B9DAFF;--chakra-colors-messenger-200:#A2CDFF;--chakra-colors-messenger-300:#7AB8FF;--chakra-colors-messenger-400:#2E90FF;--chakra-colors-messenger-500:#0078FF;--chakra-colors-messenger-600:#0063D1;--chakra-colors-messenger-700:#0052AC;--chakra-colors-messenger-800:#003C7E;--chakra-colors-messenger-900:#002C5C;--chakra-colors-whatsapp-50:#dffeec;--chakra-colors-whatsapp-100:#b9f5d0;--chakra-colors-whatsapp-200:#90edb3;--chakra-colors-whatsapp-300:#65e495;--chakra-colors-whatsapp-400:#3cdd78;--chakra-colors-whatsapp-500:#22c35e;--chakra-colors-whatsapp-600:#179848;--chakra-colors-whatsapp-700:#0c6c33;--chakra-colors-whatsapp-800:#01421c;--chakra-colors-whatsapp-900:#001803;--chakra-colors-twitter-50:#E5F4FD;--chakra-colors-twitter-100:#C8E9FB;--chakra-colors-twitter-200:#A8DCFA;--chakra-colors-twitter-300:#83CDF7;--chakra-colors-twitter-400:#57BBF5;--chakra-colors-twitter-500:#1DA1F2;--chakra-colors-twitter-600:#1A94DA;--chakra-colors-twitter-700:#1681BF;--chakra-colors-twitter-800:#136B9E;--chakra-colors-twitter-900:#0D4D71;--chakra-colors-telegram-50:#E3F2F9;--chakra-colors-telegram-100:#C5E4F3;--chakra-colors-telegram-200:#A2D4EC;--chakra-colors-telegram-300:#7AC1E4;--chakra-colors-telegram-400:#47A9DA;--chakra-colors-telegram-500:#0088CC;--chakra-colors-telegram-600:#007AB8;--chakra-colors-telegram-700:#006BA1;--chakra-colors-telegram-800:#005885;--chakra-colors-telegram-900:#003F5E;--chakra-colors-home-bg:#f5f5fa;--chakra-borders-none:0;--chakra-borders-1px:1px solid;--chakra-borders-2px:2px solid;--chakra-borders-4px:4px solid;--chakra-borders-8px:8px solid;--chakra-fonts-heading:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";--chakra-fonts-body:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Helvetica,Segoe UI,Arial,Roboto,'PingFang SC',miui,'Hiragino Sans GB','Microsoft Yahei',sans-serif;--chakra-fonts-mono:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;--chakra-fontSizes-xs:0.75rem;--chakra-fontSizes-sm:0.875rem;--chakra-fontSizes-md:1rem;--chakra-fontSizes-lg:1.125rem;--chakra-fontSizes-xl:1.25rem;--chakra-fontSizes-2xl:1.5rem;--chakra-fontSizes-3xl:1.875rem;--chakra-fontSizes-4xl:2.25rem;--chakra-fontSizes-5xl:3rem;--chakra-fontSizes-6xl:3.75rem;--chakra-fontSizes-7xl:4.5rem;--chakra-fontSizes-8xl:6rem;--chakra-fontSizes-9xl:8rem;--chakra-fontWeights-hairline:100;--chakra-fontWeights-thin:200;--chakra-fontWeights-light:300;--chakra-fontWeights-normal:400;--chakra-fontWeights-medium:500;--chakra-fontWeights-semibold:600;--chakra-fontWeights-bold:700;--chakra-fontWeights-extrabold:800;--chakra-fontWeights-black:900;--chakra-letterSpacings-tighter:-0.05em;--chakra-letterSpacings-tight:-0.025em;--chakra-letterSpacings-normal:0;--chakra-letterSpacings-wide:0.025em;--chakra-letterSpacings-wider:0.05em;--chakra-letterSpacings-widest:0.1em;--chakra-lineHeights-3:.75rem;--chakra-lineHeights-4:1rem;--chakra-lineHeights-5:1.25rem;--chakra-lineHeights-6:1.5rem;--chakra-lineHeights-7:1.75rem;--chakra-lineHeights-8:2rem;--chakra-lineHeights-9:2.25rem;--chakra-lineHeights-10:2.5rem;--chakra-lineHeights-normal:normal;--chakra-lineHeights-none:1;--chakra-lineHeights-shorter:1.25;--chakra-lineHeights-short:1.375;--chakra-lineHeights-base:1.5;--chakra-lineHeights-tall:1.625;--chakra-lineHeights-taller:2;--chakra-radii-none:0;--chakra-radii-sm:0.125rem;--chakra-radii-base:0.25rem;--chakra-radii-md:0.375rem;--chakra-radii-lg:0.5rem;--chakra-radii-xl:0.75rem;--chakra-radii-2xl:1rem;--chakra-radii-3xl:1.5rem;--chakra-radii-full:9999px;--chakra-space-1:0.25rem;--chakra-space-2:0.5rem;--chakra-space-3:0.75rem;--chakra-space-4:1rem;--chakra-space-5:1.25rem;--chakra-space-6:1.5rem;--chakra-space-7:1.75rem;--chakra-space-8:2rem;--chakra-space-9:2.25rem;--chakra-space-10:2.5rem;--chakra-space-12:3rem;--chakra-space-14:3.5rem;--chakra-space-16:4rem;--chakra-space-20:5rem;--chakra-space-24:6rem;--chakra-space-28:7rem;--chakra-space-32:8rem;--chakra-space-36:9rem;--chakra-space-40:10rem;--chakra-space-44:11rem;--chakra-space-48:12rem;--chakra-space-52:13rem;--chakra-space-56:14rem;--chakra-space-60:15rem;--chakra-space-64:16rem;--chakra-space-72:18rem;--chakra-space-80:20rem;--chakra-space-96:24rem;--chakra-space-px:1px;--chakra-space-0\.5:0.125rem;--chakra-space-1\.5:0.375rem;--chakra-space-2\.5:0.625rem;--chakra-space-3\.5:0.875rem;--chakra-shadows-xs:0 0 0 1px rgba(0, 0, 0, 0.05);--chakra-shadows-sm:0 1px 2px 0 rgba(0, 0, 0, 0.05);--chakra-shadows-base:0 1px 3px 0 rgba(0, 0, 0, 0.1),0 1px 2px 0 rgba(0, 0, 0, 0.06);--chakra-shadows-md:0 4px 6px -1px rgba(0, 0, 0, 0.1),0 2px 4px -1px rgba(0, 0, 0, 0.06);--chakra-shadows-lg:0 10px 15px -3px rgba(0, 0, 0, 0.1),0 4px 6px -2px rgba(0, 0, 0, 0.05);--chakra-shadows-xl:0 20px 25px -5px rgba(0, 0, 0, 0.1),0 10px 10px -5px rgba(0, 0, 0, 0.04);--chakra-shadows-2xl:0 25px 50px -12px rgba(0, 0, 0, 0.25);--chakra-shadows-outline:0 0 0 3px rgba(66, 153, 225, 0.6);--chakra-shadows-inner:inset 0 2px 4px 0 rgba(0,0,0,0.06);--chakra-shadows-none:none;--chakra-shadows-dark-lg:rgba(0, 0, 0, 0.1) 0px 0px 0px 1px,rgba(0, 0, 0, 0.2) 0px 5px 10px,rgba(0, 0, 0, 0.4) 0px 15px 40px;--chakra-shadows-card:0px 4px 8px rgba(0, 0, 0, 0.04),0px 0px 2px rgba(0, 0, 0, 0.06),0px 0px 1px rgba(0, 0, 0, 0.04);--chakra-sizes-1:0.25rem;--chakra-sizes-2:0.5rem;--chakra-sizes-3:0.75rem;--chakra-sizes-4:1rem;--chakra-sizes-5:1.25rem;--chakra-sizes-6:1.5rem;--chakra-sizes-7:1.75rem;--chakra-sizes-8:2rem;--chakra-sizes-9:2.25rem;--chakra-sizes-10:2.5rem;--chakra-sizes-12:3rem;--chakra-sizes-14:3.5rem;--chakra-sizes-16:4rem;--chakra-sizes-20:5rem;--chakra-sizes-24:6rem;--chakra-sizes-28:7rem;--chakra-sizes-32:8rem;--chakra-sizes-36:9rem;--chakra-sizes-40:10rem;--chakra-sizes-44:11rem;--chakra-sizes-48:12rem;--chakra-sizes-52:13rem;--chakra-sizes-56:14rem;--chakra-sizes-60:15rem;--chakra-sizes-64:16rem;--chakra-sizes-72:18rem;--chakra-sizes-80:20rem;--chakra-sizes-96:24rem;--chakra-sizes-px:1px;--chakra-sizes-0\.5:0.125rem;--chakra-sizes-1\.5:0.375rem;--chakra-sizes-2\.5:0.625rem;--chakra-sizes-3\.5:0.875rem;--chakra-sizes-max:max-content;--chakra-sizes-min:min-content;--chakra-sizes-full:100%;--chakra-sizes-3xs:14rem;--chakra-sizes-2xs:16rem;--chakra-sizes-xs:20rem;--chakra-sizes-sm:24rem;--chakra-sizes-md:28rem;--chakra-sizes-lg:32rem;--chakra-sizes-xl:36rem;--chakra-sizes-2xl:42rem;--chakra-sizes-3xl:48rem;--chakra-sizes-4xl:56rem;--chakra-sizes-5xl:64rem;--chakra-sizes-6xl:72rem;--chakra-sizes-7xl:80rem;--chakra-sizes-8xl:90rem;--chakra-sizes-container-sm:640px;--chakra-sizes-container-md:768px;--chakra-sizes-container-lg:1024px;--chakra-sizes-container-xl:1280px;--chakra-zIndices-hide:-1;--chakra-zIndices-auto:auto;--chakra-zIndices-base:0;--chakra-zIndices-docked:10;--chakra-zIndices-dropdown:1000;--chakra-zIndices-sticky:1100;--chakra-zIndices-banner:1200;--chakra-zIndices-overlay:1300;--chakra-zIndices-modal:1400;--chakra-zIndices-popover:1500;--chakra-zIndices-skipLink:1600;--chakra-zIndices-toast:1700;--chakra-zIndices-tooltip:1800;--chakra-transition-property-common:background-color,border-color,color,fill,stroke,opacity,box-shadow,transform;--chakra-transition-property-colors:background-color,border-color,color,fill,stroke;--chakra-transition-property-dimensions:width,height;--chakra-transition-property-position:left,right,top,bottom;--chakra-transition-property-background:background-color,background-image,background-position;--chakra-transition-easing-ease-in:cubic-bezier(0.4, 0, 1, 1);--chakra-transition-easing-ease-out:cubic-bezier(0, 0, 0.2, 1);--chakra-transition-easing-ease-in-out:cubic-bezier(0.4, 0, 0.2, 1);--chakra-transition-duration-ultra-fast:50ms;--chakra-transition-duration-faster:100ms;--chakra-transition-duration-fast:150ms;--chakra-transition-duration-normal:200ms;--chakra-transition-duration-slow:300ms;--chakra-transition-duration-slower:400ms;--chakra-transition-duration-ultra-slow:500ms;--chakra-blur-none:0;--chakra-blur-sm:4px;--chakra-blur-base:8px;--chakra-blur-md:12px;--chakra-blur-lg:16px;--chakra-blur-xl:24px;--chakra-blur-2xl:40px;--chakra-blur-3xl:64px;}</style><style data-emotion="css-global 1jqlf9g">html{line-height:1.5;-webkit-text-size-adjust:100%;font-family:system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;-moz-osx-font-smoothing:grayscale;touch-action:manipulation;}body{position:relative;min-height:100%;font-feature-settings:'kern';}*,*::before,*::after{border-width:0;border-style:solid;box-sizing:border-box;}main{display:block;}hr{border-top-width:1px;box-sizing:content-box;height:0;overflow:visible;}pre,code,kbd,samp{font-family:SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:1em;}a{background-color:transparent;color:inherit;-webkit-text-decoration:inherit;text-decoration:inherit;}abbr[title]{border-bottom:none;-webkit-text-decoration:underline;text-decoration:underline;-webkit-text-decoration:underline dotted;-webkit-text-decoration:underline dotted;text-decoration:underline dotted;}b,strong{font-weight:bold;}small{font-size:80%;}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline;}sub{bottom:-0.25em;}sup{top:-0.5em;}img{border-style:none;}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0;}button,input{overflow:visible;}button,select{text-transform:none;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner{border-style:none;padding:0;}fieldset{padding:0.35em 0.75em 0.625em;}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal;}progress{vertical-align:baseline;}textarea{overflow:auto;}[type="checkbox"],[type="radio"]{box-sizing:border-box;padding:0;}[type="number"]::-webkit-inner-spin-button,[type="number"]::-webkit-outer-spin-button{-webkit-appearance:none!important;}input[type="number"]{-moz-appearance:textfield;}[type="search"]{-webkit-appearance:textfield;outline-offset:-2px;}[type="search"]::-webkit-search-decoration{-webkit-appearance:none!important;}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit;}details{display:block;}summary{display:-webkit-box;display:-webkit-list-item;display:-ms-list-itembox;display:list-item;}template{display:none;}[hidden]{display:none!important;}body,blockquote,dl,dd,h1,h2,h3,h4,h5,h6,hr,figure,p,pre{margin:0;}button{background:transparent;padding:0;}fieldset{margin:0;padding:0;}ol,ul{margin:0;padding:0;}textarea{resize:vertical;}button,[role="button"]{cursor:pointer;}button::-moz-focus-inner{border:0!important;}table{border-collapse:collapse;}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit;}button,input,optgroup,select,textarea{padding:0;line-height:inherit;color:inherit;}img,svg,video,canvas,audio,iframe,embed,object{display:block;}img,video{max-width:100%;height:auto;}[data-js-focus-visible] :focus:not([data-focus-visible-added]){outline:none;box-shadow:none;}select::-ms-expand{display:none;}</style><style data-emotion="css-global 1of8e4g">body{font-family:var(--chakra-fonts-body);color:var(--chakra-colors-gray-800);background:var(--chakra-colors-white);transition-property:background-color;transition-duration:var(--chakra-transition-duration-normal);line-height:var(--chakra-lineHeights-base);}*::-webkit-input-placeholder{color:var(--chakra-colors-gray-400);}*::-moz-placeholder{color:var(--chakra-colors-gray-400);}*:-ms-input-placeholder{color:var(--chakra-colors-gray-400);}*::placeholder{color:var(--chakra-colors-gray-400);}*,*::before,::after{border-color:var(--chakra-colors-gray-200);word-wrap:break-word;}html,body{background:var(--chakra-colors-home-bg);}img,#write iframe{-webkit-filter:unset;filter:unset;transition-property:filter;transition-duration:var(--chakra-transition-duration-normal);}div{transition-property:background-color;transition-duration:var(--chakra-transition-duration-normal);}</style><style data-emotion="css 1ghv3an">.css-1ghv3an{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:flex-start;-webkit-box-align:flex-start;-ms-flex-align:flex-start;align-items:flex-start;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;height:unset;overflow:auto;-webkit-box-flex-flow:column;-webkit-flex-flow:column;-ms-flex-flow:column;flex-flow:column;-webkit-padding-start:0.5rem;padding-inline-start:0.5rem;-webkit-padding-end:0.5rem;padding-inline-end:0.5rem;}@media screen and (min-width: 30em){.css-1ghv3an{height:unset;-webkit-box-flex-flow:column;-webkit-flex-flow:column;-ms-flex-flow:column;flex-flow:column;}}@media screen and (min-width: 48em){.css-1ghv3an{height:100vh;-webkit-box-flex-flow:row;-webkit-flex-flow:row;-ms-flex-flow:row;flex-flow:row;}}</style><div class="css-1ghv3an"><style data-emotion="css xte4wg">.css-xte4wg{display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;position:unset;white-space:nowrap;vertical-align:middle;outline:2px solid transparent;outline-offset:2px;width:auto;line-height:1.2;border-radius:var(--chakra-radii-md);font-weight:var(--chakra-fontWeights-semibold);transition-property:var(--chakra-transition-property-common);transition-duration:var(--chakra-transition-duration-normal);height:var(--chakra-sizes-12);min-width:var(--chakra-sizes-12);font-size:var(--chakra-fontSizes-lg);-webkit-padding-start:var(--chakra-space-6);padding-inline-start:var(--chakra-space-6);-webkit-padding-end:var(--chakra-space-6);padding-inline-end:var(--chakra-space-6);background:var(--chakra-colors-gray-100);margin-top:1rem;top:3rem;}@media screen and (min-width: 30em){.css-xte4wg{position:unset;margin-top:1rem;}}@media screen and (min-width: 48em){.css-xte4wg{position:-webkit-sticky;position:sticky;margin-top:3rem;}}.css-xte4wg:focus,.css-xte4wg[data-focus]{box-shadow:var(--chakra-shadows-outline);}.css-xte4wg[disabled],.css-xte4wg[aria-disabled=true],.css-xte4wg[data-disabled]{opacity:0.4;cursor:not-allowed;box-shadow:var(--chakra-shadows-none);}.css-xte4wg:hover,.css-xte4wg[data-hover]{background:var(--chakra-colors-gray-200);}.css-xte4wg:hover[disabled],.css-xte4wg[data-hover][disabled],.css-xte4wg:hover[aria-disabled=true],.css-xte4wg[data-hover][aria-disabled=true],.css-xte4wg:hover[data-disabled],.css-xte4wg[data-hover][data-disabled]{background:var(--chakra-colors-gray-100);}.css-xte4wg:active,.css-xte4wg[data-active]{background:var(--chakra-colors-gray-300);}</style><button type="button" class="chakra-button css-xte4wg">BACK</button><style data-emotion="css a06krq">.css-a06krq{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;width:var(--chakra-sizes-full);-webkit-box-flex-flow:column;-webkit-flex-flow:column;-ms-flex-flow:column;flex-flow:column;-webkit-padding-start:unset;padding-inline-start:unset;-webkit-padding-end:unset;padding-inline-end:unset;}@media screen and (min-width: 30em){.css-a06krq{width:var(--chakra-sizes-full);-webkit-padding-start:unset;padding-inline-start:unset;-webkit-padding-end:unset;padding-inline-end:unset;}}@media screen and (min-width: 48em){.css-a06krq{width:55rem;-webkit-padding-start:1.5rem;padding-inline-start:1.5rem;-webkit-padding-end:1.5rem;padding-inline-end:1.5rem;}}@media screen and (min-width: 62em){.css-a06krq{width:55rem;}}@media screen and (min-width: 80em){.css-a06krq{width:55rem;}}@media screen and (min-width: 96em){.css-a06krq{width:68rem;}}</style><div class="css-a06krq"><style data-emotion="css 1if659q">.css-1if659q{border-radius:10px;margin-top:1rem;box-shadow:var(--chakra-shadows-lg);background:var(--chakra-colors-white);overflow:hidden;-webkit-flex:1;-ms-flex:1;flex:1;}@media screen and (min-width: 30em){.css-1if659q{margin-top:1rem;}}@media screen and (min-width: 48em){.css-1if659q{margin-top:3rem;}}</style><div class="css-1if659q"><style data-emotion="css 81xunj">.css-81xunj{padding:1rem;}@media screen and (min-width: 30em){.css-81xunj{padding:1rem;}}@media screen and (min-width: 48em){.css-81xunj{padding:2rem;}}</style><article class="css-81xunj"><header class="css-0"><style data-emotion="css 1m7qnzk">.css-1m7qnzk{font-family:var(--chakra-fonts-heading);font-weight:var(--chakra-fontWeights-bold);font-size:var(--chakra-fontSizes-3xl);line-height:1.33;margin-bottom:1rem;color:rgba(0, 0, 0, 0.85);}@media screen and (min-width: 48em){.css-1m7qnzk{font-size:var(--chakra-fontSizes-4xl);line-height:1.2;}}</style><h1 class="chakra-heading css-1m7qnzk">JavaScript 装饰器模式🎊</h1><style data-emotion="css acwcvw">.css-acwcvw{margin-bottom:1rem;}</style><div class="css-acwcvw"><style data-emotion="css 1kpd5c2">.css-1kpd5c2{display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;vertical-align:top;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;max-width:100%;font-weight:var(--chakra-fontWeights-medium);line-height:1.2;outline:2px solid transparent;outline-offset:2px;min-height:1.5rem;min-width:1.5rem;font-size:var(--chakra-fontSizes-sm);border-radius:var(--chakra-radii-md);-webkit-padding-start:var(--chakra-space-2);padding-inline-start:var(--chakra-space-2);-webkit-padding-end:var(--chakra-space-2);padding-inline-end:var(--chakra-space-2);background:var(--chakra-colors-gray-100);color:var(--chakra-colors-gray-800);}.css-1kpd5c2:focus,.css-1kpd5c2[data-focus]{box-shadow:var(--chakra-shadows-outline);}</style><span class="css-1kpd5c2">JavaScript</span></div><style data-emotion="css x8djax">.css-x8djax{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;color:var(--chakra-colors-gray-600);}</style><div class="css-x8djax"><style data-emotion="css 1lr2xj">.css-1lr2xj{width:1em;height:1em;display:inline-block;line-height:1em;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;color:currentColor;margin-right:0.5rem;}</style><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" focusable="false" class="chakra-icon css-1lr2xj" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg><style data-emotion="css 129gw94">.css-129gw94{line-height:0;}</style><time dateTime="2021-03-09T20:36:26.000Z" class="css-129gw94">2021/03/09</time></div></header><style data-emotion="css i51og3">.css-i51og3{margin-top:2rem;}</style><section id="write" class="css-i51og3"><p>JavaScript 的函数非常灵活，它们可以被传递，用作对象。除了 this 难以捉摸以外。</p>
+<h2 id="装饰器">装饰器</h2>
+<p>装饰（decorate），将原函数作为一个参数传递给装饰器。利用函数闭包的特性，在父作用域中保存一些执行后的数据（缓存）或执行一些特殊操作。再将其返回出去，在这个返回的函数根据条件来执行原函数。</p>
+<p>在实际工作中常见到的函数防抖和节流就是装饰器的工作原理。</p>
+<h2 id="缓存装饰器">缓存装饰器</h2>
+<p>一个简单的透明缓存装饰器可以明确的让我们了解到装饰器的工作方式：</p>
+<pre><style data-emotion="css 19bp9bt">.css-19bp9bt{display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;position:absolute;white-space:nowrap;vertical-align:middle;outline:2px solid transparent;outline-offset:2px;width:auto;line-height:1.2;border-radius:var(--chakra-radii-md);font-weight:var(--chakra-fontWeights-semibold);transition-property:var(--chakra-transition-property-common);transition-duration:var(--chakra-transition-duration-normal);height:var(--chakra-sizes-6);min-width:var(--chakra-sizes-6);font-size:var(--chakra-fontSizes-xs);-webkit-padding-start:var(--chakra-space-2);padding-inline-start:var(--chakra-space-2);-webkit-padding-end:var(--chakra-space-2);padding-inline-end:var(--chakra-space-2);background:var(--chakra-colors-teal-500);color:var(--chakra-colors-white);top:5px;right:5px;}.css-19bp9bt:focus,.css-19bp9bt[data-focus]{box-shadow:var(--chakra-shadows-outline);}.css-19bp9bt[disabled],.css-19bp9bt[aria-disabled=true],.css-19bp9bt[data-disabled]{opacity:0.4;cursor:not-allowed;box-shadow:var(--chakra-shadows-none);}.css-19bp9bt:hover,.css-19bp9bt[data-hover]{background:var(--chakra-colors-teal-600);}.css-19bp9bt:hover[disabled],.css-19bp9bt[data-hover][disabled],.css-19bp9bt:hover[aria-disabled=true],.css-19bp9bt[data-hover][aria-disabled=true],.css-19bp9bt:hover[data-disabled],.css-19bp9bt[data-hover][data-disabled]{background:var(--chakra-colors-teal-500);}.css-19bp9bt:active,.css-19bp9bt[data-active]{background:var(--chakra-colors-teal-700);}</style><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-comment">// 一个工作缓慢的 slow 函数</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">slow</span>(<span class="hljs-params">ds</span>) {
+  <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">${ds}</span>`</span>;
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">cachingDcorator</span>(<span class="hljs-params">fn</span>) {
+  <span class="hljs-comment">// 创建一个 map 用于缓存</span>
+  <span class="hljs-keyword">let</span> cache = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Map</span>();
+  <span class="hljs-comment">// 返回一个闭包</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span>(<span class="hljs-params">ds</span>) {
+    <span class="hljs-comment">// 检查缓存中是否有结果</span>
+    <span class="hljs-keyword">if</span> (cache.<span class="hljs-title hljs-function">has</span>(ds)) {
+      <span class="hljs-keyword">return</span> cache.<span class="hljs-title hljs-function">get</span>(ds);
+    }
+    <span class="hljs-comment">// 没有缓存时，执行原函数，并记录缓存</span>
+    <span class="hljs-keyword">let</span> res = <span class="hljs-title hljs-function">fn</span>(ds);
+    cache.<span class="hljs-title hljs-function">set</span>(ds, res);
+    <span class="hljs-keyword">return</span> res;
+  }
+}
+<span class="hljs-comment">// 装饰</span>
+cacheSlow = <span class="hljs-title hljs-function">cachingDcorator</span>(slow);
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-title hljs-function">cacheSlow</span>(<span class="hljs-string">&#x27;124&#x27;</span>));
+</code></pre>
+<p>在装饰器 cachingDcorator 内，父作用域中创建了一个名为 cache 的 map 结构，利用闭包的特性就能够访问这个缓存对象。</p>
+<p>在每次执行时，都将检查是否有对应的缓存。如果有，则跳过执行原函数，直接返回缓存的数据，以减少函数的执行工作。</p>
+<p>上述简单的透明缓存装饰器还有一个问题：带有 this 时会失效。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> worker = {
+  <span class="hljs-title hljs-function">foo</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;嘤嘤嘤&#x27;</span>;
+  },
+  <span class="hljs-title hljs-function">slow</span>(<span class="hljs-params">ds</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">${ds}</span> <span class="hljs-subst">${<span class="hljs-variable hljs-language">this</span>.foo()}</span>`</span>;
+  }
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">cachingDcorator</span>(<span class="hljs-params">fn</span>) {
+  <span class="hljs-string">&#x27;use strict&#x27;</span>
+  <span class="hljs-keyword">let</span> cache = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Map</span>();
+
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span>(<span class="hljs-params">ds</span>) {
+    <span class="hljs-keyword">if</span> (cache.<span class="hljs-title hljs-function">has</span>(ds)) {
+      <span class="hljs-keyword">return</span> cache.<span class="hljs-title hljs-function">get</span>(ds);
+    }
+
+    <span class="hljs-keyword">let</span> res = <span class="hljs-title hljs-function">fn</span>(ds);
+    cache.<span class="hljs-title hljs-function">set</span>(ds, res);
+    <span class="hljs-keyword">return</span> res;
+  }
+}
+
+<span class="hljs-keyword">let</span> worker.<span class="hljs-property">slow</span> = <span class="hljs-title hljs-function">cachingDcorator</span>(worker.<span class="hljs-property">slow</span>);
+<span class="hljs-comment">// undefined</span>
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(worker.<span class="hljs-title hljs-function">slow</span>(<span class="hljs-string">&#x27;xfy&#x27;</span>));
+</code></pre>
+<p>当一个函数被传递到其他变量中，将丢失其上下文 this。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> func = worker.<span class="hljs-property">slow</span>;
+<span class="hljs-title hljs-function">func</span>(<span class="hljs-string">&#x27;xfy&#x27;</span>)
+</code></pre>
+<p>同理，缓存装饰器也是将其函数体作为参数传入到方法中，导致了其丢失了上下文 this。所以这样的装饰器在对象中的方法是用不了的。</p>
+<h2 id="传递-this">传递 this</h2>
+<h3 id="使用-call">使用 call</h3>
+<p>使用 call 可以轻松解决 this 的问题。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> worker = {
+  <span class="hljs-title hljs-function">foo</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;嘤嘤嘤&#x27;</span>;
+  },
+  <span class="hljs-title hljs-function">slow</span>(<span class="hljs-params">ds</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">${ds}</span> <span class="hljs-subst">${<span class="hljs-variable hljs-language">this</span>.foo()}</span>`</span>;
+  }
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">cachingDcorator</span>(<span class="hljs-params">fn</span>) {
+  <span class="hljs-keyword">let</span> cache = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Map</span>();
+
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span>(<span class="hljs-params">ds</span>) {
+    <span class="hljs-keyword">if</span> (cache.<span class="hljs-title hljs-function">has</span>(ds)) {
+      <span class="hljs-keyword">return</span> cache.<span class="hljs-title hljs-function">get</span>(ds);
+    }
+
+    <span class="hljs-keyword">let</span> res = fn.<span class="hljs-title hljs-function">call</span>(<span class="hljs-variable hljs-language">this</span>, ds);
+    cache.<span class="hljs-title hljs-function">set</span>(ds, res);
+    <span class="hljs-keyword">return</span> res;
+  }
+}
+
+worker.<span class="hljs-property">slow</span> = <span class="hljs-title hljs-function">cachingDcorator</span>(worker.<span class="hljs-property">slow</span>);
+
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(worker.<span class="hljs-title hljs-function">slow</span>(<span class="hljs-string">&#x27;xfy&#x27;</span>));
+</code></pre>
+<p>在将函数体传回对象时<code>worker.slow = cachingDcorator(worker.slow);</code>，在装饰器内部使用了 call 来执行传递的参数<code>fn.call(worker, ds);</code>。详细的传递步骤为：</p>
+<ol>
+<li>worker.slow 被传递为包装器<code>function (ds) { ... }</code>；</li>
+<li>函数作为对象属性执行时，<code>this=worker</code>。（它是点符号 . 之前的对象）；</li>
+<li>在包装器内部，假设结果尚未缓存，<code>func.call(this, ds)</code>将当前的 <code>this</code>（<code>=worker</code>）和当前的参数（<code>=xfy</code>）传递给原始方法。</li>
+</ol>
+<h2 id="传递多个参数">传递多个参数</h2>
+<p>原生的 Map 仅将单个值作为键（key）。当然可以使用其他的类似 map 的数据结构来存储缓存的值，或者在 map 中嵌套 map。</p>
+<p>还有一种解决方法就是使用一个 hash 函数，来将两个参数做个简单的运算，将其做为一个值保存在 map 的 key 中，并对应结果缓存。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> worker = {
+  <span class="hljs-title hljs-function">slow</span>(<span class="hljs-params">x, y</span>) {
+    <span class="hljs-keyword">return</span> x + y;
+  },
+};
+
+<span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">cachingDcorator</span>(<span class="hljs-params">fn, hash</span>) {
+  <span class="hljs-keyword">let</span> map = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Map</span>();
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">let</span> key = <span class="hljs-title hljs-function">hash</span>(<span class="hljs-variable hljs-language">arguments</span>);
+    <span class="hljs-keyword">if</span> (map.<span class="hljs-title hljs-function">has</span>(key)) {
+      <span class="hljs-keyword">return</span> map.<span class="hljs-title hljs-function">get</span>(key);
+    }
+
+    <span class="hljs-keyword">let</span> res = fn.<span class="hljs-title hljs-function">call</span>(<span class="hljs-variable hljs-language">this</span>, ...<span class="hljs-variable hljs-language">arguments</span>);
+    map.<span class="hljs-title hljs-function">set</span>(key, res);
+    <span class="hljs-keyword">return</span> res;
+  };
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">hash</span>(<span class="hljs-params">args</span>) {
+  <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">${args[<span class="hljs-number">0</span>]}</span><span class="hljs-subst">${args[<span class="hljs-number">1</span>]}</span>`</span>;
+}
+
+worker.<span class="hljs-property">slow</span> = <span class="hljs-title hljs-function">cachingDcorator</span>(worker.<span class="hljs-property">slow</span>, hash);
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(worker.<span class="hljs-title hljs-function">slow</span>(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>));
+</code></pre>
+<p>在 JavaScript 中，形参不是必要的。只要传递了实际参数，那么在函数中就能使用<code>arguments</code>这个类数组来获取到所有的参数。</p>
+<p>所以在这里返回的闭包里使用<code>let key = hash(arguments);</code>来获取两个参数做 hash 运算。</p>
+<p>由于是一个类数组，所以它也是可迭代的。在传给原函数参数时，使用了展开（Spread）语法<code>let res = fn.call(this, ...arguments);</code>来将类数组迭代开来。</p>
+<h3 id="使用-apply">使用 apply</h3>
+<p>在传递 this 时，我们使用了 call 来传递参数。call 接受参数为逐个传递，在接受多个参数时，我们使用了展开语法来将可迭代对象的参数传递给 call。</p>
+<p>call 与 apply 的唯一区别就是参数的传递方式不同。apply 接受剩余的参数为一个类数组</p>
+<p>所以这里两个调用是等价的：</p>
+<ul>
+<li><code>fn.call(this, ...arguments)</code></li>
+<li><code>fn.apply(this, arguments)</code></li>
+</ul>
+<p>而对于即可迭代又是类数组的对象，例如一个真正的数组，我们使用 call 或 apply 均可，但是 apply 可能会更快，因为大多数 JavaScript 引擎在内部对其进行了优化。</p>
+<p>将所有参数连同上下文一起传递给另一个函数被称为“呼叫转移（call forwarding）”。</p>
+<h3 id="方法借用">方法借用</h3>
+<p>能接受的参数还不够多。</p>
+<p>上述 hash 方法一次只能处理两个参数<code>return &#x27;${args[0]}${args[1]}&#x27;</code>，将其作为 map 的一个 key 来使用。当遇到两个以上参数时就无能为力了。</p>
+<p>所以还需要对 hash 方法做一个小改进，使其能够使用数组的<code>join()</code>方法来将所有的参数合并为一个字符串。</p>
+<p>由于接受的参数<code>arguments</code>是一个类数组，所以它并没有数组的<code>join()</code>方法。这里就需要利用 call 来改变 this 的指向从而“借用”一下数组的<code>join()</code>方法：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">hash</span>(<span class="hljs-params">args</span>) {
+  <span class="hljs-comment">// return Array.prototype.join.call(args);</span>
+  <span class="hljs-keyword">return</span> [].<span class="hljs-property">join</span>.<span class="hljs-title hljs-function">call</span>(args);
+}
+</code></pre>
+<p>这种方式称之为<strong>方法借用</strong>。</p>
+<p>最常见到的方法借用就是判断数据类型。我们都知道 typeof 在判断引用值时有那么一点不准确，这时候有一位大佬却能够准确的判断所有的类型：<code>Object.prototype.toString()</code>方法。</p>
+<p>这个方法原本是用来转换为字符串的，但通过借用它还能 <style data-emotion="css wox0k7">.css-wox0k7{transition-property:var(--chakra-transition-property-common);transition-duration:var(--chakra-transition-duration-fast);transition-timing-function:var(--chakra-transition-easing-ease-out);cursor:pointer;-webkit-text-decoration:none;text-decoration:none;outline:2px solid transparent;outline-offset:2px;color:inherit;display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}.css-wox0k7:hover,.css-wox0k7[data-hover]{-webkit-text-decoration:underline;text-decoration:underline;}.css-wox0k7:focus,.css-wox0k7[data-focus]{box-shadow:var(--chakra-shadows-outline);}</style><a target="_blank" rel="noopener noreferrer" class="chakra-link css-wox0k7" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/toString#%E4%BD%BF%E7%94%A8_tostring()_%E6%A3%80%E6%B5%8B%E5%AF%B9%E8%B1%A1%E7%B1%BB%E5%9E%8B">判断数据类型<style data-emotion="css 2y6psj">.css-2y6psj{width:1em;height:1em;display:inline-block;line-height:1em;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;color:currentColor;vertical-align:middle;-webkit-margin-start:2px;margin-inline-start:2px;-webkit-margin-end:2px;margin-inline-end:2px;}</style><svg viewBox="0 0 24 24" focusable="false" class="chakra-icon css-2y6psj"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><path d="M15 3h6v6"></path><path d="M10 14L21 3"></path></g></svg></a>。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-title hljs-class">Object</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">toString</span>.<span class="hljs-title hljs-function">call</span>(<span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Array</span>())
+<span class="hljs-comment">// &quot;[object Array]&quot;</span>
+<span class="hljs-keyword">typeof</span> <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Array</span>()
+<span class="hljs-comment">// &quot;object&quot;</span>
+</code></pre>
+<blockquote>
+<p>还有一种判断数据类型的方法是：<code>xxx.construtor.name</code></p>
+</blockquote>
+<h2 id="函数属性">函数属性</h2>
+<p>通常，函数装饰器是安全的。不过当遇到原函数拥有自身的属性时，通过装饰器返回的函数就会导致其丢失自身的属性。例如：<code>foo.count</code>。</p>
+<p>一些包装器可能也会包含自身的属性，例如记录函数被调用的次数或者其他的信息。</p>
+<p>可以使用 Proxy 对象来包装函数，来保留函数属性的访问权。Proxy 非常强大，Vue 3 就是使用 Proxy 来创建响应式对象的。从而解决了 Vue 2 不能监听到对象新增属性的问题等。</p>
+<h2 id="实例">实例</h2>
+<p>一些装饰器的实例，这段内容也是 javascript.info 的 <a target="_blank" rel="noopener noreferrer" class="chakra-link css-wox0k7" href="https://zh.javascript.info/call-apply-decorators#tasks">任务<svg viewBox="0 0 24 24" focusable="false" class="chakra-icon css-2y6psj"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><path d="M15 3h6v6"></path><path d="M10 14L21 3"></path></g></svg></a></p>
+<h3 id="间谍装饰器">间谍装饰器</h3>
+<p>间谍装饰器保存每次函数调用时传递的参数为一个数组。这种装饰器有时对于单元测试很有用。它的高级形式是 <a target="_blank" rel="noopener noreferrer" class="chakra-link css-wox0k7" href="https://sinonjs.org/">Sinon.JS<svg viewBox="0 0 24 24" focusable="false" class="chakra-icon css-2y6psj"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><path d="M15 3h6v6"></path><path d="M10 14L21 3"></path></g></svg></a> 库中的<code>sinon.spy</code>。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">work</span>(<span class="hljs-params">x, y</span>) {
+  <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(x, y);
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">spy</span>(<span class="hljs-params">fn</span>) {
+  <span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">ret</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-comment">// 每次调用原函数时，push 参数到 calls 属性上</span>
+    ret.<span class="hljs-property">calls</span>.<span class="hljs-title hljs-function">push</span>(<span class="hljs-string">`calls:<span class="hljs-subst">${[].join.call(<span class="hljs-variable hljs-language">arguments</span>)}</span>`</span>);
+    fn.<span class="hljs-title hljs-function">apply</span>(<span class="hljs-variable hljs-language">this</span>, <span class="hljs-variable hljs-language">arguments</span>);
+  }
+  <span class="hljs-comment">// 在返回的函数上定义一个属性 calls</span>
+  ret.<span class="hljs-property">calls</span> = [];
+
+  <span class="hljs-keyword">return</span> ret;
+}
+
+work = <span class="hljs-title hljs-function">spy</span>(work); 
+
+<span class="hljs-title hljs-function">work</span>(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>);
+<span class="hljs-title hljs-function">work</span>(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>);
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(work.<span class="hljs-property">calls</span>);
+</code></pre>
+<h3 id="延时装饰器">延时装饰器</h3>
+<p>这是个非常简单的装饰器，用于为函数设置一个延时后执行。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">foo</span>(<span class="hljs-params">x</span>) {
+  <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(x);
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">delayRun</span>(<span class="hljs-params">fn, ms</span>) {
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
+      <span class="hljs-comment">// 保持 this 的指向</span>
+      fn.<span class="hljs-title hljs-function">apply</span>(<span class="hljs-variable hljs-language">this</span>, <span class="hljs-variable hljs-language">arguments</span>);
+    }, ms);
+  }
+}
+
+foo = <span class="hljs-title hljs-function">delayRun</span>(foo, <span class="hljs-number">500</span>);
+
+<span class="hljs-title hljs-function">foo</span>(<span class="hljs-string">&#x27;xfy&#x27;</span>);
+</code></pre>
+<h3 id="防抖装饰器">防抖装饰器</h3>
+<p>防抖装饰器 debounce 是一个常用的方法。它的主要目的是保证原函数在一定时间内的连续调用只生效一次。</p>
+<p>通常在实际中的作用是：假设用户输入了一些内容，我们想要在用户输入完成时向服务器发送一个请求。</p>
+<p>我们没有必要为每一个字符的输入都发送请求。相反，我们想要等一段时间，然后处理整个结果。</p>
+<p>在 Web 浏览器中，我们可以设置一个事件处理程序 —— 一个在每次输入内容发生改动时都会调用的函数。通常，监听所有按键输入的事件的处理程序会被调用的非常频繁。但如果我们为这个处理程序做一个 1000ms 的 debounce 处理，它仅会在最后一次输入后的 1000ms 后被调用一次。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">foo</span>(<span class="hljs-params">x</span>) {
+  <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(x);
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">debounce</span>(<span class="hljs-params">fn, ms</span>) {
+  <span class="hljs-keyword">let</span> timer = <span class="hljs-literal">null</span>;
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+    <span class="hljs-comment">// 如果延时内频繁被调用，则取消延时，不执行</span>
+    <span class="hljs-keyword">if</span> (timer) <span class="hljs-built_in">clearTimeout</span>(timer);
+    <span class="hljs-comment">// 延时执行</span>
+    timer = <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
+      fn.<span class="hljs-title hljs-function">apply</span>(<span class="hljs-variable hljs-language">this</span>, <span class="hljs-variable hljs-language">arguments</span>);
+    }, ms);
+  };
+}
+
+foo = <span class="hljs-title hljs-function">debounce</span>(foo, <span class="hljs-number">1000</span>);
+
+<span class="hljs-title hljs-function">foo</span>(<span class="hljs-number">1</span>);
+<span class="hljs-title hljs-function">foo</span>(<span class="hljs-number">1</span>);
+<span class="hljs-title hljs-function">foo</span>(<span class="hljs-number">1</span>);
+</code></pre>
+<h3 id="节流装饰器">节流装饰器</h3>
+<p>节流装饰器 throttle 和防抖装饰器很相似，但是它要复杂一点。与防抖不同的是，节流的主要作用是：让函数保持一定的<strong>时间间隔</strong>被调用执行。</p>
+<ul>
+<li><code>debounce</code>会在“冷却（cooldown）”期后运行函数一次。适用于处理最终结果。</li>
+<li><code>throttle</code>运行函数的频率不会大于所给定的时间 ms 毫秒。适用于不应该经常进行的定期更新。</li>
+</ul>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">foo</span>(<span class="hljs-params">x</span>) {
+  <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(x);
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">throttle</span>(<span class="hljs-params">fn, ms</span>) {
+  <span class="hljs-comment">// 初始状态为不节流</span>
+  <span class="hljs-keyword">let</span> isThrottle = <span class="hljs-literal">false</span>,
+    savedArgs,
+    savedCont;
+
+  <span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">wrapper</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-comment">// 如果节流是打开的，则保存当前运行的上下文和参数</span>
+    <span class="hljs-keyword">if</span> (isThrottle) {
+      savedArgs = <span class="hljs-variable hljs-language">arguments</span>;
+      savedCont = <span class="hljs-variable hljs-language">this</span>;
+      <span class="hljs-keyword">return</span>;
+    }
+    <span class="hljs-comment">// 第一次直接运行原函数</span>
+    fn.<span class="hljs-title hljs-function">apply</span>(<span class="hljs-variable hljs-language">this</span>, <span class="hljs-variable hljs-language">arguments</span>);
+    <span class="hljs-comment">// 第一次运行完后打开节流</span>
+    isThrottle = <span class="hljs-literal">true</span>;
+
+    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
+      <span class="hljs-comment">// 在节流时间后关闭节流阀</span>
+      isThrottle = <span class="hljs-literal">false</span>;
+      <span class="hljs-keyword">if</span> (savedArgs) {
+        <span class="hljs-comment">// 调用 wrapper 自身，并传递保存的上下文</span>
+        wrapper.<span class="hljs-title hljs-function">apply</span>(savedCont, savedArgs);
+        savedArgs = savedCont = <span class="hljs-literal">null</span>;
+      }
+    }, ms);
+  }
+  <span class="hljs-keyword">return</span> wrapper;
+}
+
+<span class="hljs-keyword">let</span> f1000 = <span class="hljs-title hljs-function">throttle</span>(foo, <span class="hljs-number">1000</span>);
+
+<span class="hljs-title hljs-function">f1000</span>(<span class="hljs-number">1</span>);
+<span class="hljs-title hljs-function">f1000</span>(<span class="hljs-number">2</span>);
+<span class="hljs-title hljs-function">f1000</span>(<span class="hljs-number">3</span>);
+<span class="hljs-title hljs-function">f1000</span>(<span class="hljs-number">4</span>);
+<span class="hljs-title hljs-function">f1000</span>(<span class="hljs-number">5</span>);
+<span class="hljs-title hljs-function">f1000</span>(<span class="hljs-number">6</span>);
+<span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-title hljs-function">f1000</span>(<span class="hljs-number">7</span>);
+}, <span class="hljs-number">500</span>);
+<span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-title hljs-function">f1000</span>(<span class="hljs-number">8</span>);
+}, <span class="hljs-number">1000</span>);
+<span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-title hljs-function">f1000</span>(<span class="hljs-number">9</span>);
+}, <span class="hljs-number">1520</span>);
+<span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-title hljs-function">f1000</span>(<span class="hljs-string">&#x27;a&#x27;</span>);
+}, <span class="hljs-number">2000</span>);
+<span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-title hljs-function">f1000</span>(<span class="hljs-string">&#x27;b&#x27;</span>);
+}, <span class="hljs-number">2500</span>);
+<span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-title hljs-function">f1000</span>(<span class="hljs-string">&#x27;c&#x27;</span>);
+}, <span class="hljs-number">3000</span>);
+</code></pre>
+<h2 id="参考">参考</h2>
+<ul>
+<li><a target="_blank" rel="noopener noreferrer" class="chakra-link css-wox0k7" href="https://zh.javascript.info/call-apply-decorators">装饰器模式和转发，call/apply<svg viewBox="0 0 24 24" focusable="false" class="chakra-icon css-2y6psj"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><path d="M15 3h6v6"></path><path d="M10 14L21 3"></path></g></svg></a></li>
+<li><a target="_blank" rel="noopener noreferrer" class="chakra-link css-wox0k7" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/toString">Object.prototype.toString()<svg viewBox="0 0 24 24" focusable="false" class="chakra-icon css-2y6psj"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><path d="M15 3h6v6"></path><path d="M10 14L21 3"></path></g></svg></a></li>
+</ul></section></article></div><style data-emotion="css 1i6v8fa">.css-1i6v8fa{min-height:346px;}@media screen and (min-width: 30em){.css-1i6v8fa{min-height:350px;}}</style><div class="css-1i6v8fa"></div><style data-emotion="css 3ydw18">.css-3ydw18{height:3px;width:50px;background:var(--chakra-colors-gray-500);border-radius:var(--chakra-radii-xl);margin-top:2.5rem;}</style><div class="css-3ydw18"></div><style data-emotion="css 1lwvw50">.css-1lwvw50{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-flex-flow:column;-webkit-flex-flow:column;-ms-flex-flow:column;flex-flow:column;padding-top:1.5rem;padding-bottom:1.5rem;}</style><footer class="css-1lwvw50"><style data-emotion="css yld109">.css-yld109{color:var(--chakra-colors-gray-600);font-weight:var(--chakra-fontWeights-bold);margin-bottom:0.5rem;}</style><p class="chakra-text css-yld109">©<!-- -->2022<!-- --> 小肥羊</p><style data-emotion="css 3eyczr">.css-3eyczr{color:var(--chakra-colors-gray-400);font-size:small;}</style><p class="chakra-text css-3eyczr">Powered by Next.js ❤️ Chakra UI</p></footer></div><style data-emotion="css kl7qz4">.css-kl7qz4{display:none;position:-webkit-sticky;position:sticky;top:3rem;margin-top:3rem;}@media screen and (min-width: 30em){.css-kl7qz4{display:none;}}@media screen and (min-width: 48em){.css-kl7qz4{display:none;}}@media screen and (min-width: 62em){.css-kl7qz4{display:block;}}</style><div class="css-kl7qz4"><h2 id="table-of-contents">Table of contents</h2>
+<ul>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#%E8%A3%85%E9%A5%B0%E5%99%A8">装饰器</a></p>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#%E7%BC%93%E5%AD%98%E8%A3%85%E9%A5%B0%E5%99%A8">缓存装饰器</a></p>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#%E4%BC%A0%E9%80%92-this">传递 this</a></p>
+<ul>
+<li><a class="chakra-link css-wox0k7" href="#%E4%BD%BF%E7%94%A8-call">使用 call</a></li>
+</ul>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#%E4%BC%A0%E9%80%92%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0">传递多个参数</a></p>
+<ul>
+<li><a class="chakra-link css-wox0k7" href="#%E4%BD%BF%E7%94%A8-apply">使用 apply</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E6%96%B9%E6%B3%95%E5%80%9F%E7%94%A8">方法借用</a></li>
+</ul>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#%E5%87%BD%E6%95%B0%E5%B1%9E%E6%80%A7">函数属性</a></p>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#%E5%AE%9E%E4%BE%8B">实例</a></p>
+<ul>
+<li><a class="chakra-link css-wox0k7" href="#%E9%97%B4%E8%B0%8D%E8%A3%85%E9%A5%B0%E5%99%A8">间谍装饰器</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E5%BB%B6%E6%97%B6%E8%A3%85%E9%A5%B0%E5%99%A8">延时装饰器</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E9%98%B2%E6%8A%96%E8%A3%85%E9%A5%B0%E5%99%A8">防抖装饰器</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E8%8A%82%E6%B5%81%E8%A3%85%E9%A5%B0%E5%99%A8">节流装饰器</a></li>
+</ul>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#%E5%8F%82%E8%80%83">参考</a></p>
+</li>
+</ul></div></div><span></span></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"postData":{"id":"javascript-decorator","content":"\nJavaScript 的函数非常灵活，它们可以被传递，用作对象。除了 this 难以捉摸以外。\n\n## 装饰器\n\n装饰（decorate），将原函数作为一个参数传递给装饰器。利用函数闭包的特性，在父作用域中保存一些执行后的数据（缓存）或执行一些特殊操作。再将其返回出去，在这个返回的函数根据条件来执行原函数。\n\n在实际工作中常见到的函数防抖和节流就是装饰器的工作原理。\n\n## 缓存装饰器\n\n一个简单的透明缓存装饰器可以明确的让我们了解到装饰器的工作方式：\n\n```js\n// 一个工作缓慢的 slow 函数\nfunction slow(ds) {\n  return `${ds}`;\n}\n\nfunction cachingDcorator(fn) {\n  // 创建一个 map 用于缓存\n  let cache = new Map();\n  // 返回一个闭包\n  return function(ds) {\n    // 检查缓存中是否有结果\n    if (cache.has(ds)) {\n      return cache.get(ds);\n    }\n    // 没有缓存时，执行原函数，并记录缓存\n    let res = fn(ds);\n    cache.set(ds, res);\n    return res;\n  }\n}\n// 装饰\ncacheSlow = cachingDcorator(slow);\nconsole.log(cacheSlow('124'));\n```\n\n在装饰器 cachingDcorator 内，父作用域中创建了一个名为 cache 的 map 结构，利用闭包的特性就能够访问这个缓存对象。\n\n在每次执行时，都将检查是否有对应的缓存。如果有，则跳过执行原函数，直接返回缓存的数据，以减少函数的执行工作。\n\n上述简单的透明缓存装饰器还有一个问题：带有 this 时会失效。\n\n```js\nlet worker = {\n  foo() {\n    return '嘤嘤嘤';\n  },\n  slow(ds) {\n    return `${ds} ${this.foo()}`;\n  }\n}\n\nfunction cachingDcorator(fn) {\n  'use strict'\n  let cache = new Map();\n\n  return function(ds) {\n    if (cache.has(ds)) {\n      return cache.get(ds);\n    }\n\n    let res = fn(ds);\n    cache.set(ds, res);\n    return res;\n  }\n}\n\nlet worker.slow = cachingDcorator(worker.slow);\n// undefined\nconsole.log(worker.slow('xfy'));\n```\n\n当一个函数被传递到其他变量中，将丢失其上下文 this。\n\n```js\nlet func = worker.slow;\nfunc('xfy')\n```\n\n同理，缓存装饰器也是将其函数体作为参数传入到方法中，导致了其丢失了上下文 this。所以这样的装饰器在对象中的方法是用不了的。\n\n## 传递 this\n\n### 使用 call\n\n使用 call 可以轻松解决 this 的问题。\n\n```js\nlet worker = {\n  foo() {\n    return '嘤嘤嘤';\n  },\n  slow(ds) {\n    return `${ds} ${this.foo()}`;\n  }\n}\n\nfunction cachingDcorator(fn) {\n  let cache = new Map();\n\n  return function(ds) {\n    if (cache.has(ds)) {\n      return cache.get(ds);\n    }\n\n    let res = fn.call(this, ds);\n    cache.set(ds, res);\n    return res;\n  }\n}\n\nworker.slow = cachingDcorator(worker.slow);\n\nconsole.log(worker.slow('xfy'));\n```\n\n在将函数体传回对象时`worker.slow = cachingDcorator(worker.slow);`，在装饰器内部使用了 call 来执行传递的参数`fn.call(worker, ds);`。详细的传递步骤为：\n\n1. worker.slow 被传递为包装器`function (ds) { ... }`；\n2. 函数作为对象属性执行时，`this=worker`。（它是点符号 . 之前的对象）；\n3. 在包装器内部，假设结果尚未缓存，`func.call(this, ds)`将当前的 `this`（`=worker`）和当前的参数（`=xfy`）传递给原始方法。\n\n## 传递多个参数\n\n原生的 Map 仅将单个值作为键（key）。当然可以使用其他的类似 map 的数据结构来存储缓存的值，或者在 map 中嵌套 map。\n\n还有一种解决方法就是使用一个 hash 函数，来将两个参数做个简单的运算，将其做为一个值保存在 map 的 key 中，并对应结果缓存。\n\n```js\nlet worker = {\n  slow(x, y) {\n    return x + y;\n  },\n};\n\nfunction cachingDcorator(fn, hash) {\n  let map = new Map();\n  return function () {\n    let key = hash(arguments);\n    if (map.has(key)) {\n      return map.get(key);\n    }\n\n    let res = fn.call(this, ...arguments);\n    map.set(key, res);\n    return res;\n  };\n}\n\nfunction hash(args) {\n  return `${args[0]}${args[1]}`;\n}\n\nworker.slow = cachingDcorator(worker.slow, hash);\nconsole.log(worker.slow(2, 3));\n```\n\n在 JavaScript 中，形参不是必要的。只要传递了实际参数，那么在函数中就能使用`arguments`这个类数组来获取到所有的参数。\n\n所以在这里返回的闭包里使用`let key = hash(arguments);`来获取两个参数做 hash 运算。\n\n由于是一个类数组，所以它也是可迭代的。在传给原函数参数时，使用了展开（Spread）语法`let res = fn.call(this, ...arguments);`来将类数组迭代开来。\n\n\n### 使用 apply\n\n在传递 this 时，我们使用了 call 来传递参数。call 接受参数为逐个传递，在接受多个参数时，我们使用了展开语法来将可迭代对象的参数传递给 call。\n\ncall 与 apply 的唯一区别就是参数的传递方式不同。apply 接受剩余的参数为一个类数组\n\n所以这里两个调用是等价的：\n\n* `fn.call(this, ...arguments)`\n* `fn.apply(this, arguments)`\n\n而对于即可迭代又是类数组的对象，例如一个真正的数组，我们使用 call 或 apply 均可，但是 apply 可能会更快，因为大多数 JavaScript 引擎在内部对其进行了优化。\n\n将所有参数连同上下文一起传递给另一个函数被称为“呼叫转移（call forwarding）”。\n\n### 方法借用\n\n能接受的参数还不够多。\n\n上述 hash 方法一次只能处理两个参数`return '${args[0]}${args[1]}'`，将其作为 map 的一个 key 来使用。当遇到两个以上参数时就无能为力了。\n\n所以还需要对 hash 方法做一个小改进，使其能够使用数组的`join()`方法来将所有的参数合并为一个字符串。\n\n由于接受的参数`arguments`是一个类数组，所以它并没有数组的`join()`方法。这里就需要利用 call 来改变 this 的指向从而“借用”一下数组的`join()`方法：\n\n```js\nfunction hash(args) {\n  // return Array.prototype.join.call(args);\n  return [].join.call(args);\n}\n```\n\n这种方式称之为**方法借用**。\n\n最常见到的方法借用就是判断数据类型。我们都知道 typeof 在判断引用值时有那么一点不准确，这时候有一位大佬却能够准确的判断所有的类型：`Object.prototype.toString()`方法。\n\n这个方法原本是用来转换为字符串的，但通过借用它还能 [判断数据类型](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/toString#%E4%BD%BF%E7%94%A8_tostring()_%E6%A3%80%E6%B5%8B%E5%AF%B9%E8%B1%A1%E7%B1%BB%E5%9E%8B)。\n\n```js\nObject.prototype.toString.call(new Array())\n// \"[object Array]\"\ntypeof new Array()\n// \"object\"\n```\n\n\u003e 还有一种判断数据类型的方法是：`xxx.construtor.name`\n\n\n## 函数属性\n\n通常，函数装饰器是安全的。不过当遇到原函数拥有自身的属性时，通过装饰器返回的函数就会导致其丢失自身的属性。例如：`foo.count`。\n\n一些包装器可能也会包含自身的属性，例如记录函数被调用的次数或者其他的信息。\n\n可以使用 Proxy 对象来包装函数，来保留函数属性的访问权。Proxy 非常强大，Vue 3 就是使用 Proxy 来创建响应式对象的。从而解决了 Vue 2 不能监听到对象新增属性的问题等。\n\n## 实例\n\n一些装饰器的实例，这段内容也是 javascript.info 的 [任务](https://zh.javascript.info/call-apply-decorators#tasks)\n\n### 间谍装饰器\n\n间谍装饰器保存每次函数调用时传递的参数为一个数组。这种装饰器有时对于单元测试很有用。它的高级形式是 [Sinon.JS](https://sinonjs.org/) 库中的`sinon.spy`。\n\n```js\nfunction work(x, y) {\n  console.log(x, y);\n}\n\nfunction spy(fn) {\n  function ret() {\n    // 每次调用原函数时，push 参数到 calls 属性上\n    ret.calls.push(`calls:${[].join.call(arguments)}`);\n    fn.apply(this, arguments);\n  }\n  // 在返回的函数上定义一个属性 calls\n  ret.calls = [];\n\n  return ret;\n}\n\nwork = spy(work); \n\nwork(1, 2);\nwork(3, 4);\nconsole.log(work.calls);\n```\n\n### 延时装饰器\n\n这是个非常简单的装饰器，用于为函数设置一个延时后执行。\n\n```js\nfunction foo(x) {\n  console.log(x);\n}\n\nfunction delayRun(fn, ms) {\n  return function() {\n    setTimeout(() =\u003e {\n      // 保持 this 的指向\n      fn.apply(this, arguments);\n    }, ms);\n  }\n}\n\nfoo = delayRun(foo, 500);\n\nfoo('xfy');\n```\n\n### 防抖装饰器\n\n防抖装饰器 debounce 是一个常用的方法。它的主要目的是保证原函数在一定时间内的连续调用只生效一次。\n\n通常在实际中的作用是：假设用户输入了一些内容，我们想要在用户输入完成时向服务器发送一个请求。\n\n我们没有必要为每一个字符的输入都发送请求。相反，我们想要等一段时间，然后处理整个结果。\n\n在 Web 浏览器中，我们可以设置一个事件处理程序 —— 一个在每次输入内容发生改动时都会调用的函数。通常，监听所有按键输入的事件的处理程序会被调用的非常频繁。但如果我们为这个处理程序做一个 1000ms 的 debounce 处理，它仅会在最后一次输入后的 1000ms 后被调用一次。\n\n```js\nfunction foo(x) {\n  console.log(x);\n}\n\nfunction debounce(fn, ms) {\n  let timer = null;\n  return function () {\n    // 如果延时内频繁被调用，则取消延时，不执行\n    if (timer) clearTimeout(timer);\n    // 延时执行\n    timer = setTimeout(() =\u003e {\n      fn.apply(this, arguments);\n    }, ms);\n  };\n}\n\nfoo = debounce(foo, 1000);\n\nfoo(1);\nfoo(1);\nfoo(1);\n```\n\n### 节流装饰器\n\n节流装饰器 throttle 和防抖装饰器很相似，但是它要复杂一点。与防抖不同的是，节流的主要作用是：让函数保持一定的**时间间隔**被调用执行。\n\n* `debounce`会在“冷却（cooldown）”期后运行函数一次。适用于处理最终结果。\n* `throttle`运行函数的频率不会大于所给定的时间 ms 毫秒。适用于不应该经常进行的定期更新。\n\n```js\nfunction foo(x) {\n  console.log(x);\n}\n\nfunction throttle(fn, ms) {\n  // 初始状态为不节流\n  let isThrottle = false,\n    savedArgs,\n    savedCont;\n\n  function wrapper() {\n    // 如果节流是打开的，则保存当前运行的上下文和参数\n    if (isThrottle) {\n      savedArgs = arguments;\n      savedCont = this;\n      return;\n    }\n    // 第一次直接运行原函数\n    fn.apply(this, arguments);\n    // 第一次运行完后打开节流\n    isThrottle = true;\n\n    setTimeout(() =\u003e {\n      // 在节流时间后关闭节流阀\n      isThrottle = false;\n      if (savedArgs) {\n        // 调用 wrapper 自身，并传递保存的上下文\n        wrapper.apply(savedCont, savedArgs);\n        savedArgs = savedCont = null;\n      }\n    }, ms);\n  }\n  return wrapper;\n}\n\nlet f1000 = throttle(foo, 1000);\n\nf1000(1);\nf1000(2);\nf1000(3);\nf1000(4);\nf1000(5);\nf1000(6);\nsetTimeout(() =\u003e {\n  f1000(7);\n}, 500);\nsetTimeout(() =\u003e {\n  f1000(8);\n}, 1000);\nsetTimeout(() =\u003e {\n  f1000(9);\n}, 1520);\nsetTimeout(() =\u003e {\n  f1000('a');\n}, 2000);\nsetTimeout(() =\u003e {\n  f1000('b');\n}, 2500);\nsetTimeout(() =\u003e {\n  f1000('c');\n}, 3000);\n```\n\n## 参考\n\n* [装饰器模式和转发，call/apply](https://zh.javascript.info/call-apply-decorators)\n* [Object.prototype.toString()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/toString)","desc":"JavaScript 的函数非常灵活，它们可以被传递，用作对象。除了 this 难以捉摸以外。\n\n装饰器\n\n装饰（decorate），将原函数作为一个参数传递给装饰器。利用函数闭包的特性，在父作用域中...","title":"JavaScript 装饰器模式🎊","date":"2021-03-09T20:36:26.000Z","tags":"JavaScript","categories":"笔记","url":"javascript-decorator","index_img":"/images/JavaScript装饰器模式/logo.webp"}},"__N_SSG":true},"page":"/p/[slug]","query":{"slug":"javascript-decorator"},"buildId":"k6NIc4JfXUsE09z9QnALx","isFallback":false,"dynamicIds":[3419,6929,9125,1189,2980,5106],"gsp":true,"scriptLoader":[]}</script></body></html>

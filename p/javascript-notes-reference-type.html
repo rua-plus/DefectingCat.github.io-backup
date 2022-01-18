@@ -1,0 +1,867 @@
+<!DOCTYPE html><html lang="en"><head><meta name="viewport" content="width=device-width"/><meta charSet="utf-8"/><link rel="shortcut icon" href="/images/img/favicon.webp"/><meta name="keywords" content="Blog RUA"/><meta name="description" content="Personal blog."/><meta name="author" content="Arthur,i@rua.plus"/><title>RUA - JavaScript 笔记-引用类型</title><meta name="next-head-count" content="7"/><link rel="preload" href="/_next/static/css/39834862c769c308.css" as="style"/><link rel="stylesheet" href="/_next/static/css/39834862c769c308.css" data-n-g=""/><link rel="preload" href="/_next/static/css/c2a527101433f11d.css" as="style"/><link rel="stylesheet" href="/_next/static/css/c2a527101433f11d.css" data-n-p=""/><link rel="preload" href="/_next/static/css/6e1d66a70b5d9fed.css" as="style"/><link rel="stylesheet" href="/_next/static/css/6e1d66a70b5d9fed.css"/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/_next/static/chunks/polyfills-5cd94c89d3acac5f.js"></script><script defer="" src="/_next/static/chunks/219-ddf2abc0472da9bd.js"></script><script defer="" src="/_next/static/chunks/419.d5302bfd9d8378c2.js"></script><script defer="" src="/_next/static/chunks/771.84a2737df445ba88.js"></script><script defer="" src="/_next/static/chunks/929.b2c0b4f7606bfefe.js"></script><script defer="" src="/_next/static/chunks/780.f3b2fc2ce5caea55.js"></script><script defer="" src="/_next/static/chunks/125.4ff7adc183744312.js"></script><script defer="" src="/_next/static/chunks/485-3e3bf066e6f4a6bd.js"></script><script defer="" src="/_next/static/chunks/189.ee2e569101c160eb.js"></script><script defer="" src="/_next/static/chunks/980.41f5e97cd35a6621.js"></script><script defer="" src="/_next/static/chunks/106.7a94988fd220337e.js"></script><script src="/_next/static/chunks/webpack-c08977534ec7c137.js" defer=""></script><script src="/_next/static/chunks/framework-5cd9e2157a4a6aee.js" defer=""></script><script src="/_next/static/chunks/main-472dbb675bbf7f67.js" defer=""></script><script src="/_next/static/chunks/pages/_app-a34fa0ed9496fbe8.js" defer=""></script><script src="/_next/static/chunks/84-43981acebe84e1d3.js" defer=""></script><script src="/_next/static/chunks/pages/p/%5Bslug%5D-684bfb16186b52fe.js" defer=""></script><script src="/_next/static/k6NIc4JfXUsE09z9QnALx/_buildManifest.js" defer=""></script><script src="/_next/static/k6NIc4JfXUsE09z9QnALx/_ssgManifest.js" defer=""></script><script src="/_next/static/k6NIc4JfXUsE09z9QnALx/_middlewareManifest.js" defer=""></script></head><body><script>(function setScript(initialValue) {
+  var mql = window.matchMedia("(prefers-color-scheme: dark)");
+  var systemPreference = mql.matches ? "dark" : "light";
+  var persistedPreference;
+
+  try {
+    persistedPreference = localStorage.getItem("chakra-ui-color-mode");
+  } catch (error) {
+    console.log("Chakra UI: localStorage is not available. Color mode persistence might not work as expected");
+  }
+
+  var isInStorage = typeof persistedPreference === "string";
+  var colorMode;
+
+  if (isInStorage) {
+    colorMode = persistedPreference;
+  } else {
+    colorMode = initialValue === "system" ? systemPreference : initialValue;
+  }
+
+  if (colorMode) {
+    var root = document.documentElement;
+    root.style.setProperty("--chakra-ui-color-mode", colorMode);
+  }
+})('light')</script><div id="__next"><style data-emotion="css-global 1r47v8">:host,:root{--chakra-ring-inset:var(--chakra-empty,/*!*/ /*!*/);--chakra-ring-offset-width:0px;--chakra-ring-offset-color:#fff;--chakra-ring-color:rgba(66, 153, 225, 0.6);--chakra-ring-offset-shadow:0 0 #0000;--chakra-ring-shadow:0 0 #0000;--chakra-space-x-reverse:0;--chakra-space-y-reverse:0;--chakra-colors-transparent:transparent;--chakra-colors-current:currentColor;--chakra-colors-black:#000000;--chakra-colors-white:#FFFFFF;--chakra-colors-whiteAlpha-50:rgba(255, 255, 255, 0.04);--chakra-colors-whiteAlpha-100:rgba(255, 255, 255, 0.06);--chakra-colors-whiteAlpha-200:rgba(255, 255, 255, 0.08);--chakra-colors-whiteAlpha-300:rgba(255, 255, 255, 0.16);--chakra-colors-whiteAlpha-400:rgba(255, 255, 255, 0.24);--chakra-colors-whiteAlpha-500:rgba(255, 255, 255, 0.36);--chakra-colors-whiteAlpha-600:rgba(255, 255, 255, 0.48);--chakra-colors-whiteAlpha-700:rgba(255, 255, 255, 0.64);--chakra-colors-whiteAlpha-800:rgba(255, 255, 255, 0.80);--chakra-colors-whiteAlpha-900:rgba(255, 255, 255, 0.92);--chakra-colors-blackAlpha-50:rgba(0, 0, 0, 0.04);--chakra-colors-blackAlpha-100:rgba(0, 0, 0, 0.06);--chakra-colors-blackAlpha-200:rgba(0, 0, 0, 0.08);--chakra-colors-blackAlpha-300:rgba(0, 0, 0, 0.16);--chakra-colors-blackAlpha-400:rgba(0, 0, 0, 0.24);--chakra-colors-blackAlpha-500:rgba(0, 0, 0, 0.36);--chakra-colors-blackAlpha-600:rgba(0, 0, 0, 0.48);--chakra-colors-blackAlpha-700:rgba(0, 0, 0, 0.64);--chakra-colors-blackAlpha-800:rgba(0, 0, 0, 0.80);--chakra-colors-blackAlpha-900:rgba(0, 0, 0, 0.92);--chakra-colors-gray-50:#F7FAFC;--chakra-colors-gray-100:#EDF2F7;--chakra-colors-gray-200:#E2E8F0;--chakra-colors-gray-300:#CBD5E0;--chakra-colors-gray-400:#A0AEC0;--chakra-colors-gray-500:#718096;--chakra-colors-gray-600:#4A5568;--chakra-colors-gray-700:#2D3748;--chakra-colors-gray-800:#1A202C;--chakra-colors-gray-900:#171923;--chakra-colors-red-50:#FFF5F5;--chakra-colors-red-100:#FED7D7;--chakra-colors-red-200:#FEB2B2;--chakra-colors-red-300:#FC8181;--chakra-colors-red-400:#F56565;--chakra-colors-red-500:#E53E3E;--chakra-colors-red-600:#C53030;--chakra-colors-red-700:#9B2C2C;--chakra-colors-red-800:#822727;--chakra-colors-red-900:#63171B;--chakra-colors-orange-50:#FFFAF0;--chakra-colors-orange-100:#FEEBC8;--chakra-colors-orange-200:#FBD38D;--chakra-colors-orange-300:#F6AD55;--chakra-colors-orange-400:#ED8936;--chakra-colors-orange-500:#DD6B20;--chakra-colors-orange-600:#C05621;--chakra-colors-orange-700:#9C4221;--chakra-colors-orange-800:#7B341E;--chakra-colors-orange-900:#652B19;--chakra-colors-yellow-50:#FFFFF0;--chakra-colors-yellow-100:#FEFCBF;--chakra-colors-yellow-200:#FAF089;--chakra-colors-yellow-300:#F6E05E;--chakra-colors-yellow-400:#ECC94B;--chakra-colors-yellow-500:#D69E2E;--chakra-colors-yellow-600:#B7791F;--chakra-colors-yellow-700:#975A16;--chakra-colors-yellow-800:#744210;--chakra-colors-yellow-900:#5F370E;--chakra-colors-green-50:#F0FFF4;--chakra-colors-green-100:#C6F6D5;--chakra-colors-green-200:#9AE6B4;--chakra-colors-green-300:#68D391;--chakra-colors-green-400:#48BB78;--chakra-colors-green-500:#38A169;--chakra-colors-green-600:#2F855A;--chakra-colors-green-700:#276749;--chakra-colors-green-800:#22543D;--chakra-colors-green-900:#1C4532;--chakra-colors-teal-50:#E6FFFA;--chakra-colors-teal-100:#B2F5EA;--chakra-colors-teal-200:#81E6D9;--chakra-colors-teal-300:#4FD1C5;--chakra-colors-teal-400:#38B2AC;--chakra-colors-teal-500:#319795;--chakra-colors-teal-600:#2C7A7B;--chakra-colors-teal-700:#285E61;--chakra-colors-teal-800:#234E52;--chakra-colors-teal-900:#1D4044;--chakra-colors-blue-50:#ebf8ff;--chakra-colors-blue-100:#bee3f8;--chakra-colors-blue-200:#90cdf4;--chakra-colors-blue-300:#63b3ed;--chakra-colors-blue-400:#4299e1;--chakra-colors-blue-500:#3182ce;--chakra-colors-blue-600:#2b6cb0;--chakra-colors-blue-700:#2c5282;--chakra-colors-blue-800:#2a4365;--chakra-colors-blue-900:#1A365D;--chakra-colors-cyan-50:#EDFDFD;--chakra-colors-cyan-100:#C4F1F9;--chakra-colors-cyan-200:#9DECF9;--chakra-colors-cyan-300:#76E4F7;--chakra-colors-cyan-400:#0BC5EA;--chakra-colors-cyan-500:#00B5D8;--chakra-colors-cyan-600:#00A3C4;--chakra-colors-cyan-700:#0987A0;--chakra-colors-cyan-800:#086F83;--chakra-colors-cyan-900:#065666;--chakra-colors-purple-50:#FAF5FF;--chakra-colors-purple-100:#E9D8FD;--chakra-colors-purple-200:#D6BCFA;--chakra-colors-purple-300:#B794F4;--chakra-colors-purple-400:#9F7AEA;--chakra-colors-purple-500:#805AD5;--chakra-colors-purple-600:#6B46C1;--chakra-colors-purple-700:#553C9A;--chakra-colors-purple-800:#44337A;--chakra-colors-purple-900:#322659;--chakra-colors-pink-50:#FFF5F7;--chakra-colors-pink-100:#FED7E2;--chakra-colors-pink-200:#FBB6CE;--chakra-colors-pink-300:#F687B3;--chakra-colors-pink-400:#ED64A6;--chakra-colors-pink-500:#D53F8C;--chakra-colors-pink-600:#B83280;--chakra-colors-pink-700:#97266D;--chakra-colors-pink-800:#702459;--chakra-colors-pink-900:#521B41;--chakra-colors-linkedin-50:#E8F4F9;--chakra-colors-linkedin-100:#CFEDFB;--chakra-colors-linkedin-200:#9BDAF3;--chakra-colors-linkedin-300:#68C7EC;--chakra-colors-linkedin-400:#34B3E4;--chakra-colors-linkedin-500:#00A0DC;--chakra-colors-linkedin-600:#008CC9;--chakra-colors-linkedin-700:#0077B5;--chakra-colors-linkedin-800:#005E93;--chakra-colors-linkedin-900:#004471;--chakra-colors-facebook-50:#E8F4F9;--chakra-colors-facebook-100:#D9DEE9;--chakra-colors-facebook-200:#B7C2DA;--chakra-colors-facebook-300:#6482C0;--chakra-colors-facebook-400:#4267B2;--chakra-colors-facebook-500:#385898;--chakra-colors-facebook-600:#314E89;--chakra-colors-facebook-700:#29487D;--chakra-colors-facebook-800:#223B67;--chakra-colors-facebook-900:#1E355B;--chakra-colors-messenger-50:#D0E6FF;--chakra-colors-messenger-100:#B9DAFF;--chakra-colors-messenger-200:#A2CDFF;--chakra-colors-messenger-300:#7AB8FF;--chakra-colors-messenger-400:#2E90FF;--chakra-colors-messenger-500:#0078FF;--chakra-colors-messenger-600:#0063D1;--chakra-colors-messenger-700:#0052AC;--chakra-colors-messenger-800:#003C7E;--chakra-colors-messenger-900:#002C5C;--chakra-colors-whatsapp-50:#dffeec;--chakra-colors-whatsapp-100:#b9f5d0;--chakra-colors-whatsapp-200:#90edb3;--chakra-colors-whatsapp-300:#65e495;--chakra-colors-whatsapp-400:#3cdd78;--chakra-colors-whatsapp-500:#22c35e;--chakra-colors-whatsapp-600:#179848;--chakra-colors-whatsapp-700:#0c6c33;--chakra-colors-whatsapp-800:#01421c;--chakra-colors-whatsapp-900:#001803;--chakra-colors-twitter-50:#E5F4FD;--chakra-colors-twitter-100:#C8E9FB;--chakra-colors-twitter-200:#A8DCFA;--chakra-colors-twitter-300:#83CDF7;--chakra-colors-twitter-400:#57BBF5;--chakra-colors-twitter-500:#1DA1F2;--chakra-colors-twitter-600:#1A94DA;--chakra-colors-twitter-700:#1681BF;--chakra-colors-twitter-800:#136B9E;--chakra-colors-twitter-900:#0D4D71;--chakra-colors-telegram-50:#E3F2F9;--chakra-colors-telegram-100:#C5E4F3;--chakra-colors-telegram-200:#A2D4EC;--chakra-colors-telegram-300:#7AC1E4;--chakra-colors-telegram-400:#47A9DA;--chakra-colors-telegram-500:#0088CC;--chakra-colors-telegram-600:#007AB8;--chakra-colors-telegram-700:#006BA1;--chakra-colors-telegram-800:#005885;--chakra-colors-telegram-900:#003F5E;--chakra-colors-home-bg:#f5f5fa;--chakra-borders-none:0;--chakra-borders-1px:1px solid;--chakra-borders-2px:2px solid;--chakra-borders-4px:4px solid;--chakra-borders-8px:8px solid;--chakra-fonts-heading:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";--chakra-fonts-body:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Helvetica,Segoe UI,Arial,Roboto,'PingFang SC',miui,'Hiragino Sans GB','Microsoft Yahei',sans-serif;--chakra-fonts-mono:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;--chakra-fontSizes-xs:0.75rem;--chakra-fontSizes-sm:0.875rem;--chakra-fontSizes-md:1rem;--chakra-fontSizes-lg:1.125rem;--chakra-fontSizes-xl:1.25rem;--chakra-fontSizes-2xl:1.5rem;--chakra-fontSizes-3xl:1.875rem;--chakra-fontSizes-4xl:2.25rem;--chakra-fontSizes-5xl:3rem;--chakra-fontSizes-6xl:3.75rem;--chakra-fontSizes-7xl:4.5rem;--chakra-fontSizes-8xl:6rem;--chakra-fontSizes-9xl:8rem;--chakra-fontWeights-hairline:100;--chakra-fontWeights-thin:200;--chakra-fontWeights-light:300;--chakra-fontWeights-normal:400;--chakra-fontWeights-medium:500;--chakra-fontWeights-semibold:600;--chakra-fontWeights-bold:700;--chakra-fontWeights-extrabold:800;--chakra-fontWeights-black:900;--chakra-letterSpacings-tighter:-0.05em;--chakra-letterSpacings-tight:-0.025em;--chakra-letterSpacings-normal:0;--chakra-letterSpacings-wide:0.025em;--chakra-letterSpacings-wider:0.05em;--chakra-letterSpacings-widest:0.1em;--chakra-lineHeights-3:.75rem;--chakra-lineHeights-4:1rem;--chakra-lineHeights-5:1.25rem;--chakra-lineHeights-6:1.5rem;--chakra-lineHeights-7:1.75rem;--chakra-lineHeights-8:2rem;--chakra-lineHeights-9:2.25rem;--chakra-lineHeights-10:2.5rem;--chakra-lineHeights-normal:normal;--chakra-lineHeights-none:1;--chakra-lineHeights-shorter:1.25;--chakra-lineHeights-short:1.375;--chakra-lineHeights-base:1.5;--chakra-lineHeights-tall:1.625;--chakra-lineHeights-taller:2;--chakra-radii-none:0;--chakra-radii-sm:0.125rem;--chakra-radii-base:0.25rem;--chakra-radii-md:0.375rem;--chakra-radii-lg:0.5rem;--chakra-radii-xl:0.75rem;--chakra-radii-2xl:1rem;--chakra-radii-3xl:1.5rem;--chakra-radii-full:9999px;--chakra-space-1:0.25rem;--chakra-space-2:0.5rem;--chakra-space-3:0.75rem;--chakra-space-4:1rem;--chakra-space-5:1.25rem;--chakra-space-6:1.5rem;--chakra-space-7:1.75rem;--chakra-space-8:2rem;--chakra-space-9:2.25rem;--chakra-space-10:2.5rem;--chakra-space-12:3rem;--chakra-space-14:3.5rem;--chakra-space-16:4rem;--chakra-space-20:5rem;--chakra-space-24:6rem;--chakra-space-28:7rem;--chakra-space-32:8rem;--chakra-space-36:9rem;--chakra-space-40:10rem;--chakra-space-44:11rem;--chakra-space-48:12rem;--chakra-space-52:13rem;--chakra-space-56:14rem;--chakra-space-60:15rem;--chakra-space-64:16rem;--chakra-space-72:18rem;--chakra-space-80:20rem;--chakra-space-96:24rem;--chakra-space-px:1px;--chakra-space-0\.5:0.125rem;--chakra-space-1\.5:0.375rem;--chakra-space-2\.5:0.625rem;--chakra-space-3\.5:0.875rem;--chakra-shadows-xs:0 0 0 1px rgba(0, 0, 0, 0.05);--chakra-shadows-sm:0 1px 2px 0 rgba(0, 0, 0, 0.05);--chakra-shadows-base:0 1px 3px 0 rgba(0, 0, 0, 0.1),0 1px 2px 0 rgba(0, 0, 0, 0.06);--chakra-shadows-md:0 4px 6px -1px rgba(0, 0, 0, 0.1),0 2px 4px -1px rgba(0, 0, 0, 0.06);--chakra-shadows-lg:0 10px 15px -3px rgba(0, 0, 0, 0.1),0 4px 6px -2px rgba(0, 0, 0, 0.05);--chakra-shadows-xl:0 20px 25px -5px rgba(0, 0, 0, 0.1),0 10px 10px -5px rgba(0, 0, 0, 0.04);--chakra-shadows-2xl:0 25px 50px -12px rgba(0, 0, 0, 0.25);--chakra-shadows-outline:0 0 0 3px rgba(66, 153, 225, 0.6);--chakra-shadows-inner:inset 0 2px 4px 0 rgba(0,0,0,0.06);--chakra-shadows-none:none;--chakra-shadows-dark-lg:rgba(0, 0, 0, 0.1) 0px 0px 0px 1px,rgba(0, 0, 0, 0.2) 0px 5px 10px,rgba(0, 0, 0, 0.4) 0px 15px 40px;--chakra-shadows-card:0px 4px 8px rgba(0, 0, 0, 0.04),0px 0px 2px rgba(0, 0, 0, 0.06),0px 0px 1px rgba(0, 0, 0, 0.04);--chakra-sizes-1:0.25rem;--chakra-sizes-2:0.5rem;--chakra-sizes-3:0.75rem;--chakra-sizes-4:1rem;--chakra-sizes-5:1.25rem;--chakra-sizes-6:1.5rem;--chakra-sizes-7:1.75rem;--chakra-sizes-8:2rem;--chakra-sizes-9:2.25rem;--chakra-sizes-10:2.5rem;--chakra-sizes-12:3rem;--chakra-sizes-14:3.5rem;--chakra-sizes-16:4rem;--chakra-sizes-20:5rem;--chakra-sizes-24:6rem;--chakra-sizes-28:7rem;--chakra-sizes-32:8rem;--chakra-sizes-36:9rem;--chakra-sizes-40:10rem;--chakra-sizes-44:11rem;--chakra-sizes-48:12rem;--chakra-sizes-52:13rem;--chakra-sizes-56:14rem;--chakra-sizes-60:15rem;--chakra-sizes-64:16rem;--chakra-sizes-72:18rem;--chakra-sizes-80:20rem;--chakra-sizes-96:24rem;--chakra-sizes-px:1px;--chakra-sizes-0\.5:0.125rem;--chakra-sizes-1\.5:0.375rem;--chakra-sizes-2\.5:0.625rem;--chakra-sizes-3\.5:0.875rem;--chakra-sizes-max:max-content;--chakra-sizes-min:min-content;--chakra-sizes-full:100%;--chakra-sizes-3xs:14rem;--chakra-sizes-2xs:16rem;--chakra-sizes-xs:20rem;--chakra-sizes-sm:24rem;--chakra-sizes-md:28rem;--chakra-sizes-lg:32rem;--chakra-sizes-xl:36rem;--chakra-sizes-2xl:42rem;--chakra-sizes-3xl:48rem;--chakra-sizes-4xl:56rem;--chakra-sizes-5xl:64rem;--chakra-sizes-6xl:72rem;--chakra-sizes-7xl:80rem;--chakra-sizes-8xl:90rem;--chakra-sizes-container-sm:640px;--chakra-sizes-container-md:768px;--chakra-sizes-container-lg:1024px;--chakra-sizes-container-xl:1280px;--chakra-zIndices-hide:-1;--chakra-zIndices-auto:auto;--chakra-zIndices-base:0;--chakra-zIndices-docked:10;--chakra-zIndices-dropdown:1000;--chakra-zIndices-sticky:1100;--chakra-zIndices-banner:1200;--chakra-zIndices-overlay:1300;--chakra-zIndices-modal:1400;--chakra-zIndices-popover:1500;--chakra-zIndices-skipLink:1600;--chakra-zIndices-toast:1700;--chakra-zIndices-tooltip:1800;--chakra-transition-property-common:background-color,border-color,color,fill,stroke,opacity,box-shadow,transform;--chakra-transition-property-colors:background-color,border-color,color,fill,stroke;--chakra-transition-property-dimensions:width,height;--chakra-transition-property-position:left,right,top,bottom;--chakra-transition-property-background:background-color,background-image,background-position;--chakra-transition-easing-ease-in:cubic-bezier(0.4, 0, 1, 1);--chakra-transition-easing-ease-out:cubic-bezier(0, 0, 0.2, 1);--chakra-transition-easing-ease-in-out:cubic-bezier(0.4, 0, 0.2, 1);--chakra-transition-duration-ultra-fast:50ms;--chakra-transition-duration-faster:100ms;--chakra-transition-duration-fast:150ms;--chakra-transition-duration-normal:200ms;--chakra-transition-duration-slow:300ms;--chakra-transition-duration-slower:400ms;--chakra-transition-duration-ultra-slow:500ms;--chakra-blur-none:0;--chakra-blur-sm:4px;--chakra-blur-base:8px;--chakra-blur-md:12px;--chakra-blur-lg:16px;--chakra-blur-xl:24px;--chakra-blur-2xl:40px;--chakra-blur-3xl:64px;}</style><style data-emotion="css-global 1jqlf9g">html{line-height:1.5;-webkit-text-size-adjust:100%;font-family:system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;-moz-osx-font-smoothing:grayscale;touch-action:manipulation;}body{position:relative;min-height:100%;font-feature-settings:'kern';}*,*::before,*::after{border-width:0;border-style:solid;box-sizing:border-box;}main{display:block;}hr{border-top-width:1px;box-sizing:content-box;height:0;overflow:visible;}pre,code,kbd,samp{font-family:SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:1em;}a{background-color:transparent;color:inherit;-webkit-text-decoration:inherit;text-decoration:inherit;}abbr[title]{border-bottom:none;-webkit-text-decoration:underline;text-decoration:underline;-webkit-text-decoration:underline dotted;-webkit-text-decoration:underline dotted;text-decoration:underline dotted;}b,strong{font-weight:bold;}small{font-size:80%;}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline;}sub{bottom:-0.25em;}sup{top:-0.5em;}img{border-style:none;}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0;}button,input{overflow:visible;}button,select{text-transform:none;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner{border-style:none;padding:0;}fieldset{padding:0.35em 0.75em 0.625em;}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal;}progress{vertical-align:baseline;}textarea{overflow:auto;}[type="checkbox"],[type="radio"]{box-sizing:border-box;padding:0;}[type="number"]::-webkit-inner-spin-button,[type="number"]::-webkit-outer-spin-button{-webkit-appearance:none!important;}input[type="number"]{-moz-appearance:textfield;}[type="search"]{-webkit-appearance:textfield;outline-offset:-2px;}[type="search"]::-webkit-search-decoration{-webkit-appearance:none!important;}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit;}details{display:block;}summary{display:-webkit-box;display:-webkit-list-item;display:-ms-list-itembox;display:list-item;}template{display:none;}[hidden]{display:none!important;}body,blockquote,dl,dd,h1,h2,h3,h4,h5,h6,hr,figure,p,pre{margin:0;}button{background:transparent;padding:0;}fieldset{margin:0;padding:0;}ol,ul{margin:0;padding:0;}textarea{resize:vertical;}button,[role="button"]{cursor:pointer;}button::-moz-focus-inner{border:0!important;}table{border-collapse:collapse;}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit;}button,input,optgroup,select,textarea{padding:0;line-height:inherit;color:inherit;}img,svg,video,canvas,audio,iframe,embed,object{display:block;}img,video{max-width:100%;height:auto;}[data-js-focus-visible] :focus:not([data-focus-visible-added]){outline:none;box-shadow:none;}select::-ms-expand{display:none;}</style><style data-emotion="css-global 1of8e4g">body{font-family:var(--chakra-fonts-body);color:var(--chakra-colors-gray-800);background:var(--chakra-colors-white);transition-property:background-color;transition-duration:var(--chakra-transition-duration-normal);line-height:var(--chakra-lineHeights-base);}*::-webkit-input-placeholder{color:var(--chakra-colors-gray-400);}*::-moz-placeholder{color:var(--chakra-colors-gray-400);}*:-ms-input-placeholder{color:var(--chakra-colors-gray-400);}*::placeholder{color:var(--chakra-colors-gray-400);}*,*::before,::after{border-color:var(--chakra-colors-gray-200);word-wrap:break-word;}html,body{background:var(--chakra-colors-home-bg);}img,#write iframe{-webkit-filter:unset;filter:unset;transition-property:filter;transition-duration:var(--chakra-transition-duration-normal);}div{transition-property:background-color;transition-duration:var(--chakra-transition-duration-normal);}</style><style data-emotion="css 1ghv3an">.css-1ghv3an{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:flex-start;-webkit-box-align:flex-start;-ms-flex-align:flex-start;align-items:flex-start;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;height:unset;overflow:auto;-webkit-box-flex-flow:column;-webkit-flex-flow:column;-ms-flex-flow:column;flex-flow:column;-webkit-padding-start:0.5rem;padding-inline-start:0.5rem;-webkit-padding-end:0.5rem;padding-inline-end:0.5rem;}@media screen and (min-width: 30em){.css-1ghv3an{height:unset;-webkit-box-flex-flow:column;-webkit-flex-flow:column;-ms-flex-flow:column;flex-flow:column;}}@media screen and (min-width: 48em){.css-1ghv3an{height:100vh;-webkit-box-flex-flow:row;-webkit-flex-flow:row;-ms-flex-flow:row;flex-flow:row;}}</style><div class="css-1ghv3an"><style data-emotion="css xte4wg">.css-xte4wg{display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;position:unset;white-space:nowrap;vertical-align:middle;outline:2px solid transparent;outline-offset:2px;width:auto;line-height:1.2;border-radius:var(--chakra-radii-md);font-weight:var(--chakra-fontWeights-semibold);transition-property:var(--chakra-transition-property-common);transition-duration:var(--chakra-transition-duration-normal);height:var(--chakra-sizes-12);min-width:var(--chakra-sizes-12);font-size:var(--chakra-fontSizes-lg);-webkit-padding-start:var(--chakra-space-6);padding-inline-start:var(--chakra-space-6);-webkit-padding-end:var(--chakra-space-6);padding-inline-end:var(--chakra-space-6);background:var(--chakra-colors-gray-100);margin-top:1rem;top:3rem;}@media screen and (min-width: 30em){.css-xte4wg{position:unset;margin-top:1rem;}}@media screen and (min-width: 48em){.css-xte4wg{position:-webkit-sticky;position:sticky;margin-top:3rem;}}.css-xte4wg:focus,.css-xte4wg[data-focus]{box-shadow:var(--chakra-shadows-outline);}.css-xte4wg[disabled],.css-xte4wg[aria-disabled=true],.css-xte4wg[data-disabled]{opacity:0.4;cursor:not-allowed;box-shadow:var(--chakra-shadows-none);}.css-xte4wg:hover,.css-xte4wg[data-hover]{background:var(--chakra-colors-gray-200);}.css-xte4wg:hover[disabled],.css-xte4wg[data-hover][disabled],.css-xte4wg:hover[aria-disabled=true],.css-xte4wg[data-hover][aria-disabled=true],.css-xte4wg:hover[data-disabled],.css-xte4wg[data-hover][data-disabled]{background:var(--chakra-colors-gray-100);}.css-xte4wg:active,.css-xte4wg[data-active]{background:var(--chakra-colors-gray-300);}</style><button type="button" class="chakra-button css-xte4wg">BACK</button><style data-emotion="css a06krq">.css-a06krq{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;width:var(--chakra-sizes-full);-webkit-box-flex-flow:column;-webkit-flex-flow:column;-ms-flex-flow:column;flex-flow:column;-webkit-padding-start:unset;padding-inline-start:unset;-webkit-padding-end:unset;padding-inline-end:unset;}@media screen and (min-width: 30em){.css-a06krq{width:var(--chakra-sizes-full);-webkit-padding-start:unset;padding-inline-start:unset;-webkit-padding-end:unset;padding-inline-end:unset;}}@media screen and (min-width: 48em){.css-a06krq{width:55rem;-webkit-padding-start:1.5rem;padding-inline-start:1.5rem;-webkit-padding-end:1.5rem;padding-inline-end:1.5rem;}}@media screen and (min-width: 62em){.css-a06krq{width:55rem;}}@media screen and (min-width: 80em){.css-a06krq{width:55rem;}}@media screen and (min-width: 96em){.css-a06krq{width:68rem;}}</style><div class="css-a06krq"><style data-emotion="css 1if659q">.css-1if659q{border-radius:10px;margin-top:1rem;box-shadow:var(--chakra-shadows-lg);background:var(--chakra-colors-white);overflow:hidden;-webkit-flex:1;-ms-flex:1;flex:1;}@media screen and (min-width: 30em){.css-1if659q{margin-top:1rem;}}@media screen and (min-width: 48em){.css-1if659q{margin-top:3rem;}}</style><div class="css-1if659q"><style data-emotion="css 81xunj">.css-81xunj{padding:1rem;}@media screen and (min-width: 30em){.css-81xunj{padding:1rem;}}@media screen and (min-width: 48em){.css-81xunj{padding:2rem;}}</style><article class="css-81xunj"><header class="css-0"><style data-emotion="css 1m7qnzk">.css-1m7qnzk{font-family:var(--chakra-fonts-heading);font-weight:var(--chakra-fontWeights-bold);font-size:var(--chakra-fontSizes-3xl);line-height:1.33;margin-bottom:1rem;color:rgba(0, 0, 0, 0.85);}@media screen and (min-width: 48em){.css-1m7qnzk{font-size:var(--chakra-fontSizes-4xl);line-height:1.2;}}</style><h1 class="chakra-heading css-1m7qnzk">JavaScript 笔记-引用类型</h1><style data-emotion="css acwcvw">.css-acwcvw{margin-bottom:1rem;}</style><div class="css-acwcvw"><style data-emotion="css 1kpd5c2">.css-1kpd5c2{display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;vertical-align:top;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;max-width:100%;font-weight:var(--chakra-fontWeights-medium);line-height:1.2;outline:2px solid transparent;outline-offset:2px;min-height:1.5rem;min-width:1.5rem;font-size:var(--chakra-fontSizes-sm);border-radius:var(--chakra-radii-md);-webkit-padding-start:var(--chakra-space-2);padding-inline-start:var(--chakra-space-2);-webkit-padding-end:var(--chakra-space-2);padding-inline-end:var(--chakra-space-2);background:var(--chakra-colors-gray-100);color:var(--chakra-colors-gray-800);}.css-1kpd5c2:focus,.css-1kpd5c2[data-focus]{box-shadow:var(--chakra-shadows-outline);}</style><span class="css-1kpd5c2">JavaScript</span></div><style data-emotion="css x8djax">.css-x8djax{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;color:var(--chakra-colors-gray-600);}</style><div class="css-x8djax"><style data-emotion="css 1lr2xj">.css-1lr2xj{width:1em;height:1em;display:inline-block;line-height:1em;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;color:currentColor;margin-right:0.5rem;}</style><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" focusable="false" class="chakra-icon css-1lr2xj" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg><style data-emotion="css 129gw94">.css-129gw94{line-height:0;}</style><time dateTime="2020-01-06T09:14:53.000Z" class="css-129gw94">2020/01/06</time></div></header><style data-emotion="css i51og3">.css-i51og3{margin-top:2rem;}</style><section id="write" class="css-i51og3"><blockquote>
+<p>这是来自Professional JavaScript for Web Develops第五章的笔记。</p>
+</blockquote>
+<p><picture data-rmiz-wrap="visible"><style data-emotion="css 185nr5j">.css-185nr5j{object-fit:cover;border-radius:10px;-webkit-filter:blur(20px);filter:blur(20px);transition-duration:var(--chakra-transition-duration-slower);height:100%;}</style><img alt="Post image" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" class="chakra-image css-185nr5j"/><button aria-label="Zoom image" data-rmiz-btn-open="true"></button></picture></p>
+<h2 id="基本类型和引用类型">基本类型和引用类型</h2>
+<p>基本类型值指的是简单的数据段。</p>
+<p>引用类型值指那些可能由多个值构成的对象。</p>
+<p>JS的五种基本数据类型就是基本类型值。这五种基本数据类型是按值访问的，因为可以操作保存在变量中的实际的值。</p>
+<p>引用类型的值是保存在内存中的对象。js不允许直接访问内存中的位置，也就是说不能直接操作对象的内存空间。在复制保存着对象的某个变量时，操作的是变量的引用。但为变量添加属性时，操作的是实际的对象。</p>
+<p>传递参数只有按值传递，没有按引用传递：</p>
+<pre><style data-emotion="css 19bp9bt">.css-19bp9bt{display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;position:absolute;white-space:nowrap;vertical-align:middle;outline:2px solid transparent;outline-offset:2px;width:auto;line-height:1.2;border-radius:var(--chakra-radii-md);font-weight:var(--chakra-fontWeights-semibold);transition-property:var(--chakra-transition-property-common);transition-duration:var(--chakra-transition-duration-normal);height:var(--chakra-sizes-6);min-width:var(--chakra-sizes-6);font-size:var(--chakra-fontSizes-xs);-webkit-padding-start:var(--chakra-space-2);padding-inline-start:var(--chakra-space-2);-webkit-padding-end:var(--chakra-space-2);padding-inline-end:var(--chakra-space-2);background:var(--chakra-colors-teal-500);color:var(--chakra-colors-white);top:5px;right:5px;}.css-19bp9bt:focus,.css-19bp9bt[data-focus]{box-shadow:var(--chakra-shadows-outline);}.css-19bp9bt[disabled],.css-19bp9bt[aria-disabled=true],.css-19bp9bt[data-disabled]{opacity:0.4;cursor:not-allowed;box-shadow:var(--chakra-shadows-none);}.css-19bp9bt:hover,.css-19bp9bt[data-hover]{background:var(--chakra-colors-teal-600);}.css-19bp9bt:hover[disabled],.css-19bp9bt[data-hover][disabled],.css-19bp9bt:hover[aria-disabled=true],.css-19bp9bt[data-hover][aria-disabled=true],.css-19bp9bt:hover[data-disabled],.css-19bp9bt[data-hover][data-disabled]{background:var(--chakra-colors-teal-500);}.css-19bp9bt:active,.css-19bp9bt[data-active]{background:var(--chakra-colors-teal-700);}</style><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> person = {};
+<span class="hljs-literal">undefined</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">setName</span>(<span class="hljs-params">ojb</span>) {
+ojb.<span class="hljs-property">name</span> = <span class="hljs-string">&#x27;xfy&#x27;</span>;
+}
+<span class="hljs-literal">undefined</span>
+<span class="hljs-title hljs-function">setName</span>(person);
+<span class="hljs-literal">undefined</span>
+person.<span class="hljs-property">name</span>;
+<span class="hljs-string">&quot;xfy&quot;</span>
+</code></pre>
+<p>当在函数内，将ojb2重新声明为一个新的对象。如果参数是按引用传递的，person对象应该自动修改name属性值指向<code>&#x27;notxfy&#x27;</code>。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">setName2</span>(<span class="hljs-params">ojb2</span>) {
+ojb2.<span class="hljs-property">name</span> = <span class="hljs-string">&#x27;xfy2&#x27;</span>;
+ojb2 = {};
+ojb2.<span class="hljs-property">name</span> = <span class="hljs-string">&#x27;notxfy&#x27;</span>;
+}
+<span class="hljs-literal">undefined</span>
+<span class="hljs-title hljs-function">setName2</span>(person);
+<span class="hljs-literal">undefined</span>
+person.<span class="hljs-property">name</span>
+<span class="hljs-string">&quot;xfy2&quot;</span>
+</code></pre>
+<p>js引用类型的值（对象）是引用类型的一个实例。引用类型是一种数据结构，用于将数据和功能组织在一起。虽然引用类型和类看起来类似，但是它们不是相同的概念。</p>
+<p>对象是某个特定引用类型的实例。</p>
+<h2 id="object类型">Object类型</h2>
+<p>Object是目前ECMAScript中使用最多的一个语言。虽然Object实例不具备多少功能，对对于在应用程序中存储和传输数据而言，它们确实是非常理想的选择。</p>
+<h3 id="创建object实例">创建Object实例</h3>
+<p>创建方式有两种。第一种是new操作符后接Object构造函数。构造函数本身就是一个函数，只不过它时出于创建新对象的目的而定义的。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> person = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Object</span>();
+person.<span class="hljs-property">name</span> = <span class="hljs-string">&quot;Defectink&quot;</span>;
+person.<span class="hljs-property">age</span> = <span class="hljs-number">8</span>;
+</code></pre>
+<p>另外一种是使用对象字面量：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> person2 = {
+    name = <span class="hljs-string">&quot;xfy&quot;</span>,
+    age = <span class="hljs-number">88</span>
+}
+</code></pre>
+<p>左边的花括号表示对象字面量的开始，因为它出现在表达式上下文（expression context）中。同样的花括号如果出现在一个语句上下文（statement context）中，则表示一个语句块的开始。例如if语句的花括号。</p>
+<p>在对象字面量中使用逗号来分隔不同的属性。最后一个属性不添加逗号。</p>
+<p>在使用对象字面量语法时，属性名也可以使用字符串。</p>
+<p>对象字面量还有另外一种写法：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> person3 = {};
+person3.<span class="hljs-property">name</span> = <span class="hljs-string">&#x27;xxx&#x27;</span>;
+person3.<span class="hljs-property">age</span> = <span class="hljs-number">3</span>;
+</code></pre>
+<h4 id="传递大量参数">传递大量参数</h4>
+<p>对象字面量也是想函数传递大量可选参数的首选方式。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> output = <span class="hljs-string">&quot;&quot;</span>;
+<span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">showInfo</span>(<span class="hljs-params">args</span>){
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> args.<span class="hljs-property">name</span> == <span class="hljs-string">&quot;string&quot;</span>){
+        output += <span class="hljs-string">&quot;the Name: &quot;</span> + args.<span class="hljs-property">name</span> + <span class="hljs-string">&quot;\n&quot;</span>;
+    }
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> args.<span class="hljs-property">age</span> == <span class="hljs-string">&quot;number&quot;</span>){
+        output += <span class="hljs-string">&quot;the Age: &quot;</span> + args.<span class="hljs-property">age</span> + <span class="hljs-string">&quot;\n&quot;</span>;
+    }
+    <span class="hljs-title hljs-function">alert</span>(output);
+}
+<span class="hljs-title hljs-function">showInfo</span>({
+    <span class="hljs-attr">name</span>:<span class="hljs-string">&quot;test&quot;</span>,
+    <span class="hljs-attr">age</span>: <span class="hljs-number">128</span>
+})
+</code></pre>
+<p>函数showInfo()接收一个名为args的参数。这个参数可能带有名为name或age的属性，又或者这两个属性都有或没有。每次都可以使用一个对象字面量来传递不同的可选数据。</p>
+<p>通常访问对象属性都是用点表示法。在js中也可以使用方括号表示法来访问对象的属性。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(personn.<span class="hljs-property">name</span>);
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(person[<span class="hljs-string">&quot;name&quot;</span>]);
+</code></pre>
+<p>这两种方法没有任何区别。但方括号的优点时可以通过变量来访问属性。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> personAnotherName = <span class="hljs-string">&#x27;test&#x27;</span>;
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(person[personAnotherName]);
+</code></pre>
+<h2 id="array类型">Array类型</h2>
+<p>js的数组是数据的有序列表。数组的每一项都都可以用来保存任何类型的数据。数组的大小也是可以动态调整的，即可以随着数据的添加自动增长以容纳新数据。</p>
+<h3 id="创建数组">创建数组</h3>
+<p>使用Array构造函数：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> colors = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Array</span>();
+</code></pre>
+<p>Array构造函数可以传递数组的数量，创建十个数组：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> colors = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Array</span>(<span class="hljs-number">10</span>);
+</code></pre>
+<p>传递的参数还能用于创建数组的内容，但是不能创建纯数字的内容：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">        <span class="hljs-keyword">let</span> colors = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Array</span>(<span class="hljs-number">3</span>);      <span class="hljs-comment">//create an array with three items</span>
+        <span class="hljs-keyword">let</span> names = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Array</span>(<span class="hljs-string">&quot;Greg&quot;</span>);  <span class="hljs-comment">//create an array with one item, the string &quot;Greg&quot;</span>
+</code></pre>
+<p>可以省略new操作符：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">        <span class="hljs-keyword">let</span> colors = <span class="hljs-title hljs-class">Array</span>(<span class="hljs-number">3</span>);      
+        <span class="hljs-keyword">let</span> names = <span class="hljs-title hljs-class">Array</span>(<span class="hljs-string">&quot;Greg&quot;</span>);
+</code></pre>
+<p>使用字面量表示法：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">        <span class="hljs-keyword">let</span> colors = [<span class="hljs-string">&quot;red&quot;</span>, <span class="hljs-string">&quot;blue&quot;</span>, <span class="hljs-string">&quot;green&quot;</span>]; <span class="hljs-comment">//creates an array with three strings</span>
+        <span class="hljs-keyword">let</span> names = [];                        <span class="hljs-comment">//creates an empty array</span>
+        <span class="hljs-keyword">let</span> values = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,];                   <span class="hljs-comment">//AVOID! Creates an array with 2 or 3 items</span>
+        <span class="hljs-keyword">let</span> options = [,,,,,];                 <span class="hljs-comment">//AVOID! creates an array with 5 or 6 items</span>
+</code></pre>
+<h3 id="读取数组">读取数组</h3>
+<p>使用方括号并提供相应值的基于0的数字索引：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> colors = [<span class="hljs-string">&#x27;red&#x27;</span>,<span class="hljs-string">&#x27;blue&#x27;</span>,<span class="hljs-string">&#x27;green&#x27;</span>];
+colors[<span class="hljs-number">0</span>];
+colors[<span class="hljs-number">2</span>] = <span class="hljs-string">&#x27;test&#x27;</span>;		<span class="hljs-comment">//修改</span>
+colors[<span class="hljs-number">3</span>] = <span class="hljs-string">&#x27;new one&#x27;</span>;		<span class="hljs-comment">//新增</span>
+</code></pre>
+<p>数组的项数保存在length属性中，这个属性始终都会返回0或更大的值。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> colors = [<span class="hljs-string">&#x27;red&#x27;</span>,<span class="hljs-string">&#x27;blue&#x27;</span>,<span class="hljs-string">&#x27;green&#x27;</span>];
+colors.<span class="hljs-property">length</span>;
+<span class="hljs-number">3</span>
+</code></pre>
+<p>length属性不是只读的，可以通过设置这个属性来向数组的末尾添加或移除内容。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">        <span class="hljs-keyword">let</span> colors = [<span class="hljs-string">&quot;red&quot;</span>, <span class="hljs-string">&quot;blue&quot;</span>, <span class="hljs-string">&quot;green&quot;</span>];    <span class="hljs-comment">//creates an array with three strings</span>
+        colors.<span class="hljs-property">length</span> = <span class="hljs-number">2</span>;
+        <span class="hljs-title hljs-function">alert</span>(colors[<span class="hljs-number">2</span>]);        <span class="hljs-comment">//undefined</span>
+
+        <span class="hljs-keyword">let</span> colors = [<span class="hljs-string">&quot;red&quot;</span>, <span class="hljs-string">&quot;blue&quot;</span>, <span class="hljs-string">&quot;green&quot;</span>];    <span class="hljs-comment">//creates an array with three strings</span>
+        colors.<span class="hljs-property">length</span> = <span class="hljs-number">4</span>;
+        <span class="hljs-title hljs-function">alert</span>(colors[<span class="hljs-number">3</span>]);        <span class="hljs-comment">//undefined</span>
+</code></pre>
+<p>数组的最后一项索引始终都是length-1，所以可以使用length方便在末尾添加内容。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">        <span class="hljs-keyword">let</span> colors = [<span class="hljs-string">&quot;red&quot;</span>, <span class="hljs-string">&quot;blue&quot;</span>, <span class="hljs-string">&quot;green&quot;</span>];    <span class="hljs-comment">//creates an array with three strings</span>
+        colors[colors.<span class="hljs-property">length</span>] = <span class="hljs-string">&quot;black&quot;</span>;          <span class="hljs-comment">//add a color</span>
+        colors[colors.<span class="hljs-property">length</span>] = <span class="hljs-string">&quot;brown&quot;</span>;          <span class="hljs-comment">//add another color</span>
+
+        <span class="hljs-title hljs-function">alert</span>(colors.<span class="hljs-property">length</span>);    <span class="hljs-comment">//5</span>
+        <span class="hljs-title hljs-function">alert</span>(colors[<span class="hljs-number">3</span>]);        <span class="hljs-comment">//black</span>
+        <span class="hljs-title hljs-function">alert</span>(colors[<span class="hljs-number">4</span>]);        <span class="hljs-comment">//brown</span>
+</code></pre>
+<blockquote>
+<p>数组最多可以包含4 294 967 295个项</p>
+</blockquote>
+<p>join()方法可以重现toString()的输出。定义数组分隔符。如果不给join()方法传入任何值，或者传入undefineed，则使用逗号。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">        <span class="hljs-keyword">let</span> colors = [<span class="hljs-string">&quot;red&quot;</span>, <span class="hljs-string">&quot;green&quot;</span>, <span class="hljs-string">&quot;blue&quot;</span>];
+        <span class="hljs-title hljs-function">alert</span>(colors.<span class="hljs-title hljs-function">join</span>(<span class="hljs-string">&quot;,&quot;</span>));      <span class="hljs-comment">//red,green,blue</span>
+        <span class="hljs-title hljs-function">alert</span>(colors.<span class="hljs-title hljs-function">join</span>(<span class="hljs-string">&quot;||&quot;</span>));     <span class="hljs-comment">//red||green||blue</span>
+</code></pre>
+<h3 id="栈方法">栈方法</h3>
+<p>栈是一种可以限制插入和删除项的数据结构。栈是一种LIFO（Last-In-First-Out，后进先出）的数据结构。</p>
+<p>栈项中的插入（推入）和移除（弹出）只发生在一个位置——栈的顶部。数组有push()和pop()方法实现了类似栈的行为。</p>
+<p>push()将参数逐个添加到数组的末尾，并返回修改后数组的长度。</p>
+<p>pop()将从数组末尾中移除一项，减少length的值，并返回移除的项。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">        <span class="hljs-keyword">let</span> colors = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Array</span>();                      <span class="hljs-comment">//create an array</span>
+        <span class="hljs-keyword">let</span> count = colors.<span class="hljs-title hljs-function">push</span>(<span class="hljs-string">&quot;red&quot;</span>, <span class="hljs-string">&quot;green&quot;</span>);       <span class="hljs-comment">//push two items</span>
+        <span class="hljs-title hljs-function">alert</span>(count);  <span class="hljs-comment">//2</span>
+        
+        count = colors.<span class="hljs-title hljs-function">push</span>(<span class="hljs-string">&quot;black&quot;</span>);                  <span class="hljs-comment">//push another item on</span>
+        <span class="hljs-title hljs-function">alert</span>(count);  <span class="hljs-comment">//3</span>
+        
+        <span class="hljs-keyword">let</span> item = colors.<span class="hljs-title hljs-function">pop</span>();                       <span class="hljs-comment">//get the last item</span>
+        <span class="hljs-title hljs-function">alert</span>(item);   <span class="hljs-comment">//&quot;black&quot;</span>
+        <span class="hljs-title hljs-function">alert</span>(colors.<span class="hljs-property">length</span>);  <span class="hljs-comment">//2</span>
+</code></pre>
+<p>栈方法可以和其他数组方法连用。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">        <span class="hljs-keyword">let</span> colors = [<span class="hljs-string">&quot;red&quot;</span>, <span class="hljs-string">&quot;blue&quot;</span>];
+        colors.<span class="hljs-title hljs-function">push</span>(<span class="hljs-string">&quot;brown&quot;</span>);              <span class="hljs-comment">//add another item</span>
+        colors[<span class="hljs-number">3</span>] = <span class="hljs-string">&quot;black&quot;</span>;               <span class="hljs-comment">//add an item</span>
+        <span class="hljs-title hljs-function">alert</span>(colors.<span class="hljs-property">length</span>);  <span class="hljs-comment">//4</span>
+
+		<span class="hljs-keyword">let</span> item = colors.<span class="hljs-title hljs-function">pop</span>();
+		item;		<span class="hljs-comment">//&quot;black&quot;</span>
+		colors;		<span class="hljs-comment">// [&quot;red&quot;, &quot;blue&quot;, &quot;brown&quot;]</span>
+</code></pre>
+<h3 id="队列方法">队列方法</h3>
+<p>队列数据结构的访问顺序是FIFO（First-In-First-Out，先进先出）。数组有shift()方法，它能够移除数组的第一个项，减少length值，并返回该项。它就像和pop()方法相反的操作。</p>
+<p>结合shift()和push()方法，可以像队列一样使用数组。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">        <span class="hljs-keyword">let</span> colors = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Array</span>();                      <span class="hljs-comment">//create an array</span>
+        <span class="hljs-keyword">let</span> count = colors.<span class="hljs-title hljs-function">push</span>(<span class="hljs-string">&quot;red&quot;</span>, <span class="hljs-string">&quot;green&quot;</span>);       <span class="hljs-comment">//push two items</span>
+        <span class="hljs-title hljs-function">alert</span>(count);  <span class="hljs-comment">//2</span>
+        
+        count = colors.<span class="hljs-title hljs-function">push</span>(<span class="hljs-string">&quot;black&quot;</span>);                  <span class="hljs-comment">//push another item on</span>
+        <span class="hljs-title hljs-function">alert</span>(count);  <span class="hljs-comment">//3</span>
+        
+        <span class="hljs-keyword">let</span> item = colors.<span class="hljs-title hljs-function">shift</span>();                     <span class="hljs-comment">//get the first item</span>
+        <span class="hljs-title hljs-function">alert</span>(item);   <span class="hljs-comment">//&quot;red&quot;</span>
+        <span class="hljs-title hljs-function">alert</span>(colors.<span class="hljs-property">length</span>);  <span class="hljs-comment">//2</span>
+</code></pre>
+<p>数组还有个unshift()方法，它在数组前端添加添加任意个项，并返回修改后数组的长度。它就像和push()相反的操作。</p>
+<p>结合unshift()和pop()方法可以反向模拟队列操作。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">        <span class="hljs-keyword">let</span> colors = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Array</span>();                      <span class="hljs-comment">//create an array</span>
+        <span class="hljs-keyword">let</span> count = colors.<span class="hljs-title hljs-function">unshift</span>(<span class="hljs-string">&quot;red&quot;</span>, <span class="hljs-string">&quot;green&quot;</span>);    <span class="hljs-comment">//push two items</span>
+        <span class="hljs-title hljs-function">alert</span>(count);  <span class="hljs-comment">//2</span>
+        
+        count = colors.<span class="hljs-title hljs-function">unshift</span>(<span class="hljs-string">&quot;black&quot;</span>);               <span class="hljs-comment">//push another item on</span>
+        <span class="hljs-title hljs-function">alert</span>(count);  <span class="hljs-comment">//3</span>
+        
+        <span class="hljs-keyword">let</span> item = colors.<span class="hljs-title hljs-function">pop</span>();                     <span class="hljs-comment">//get the first item</span>
+        <span class="hljs-title hljs-function">alert</span>(item);   <span class="hljs-comment">//&quot;green&quot;</span>
+        <span class="hljs-title hljs-function">alert</span>(colors.<span class="hljs-property">length</span>);  <span class="hljs-comment">//2</span>
+</code></pre>
+<h3 id="重排序方法">重排序方法</h3>
+<p>数组中有两个可以重排序的方法：reverse()和sort()。</p>
+<p>reverse()对数组反向排序：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">        <span class="hljs-keyword">let</span> values = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>];
+        values.<span class="hljs-title hljs-function">reverse</span>();
+        <span class="hljs-title hljs-function">alert</span>(values);       <span class="hljs-comment">//5,4,3,2,1</span>
+</code></pre>
+<p>sort()按升序排列数组——即最小的值位于最前面。sort()会调用每个数组项的toString()转型方法。然后比较得到的字符串。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">        <span class="hljs-keyword">let</span> values = [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">5</span>, <span class="hljs-number">10</span>, <span class="hljs-number">15</span>];
+        values.<span class="hljs-title hljs-function">sort</span>();
+        <span class="hljs-title hljs-function">alert</span>(values);    <span class="hljs-comment">//0,1,10,15,5</span>
+</code></pre>
+<p>由于1&lt;5，所有10会被排在5前面。所以sort()可以接受一个比较函数来重新排序。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">compare</span>(<span class="hljs-params">v1,v2</span>){
+    <span class="hljs-keyword">if</span> (v1 &lt; v2){
+        <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;
+    }<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(v1 &gt; v2){
+        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+    }<span class="hljs-keyword">else</span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    }
+}
+<span class="hljs-keyword">let</span> values = [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">5</span>, <span class="hljs-number">10</span>, <span class="hljs-number">15</span>];
+values.<span class="hljs-title hljs-function">sort</span>(compare);
+(<span class="hljs-number">5</span>) [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">5</span>, <span class="hljs-number">10</span>, <span class="hljs-number">15</span>]
+</code></pre>
+<blockquote>
+<p>reverse()和sort()返回的是经过排序之后的数组。</p>
+</blockquote>
+<p>对于数值类型或者其valueOf()方法会返回数值类型的对象类型，可以使用一个更简单的比较函数。只要有第二个值减第一个值即可。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">compare2</span>(<span class="hljs-params">v1,v2</span>){
+    v2 - v1;
+}
+values.<span class="hljs-title hljs-function">sort</span>(compare2);
+(<span class="hljs-number">5</span>) [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">5</span>, <span class="hljs-number">10</span>, <span class="hljs-number">15</span>]
+</code></pre>
+<h3 id="操作方法">操作方法</h3>
+<p>concat()基于当前数组中所有项目创建一个新的数组。它会先创建一个数组副本，然后将参数添加到这个副本的末尾，返回新构建的数组。没有传递参数时，它只是返回副本。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">        <span class="hljs-keyword">let</span> colors = [<span class="hljs-string">&quot;red&quot;</span>, <span class="hljs-string">&quot;green&quot;</span>, <span class="hljs-string">&quot;blue&quot;</span>];
+        <span class="hljs-keyword">let</span> colors2 = colors.<span class="hljs-title hljs-function">concat</span>(<span class="hljs-string">&quot;yellow&quot;</span>, [<span class="hljs-string">&quot;black&quot;</span>, <span class="hljs-string">&quot;brown&quot;</span>]);
+        
+        <span class="hljs-title hljs-function">alert</span>(colors);     <span class="hljs-comment">//red,green,blue        </span>
+        <span class="hljs-title hljs-function">alert</span>(colors2);    <span class="hljs-comment">//red,green,blue,yellow,black,brown</span>
+</code></pre>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> colors = [<span class="hljs-string">&#x27;red&#x27;</span>,<span class="hljs-string">&#x27;blue&#x27;</span>,<span class="hljs-string">&#x27;green&#x27;</span>];
+<span class="hljs-literal">undefined</span>
+<span class="hljs-keyword">let</span> color2 = [<span class="hljs-string">&#x27;1&#x27;</span>,<span class="hljs-string">&#x27;2&#x27;</span>,<span class="hljs-string">&#x27;3&#x27;</span>];
+<span class="hljs-literal">undefined</span>
+color2.<span class="hljs-title hljs-function">concat</span>(colors);
+(<span class="hljs-number">6</span>) [<span class="hljs-string">&quot;1&quot;</span>, <span class="hljs-string">&quot;2&quot;</span>, <span class="hljs-string">&quot;3&quot;</span>, <span class="hljs-string">&quot;red&quot;</span>, <span class="hljs-string">&quot;blue&quot;</span>, <span class="hljs-string">&quot;green&quot;</span>]
+</code></pre>
+<p>slice()基于当前数组中的指定位置创建一个新的数组。它接受两个参数，即起始位置和结束位置（不返回结束位置的项）。当只有 一个参数时，返回直到数组末尾的所有项。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">        <span class="hljs-keyword">let</span> colors = [<span class="hljs-string">&quot;red&quot;</span>, <span class="hljs-string">&quot;green&quot;</span>, <span class="hljs-string">&quot;blue&quot;</span>, <span class="hljs-string">&quot;yellow&quot;</span>, <span class="hljs-string">&quot;purple&quot;</span>];
+        <span class="hljs-keyword">let</span> colors2 = colors.<span class="hljs-title hljs-function">slice</span>(<span class="hljs-number">1</span>);
+        <span class="hljs-keyword">let</span> colors3 = colors.<span class="hljs-title hljs-function">slice</span>(<span class="hljs-number">1</span>,<span class="hljs-number">4</span>);
+        
+        <span class="hljs-title hljs-function">alert</span>(colors2);   <span class="hljs-comment">//green,blue,yellow,purple</span>
+        <span class="hljs-title hljs-function">alert</span>(colors3);   <span class="hljs-comment">//green,blue,yellow</span>
+</code></pre>
+<p>splice()是功能更全面的数组操作方法。</p>
+<ul>
+<li>删除：可以删除任意数量的项，指定两个参数：要删除的第一项位置和要删除的项数。<code>splice(0,2)</code></li>
+<li>插入：可以向指定位置插入任意数量的项。指定三个参数：起始位置、0（要删除的项数）和需要插入的项。<code>splice(2,0,&#x27;red&#x27;,&#x27;green&#x27;)</code></li>
+<li>替换：可以向指定位置插入任意数量的项，且同时删除任意数量的项。指定三个参数：起始位置、要删除的项数和要插入的项。<code>splice(2,1,&#x27;red&#x27;,&#x27;blcak&#x27;)</code></li>
+</ul>
+<p>插入和删除都在起始位开始。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">        <span class="hljs-keyword">let</span> colors = [<span class="hljs-string">&quot;red&quot;</span>, <span class="hljs-string">&quot;green&quot;</span>, <span class="hljs-string">&quot;blue&quot;</span>];
+        <span class="hljs-keyword">let</span> removed = colors.<span class="hljs-title hljs-function">splice</span>(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>);              <span class="hljs-comment">//remove the first item</span>
+        <span class="hljs-title hljs-function">alert</span>(colors);     <span class="hljs-comment">//green,blue</span>
+        <span class="hljs-title hljs-function">alert</span>(removed);    <span class="hljs-comment">//red - one item array</span>
+        
+        removed = colors.<span class="hljs-title hljs-function">splice</span>(<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-string">&quot;yellow&quot;</span>, <span class="hljs-string">&quot;orange&quot;</span>);  <span class="hljs-comment">//insert two items at position 1</span>
+        <span class="hljs-title hljs-function">alert</span>(colors);     <span class="hljs-comment">//green,yellow,orange,blue</span>
+        <span class="hljs-title hljs-function">alert</span>(removed);    <span class="hljs-comment">//empty array</span>
+
+        removed = colors.<span class="hljs-title hljs-function">splice</span>(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-string">&quot;red&quot;</span>, <span class="hljs-string">&quot;purple&quot;</span>);    <span class="hljs-comment">//insert two values, remove one</span>
+        <span class="hljs-title hljs-function">alert</span>(colors);     <span class="hljs-comment">//green,red,purple,orange,blue</span>
+        <span class="hljs-title hljs-function">alert</span>(removed);    <span class="hljs-comment">//yellow - one item array</span>
+</code></pre>
+<h3 id="位置方法">位置方法</h3>
+<p>ECMAScript5为数组添加了两个位置方法：indexOf()和lastIndexOf()。他们都接受两个参数：要查找的项和（可选）起始位置的索引。</p>
+<p>indexOf()从数组开头索引，lastIndexOf()从数组末尾开始索引。</p>
+<p>接受两个参数：要查找的项和（可选）表示查找位置地点的索引。返回查找到的位置索引，没找返回-1。比较查找项时会使用全等操作。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> arr = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">4</span>,<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>];
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(arr.<span class="hljs-title hljs-function">indexOf</span>(<span class="hljs-number">3</span>));
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(arr.<span class="hljs-title hljs-function">lastIndexOf</span>(<span class="hljs-number">3</span>));
+
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(arr.<span class="hljs-title hljs-function">indexOf</span>(<span class="hljs-number">3</span>,<span class="hljs-number">3</span>));
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(arr.<span class="hljs-title hljs-function">lastIndexOf</span>(<span class="hljs-number">3</span>,<span class="hljs-number">5</span>));
+
+<span class="hljs-keyword">let</span> person = { <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Nicholas&quot;</span> };
+<span class="hljs-keyword">let</span> people = [{ <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Nicholas&quot;</span> }];
+<span class="hljs-keyword">let</span> morePeople = [person];
+<span class="hljs-title hljs-function">alert</span>(people.<span class="hljs-title hljs-function">indexOf</span>(person));     <span class="hljs-comment">//-1</span>
+<span class="hljs-title hljs-function">alert</span>(morePeople.<span class="hljs-title hljs-function">indexOf</span>(person)); <span class="hljs-comment">//0</span>
+</code></pre>
+<h3 id="迭代方法">迭代方法</h3>
+<ul>
+<li>every()：对数组的每一项运行给定的函数，每一项都返回ture，则返回ture。</li>
+<li>filter()：对数组的每一项运行给定的函数，返回函数会返回ture组成的数组。</li>
+<li>forEach()：对数组的每一项运行给定的函数，没有返回值。</li>
+<li>map()：对数组的每一项运行给定的函数，返回函数调用结果。</li>
+<li>some()：对数组的每一项运行给定的函数，任意一项返回ture，返回ture。</li>
+</ul>
+<p>所有方法都不会修改数组中的包含的值。</p>
+<p>every()</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> <span class="hljs-title hljs-function">dd</span> = input =&gt; input &lt; <span class="hljs-number">9</span>;
+<span class="hljs-comment">// let dd = function (input) {</span>
+<span class="hljs-comment">//     return input &lt; 9;</span>
+<span class="hljs-comment">// }</span>
+<span class="hljs-keyword">let</span> arr = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>];
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(arr.<span class="hljs-title hljs-function">every</span>(dd));		<span class="hljs-comment">//ture</span>
+</code></pre>
+<p>filter()</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> <span class="hljs-title hljs-function">ff</span> = word =&gt; word.<span class="hljs-property">length</span> &gt; <span class="hljs-number">5</span>;
+<span class="hljs-keyword">let</span> arr2 = [<span class="hljs-string">&#x27;spray&#x27;</span>, <span class="hljs-string">&#x27;limit&#x27;</span>, <span class="hljs-string">&#x27;elite&#x27;</span>, <span class="hljs-string">&#x27;exuberant&#x27;</span>, <span class="hljs-string">&#x27;destruction&#x27;</span>, <span class="hljs-string">&#x27;present&#x27;</span>];
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(arr2.<span class="hljs-title hljs-function">filter</span>(ff));
+</code></pre>
+<p>forEach()，可以用来遍历数组</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> arr3 = [<span class="hljs-string">&#x27;a&#x27;</span>,<span class="hljs-string">&#x27;b&#x27;</span>,<span class="hljs-string">&#x27;c&#x27;</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>];
+arr3.<span class="hljs-title hljs-function">forEach</span>(<span class="hljs-function"><span class="hljs-params">ele</span> =&gt;</span> <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(ele));
+</code></pre>
+<p>map()</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> arr4 = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>];
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(arr4.<span class="hljs-title hljs-function">map</span>(<span class="hljs-function"><span class="hljs-params">sx</span> =&gt;</span> (sx + <span class="hljs-number">1</span>) * <span class="hljs-number">2</span> / <span class="hljs-number">3</span>));
+</code></pre>
+<p>some()</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> arr5 = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>,<span class="hljs-number">9</span>];
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(arr5.<span class="hljs-title hljs-function">some</span>(<span class="hljs-function"><span class="hljs-params">qy</span> =&gt;</span> qy % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>));
+</code></pre>
+<h3 id="归并方法">归并方法</h3>
+<p>reduce()和reduceRight()。这两个方法都会迭代数组的所有项，然后构建一个最终返回值。reduceRgiht()从数组的最后一项开始遍历到开头。</p>
+<p>他们都接受四个参数：</p>
+<ol>
+<li>Accumulator (acc) (累计器)</li>
+<li>Current Value (cur) (当前值)</li>
+<li>Current Index (idx) (当前索引)</li>
+<li>Source Array (src) (源数组)</li>
+</ol>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> arr = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>];
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(arr.<span class="hljs-title hljs-function">reduce</span>(<span class="hljs-function">(<span class="hljs-params">a1,a2</span>) =&gt;</span> a1 + a2));
+
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(arr.<span class="hljs-title hljs-function">reduceRight</span>(<span class="hljs-function">(<span class="hljs-params">a1,a2</span>) =&gt;</span> a1 + a2));
+</code></pre>
+<h2 id="date类型">Date类型</h2>
+<p>Date类型使用自1970年1月1日开始以来的毫秒数来保存日期。</p>
+<p>创建日期对象，使用new操作符和Date构造函数。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> dd = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Date</span>();
+<span class="hljs-keyword">let</span> d2 = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Date</span>(<span class="hljs-number">2017</span>, <span class="hljs-number">02</span>, <span class="hljs-number">01</span>);
+<span class="hljs-keyword">let</span> d3 = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Date</span>(<span class="hljs-title hljs-class">Date</span>.<span class="hljs-title hljs-function">UTC</span>(<span class="hljs-number">2000</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">21</span>, <span class="hljs-number">23</span>, <span class="hljs-number">31</span>));
+</code></pre>
+<p>Date()构造函数会假设第一个参数是年份，第二个参数是月份，以此类推。</p>
+<p>Date.now()返回调用这个方法时日期和时间的毫秒数，可以用来做一个简单计时。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> start = <span class="hljs-title hljs-class">Date</span>.<span class="hljs-title hljs-function">now</span>();
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(start);
+<span class="hljs-keyword">let</span> arr = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">666</span>,<span class="hljs-number">745</span>,<span class="hljs-number">23</span>,<span class="hljs-number">441</span>,<span class="hljs-number">323</span>,<span class="hljs-number">123123</span>,<span class="hljs-number">123</span>,<span class="hljs-number">123</span>,<span class="hljs-number">85858585</span>,,<span class="hljs-number">3</span>,<span class="hljs-number">23</span>,<span class="hljs-number">1</span>,<span class="hljs-number">23</span>,<span class="hljs-number">123123123123</span>];
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(arr.<span class="hljs-title hljs-function">reduce</span>(<span class="hljs-function">(<span class="hljs-params">a1, a2</span>) =&gt;</span> a1 + a2));
+<span class="hljs-keyword">let</span> stop = <span class="hljs-title hljs-class">Date</span>.<span class="hljs-title hljs-function">now</span>();
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(stop);
+<span class="hljs-keyword">let</span> result = stop - start;
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(result);
+</code></pre>
+<p>使用+操作符获取Date对象的时间戳也可以达到同样的目的。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> test = +<span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Date</span>();
+</code></pre>
+<h3 id="继承的方法">继承的方法</h3>
+<p>与其他的引用类型一样，Date也重写了toLocalString()、toString()和valueOf()方法。</p>
+<p><code>toLocaleString()</code> 方法返回该日期对象的字符串，该字符串格式因不同语言而不同。</p>
+<p><code>toString()</code> 方法返回一个字符串，表示该Date对象。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> d4 = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Date</span>();
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(d4.<span class="hljs-title hljs-function">toLocaleString</span>());
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(d4.<span class="hljs-title hljs-function">toString</span>())
+<span class="hljs-comment">// 3/5/2020, 10:00:01 PM</span>
+<span class="hljs-comment">// Thu Mar 05 2020 22:00:01 GMT+0800 (China Standard Time)</span>
+</code></pre>
+<p><code>valueOf() </code>方法返回一个 Date 对象的原始值。即返回毫秒数。</p>
+<h2 id="regexp类型">RegExp类型</h2>
+<p>js通过RegExp类型来支持正则表达式。</p>
+<p>创建使用字面量, 构造函数和工厂符号都是可以的：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">/pattern/flags
+<span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">RegExp</span>(pattern [, flags])
+<span class="hljs-title hljs-class">RegExp</span>(pattern [, flags])
+</code></pre>
+<p>Flags：</p>
+<ul>
+<li>g：全局匹配;找到所有匹配，而不是在第一个匹配后停止</li>
+<li>i：忽略大小写</li>
+<li>m：多行; 将开始和结束字符（^和$）视为在多行上工作（也就是，分别匹配每一行的开始和结束（由 \n 或 \r 分割），而不只是只匹配整个输入字符串的最开始和最末尾处。</li>
+</ul>
+<p>使用构造函数创建时，参数需要使用字符串：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> pattern2 = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">RegExp</span>(<span class="hljs-string">&quot;[bc]at&quot;</span>,<span class="hljs-string">&quot;g&quot;</span>);
+</code></pre>
+<p>所以在构造函数的情况下可能需要双重转义</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> pattern3 = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">RegExp</span>(<span class="hljs-string">&quot;\\[bc\\]at&quot;</span>,<span class="hljs-string">&quot;g&quot;</span>);
+</code></pre>
+<p>由于实例属性不会重置，所以在循环中再次调用test()方法会失败。第一次找到了cat，第二次会从上一次匹配的末尾开始寻找。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> re = <span class="hljs-literal">null</span>,
+    i;
+
+<span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) {
+    re = <span class="hljs-regexp">/cat/g</span>;
+    re.<span class="hljs-title hljs-function">test</span>(<span class="hljs-string">&#x27;catastrophe&#x27;</span>);
+}
+
+<span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) {
+    re = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">RegExp</span>(<span class="hljs-string">&quot;cat&quot;</span>,<span class="hljs-string">&quot;g&quot;</span>);
+    re.<span class="hljs-title hljs-function">test</span>(<span class="hljs-string">&#x27;catastrophe&#x27;</span>)
+}
+</code></pre>
+<h3 id="实例属性">实例属性</h3>
+<p><code>RegExp.prototype.constructor</code></p>
+<p>创建该正则对象的构造函数。</p>
+<p><style data-emotion="css wox0k7">.css-wox0k7{transition-property:var(--chakra-transition-property-common);transition-duration:var(--chakra-transition-duration-fast);transition-timing-function:var(--chakra-transition-easing-ease-out);cursor:pointer;-webkit-text-decoration:none;text-decoration:none;outline:2px solid transparent;outline-offset:2px;color:inherit;display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}.css-wox0k7:hover,.css-wox0k7[data-hover]{-webkit-text-decoration:underline;text-decoration:underline;}.css-wox0k7:focus,.css-wox0k7[data-focus]{box-shadow:var(--chakra-shadows-outline);}</style><a target="_blank" rel="noopener noreferrer" class="chakra-link css-wox0k7" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/RegExp/global"><code>RegExp.prototype.global</code><style data-emotion="css 2y6psj">.css-2y6psj{width:1em;height:1em;display:inline-block;line-height:1em;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;color:currentColor;vertical-align:middle;-webkit-margin-start:2px;margin-inline-start:2px;-webkit-margin-end:2px;margin-inline-end:2px;}</style><svg viewBox="0 0 24 24" focusable="false" class="chakra-icon css-2y6psj"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><path d="M15 3h6v6"></path><path d="M10 14L21 3"></path></g></svg></a></p>
+<p>是否开启全局匹配，也就是匹配目标字符串中所有可能的匹配项，而不是只进行第一次匹配。</p>
+<p><a target="_blank" rel="noopener noreferrer" class="chakra-link css-wox0k7" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/RegExp/ignoreCase"><code>RegExp.prototype.ignoreCase</code><svg viewBox="0 0 24 24" focusable="false" class="chakra-icon css-2y6psj"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><path d="M15 3h6v6"></path><path d="M10 14L21 3"></path></g></svg></a></p>
+<p>在匹配字符串时是否要忽略字符的大小写。</p>
+<p><a target="_blank" rel="noopener noreferrer" class="chakra-link css-wox0k7" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/RegExp/lastIndex"><code>RegExp.prototype.lastIndex</code><svg viewBox="0 0 24 24" focusable="false" class="chakra-icon css-2y6psj"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><path d="M15 3h6v6"></path><path d="M10 14L21 3"></path></g></svg></a></p>
+<p>下次匹配开始的字符串索引位置。</p>
+<p><a target="_blank" rel="noopener noreferrer" class="chakra-link css-wox0k7" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/RegExp/multiline"><code>RegExp.prototype.multiline</code><svg viewBox="0 0 24 24" focusable="false" class="chakra-icon css-2y6psj"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><path d="M15 3h6v6"></path><path d="M10 14L21 3"></path></g></svg></a></p>
+<p>是否开启多行模式匹配（影响 ^ 和 $ 的行为）。</p>
+<p><a target="_blank" rel="noopener noreferrer" class="chakra-link css-wox0k7" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/RegExp/source"><code>RegExp.prototype.source</code><svg viewBox="0 0 24 24" focusable="false" class="chakra-icon css-2y6psj"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><path d="M15 3h6v6"></path><path d="M10 14L21 3"></path></g></svg></a></p>
+<p>正则对象的源模式文本。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(pattern.<span class="hljs-property">global</span>);
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(pattern.<span class="hljs-property">ignoreCase</span>);
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(pattern.<span class="hljs-property">multiline</span>);
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(pattern.<span class="hljs-property">lastIndex</span>);
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(pattern.<span class="hljs-property">source</span>);
+</code></pre>
+<h3 id="实例方法">实例方法</h3>
+<p>exec()和test()。</p>
+<p>exec()设置了全局模式也只会返回一个匹配项，多次调用一次返回向后匹配到的值。而不设置全局模式则只返回第一次匹配到的匹配项。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">        <span class="hljs-keyword">var</span> text = <span class="hljs-string">&quot;cat, bat, sat, fat&quot;</span>;        
+        <span class="hljs-keyword">var</span> pattern1 = <span class="hljs-regexp">/.at/</span>;
+        
+        <span class="hljs-keyword">var</span> matches = pattern1.<span class="hljs-title hljs-function">exec</span>(text);        
+        <span class="hljs-title hljs-function">alert</span>(matches.<span class="hljs-property">index</span>);    <span class="hljs-comment">//0</span>
+        <span class="hljs-title hljs-function">alert</span>(matches[<span class="hljs-number">0</span>]);       <span class="hljs-comment">//&quot;cat&quot;</span>
+        <span class="hljs-title hljs-function">alert</span>(pattern1.<span class="hljs-property">lastIndex</span>);<span class="hljs-comment">//0</span>
+
+        matches = pattern1.<span class="hljs-title hljs-function">exec</span>(text);        
+        <span class="hljs-title hljs-function">alert</span>(matches.<span class="hljs-property">index</span>);    <span class="hljs-comment">//0</span>
+        <span class="hljs-title hljs-function">alert</span>(matches[<span class="hljs-number">0</span>]);       <span class="hljs-comment">//&quot;cat&quot;</span>
+        <span class="hljs-title hljs-function">alert</span>(pattern1.<span class="hljs-property">lastIndex</span>);<span class="hljs-comment">//0</span>
+
+        <span class="hljs-keyword">var</span> pattern2 = <span class="hljs-regexp">/.at/g</span>;
+        
+        <span class="hljs-keyword">var</span> matches = pattern2.<span class="hljs-title hljs-function">exec</span>(text);        
+        <span class="hljs-title hljs-function">alert</span>(matches.<span class="hljs-property">index</span>);    <span class="hljs-comment">//0</span>
+        <span class="hljs-title hljs-function">alert</span>(matches[<span class="hljs-number">0</span>]);       <span class="hljs-comment">//&quot;cat&quot;</span>
+        <span class="hljs-title hljs-function">alert</span>(pattern2.<span class="hljs-property">lastIndex</span>);<span class="hljs-comment">//0</span>
+
+        matches = pattern2.<span class="hljs-title hljs-function">exec</span>(text);        
+        <span class="hljs-title hljs-function">alert</span>(matches.<span class="hljs-property">index</span>);    <span class="hljs-comment">//5</span>
+        <span class="hljs-title hljs-function">alert</span>(matches[<span class="hljs-number">0</span>]);       <span class="hljs-comment">//&quot;bat&quot;</span>
+        <span class="hljs-title hljs-function">alert</span>(pattern2.<span class="hljs-property">lastIndex</span>);<span class="hljs-comment">//0</span>
+</code></pre>
+<p>test()接受一个字符串参数，在模式与该参数匹配的情况下返回ture。通常与if语句一起使用。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> text = <span class="hljs-string">&#x27;123-00-12345&#x27;</span>;
+<span class="hljs-keyword">let</span> pattern4 = <span class="hljs-regexp">/\d{3}-\d{2}-\d{4}/</span>;
+<span class="hljs-keyword">if</span> (pattern4.<span class="hljs-title hljs-function">test</span>(text)) {
+    <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-string">&#x27;all matched&#x27;</span>);
+}
+</code></pre>
+<h2 id="function类型">Function类型</h2>
+<p>函数实际上是对象，函数名是指针。所以函数名与包装对象指针的其他变量没有什么不同。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">sum</span> (a,b) {
+    <span class="hljs-keyword">return</span> a + b;
+}
+<span class="hljs-keyword">let</span> anotherSum = sum;
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-title hljs-function">anotherSum</span>(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>));
+
+sum = <span class="hljs-literal">null</span>;
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-title hljs-function">anotherSum</span>(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>));
+</code></pre>
+<p>构造函数用来创建对象。</p>
+<h3 id="函数声明提升">函数声明提升</h3>
+<p>解析器会率先读取函数声明，并使其在执行任何代码之前可以访问。至于函数表达式，则必须等到解析器执行到它所在的代码行，才会被真正的解析执行。</p>
+<p>就像var的提升一样！</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-title hljs-function">sum2</span>(<span class="hljs-number">10</span>,<span class="hljs-number">20</span>));
+<span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">sum2</span>(<span class="hljs-params">a,b</span>) {
+    <span class="hljs-keyword">return</span> a * b;
+}
+</code></pre>
+<p>但使用函数表达式就不存在这种情况了。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-title hljs-function">sum3</span>(<span class="hljs-number">10</span>,<span class="hljs-number">20</span>));
+<span class="hljs-keyword">let</span> sum3 = <span class="hljs-keyword">function</span> (<span class="hljs-params">a,b</span>) {
+    <span class="hljs-keyword">return</span> a * b;
+}
+</code></pre>
+<p>由于函数在一个初始化语句中，（就算使用var，也只有var的声明会提升，语句并没有初始化）而不是函数声明。</p>
+<h3 id="作为参数传递">作为参数传递</h3>
+<p>因为函数名本身就是变量，所以函数也可以作为值来使用。(回调)</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">add</span>(<span class="hljs-params">num</span>) {
+    <span class="hljs-keyword">return</span> num + <span class="hljs-number">10</span>;
+}
+<span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">addd</span>(<span class="hljs-params">ff,num</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-title hljs-function">ff</span>(num);
+}
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-title hljs-function">addd</span>(add,<span class="hljs-number">1</span>));
+</code></pre>
+<p>另一种就是从一个函数中返回另一个函数，实际上就是一个函数嵌套了另一个函数。（闭包）</p>
+<p>例如对对象数组进行按照对象属性排序：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> data = [
+    {
+        <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;xfy&#x27;</span>,
+        <span class="hljs-attr">age</span>: <span class="hljs-number">18</span>
+    },
+    {
+        <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;dfy&#x27;</span>,
+        <span class="hljs-attr">age</span>: <span class="hljs-number">81</span>
+    }
+]
+<span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">com</span>(<span class="hljs-params">propertyName</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span> (<span class="hljs-params">object1,object2</span>) {
+        <span class="hljs-keyword">let</span> value1 = object1[propertyName];
+        <span class="hljs-keyword">let</span> value2 = object2[propertyName];
+        <span class="hljs-keyword">if</span> (value1 &lt; value2) {
+            <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;
+        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (value1 &gt; value2) {
+            <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+        }
+    }
+}
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(data.<span class="hljs-title hljs-function">sort</span>(<span class="hljs-title hljs-function">com</span>(<span class="hljs-string">&#x27;name&#x27;</span>)));
+</code></pre>
+<h3 id="函数内部属性">函数内部属性</h3>
+<p>在函数内部，有两个特殊的对象：arguments和this。arguments的主要作用是保存函数参数，但它还有一个callee的属性。该属性是一个指针，指针指向拥有这个arguments对象的函数。</p>
+<p>一个经典的递归函数：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">test</span>(<span class="hljs-params">num</span>) {
+    <span class="hljs-keyword">if</span> (num &lt;= <span class="hljs-number">1</span>) {
+        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+    }
+    <span class="hljs-keyword">return</span> num + <span class="hljs-title hljs-function">test</span>(num - <span class="hljs-number">1</span>);
+}
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-title hljs-function">test</span>(<span class="hljs-number">100</span>));
+</code></pre>
+<p>当遇到使用函数表达式重新指向函数时</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">test</span>(<span class="hljs-params">num</span>) {
+    <span class="hljs-keyword">if</span> (num &lt;= <span class="hljs-number">1</span>) {
+        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+    }
+    <span class="hljs-keyword">return</span> num + <span class="hljs-title hljs-function">test</span>(num - <span class="hljs-number">1</span>);
+}
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-title hljs-function">test</span>(<span class="hljs-number">100</span>));
+
+<span class="hljs-keyword">let</span> test2 = test;
+test = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+}
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-title hljs-function">test2</span>(<span class="hljs-number">100</span>));    <span class="hljs-comment">// 101 test2不能完成回调，因为函数中还是test(num -1)</span>
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-title hljs-function">test</span>(<span class="hljs-number">100</span>));
+</code></pre>
+<p>使用callee就能解决这个问题，类似于对象的this。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">cb</span>(<span class="hljs-params">num</span>) {
+    <span class="hljs-keyword">if</span> (num &lt;= <span class="hljs-number">1</span>) {
+        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+    }
+    <span class="hljs-keyword">return</span> num + <span class="hljs-variable hljs-language">arguments</span>.<span class="hljs-title hljs-function">callee</span>(num - <span class="hljs-number">1</span>);
+}
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-title hljs-function">cb</span>(<span class="hljs-number">100</span>));
+<span class="hljs-keyword">let</span> cb2 = cb;       <span class="hljs-comment">// 指针交换</span>
+cb = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-title hljs-function">cb2</span>(<span class="hljs-number">100</span>));
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-title hljs-function">cb</span>(<span class="hljs-number">100</span>));
+</code></pre>
+<blockquote>
+<p>函数的名字仅仅只是一个包含指针的变量而已。</p>
+</blockquote>
+<p>ECMAScript5还定义了一个函数对象的属性：caller。它保存着调用当前函数的函数的引用。如果是在全局作用域中调用当前函数，它的值为null。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">outer</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-title hljs-function">inner</span>();
+}
+<span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">inner</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">return</span> inner.<span class="hljs-property">caller</span>;
+}
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-title hljs-function">outer</span>());
+</code></pre>
+<p>甚至还能更进一步解耦合：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">outer</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-title hljs-function">inner</span>();
+}
+<span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">inner</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-variable hljs-language">arguments</span>.<span class="hljs-property">callee</span>.<span class="hljs-property">caller</span>;
+}
+</code></pre>
+<p>在严格模式下，访问<code>arguments.callee</code>和<code>arguments.caller</code>都会导致访问错误。且不能为函数的caller属性赋值，否则会导致错误。</p>
+<h3 id="函数属性与方法">函数属性与方法</h3>
+<p>js中的函数也是对象，所以函数也有属性和方法。每个函数都包含两个属性：length和prototype。</p>
+<p>length属性表示函数希望接受的命名参数的个数。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">test</span>(<span class="hljs-params">arg1,arg2</span>) {
+    <span class="hljs-keyword">return</span> arg1 + arg2;
+}
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(test.<span class="hljs-property">length</span>);
+</code></pre>
+<p>对于引用类型而言，prototype是保存它们所有实例方法的真正所在。prototype属性是不可枚举的，所以用for-in是无法发现的。</p>
+<p>每个函数都包含两个非继承而来的方法：apply()和call()。它们常用来动态改变this的值。call()与apply()相同，它们区别仅在接受参数的方式不同。第一个参数是this值，第二个参数分别是逐个传参和数组传参。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">fruits</span>(<span class="hljs-params"></span>) {};
+
+fruits.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> = {
+    <span class="hljs-attr">color</span>: <span class="hljs-string">&#x27;red&#x27;</span>,
+    <span class="hljs-attr">say</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-string">&#x27;the color is : &#x27;</span> + <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">color</span>);
+    }
+}
+<span class="hljs-keyword">let</span> apple = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-function">fruits</span>();
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(apple);
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(apple.<span class="hljs-title hljs-function">say</span>());
+
+<span class="hljs-keyword">let</span> banana = {
+    <span class="hljs-attr">color</span>: <span class="hljs-string">&#x27;yellow&#x27;</span>
+}
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(apple.<span class="hljs-property">say</span>.<span class="hljs-title hljs-function">apply</span>(banana));
+</code></pre>
+<p>除了在对象中的应用，call和apply真正的用武之地是扩充函数的作用于。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-variable hljs-language">window</span>.<span class="hljs-property">color</span> = <span class="hljs-string">&#x27;red&#x27;</span>;
+<span class="hljs-keyword">let</span> o = {
+    <span class="hljs-attr">color</span>: <span class="hljs-string">&#x27;blue&#x27;</span>
+};
+<span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">sayColor</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">color</span>;
+}
+<span class="hljs-title hljs-function">sayColor</span>()
+<span class="hljs-string">&quot;red&quot;</span>
+sayColor.<span class="hljs-title hljs-function">call</span>(o)
+<span class="hljs-string">&quot;blue&quot;</span>
+sayColor.<span class="hljs-title hljs-function">call</span>(<span class="hljs-variable hljs-language">window</span>)
+<span class="hljs-string">&quot;red&quot;</span>
+</code></pre>
+<p>除此之外还有一个方法：bind()。这个方法会创建一个函数的实例，其this值会被绑定到传给bind()函数的值。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-variable hljs-language">window</span>.<span class="hljs-property">color</span> = <span class="hljs-string">&#x27;red&#x27;</span>;
+<span class="hljs-keyword">let</span> o = {
+    <span class="hljs-attr">color</span>: <span class="hljs-string">&#x27;blue&#x27;</span>
+};
+<span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">sayColor</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">color</span>;
+}
+
+<span class="hljs-keyword">let</span> sayAnotherColor = sayColor.<span class="hljs-title hljs-function">bind</span>(o);
+<span class="hljs-title hljs-function">sayAnotherColor</span>();
+<span class="hljs-string">&quot;blue&quot;</span>
+</code></pre>
+<h3 id="基本包装类型">基本包装类型</h3>
+<p>三个特殊的引用类型：Boolean、Number和String。</p>
+<p>包装对象都会经过三个步骤：</p>
+<ol>
+<li>创建String或其他类型的一个实例；</li>
+<li>在实例上调用指定的方法；</li>
+<li>销毁这个实例；</li>
+</ol>
+<p>也就是类似于这样的操作：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> s1 = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">String</span>(<span class="hljs-string">&#x27;some string&#x27;</span>);
+<span class="hljs-keyword">let</span> s2 = s1.<span class="hljs-property">length</span>;
+s1 = <span class="hljs-literal">null</span>;
+</code></pre>
+<p>引用类型与基本包装类型的主要区别就是对象的生存期。使用new操作符创建的引用类型的实例，在执行流离开当前作用域之前一直都保存在内存中。而包装对象，则只存在执行代码的一瞬间，然后立即被销毁。所以不能在运行时为基本类型添加属性和方法。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> s1 = <span class="hljs-string">&#x27;xfy&#x27;</span>;
+s1.<span class="hljs-property">color</span> = <span class="hljs-string">&#x27;pink&#x27;</span>;
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(s1.<span class="hljs-property">color</span>);	<span class="hljs-comment">// undefined</span>
+</code></pre>
+<p>在第二行创建的String对象在执行第三行代码时就已经被销毁了，第三行代码则又创建自己String对象，而没有第二行创建color属性。</p>
+<p>Object构造函数也会像工厂方法一样，根据传入值的类型来返回相应基本包装类型的实例。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> test = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Object</span>(<span class="hljs-string">&#x27;xfy&#x27;</span>);
+<span class="hljs-keyword">typeof</span> test
+<span class="hljs-string">&quot;object&quot;</span>
+test <span class="hljs-keyword">instanceof</span> <span class="hljs-title hljs-class">String</span>
+<span class="hljs-literal">true</span>
+test <span class="hljs-keyword">instanceof</span> <span class="hljs-title hljs-class">Number</span>
+<span class="hljs-literal">false</span>
+test <span class="hljs-keyword">instanceof</span> <span class="hljs-title hljs-class">Object</span>
+<span class="hljs-literal">true</span>
+</code></pre>
+<p>使用new调用资本包装类型的构造函数，与直接调用同名的转型函数是不一样的。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> value = <span class="hljs-string">&#x27;25&#x27;</span>;
+<span class="hljs-keyword">let</span> test = <span class="hljs-title hljs-class">Number</span>(value);
+<span class="hljs-keyword">typeof</span> test
+<span class="hljs-string">&quot;number&quot;</span>
+
+<span class="hljs-keyword">let</span> test2 = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Number</span>(<span class="hljs-number">25</span>);
+<span class="hljs-keyword">typeof</span> test2;
+<span class="hljs-string">&quot;object&quot;</span>
+</code></pre>
+<blockquote>
+<p>不建显式的创建基本包装类型的对象。</p>
+</blockquote>
+<h2 id="boolean类型">Boolean类型</h2>
+<p>Boolean有基本类型与引用类型。使用Boolean对象构造的值为引用类型。Boolean类型的实例重写了valueOf()与toString()。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> b = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Boolean</span>(<span class="hljs-literal">false</span>);     <span class="hljs-comment">// falseObject</span>
+<span class="hljs-keyword">let</span> bb = <span class="hljs-literal">true</span>;
+<span class="hljs-keyword">let</span> b2 = <span class="hljs-literal">false</span>;     <span class="hljs-comment">// falseValue</span>
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(b &amp;&amp; bb);   <span class="hljs-comment">//true</span>
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(b2 &amp;&amp; bb);  <span class="hljs-comment">//false</span>
+</code></pre>
+<p>布尔表达式中所有对象都会被转为true，因此引用类型的Boolean都会被转为true。</p>
+<p>基本类型与引用类型的Boolean还有两个区别：</p>
+<ul>
+<li>typeof对基本类型返回”Boolean“。对引用类型返回”Object“；</li>
+<li>Boolean对象是Boolean类型的实例，所以instanceof会返回true。而基本类型则返回false；</li>
+</ul>
+<blockquote>
+<p>建议不要使用Boolean对象。</p>
+</blockquote>
+<h2 id="number类型">Number类型</h2>
+<p>Number类型也重写了valueOf()、toLocaleString()和toString()。</p>
+<p>toString()可以传递一个表示基数的参数，将返回进制化数值的字符串形式。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> num = <span class="hljs-number">123</span>;
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(num.<span class="hljs-title hljs-function">toString</span>(<span class="hljs-number">2</span>));
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(num.<span class="hljs-title hljs-function">toString</span>(<span class="hljs-number">8</span>));
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(num.<span class="hljs-title hljs-function">toString</span>(<span class="hljs-number">16</span>));
+</code></pre>
+<p>除了继承的方法之外，Number类型还提供了一些用于将数值格式化为字符串的方法。toFixed()方法返回指定位数的小数。</p>
+<p>当小数比指定位数还多一位的情况下，就会舍入。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> num = <span class="hljs-number">123</span>;
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(num.<span class="hljs-title hljs-function">toFixed</span>(<span class="hljs-number">2</span>));
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(num.<span class="hljs-title hljs-function">toFixed</span>(<span class="hljs-number">20</span>));
+num = <span class="hljs-number">12.005</span>;
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(num.<span class="hljs-title hljs-function">toFixed</span>(<span class="hljs-number">2</span>));
+</code></pre>
+<blockquote>
+<p>通常情况下toFixed()可以表示0-20位小数，但这只是标准实现的范围。有些运行环境可以支持更多。</p>
+</blockquote>
+<p>也有用于格式化为指数表示法的方法，toExponential()（e表示法）。toExponential()接受一个参数，指定输出结果的小数的位数。返回也是字符串形式。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> num = <span class="hljs-number">123</span>;
+<span class="hljs-keyword">let</span> num2 = num.<span class="hljs-title hljs-function">toExponential</span>(<span class="hljs-number">10</span>);
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(num2);  <span class="hljs-comment">// 1.2300000000e+2</span>
+</code></pre>
+<p>还有toPrecision()会根据情况来使用toFixed()或者是toExponential()。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> num = <span class="hljs-number">123</span>;
+
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(num.<span class="hljs-title hljs-function">toPrecision</span>(<span class="hljs-number">1</span>));
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(num.<span class="hljs-title hljs-function">toPrecision</span>(<span class="hljs-number">2</span>));
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(num.<span class="hljs-title hljs-function">toPrecision</span>(<span class="hljs-number">3</span>));
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(num.<span class="hljs-title hljs-function">toPrecision</span>(<span class="hljs-number">4</span>));
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(num.<span class="hljs-title hljs-function">toPrecision</span>(<span class="hljs-number">5</span>));
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(num.<span class="hljs-title hljs-function">toPrecision</span>(<span class="hljs-number">6</span>));
+
+<span class="hljs-number">1e+2</span>
+<span class="hljs-number">1.2e+2</span>
+<span class="hljs-number">123</span>
+<span class="hljs-number">123.0</span>
+<span class="hljs-number">123.00</span>
+<span class="hljs-number">123.000</span>
+</code></pre>
+<p>Number与Boolean一样，实例化Number类型在使用typeof和instanceof时，会有完全不同的结果。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> num = <span class="hljs-number">123</span>;
+<span class="hljs-keyword">let</span> num2 = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Number</span>(<span class="hljs-number">123</span>);
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-keyword">typeof</span> num);		<span class="hljs-comment">// &quot;Number&quot;</span>
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-keyword">typeof</span> num2);		<span class="hljs-comment">// &quot;Object&quot;</span>
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(num <span class="hljs-keyword">instanceof</span> <span class="hljs-title hljs-class">Number</span>);		<span class="hljs-comment">// false</span>
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(num2 <span class="hljs-keyword">instanceof</span> <span class="hljs-title hljs-class">Number</span>);	<span class="hljs-comment">// true</span>
+</code></pre>
+<h2 id="string类型">String类型</h2>
+<p>String类型是字符串的对象包装类型。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> str = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">String</span>(<span class="hljs-string">&#x27;xfy&#x27;</span>);
+</code></pre>
+<p>访问特定字符方法：charAt()和charCodeAt()，接受一个参数，从0开始的字符位置。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> str = <span class="hljs-string">&#x27;xfy&#x27;</span>;
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(str.<span class="hljs-title hljs-function">charAt</span>(<span class="hljs-number">1</span>));
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(str.<span class="hljs-title hljs-function">charCodeAt</span>(<span class="hljs-number">1</span>));
+</code></pre>
+<p>还有另一个访问个别字符的方法，类似于访问数组</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(str[<span class="hljs-number">1</span>]);
+</code></pre>
+<p>操作方法</p>
+<p>除了<code>+</code>拼接字符串，还有类似于数组的concat()方法。用于将一个或多个字符串拼接起来，返回新的字符串。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> str2 = <span class="hljs-string">&#x27;yyy&#x27;</span>;
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(str.<span class="hljs-title hljs-function">concat</span>(<span class="hljs-string">&#x27;abc&#x27;</span>,str2));
+</code></pre>
+<p>还有三个基于字符串创建新字符串的方法，基于字符串修改或裁减。返回新的字符串。slice()、substr()和substring()。它们都接受两个参数，第一个参数指定字符串开始的位置，第二个参数（可选）表示字符串到哪里结束。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> str = <span class="hljs-string">&#x27;xiaofeiyang&#x27;</span>;
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(str.<span class="hljs-title hljs-function">slice</span>(<span class="hljs-number">4</span>));
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(str.<span class="hljs-title hljs-function">substr</span>(<span class="hljs-number">4</span>));
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(str.<span class="hljs-title hljs-function">substring</span>(<span class="hljs-number">4</span>));
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-string">&#x27;---&#x27;</span>);
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(str.<span class="hljs-title hljs-function">slice</span>(<span class="hljs-number">4</span>,<span class="hljs-number">7</span>));
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(str.<span class="hljs-title hljs-function">substr</span>(<span class="hljs-number">4</span>,<span class="hljs-number">7</span>));
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(str.<span class="hljs-title hljs-function">substring</span>(<span class="hljs-number">4</span>,<span class="hljs-number">7</span>));
+
+feiyang
+feiyang
+feiyang
+---
+fei
+feiyang
+fei
+</code></pre></section></article></div><style data-emotion="css 1i6v8fa">.css-1i6v8fa{min-height:346px;}@media screen and (min-width: 30em){.css-1i6v8fa{min-height:350px;}}</style><div class="css-1i6v8fa"></div><style data-emotion="css 3ydw18">.css-3ydw18{height:3px;width:50px;background:var(--chakra-colors-gray-500);border-radius:var(--chakra-radii-xl);margin-top:2.5rem;}</style><div class="css-3ydw18"></div><style data-emotion="css 1lwvw50">.css-1lwvw50{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-flex-flow:column;-webkit-flex-flow:column;-ms-flex-flow:column;flex-flow:column;padding-top:1.5rem;padding-bottom:1.5rem;}</style><footer class="css-1lwvw50"><style data-emotion="css yld109">.css-yld109{color:var(--chakra-colors-gray-600);font-weight:var(--chakra-fontWeights-bold);margin-bottom:0.5rem;}</style><p class="chakra-text css-yld109">©<!-- -->2022<!-- --> 小肥羊</p><style data-emotion="css 3eyczr">.css-3eyczr{color:var(--chakra-colors-gray-400);font-size:small;}</style><p class="chakra-text css-3eyczr">Powered by Next.js ❤️ Chakra UI</p></footer></div><style data-emotion="css kl7qz4">.css-kl7qz4{display:none;position:-webkit-sticky;position:sticky;top:3rem;margin-top:3rem;}@media screen and (min-width: 30em){.css-kl7qz4{display:none;}}@media screen and (min-width: 48em){.css-kl7qz4{display:none;}}@media screen and (min-width: 62em){.css-kl7qz4{display:block;}}</style><div class="css-kl7qz4"><h2 id="table-of-contents">Table of contents</h2>
+<ul>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B">基本类型和引用类型</a></p>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#object%E7%B1%BB%E5%9E%8B">Object类型</a></p>
+<ul>
+<li><a class="chakra-link css-wox0k7" href="#%E5%88%9B%E5%BB%BAobject%E5%AE%9E%E4%BE%8B">创建Object实例</a></li>
+</ul>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#array%E7%B1%BB%E5%9E%8B">Array类型</a></p>
+<ul>
+<li><a class="chakra-link css-wox0k7" href="#%E5%88%9B%E5%BB%BA%E6%95%B0%E7%BB%84">创建数组</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E8%AF%BB%E5%8F%96%E6%95%B0%E7%BB%84">读取数组</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E6%A0%88%E6%96%B9%E6%B3%95">栈方法</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E9%98%9F%E5%88%97%E6%96%B9%E6%B3%95">队列方法</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E9%87%8D%E6%8E%92%E5%BA%8F%E6%96%B9%E6%B3%95">重排序方法</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E6%93%8D%E4%BD%9C%E6%96%B9%E6%B3%95">操作方法</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E4%BD%8D%E7%BD%AE%E6%96%B9%E6%B3%95">位置方法</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E8%BF%AD%E4%BB%A3%E6%96%B9%E6%B3%95">迭代方法</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E5%BD%92%E5%B9%B6%E6%96%B9%E6%B3%95">归并方法</a></li>
+</ul>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#date%E7%B1%BB%E5%9E%8B">Date类型</a></p>
+<ul>
+<li><a class="chakra-link css-wox0k7" href="#%E7%BB%A7%E6%89%BF%E7%9A%84%E6%96%B9%E6%B3%95">继承的方法</a></li>
+</ul>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#regexp%E7%B1%BB%E5%9E%8B">RegExp类型</a></p>
+<ul>
+<li><a class="chakra-link css-wox0k7" href="#%E5%AE%9E%E4%BE%8B%E5%B1%9E%E6%80%A7">实例属性</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E5%AE%9E%E4%BE%8B%E6%96%B9%E6%B3%95">实例方法</a></li>
+</ul>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#function%E7%B1%BB%E5%9E%8B">Function类型</a></p>
+<ul>
+<li><a class="chakra-link css-wox0k7" href="#%E5%87%BD%E6%95%B0%E5%A3%B0%E6%98%8E%E6%8F%90%E5%8D%87">函数声明提升</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E4%BD%9C%E4%B8%BA%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92">作为参数传递</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E5%87%BD%E6%95%B0%E5%86%85%E9%83%A8%E5%B1%9E%E6%80%A7">函数内部属性</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E5%87%BD%E6%95%B0%E5%B1%9E%E6%80%A7%E4%B8%8E%E6%96%B9%E6%B3%95">函数属性与方法</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E5%9F%BA%E6%9C%AC%E5%8C%85%E8%A3%85%E7%B1%BB%E5%9E%8B">基本包装类型</a></li>
+</ul>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#boolean%E7%B1%BB%E5%9E%8B">Boolean类型</a></p>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#number%E7%B1%BB%E5%9E%8B">Number类型</a></p>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#string%E7%B1%BB%E5%9E%8B">String类型</a></p>
+</li>
+</ul></div></div><span></span></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"postData":{"id":"javascript-notes-reference-type","content":"\n\u003e 这是来自Professional JavaScript for Web Develops第五章的笔记。\n\n![javascript](../images/JavaScript笔记-引用类型/javascript.webp)\n\n## 基本类型和引用类型\n\n基本类型值指的是简单的数据段。\n\n引用类型值指那些可能由多个值构成的对象。\n\nJS的五种基本数据类型就是基本类型值。这五种基本数据类型是按值访问的，因为可以操作保存在变量中的实际的值。\n\n引用类型的值是保存在内存中的对象。js不允许直接访问内存中的位置，也就是说不能直接操作对象的内存空间。在复制保存着对象的某个变量时，操作的是变量的引用。但为变量添加属性时，操作的是实际的对象。\n\n传递参数只有按值传递，没有按引用传递：\n\n```js\nlet person = {};\nundefined\nfunction setName(ojb) {\nojb.name = 'xfy';\n}\nundefined\nsetName(person);\nundefined\nperson.name;\n\"xfy\"\n```\n\n当在函数内，将ojb2重新声明为一个新的对象。如果参数是按引用传递的，person对象应该自动修改name属性值指向`'notxfy'`。\n\n```js\nfunction setName2(ojb2) {\nojb2.name = 'xfy2';\nojb2 = {};\nojb2.name = 'notxfy';\n}\nundefined\nsetName2(person);\nundefined\nperson.name\n\"xfy2\"\n```\n\njs引用类型的值（对象）是引用类型的一个实例。引用类型是一种数据结构，用于将数据和功能组织在一起。虽然引用类型和类看起来类似，但是它们不是相同的概念。\n\n对象是某个特定引用类型的实例。\n\n## Object类型\n\nObject是目前ECMAScript中使用最多的一个语言。虽然Object实例不具备多少功能，对对于在应用程序中存储和传输数据而言，它们确实是非常理想的选择。\n\n### 创建Object实例\n\n创建方式有两种。第一种是new操作符后接Object构造函数。构造函数本身就是一个函数，只不过它时出于创建新对象的目的而定义的。\n\n```js\nlet person = new Object();\nperson.name = \"Defectink\";\nperson.age = 8;\n```\n\n另外一种是使用对象字面量：\n\n```js\nlet person2 = {\n    name = \"xfy\",\n    age = 88\n}\n```\n\n左边的花括号表示对象字面量的开始，因为它出现在表达式上下文（expression context）中。同样的花括号如果出现在一个语句上下文（statement context）中，则表示一个语句块的开始。例如if语句的花括号。\n\n在对象字面量中使用逗号来分隔不同的属性。最后一个属性不添加逗号。\n\n在使用对象字面量语法时，属性名也可以使用字符串。\n\n对象字面量还有另外一种写法：\n\n```js\nlet person3 = {};\nperson3.name = 'xxx';\nperson3.age = 3;\n```\n\n#### 传递大量参数\n\n对象字面量也是想函数传递大量可选参数的首选方式。\n\n```js\nlet output = \"\";\nfunction showInfo(args){\n    if (typeof args.name == \"string\"){\n        output += \"the Name: \" + args.name + \"\\n\";\n    }\n    if (typeof args.age == \"number\"){\n        output += \"the Age: \" + args.age + \"\\n\";\n    }\n    alert(output);\n}\nshowInfo({\n    name:\"test\",\n    age: 128\n})\n```\n\n函数showInfo()接收一个名为args的参数。这个参数可能带有名为name或age的属性，又或者这两个属性都有或没有。每次都可以使用一个对象字面量来传递不同的可选数据。\n\n通常访问对象属性都是用点表示法。在js中也可以使用方括号表示法来访问对象的属性。\n\n```js\nconsole.log(personn.name);\nconsole.log(person[\"name\"]);\n```\n\n这两种方法没有任何区别。但方括号的优点时可以通过变量来访问属性。\n\n```js\nlet personAnotherName = 'test';\nconsole.log(person[personAnotherName]);\n```\n\n## Array类型\n\njs的数组是数据的有序列表。数组的每一项都都可以用来保存任何类型的数据。数组的大小也是可以动态调整的，即可以随着数据的添加自动增长以容纳新数据。\n\n### 创建数组\n\n使用Array构造函数：\n\n```js\nlet colors = new Array();\n```\n\nArray构造函数可以传递数组的数量，创建十个数组：\n\n```js\nlet colors = new Array(10);\n```\n\n传递的参数还能用于创建数组的内容，但是不能创建纯数字的内容：\n\n```js\n        let colors = new Array(3);      //create an array with three items\n        let names = new Array(\"Greg\");  //create an array with one item, the string \"Greg\"\n```\n\n可以省略new操作符：\n\n```js\n        let colors = Array(3);      \n        let names = Array(\"Greg\");\n```\n\n使用字面量表示法：\n\n```js\n        let colors = [\"red\", \"blue\", \"green\"]; //creates an array with three strings\n        let names = [];                        //creates an empty array\n        let values = [1,2,];                   //AVOID! Creates an array with 2 or 3 items\n        let options = [,,,,,];                 //AVOID! creates an array with 5 or 6 items\n```\n\n### 读取数组\n\n使用方括号并提供相应值的基于0的数字索引：\n\n```js\nlet colors = ['red','blue','green'];\ncolors[0];\ncolors[2] = 'test';\t\t//修改\ncolors[3] = 'new one';\t\t//新增\n```\n\n数组的项数保存在length属性中，这个属性始终都会返回0或更大的值。\n\n```js\nlet colors = ['red','blue','green'];\ncolors.length;\n3\n```\n\nlength属性不是只读的，可以通过设置这个属性来向数组的末尾添加或移除内容。\n\n```js\n        let colors = [\"red\", \"blue\", \"green\"];    //creates an array with three strings\n        colors.length = 2;\n        alert(colors[2]);        //undefined\n\n        let colors = [\"red\", \"blue\", \"green\"];    //creates an array with three strings\n        colors.length = 4;\n        alert(colors[3]);        //undefined\n```\n\n数组的最后一项索引始终都是length-1，所以可以使用length方便在末尾添加内容。\n\n```js\n        let colors = [\"red\", \"blue\", \"green\"];    //creates an array with three strings\n        colors[colors.length] = \"black\";          //add a color\n        colors[colors.length] = \"brown\";          //add another color\n\n        alert(colors.length);    //5\n        alert(colors[3]);        //black\n        alert(colors[4]);        //brown\n```\n\n\u003e 数组最多可以包含4 294 967 295个项\n\njoin()方法可以重现toString()的输出。定义数组分隔符。如果不给join()方法传入任何值，或者传入undefineed，则使用逗号。\n\n```js\n        let colors = [\"red\", \"green\", \"blue\"];\n        alert(colors.join(\",\"));      //red,green,blue\n        alert(colors.join(\"||\"));     //red||green||blue\n```\n\n### 栈方法\n\n栈是一种可以限制插入和删除项的数据结构。栈是一种LIFO（Last-In-First-Out，后进先出）的数据结构。\n\n栈项中的插入（推入）和移除（弹出）只发生在一个位置——栈的顶部。数组有push()和pop()方法实现了类似栈的行为。\n\npush()将参数逐个添加到数组的末尾，并返回修改后数组的长度。\n\npop()将从数组末尾中移除一项，减少length的值，并返回移除的项。\n\n```js\n        let colors = new Array();                      //create an array\n        let count = colors.push(\"red\", \"green\");       //push two items\n        alert(count);  //2\n        \n        count = colors.push(\"black\");                  //push another item on\n        alert(count);  //3\n        \n        let item = colors.pop();                       //get the last item\n        alert(item);   //\"black\"\n        alert(colors.length);  //2\n```\n\n栈方法可以和其他数组方法连用。\n\n```js\n        let colors = [\"red\", \"blue\"];\n        colors.push(\"brown\");              //add another item\n        colors[3] = \"black\";               //add an item\n        alert(colors.length);  //4\n\n\t\tlet item = colors.pop();\n\t\titem;\t\t//\"black\"\n\t\tcolors;\t\t// [\"red\", \"blue\", \"brown\"]\n```\n\n### 队列方法\n\n队列数据结构的访问顺序是FIFO（First-In-First-Out，先进先出）。数组有shift()方法，它能够移除数组的第一个项，减少length值，并返回该项。它就像和pop()方法相反的操作。\n\n结合shift()和push()方法，可以像队列一样使用数组。\n\n```js\n        let colors = new Array();                      //create an array\n        let count = colors.push(\"red\", \"green\");       //push two items\n        alert(count);  //2\n        \n        count = colors.push(\"black\");                  //push another item on\n        alert(count);  //3\n        \n        let item = colors.shift();                     //get the first item\n        alert(item);   //\"red\"\n        alert(colors.length);  //2\n```\n\n数组还有个unshift()方法，它在数组前端添加添加任意个项，并返回修改后数组的长度。它就像和push()相反的操作。\n\n结合unshift()和pop()方法可以反向模拟队列操作。\n\n```js\n        let colors = new Array();                      //create an array\n        let count = colors.unshift(\"red\", \"green\");    //push two items\n        alert(count);  //2\n        \n        count = colors.unshift(\"black\");               //push another item on\n        alert(count);  //3\n        \n        let item = colors.pop();                     //get the first item\n        alert(item);   //\"green\"\n        alert(colors.length);  //2\n```\n\n### 重排序方法\n\n数组中有两个可以重排序的方法：reverse()和sort()。\n\nreverse()对数组反向排序：\n\n```js\n        let values = [1, 2, 3, 4, 5];\n        values.reverse();\n        alert(values);       //5,4,3,2,1\n```\n\nsort()按升序排列数组——即最小的值位于最前面。sort()会调用每个数组项的toString()转型方法。然后比较得到的字符串。\n\n```js\n        let values = [0, 1, 5, 10, 15];\n        values.sort();\n        alert(values);    //0,1,10,15,5\n```\n\n由于1\u003c5，所有10会被排在5前面。所以sort()可以接受一个比较函数来重新排序。\n\n```js\nfunction compare(v1,v2){\n    if (v1 \u003c v2){\n        return -1;\n    }else if(v1 \u003e v2){\n        return 1;\n    }else{\n        return 0;\n    }\n}\nlet values = [0, 1, 5, 10, 15];\nvalues.sort(compare);\n(5) [0, 1, 5, 10, 15]\n```\n\n\u003e reverse()和sort()返回的是经过排序之后的数组。\n\n对于数值类型或者其valueOf()方法会返回数值类型的对象类型，可以使用一个更简单的比较函数。只要有第二个值减第一个值即可。\n\n```js\nfunction compare2(v1,v2){\n    v2 - v1;\n}\nvalues.sort(compare2);\n(5) [0, 1, 5, 10, 15]\n```\n\n### 操作方法\n\nconcat()基于当前数组中所有项目创建一个新的数组。它会先创建一个数组副本，然后将参数添加到这个副本的末尾，返回新构建的数组。没有传递参数时，它只是返回副本。\n\n```js\n        let colors = [\"red\", \"green\", \"blue\"];\n        let colors2 = colors.concat(\"yellow\", [\"black\", \"brown\"]);\n        \n        alert(colors);     //red,green,blue        \n        alert(colors2);    //red,green,blue,yellow,black,brown\n```\n\n```js\nlet colors = ['red','blue','green'];\nundefined\nlet color2 = ['1','2','3'];\nundefined\ncolor2.concat(colors);\n(6) [\"1\", \"2\", \"3\", \"red\", \"blue\", \"green\"]\n```\n\nslice()基于当前数组中的指定位置创建一个新的数组。它接受两个参数，即起始位置和结束位置（不返回结束位置的项）。当只有 一个参数时，返回直到数组末尾的所有项。\n\n```js\n        let colors = [\"red\", \"green\", \"blue\", \"yellow\", \"purple\"];\n        let colors2 = colors.slice(1);\n        let colors3 = colors.slice(1,4);\n        \n        alert(colors2);   //green,blue,yellow,purple\n        alert(colors3);   //green,blue,yellow\n```\n\nsplice()是功能更全面的数组操作方法。\n\n* 删除：可以删除任意数量的项，指定两个参数：要删除的第一项位置和要删除的项数。`splice(0,2)`\n* 插入：可以向指定位置插入任意数量的项。指定三个参数：起始位置、0（要删除的项数）和需要插入的项。`splice(2,0,'red','green')`\n* 替换：可以向指定位置插入任意数量的项，且同时删除任意数量的项。指定三个参数：起始位置、要删除的项数和要插入的项。`splice(2,1,'red','blcak')`\n\n插入和删除都在起始位开始。\n\n```js\n        let colors = [\"red\", \"green\", \"blue\"];\n        let removed = colors.splice(0,1);              //remove the first item\n        alert(colors);     //green,blue\n        alert(removed);    //red - one item array\n        \n        removed = colors.splice(1, 0, \"yellow\", \"orange\");  //insert two items at position 1\n        alert(colors);     //green,yellow,orange,blue\n        alert(removed);    //empty array\n\n        removed = colors.splice(1, 1, \"red\", \"purple\");    //insert two values, remove one\n        alert(colors);     //green,red,purple,orange,blue\n        alert(removed);    //yellow - one item array\n```\n\n### 位置方法\n\nECMAScript5为数组添加了两个位置方法：indexOf()和lastIndexOf()。他们都接受两个参数：要查找的项和（可选）起始位置的索引。\n\nindexOf()从数组开头索引，lastIndexOf()从数组末尾开始索引。\n\n接受两个参数：要查找的项和（可选）表示查找位置地点的索引。返回查找到的位置索引，没找返回-1。比较查找项时会使用全等操作。\n\n```js\nlet arr = [1,2,3,4,5,4,3,2,1];\nconsole.log(arr.indexOf(3));\nconsole.log(arr.lastIndexOf(3));\n\nconsole.log(arr.indexOf(3,3));\nconsole.log(arr.lastIndexOf(3,5));\n\nlet person = { name: \"Nicholas\" };\nlet people = [{ name: \"Nicholas\" }];\nlet morePeople = [person];\nalert(people.indexOf(person));     //-1\nalert(morePeople.indexOf(person)); //0\n```\n\n### 迭代方法\n\n* every()：对数组的每一项运行给定的函数，每一项都返回ture，则返回ture。\n* filter()：对数组的每一项运行给定的函数，返回函数会返回ture组成的数组。\n* forEach()：对数组的每一项运行给定的函数，没有返回值。\n* map()：对数组的每一项运行给定的函数，返回函数调用结果。\n* some()：对数组的每一项运行给定的函数，任意一项返回ture，返回ture。\n\n所有方法都不会修改数组中的包含的值。\n\nevery()\n\n```js\nlet dd = input =\u003e input \u003c 9;\n// let dd = function (input) {\n//     return input \u003c 9;\n// }\nlet arr = [1,2,3,4,5];\nconsole.log(arr.every(dd));\t\t//ture\n```\n\nfilter()\n\n```js\nlet ff = word =\u003e word.length \u003e 5;\nlet arr2 = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present'];\nconsole.log(arr2.filter(ff));\n```\n\nforEach()，可以用来遍历数组\n\n```js\nlet arr3 = ['a','b','c',1,2,3];\narr3.forEach(ele =\u003e console.log(ele));\n```\n\nmap()\n\n```js\nlet arr4 = [1,2,3,4,5,6];\nconsole.log(arr4.map(sx =\u003e (sx + 1) * 2 / 3));\n```\n\nsome()\n\n```js\nlet arr5 = [1,2,3,4,5,6,7,8,9];\nconsole.log(arr5.some(qy =\u003e qy % 2 === 0));\n```\n\n### 归并方法\n\nreduce()和reduceRight()。这两个方法都会迭代数组的所有项，然后构建一个最终返回值。reduceRgiht()从数组的最后一项开始遍历到开头。\n\n他们都接受四个参数：\n\n1. Accumulator (acc) (累计器)\n2. Current Value (cur) (当前值)\n3. Current Index (idx) (当前索引)\n4. Source Array (src) (源数组)\n\n```js\nlet arr = [1,2,3,4,5,6];\nconsole.log(arr.reduce((a1,a2) =\u003e a1 + a2));\n\nconsole.log(arr.reduceRight((a1,a2) =\u003e a1 + a2));\n```\n\n## Date类型\n\nDate类型使用自1970年1月1日开始以来的毫秒数来保存日期。\n\n创建日期对象，使用new操作符和Date构造函数。\n\n```js\nlet dd = new Date();\nlet d2 = new Date(2017, 02, 01);\nlet d3 = new Date(Date.UTC(2000, 2, 3, 21, 23, 31));\n```\n\nDate()构造函数会假设第一个参数是年份，第二个参数是月份，以此类推。\n\nDate.now()返回调用这个方法时日期和时间的毫秒数，可以用来做一个简单计时。\n\n```js\nlet start = Date.now();\nconsole.log(start);\nlet arr = [1,2,3,4,5,666,745,23,441,323,123123,123,123,85858585,,3,23,1,23,123123123123];\nconsole.log(arr.reduce((a1, a2) =\u003e a1 + a2));\nlet stop = Date.now();\nconsole.log(stop);\nlet result = stop - start;\nconsole.log(result);\n```\n\n使用+操作符获取Date对象的时间戳也可以达到同样的目的。\n\n```js\nlet test = +new Date();\n```\n\n### 继承的方法\n\n与其他的引用类型一样，Date也重写了toLocalString()、toString()和valueOf()方法。\n\n`toLocaleString()` 方法返回该日期对象的字符串，该字符串格式因不同语言而不同。\n\n`toString()` 方法返回一个字符串，表示该Date对象。\n\n```js\nlet d4 = new Date();\nconsole.log(d4.toLocaleString());\nconsole.log(d4.toString())\n// 3/5/2020, 10:00:01 PM\n// Thu Mar 05 2020 22:00:01 GMT+0800 (China Standard Time)\n```\n\n`valueOf() `方法返回一个 Date 对象的原始值。即返回毫秒数。\n\n## RegExp类型\n\njs通过RegExp类型来支持正则表达式。\n\n创建使用字面量, 构造函数和工厂符号都是可以的：\n\n```js\n/pattern/flags\nnew RegExp(pattern [, flags])\nRegExp(pattern [, flags])\n```\n\nFlags：\n\n* g：全局匹配;找到所有匹配，而不是在第一个匹配后停止\n* i：忽略大小写\n* m：多行; 将开始和结束字符（^和$）视为在多行上工作（也就是，分别匹配每一行的开始和结束（由 \\n 或 \\r 分割），而不只是只匹配整个输入字符串的最开始和最末尾处。\n\n使用构造函数创建时，参数需要使用字符串：\n\n```js\nlet pattern2 = new RegExp(\"[bc]at\",\"g\");\n```\n\n所以在构造函数的情况下可能需要双重转义\n\n```js\nlet pattern3 = new RegExp(\"\\\\[bc\\\\]at\",\"g\");\n```\n\n由于实例属性不会重置，所以在循环中再次调用test()方法会失败。第一次找到了cat，第二次会从上一次匹配的末尾开始寻找。\n\n```js\nlet re = null,\n    i;\n\nfor (i = 0; i \u003c 10; i++) {\n    re = /cat/g;\n    re.test('catastrophe');\n}\n\nfor (i = 0; i \u003c 10; i++) {\n    re = new RegExp(\"cat\",\"g\");\n    re.test('catastrophe')\n}\n```\n\n### 实例属性\n\n  `RegExp.prototype.constructor`\n\n  创建该正则对象的构造函数。\n\n  [`RegExp.prototype.global`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/RegExp/global)\n\n  是否开启全局匹配，也就是匹配目标字符串中所有可能的匹配项，而不是只进行第一次匹配。\n\n  [`RegExp.prototype.ignoreCase`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/RegExp/ignoreCase)\n\n  在匹配字符串时是否要忽略字符的大小写。\n\n  [`RegExp.prototype.lastIndex`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/RegExp/lastIndex)\n\n  下次匹配开始的字符串索引位置。\n\n  [`RegExp.prototype.multiline`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/RegExp/multiline)\n\n  是否开启多行模式匹配（影响 ^ 和 $ 的行为）。\n\n  [`RegExp.prototype.source`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/RegExp/source)\n\n  正则对象的源模式文本。\n\n```js\nconsole.log(pattern.global);\nconsole.log(pattern.ignoreCase);\nconsole.log(pattern.multiline);\nconsole.log(pattern.lastIndex);\nconsole.log(pattern.source);\n```\n\n### 实例方法\n\nexec()和test()。\n\nexec()设置了全局模式也只会返回一个匹配项，多次调用一次返回向后匹配到的值。而不设置全局模式则只返回第一次匹配到的匹配项。\n\n```js\n        var text = \"cat, bat, sat, fat\";        \n        var pattern1 = /.at/;\n        \n        var matches = pattern1.exec(text);        \n        alert(matches.index);    //0\n        alert(matches[0]);       //\"cat\"\n        alert(pattern1.lastIndex);//0\n\n        matches = pattern1.exec(text);        \n        alert(matches.index);    //0\n        alert(matches[0]);       //\"cat\"\n        alert(pattern1.lastIndex);//0\n\n        var pattern2 = /.at/g;\n        \n        var matches = pattern2.exec(text);        \n        alert(matches.index);    //0\n        alert(matches[0]);       //\"cat\"\n        alert(pattern2.lastIndex);//0\n\n        matches = pattern2.exec(text);        \n        alert(matches.index);    //5\n        alert(matches[0]);       //\"bat\"\n        alert(pattern2.lastIndex);//0\n```\n\ntest()接受一个字符串参数，在模式与该参数匹配的情况下返回ture。通常与if语句一起使用。\n\n```js\nlet text = '123-00-12345';\nlet pattern4 = /\\d{3}-\\d{2}-\\d{4}/;\nif (pattern4.test(text)) {\n    console.log('all matched');\n}\n```\n\n## Function类型\n\n函数实际上是对象，函数名是指针。所以函数名与包装对象指针的其他变量没有什么不同。\n\n```js\nfunction sum (a,b) {\n    return a + b;\n}\nlet anotherSum = sum;\nconsole.log(anotherSum(1,2));\n\nsum = null;\nconsole.log(anotherSum(1,2));\n```\n\n构造函数用来创建对象。\n\n### 函数声明提升\n\n解析器会率先读取函数声明，并使其在执行任何代码之前可以访问。至于函数表达式，则必须等到解析器执行到它所在的代码行，才会被真正的解析执行。\n\n就像var的提升一样！\n\n```js\nconsole.log(sum2(10,20));\nfunction sum2(a,b) {\n    return a * b;\n}\n```\n\n但使用函数表达式就不存在这种情况了。\n\n```js\nconsole.log(sum3(10,20));\nlet sum3 = function (a,b) {\n    return a * b;\n}\n```\n\n由于函数在一个初始化语句中，（就算使用var，也只有var的声明会提升，语句并没有初始化）而不是函数声明。\n\n### 作为参数传递\n\n因为函数名本身就是变量，所以函数也可以作为值来使用。(回调)\n\n```js\nfunction add(num) {\n    return num + 10;\n}\nfunction addd(ff,num) {\n    return ff(num);\n}\nconsole.log(addd(add,1));\n```\n\n另一种就是从一个函数中返回另一个函数，实际上就是一个函数嵌套了另一个函数。（闭包）\n\n例如对对象数组进行按照对象属性排序：\n\n```js\nlet data = [\n    {\n        name: 'xfy',\n        age: 18\n    },\n    {\n        name: 'dfy',\n        age: 81\n    }\n]\nfunction com(propertyName) {\n    return function (object1,object2) {\n        let value1 = object1[propertyName];\n        let value2 = object2[propertyName];\n        if (value1 \u003c value2) {\n            return -1;\n        } else if (value1 \u003e value2) {\n            return 1;\n        } else {\n            return 0;\n        }\n    }\n}\nconsole.log(data.sort(com('name')));\n```\n\n### 函数内部属性\n\n在函数内部，有两个特殊的对象：arguments和this。arguments的主要作用是保存函数参数，但它还有一个callee的属性。该属性是一个指针，指针指向拥有这个arguments对象的函数。\n\n一个经典的递归函数：\n\n```js\nfunction test(num) {\n    if (num \u003c= 1) {\n        return 1;\n    }\n    return num + test(num - 1);\n}\nconsole.log(test(100));\n```\n\n当遇到使用函数表达式重新指向函数时\n\n```js\nfunction test(num) {\n    if (num \u003c= 1) {\n        return 1;\n    }\n    return num + test(num - 1);\n}\nconsole.log(test(100));\n\nlet test2 = test;\ntest = function() {\n    return 1;\n}\nconsole.log(test2(100));    // 101 test2不能完成回调，因为函数中还是test(num -1)\nconsole.log(test(100));\n```\n\n使用callee就能解决这个问题，类似于对象的this。\n\n```js\nfunction cb(num) {\n    if (num \u003c= 1) {\n        return 1;\n    }\n    return num + arguments.callee(num - 1);\n}\nconsole.log(cb(100));\nlet cb2 = cb;       // 指针交换\ncb = function() {\n    return 0;\n}\nconsole.log(cb2(100));\nconsole.log(cb(100));\n```\n\n\u003e 函数的名字仅仅只是一个包含指针的变量而已。\n\nECMAScript5还定义了一个函数对象的属性：caller。它保存着调用当前函数的函数的引用。如果是在全局作用域中调用当前函数，它的值为null。\n\n```js\nfunction outer() {\n    return inner();\n}\nfunction inner() {\n    return inner.caller;\n}\nconsole.log(outer());\n```\n\n甚至还能更进一步解耦合：\n\n```js\nfunction outer() {\n    return inner();\n}\nfunction inner() {\n    return arguments.callee.caller;\n}\n```\n\n在严格模式下，访问`arguments.callee`和`arguments.caller`都会导致访问错误。且不能为函数的caller属性赋值，否则会导致错误。\n\n### 函数属性与方法\n\njs中的函数也是对象，所以函数也有属性和方法。每个函数都包含两个属性：length和prototype。\n\nlength属性表示函数希望接受的命名参数的个数。\n\n```js\nfunction test(arg1,arg2) {\n    return arg1 + arg2;\n}\nconsole.log(test.length);\n```\n\n对于引用类型而言，prototype是保存它们所有实例方法的真正所在。prototype属性是不可枚举的，所以用for-in是无法发现的。\n\n每个函数都包含两个非继承而来的方法：apply()和call()。它们常用来动态改变this的值。call()与apply()相同，它们区别仅在接受参数的方式不同。第一个参数是this值，第二个参数分别是逐个传参和数组传参。\n\n```js\nfunction fruits() {};\n\nfruits.prototype = {\n    color: 'red',\n    say: function() {\n        console.log('the color is : ' + this.color);\n    }\n}\nlet apple = new fruits();\nconsole.log(apple);\nconsole.log(apple.say());\n\nlet banana = {\n    color: 'yellow'\n}\nconsole.log(apple.say.apply(banana));\n```\n\n除了在对象中的应用，call和apply真正的用武之地是扩充函数的作用于。\n\n```js\nwindow.color = 'red';\nlet o = {\n    color: 'blue'\n};\nfunction sayColor() {\n    return this.color;\n}\nsayColor()\n\"red\"\nsayColor.call(o)\n\"blue\"\nsayColor.call(window)\n\"red\"\n```\n\n除此之外还有一个方法：bind()。这个方法会创建一个函数的实例，其this值会被绑定到传给bind()函数的值。\n\n```js\nwindow.color = 'red';\nlet o = {\n    color: 'blue'\n};\nfunction sayColor() {\n    return this.color;\n}\n\nlet sayAnotherColor = sayColor.bind(o);\nsayAnotherColor();\n\"blue\"\n```\n\n### 基本包装类型\n\n三个特殊的引用类型：Boolean、Number和String。\n\n包装对象都会经过三个步骤：\n\n1. 创建String或其他类型的一个实例；\n2. 在实例上调用指定的方法；\n3. 销毁这个实例；\n\n也就是类似于这样的操作：\n\n```js\nlet s1 = new String('some string');\nlet s2 = s1.length;\ns1 = null;\n```\n\n引用类型与基本包装类型的主要区别就是对象的生存期。使用new操作符创建的引用类型的实例，在执行流离开当前作用域之前一直都保存在内存中。而包装对象，则只存在执行代码的一瞬间，然后立即被销毁。所以不能在运行时为基本类型添加属性和方法。\n\n```js\nlet s1 = 'xfy';\ns1.color = 'pink';\nconsole.log(s1.color);\t// undefined\n```\n\n在第二行创建的String对象在执行第三行代码时就已经被销毁了，第三行代码则又创建自己String对象，而没有第二行创建color属性。\n\nObject构造函数也会像工厂方法一样，根据传入值的类型来返回相应基本包装类型的实例。\n\n```js\nlet test = new Object('xfy');\ntypeof test\n\"object\"\ntest instanceof String\ntrue\ntest instanceof Number\nfalse\ntest instanceof Object\ntrue\n```\n\n使用new调用资本包装类型的构造函数，与直接调用同名的转型函数是不一样的。\n\n```js\nlet value = '25';\nlet test = Number(value);\ntypeof test\n\"number\"\n\nlet test2 = new Number(25);\ntypeof test2;\n\"object\"\n```\n\n\u003e 不建显式的创建基本包装类型的对象。\n\n## Boolean类型\n\nBoolean有基本类型与引用类型。使用Boolean对象构造的值为引用类型。Boolean类型的实例重写了valueOf()与toString()。\n\n```js\nlet b = new Boolean(false);     // falseObject\nlet bb = true;\nlet b2 = false;     // falseValue\nconsole.log(b \u0026\u0026 bb);   //true\nconsole.log(b2 \u0026\u0026 bb);  //false\n```\n\n布尔表达式中所有对象都会被转为true，因此引用类型的Boolean都会被转为true。\n\n基本类型与引用类型的Boolean还有两个区别：\n\n* typeof对基本类型返回”Boolean“。对引用类型返回”Object“；\n* Boolean对象是Boolean类型的实例，所以instanceof会返回true。而基本类型则返回false；\n\n\u003e 建议不要使用Boolean对象。\n\n## Number类型\n\nNumber类型也重写了valueOf()、toLocaleString()和toString()。\n\ntoString()可以传递一个表示基数的参数，将返回进制化数值的字符串形式。\n\n```js\nlet num = 123;\nconsole.log(num.toString(2));\nconsole.log(num.toString(8));\nconsole.log(num.toString(16));\n```\n\n除了继承的方法之外，Number类型还提供了一些用于将数值格式化为字符串的方法。toFixed()方法返回指定位数的小数。\n\n当小数比指定位数还多一位的情况下，就会舍入。\n\n```js\nlet num = 123;\nconsole.log(num.toFixed(2));\nconsole.log(num.toFixed(20));\nnum = 12.005;\nconsole.log(num.toFixed(2));\n```\n\n\u003e 通常情况下toFixed()可以表示0-20位小数，但这只是标准实现的范围。有些运行环境可以支持更多。\n\n也有用于格式化为指数表示法的方法，toExponential()（e表示法）。toExponential()接受一个参数，指定输出结果的小数的位数。返回也是字符串形式。\n\n```js\nlet num = 123;\nlet num2 = num.toExponential(10);\nconsole.log(num2);  // 1.2300000000e+2\n```\n\n还有toPrecision()会根据情况来使用toFixed()或者是toExponential()。\n\n```js\nlet num = 123;\n\nconsole.log(num.toPrecision(1));\nconsole.log(num.toPrecision(2));\nconsole.log(num.toPrecision(3));\nconsole.log(num.toPrecision(4));\nconsole.log(num.toPrecision(5));\nconsole.log(num.toPrecision(6));\n\n1e+2\n1.2e+2\n123\n123.0\n123.00\n123.000\n```\n\nNumber与Boolean一样，实例化Number类型在使用typeof和instanceof时，会有完全不同的结果。\n\n```js\nlet num = 123;\nlet num2 = new Number(123);\nconsole.log(typeof num);\t\t// \"Number\"\nconsole.log(typeof num2);\t\t// \"Object\"\nconsole.log(num instanceof Number);\t\t// false\nconsole.log(num2 instanceof Number);\t// true\n```\n\n## String类型\n\nString类型是字符串的对象包装类型。\n\n```js\nlet str = new String('xfy');\n```\n\n访问特定字符方法：charAt()和charCodeAt()，接受一个参数，从0开始的字符位置。\n\n```js\nlet str = 'xfy';\nconsole.log(str.charAt(1));\nconsole.log(str.charCodeAt(1));\n```\n\n还有另一个访问个别字符的方法，类似于访问数组\n\n```js\nconsole.log(str[1]);\n```\n\n操作方法\n\n除了`+`拼接字符串，还有类似于数组的concat()方法。用于将一个或多个字符串拼接起来，返回新的字符串。\n\n```js\nlet str2 = 'yyy';\nconsole.log(str.concat('abc',str2));\n```\n\n还有三个基于字符串创建新字符串的方法，基于字符串修改或裁减。返回新的字符串。slice()、substr()和substring()。它们都接受两个参数，第一个参数指定字符串开始的位置，第二个参数（可选）表示字符串到哪里结束。\n\n```js\nlet str = 'xiaofeiyang';\nconsole.log(str.slice(4));\nconsole.log(str.substr(4));\nconsole.log(str.substring(4));\nconsole.log('---');\nconsole.log(str.slice(4,7));\nconsole.log(str.substr(4,7));\nconsole.log(str.substring(4,7));\n\nfeiyang\nfeiyang\nfeiyang\n---\nfei\nfeiyang\nfei\n```\n\n","desc":"这是来自Professional JavaScript for Web Develops第五章的笔记。\n\njavascript\n\n基本类型和引用类型\n\n基本类型值指的是简单的数据段。\n\n引用类型值指那...","title":"JavaScript 笔记-引用类型","date":"2020-01-06T09:14:53.000Z","tags":"JavaScript","categories":"笔记","url":"javascript-notes-reference-type","index_img":"/images/JavaScript笔记-引用类型/javascript.webp"}},"__N_SSG":true},"page":"/p/[slug]","query":{"slug":"javascript-notes-reference-type"},"buildId":"k6NIc4JfXUsE09z9QnALx","isFallback":false,"dynamicIds":[3419,6929,3780,9125,1189,2980,5106],"gsp":true,"scriptLoader":[]}</script></body></html>

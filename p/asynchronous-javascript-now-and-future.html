@@ -1,0 +1,306 @@
+<!DOCTYPE html><html lang="en"><head><meta name="viewport" content="width=device-width"/><meta charSet="utf-8"/><link rel="shortcut icon" href="/images/img/favicon.webp"/><meta name="keywords" content="Blog RUA"/><meta name="description" content="Personal blog."/><meta name="author" content="Arthur,i@rua.plus"/><title>RUA - 异步 JavaScript-现在与将来</title><meta name="next-head-count" content="7"/><link rel="preload" href="/_next/static/css/39834862c769c308.css" as="style"/><link rel="stylesheet" href="/_next/static/css/39834862c769c308.css" data-n-g=""/><link rel="preload" href="/_next/static/css/c2a527101433f11d.css" as="style"/><link rel="stylesheet" href="/_next/static/css/c2a527101433f11d.css" data-n-p=""/><link rel="preload" href="/_next/static/css/6e1d66a70b5d9fed.css" as="style"/><link rel="stylesheet" href="/_next/static/css/6e1d66a70b5d9fed.css"/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/_next/static/chunks/polyfills-5cd94c89d3acac5f.js"></script><script defer="" src="/_next/static/chunks/219-ddf2abc0472da9bd.js"></script><script defer="" src="/_next/static/chunks/419.d5302bfd9d8378c2.js"></script><script defer="" src="/_next/static/chunks/771.84a2737df445ba88.js"></script><script defer="" src="/_next/static/chunks/929.b2c0b4f7606bfefe.js"></script><script defer="" src="/_next/static/chunks/125.4ff7adc183744312.js"></script><script defer="" src="/_next/static/chunks/485-3e3bf066e6f4a6bd.js"></script><script defer="" src="/_next/static/chunks/189.ee2e569101c160eb.js"></script><script defer="" src="/_next/static/chunks/780.f3b2fc2ce5caea55.js"></script><script defer="" src="/_next/static/chunks/980.41f5e97cd35a6621.js"></script><script defer="" src="/_next/static/chunks/106.7a94988fd220337e.js"></script><script src="/_next/static/chunks/webpack-c08977534ec7c137.js" defer=""></script><script src="/_next/static/chunks/framework-5cd9e2157a4a6aee.js" defer=""></script><script src="/_next/static/chunks/main-472dbb675bbf7f67.js" defer=""></script><script src="/_next/static/chunks/pages/_app-a34fa0ed9496fbe8.js" defer=""></script><script src="/_next/static/chunks/84-43981acebe84e1d3.js" defer=""></script><script src="/_next/static/chunks/pages/p/%5Bslug%5D-684bfb16186b52fe.js" defer=""></script><script src="/_next/static/k6NIc4JfXUsE09z9QnALx/_buildManifest.js" defer=""></script><script src="/_next/static/k6NIc4JfXUsE09z9QnALx/_ssgManifest.js" defer=""></script><script src="/_next/static/k6NIc4JfXUsE09z9QnALx/_middlewareManifest.js" defer=""></script></head><body><script>(function setScript(initialValue) {
+  var mql = window.matchMedia("(prefers-color-scheme: dark)");
+  var systemPreference = mql.matches ? "dark" : "light";
+  var persistedPreference;
+
+  try {
+    persistedPreference = localStorage.getItem("chakra-ui-color-mode");
+  } catch (error) {
+    console.log("Chakra UI: localStorage is not available. Color mode persistence might not work as expected");
+  }
+
+  var isInStorage = typeof persistedPreference === "string";
+  var colorMode;
+
+  if (isInStorage) {
+    colorMode = persistedPreference;
+  } else {
+    colorMode = initialValue === "system" ? systemPreference : initialValue;
+  }
+
+  if (colorMode) {
+    var root = document.documentElement;
+    root.style.setProperty("--chakra-ui-color-mode", colorMode);
+  }
+})('light')</script><div id="__next"><style data-emotion="css-global 1r47v8">:host,:root{--chakra-ring-inset:var(--chakra-empty,/*!*/ /*!*/);--chakra-ring-offset-width:0px;--chakra-ring-offset-color:#fff;--chakra-ring-color:rgba(66, 153, 225, 0.6);--chakra-ring-offset-shadow:0 0 #0000;--chakra-ring-shadow:0 0 #0000;--chakra-space-x-reverse:0;--chakra-space-y-reverse:0;--chakra-colors-transparent:transparent;--chakra-colors-current:currentColor;--chakra-colors-black:#000000;--chakra-colors-white:#FFFFFF;--chakra-colors-whiteAlpha-50:rgba(255, 255, 255, 0.04);--chakra-colors-whiteAlpha-100:rgba(255, 255, 255, 0.06);--chakra-colors-whiteAlpha-200:rgba(255, 255, 255, 0.08);--chakra-colors-whiteAlpha-300:rgba(255, 255, 255, 0.16);--chakra-colors-whiteAlpha-400:rgba(255, 255, 255, 0.24);--chakra-colors-whiteAlpha-500:rgba(255, 255, 255, 0.36);--chakra-colors-whiteAlpha-600:rgba(255, 255, 255, 0.48);--chakra-colors-whiteAlpha-700:rgba(255, 255, 255, 0.64);--chakra-colors-whiteAlpha-800:rgba(255, 255, 255, 0.80);--chakra-colors-whiteAlpha-900:rgba(255, 255, 255, 0.92);--chakra-colors-blackAlpha-50:rgba(0, 0, 0, 0.04);--chakra-colors-blackAlpha-100:rgba(0, 0, 0, 0.06);--chakra-colors-blackAlpha-200:rgba(0, 0, 0, 0.08);--chakra-colors-blackAlpha-300:rgba(0, 0, 0, 0.16);--chakra-colors-blackAlpha-400:rgba(0, 0, 0, 0.24);--chakra-colors-blackAlpha-500:rgba(0, 0, 0, 0.36);--chakra-colors-blackAlpha-600:rgba(0, 0, 0, 0.48);--chakra-colors-blackAlpha-700:rgba(0, 0, 0, 0.64);--chakra-colors-blackAlpha-800:rgba(0, 0, 0, 0.80);--chakra-colors-blackAlpha-900:rgba(0, 0, 0, 0.92);--chakra-colors-gray-50:#F7FAFC;--chakra-colors-gray-100:#EDF2F7;--chakra-colors-gray-200:#E2E8F0;--chakra-colors-gray-300:#CBD5E0;--chakra-colors-gray-400:#A0AEC0;--chakra-colors-gray-500:#718096;--chakra-colors-gray-600:#4A5568;--chakra-colors-gray-700:#2D3748;--chakra-colors-gray-800:#1A202C;--chakra-colors-gray-900:#171923;--chakra-colors-red-50:#FFF5F5;--chakra-colors-red-100:#FED7D7;--chakra-colors-red-200:#FEB2B2;--chakra-colors-red-300:#FC8181;--chakra-colors-red-400:#F56565;--chakra-colors-red-500:#E53E3E;--chakra-colors-red-600:#C53030;--chakra-colors-red-700:#9B2C2C;--chakra-colors-red-800:#822727;--chakra-colors-red-900:#63171B;--chakra-colors-orange-50:#FFFAF0;--chakra-colors-orange-100:#FEEBC8;--chakra-colors-orange-200:#FBD38D;--chakra-colors-orange-300:#F6AD55;--chakra-colors-orange-400:#ED8936;--chakra-colors-orange-500:#DD6B20;--chakra-colors-orange-600:#C05621;--chakra-colors-orange-700:#9C4221;--chakra-colors-orange-800:#7B341E;--chakra-colors-orange-900:#652B19;--chakra-colors-yellow-50:#FFFFF0;--chakra-colors-yellow-100:#FEFCBF;--chakra-colors-yellow-200:#FAF089;--chakra-colors-yellow-300:#F6E05E;--chakra-colors-yellow-400:#ECC94B;--chakra-colors-yellow-500:#D69E2E;--chakra-colors-yellow-600:#B7791F;--chakra-colors-yellow-700:#975A16;--chakra-colors-yellow-800:#744210;--chakra-colors-yellow-900:#5F370E;--chakra-colors-green-50:#F0FFF4;--chakra-colors-green-100:#C6F6D5;--chakra-colors-green-200:#9AE6B4;--chakra-colors-green-300:#68D391;--chakra-colors-green-400:#48BB78;--chakra-colors-green-500:#38A169;--chakra-colors-green-600:#2F855A;--chakra-colors-green-700:#276749;--chakra-colors-green-800:#22543D;--chakra-colors-green-900:#1C4532;--chakra-colors-teal-50:#E6FFFA;--chakra-colors-teal-100:#B2F5EA;--chakra-colors-teal-200:#81E6D9;--chakra-colors-teal-300:#4FD1C5;--chakra-colors-teal-400:#38B2AC;--chakra-colors-teal-500:#319795;--chakra-colors-teal-600:#2C7A7B;--chakra-colors-teal-700:#285E61;--chakra-colors-teal-800:#234E52;--chakra-colors-teal-900:#1D4044;--chakra-colors-blue-50:#ebf8ff;--chakra-colors-blue-100:#bee3f8;--chakra-colors-blue-200:#90cdf4;--chakra-colors-blue-300:#63b3ed;--chakra-colors-blue-400:#4299e1;--chakra-colors-blue-500:#3182ce;--chakra-colors-blue-600:#2b6cb0;--chakra-colors-blue-700:#2c5282;--chakra-colors-blue-800:#2a4365;--chakra-colors-blue-900:#1A365D;--chakra-colors-cyan-50:#EDFDFD;--chakra-colors-cyan-100:#C4F1F9;--chakra-colors-cyan-200:#9DECF9;--chakra-colors-cyan-300:#76E4F7;--chakra-colors-cyan-400:#0BC5EA;--chakra-colors-cyan-500:#00B5D8;--chakra-colors-cyan-600:#00A3C4;--chakra-colors-cyan-700:#0987A0;--chakra-colors-cyan-800:#086F83;--chakra-colors-cyan-900:#065666;--chakra-colors-purple-50:#FAF5FF;--chakra-colors-purple-100:#E9D8FD;--chakra-colors-purple-200:#D6BCFA;--chakra-colors-purple-300:#B794F4;--chakra-colors-purple-400:#9F7AEA;--chakra-colors-purple-500:#805AD5;--chakra-colors-purple-600:#6B46C1;--chakra-colors-purple-700:#553C9A;--chakra-colors-purple-800:#44337A;--chakra-colors-purple-900:#322659;--chakra-colors-pink-50:#FFF5F7;--chakra-colors-pink-100:#FED7E2;--chakra-colors-pink-200:#FBB6CE;--chakra-colors-pink-300:#F687B3;--chakra-colors-pink-400:#ED64A6;--chakra-colors-pink-500:#D53F8C;--chakra-colors-pink-600:#B83280;--chakra-colors-pink-700:#97266D;--chakra-colors-pink-800:#702459;--chakra-colors-pink-900:#521B41;--chakra-colors-linkedin-50:#E8F4F9;--chakra-colors-linkedin-100:#CFEDFB;--chakra-colors-linkedin-200:#9BDAF3;--chakra-colors-linkedin-300:#68C7EC;--chakra-colors-linkedin-400:#34B3E4;--chakra-colors-linkedin-500:#00A0DC;--chakra-colors-linkedin-600:#008CC9;--chakra-colors-linkedin-700:#0077B5;--chakra-colors-linkedin-800:#005E93;--chakra-colors-linkedin-900:#004471;--chakra-colors-facebook-50:#E8F4F9;--chakra-colors-facebook-100:#D9DEE9;--chakra-colors-facebook-200:#B7C2DA;--chakra-colors-facebook-300:#6482C0;--chakra-colors-facebook-400:#4267B2;--chakra-colors-facebook-500:#385898;--chakra-colors-facebook-600:#314E89;--chakra-colors-facebook-700:#29487D;--chakra-colors-facebook-800:#223B67;--chakra-colors-facebook-900:#1E355B;--chakra-colors-messenger-50:#D0E6FF;--chakra-colors-messenger-100:#B9DAFF;--chakra-colors-messenger-200:#A2CDFF;--chakra-colors-messenger-300:#7AB8FF;--chakra-colors-messenger-400:#2E90FF;--chakra-colors-messenger-500:#0078FF;--chakra-colors-messenger-600:#0063D1;--chakra-colors-messenger-700:#0052AC;--chakra-colors-messenger-800:#003C7E;--chakra-colors-messenger-900:#002C5C;--chakra-colors-whatsapp-50:#dffeec;--chakra-colors-whatsapp-100:#b9f5d0;--chakra-colors-whatsapp-200:#90edb3;--chakra-colors-whatsapp-300:#65e495;--chakra-colors-whatsapp-400:#3cdd78;--chakra-colors-whatsapp-500:#22c35e;--chakra-colors-whatsapp-600:#179848;--chakra-colors-whatsapp-700:#0c6c33;--chakra-colors-whatsapp-800:#01421c;--chakra-colors-whatsapp-900:#001803;--chakra-colors-twitter-50:#E5F4FD;--chakra-colors-twitter-100:#C8E9FB;--chakra-colors-twitter-200:#A8DCFA;--chakra-colors-twitter-300:#83CDF7;--chakra-colors-twitter-400:#57BBF5;--chakra-colors-twitter-500:#1DA1F2;--chakra-colors-twitter-600:#1A94DA;--chakra-colors-twitter-700:#1681BF;--chakra-colors-twitter-800:#136B9E;--chakra-colors-twitter-900:#0D4D71;--chakra-colors-telegram-50:#E3F2F9;--chakra-colors-telegram-100:#C5E4F3;--chakra-colors-telegram-200:#A2D4EC;--chakra-colors-telegram-300:#7AC1E4;--chakra-colors-telegram-400:#47A9DA;--chakra-colors-telegram-500:#0088CC;--chakra-colors-telegram-600:#007AB8;--chakra-colors-telegram-700:#006BA1;--chakra-colors-telegram-800:#005885;--chakra-colors-telegram-900:#003F5E;--chakra-colors-home-bg:#f5f5fa;--chakra-borders-none:0;--chakra-borders-1px:1px solid;--chakra-borders-2px:2px solid;--chakra-borders-4px:4px solid;--chakra-borders-8px:8px solid;--chakra-fonts-heading:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";--chakra-fonts-body:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Helvetica,Segoe UI,Arial,Roboto,'PingFang SC',miui,'Hiragino Sans GB','Microsoft Yahei',sans-serif;--chakra-fonts-mono:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;--chakra-fontSizes-xs:0.75rem;--chakra-fontSizes-sm:0.875rem;--chakra-fontSizes-md:1rem;--chakra-fontSizes-lg:1.125rem;--chakra-fontSizes-xl:1.25rem;--chakra-fontSizes-2xl:1.5rem;--chakra-fontSizes-3xl:1.875rem;--chakra-fontSizes-4xl:2.25rem;--chakra-fontSizes-5xl:3rem;--chakra-fontSizes-6xl:3.75rem;--chakra-fontSizes-7xl:4.5rem;--chakra-fontSizes-8xl:6rem;--chakra-fontSizes-9xl:8rem;--chakra-fontWeights-hairline:100;--chakra-fontWeights-thin:200;--chakra-fontWeights-light:300;--chakra-fontWeights-normal:400;--chakra-fontWeights-medium:500;--chakra-fontWeights-semibold:600;--chakra-fontWeights-bold:700;--chakra-fontWeights-extrabold:800;--chakra-fontWeights-black:900;--chakra-letterSpacings-tighter:-0.05em;--chakra-letterSpacings-tight:-0.025em;--chakra-letterSpacings-normal:0;--chakra-letterSpacings-wide:0.025em;--chakra-letterSpacings-wider:0.05em;--chakra-letterSpacings-widest:0.1em;--chakra-lineHeights-3:.75rem;--chakra-lineHeights-4:1rem;--chakra-lineHeights-5:1.25rem;--chakra-lineHeights-6:1.5rem;--chakra-lineHeights-7:1.75rem;--chakra-lineHeights-8:2rem;--chakra-lineHeights-9:2.25rem;--chakra-lineHeights-10:2.5rem;--chakra-lineHeights-normal:normal;--chakra-lineHeights-none:1;--chakra-lineHeights-shorter:1.25;--chakra-lineHeights-short:1.375;--chakra-lineHeights-base:1.5;--chakra-lineHeights-tall:1.625;--chakra-lineHeights-taller:2;--chakra-radii-none:0;--chakra-radii-sm:0.125rem;--chakra-radii-base:0.25rem;--chakra-radii-md:0.375rem;--chakra-radii-lg:0.5rem;--chakra-radii-xl:0.75rem;--chakra-radii-2xl:1rem;--chakra-radii-3xl:1.5rem;--chakra-radii-full:9999px;--chakra-space-1:0.25rem;--chakra-space-2:0.5rem;--chakra-space-3:0.75rem;--chakra-space-4:1rem;--chakra-space-5:1.25rem;--chakra-space-6:1.5rem;--chakra-space-7:1.75rem;--chakra-space-8:2rem;--chakra-space-9:2.25rem;--chakra-space-10:2.5rem;--chakra-space-12:3rem;--chakra-space-14:3.5rem;--chakra-space-16:4rem;--chakra-space-20:5rem;--chakra-space-24:6rem;--chakra-space-28:7rem;--chakra-space-32:8rem;--chakra-space-36:9rem;--chakra-space-40:10rem;--chakra-space-44:11rem;--chakra-space-48:12rem;--chakra-space-52:13rem;--chakra-space-56:14rem;--chakra-space-60:15rem;--chakra-space-64:16rem;--chakra-space-72:18rem;--chakra-space-80:20rem;--chakra-space-96:24rem;--chakra-space-px:1px;--chakra-space-0\.5:0.125rem;--chakra-space-1\.5:0.375rem;--chakra-space-2\.5:0.625rem;--chakra-space-3\.5:0.875rem;--chakra-shadows-xs:0 0 0 1px rgba(0, 0, 0, 0.05);--chakra-shadows-sm:0 1px 2px 0 rgba(0, 0, 0, 0.05);--chakra-shadows-base:0 1px 3px 0 rgba(0, 0, 0, 0.1),0 1px 2px 0 rgba(0, 0, 0, 0.06);--chakra-shadows-md:0 4px 6px -1px rgba(0, 0, 0, 0.1),0 2px 4px -1px rgba(0, 0, 0, 0.06);--chakra-shadows-lg:0 10px 15px -3px rgba(0, 0, 0, 0.1),0 4px 6px -2px rgba(0, 0, 0, 0.05);--chakra-shadows-xl:0 20px 25px -5px rgba(0, 0, 0, 0.1),0 10px 10px -5px rgba(0, 0, 0, 0.04);--chakra-shadows-2xl:0 25px 50px -12px rgba(0, 0, 0, 0.25);--chakra-shadows-outline:0 0 0 3px rgba(66, 153, 225, 0.6);--chakra-shadows-inner:inset 0 2px 4px 0 rgba(0,0,0,0.06);--chakra-shadows-none:none;--chakra-shadows-dark-lg:rgba(0, 0, 0, 0.1) 0px 0px 0px 1px,rgba(0, 0, 0, 0.2) 0px 5px 10px,rgba(0, 0, 0, 0.4) 0px 15px 40px;--chakra-shadows-card:0px 4px 8px rgba(0, 0, 0, 0.04),0px 0px 2px rgba(0, 0, 0, 0.06),0px 0px 1px rgba(0, 0, 0, 0.04);--chakra-sizes-1:0.25rem;--chakra-sizes-2:0.5rem;--chakra-sizes-3:0.75rem;--chakra-sizes-4:1rem;--chakra-sizes-5:1.25rem;--chakra-sizes-6:1.5rem;--chakra-sizes-7:1.75rem;--chakra-sizes-8:2rem;--chakra-sizes-9:2.25rem;--chakra-sizes-10:2.5rem;--chakra-sizes-12:3rem;--chakra-sizes-14:3.5rem;--chakra-sizes-16:4rem;--chakra-sizes-20:5rem;--chakra-sizes-24:6rem;--chakra-sizes-28:7rem;--chakra-sizes-32:8rem;--chakra-sizes-36:9rem;--chakra-sizes-40:10rem;--chakra-sizes-44:11rem;--chakra-sizes-48:12rem;--chakra-sizes-52:13rem;--chakra-sizes-56:14rem;--chakra-sizes-60:15rem;--chakra-sizes-64:16rem;--chakra-sizes-72:18rem;--chakra-sizes-80:20rem;--chakra-sizes-96:24rem;--chakra-sizes-px:1px;--chakra-sizes-0\.5:0.125rem;--chakra-sizes-1\.5:0.375rem;--chakra-sizes-2\.5:0.625rem;--chakra-sizes-3\.5:0.875rem;--chakra-sizes-max:max-content;--chakra-sizes-min:min-content;--chakra-sizes-full:100%;--chakra-sizes-3xs:14rem;--chakra-sizes-2xs:16rem;--chakra-sizes-xs:20rem;--chakra-sizes-sm:24rem;--chakra-sizes-md:28rem;--chakra-sizes-lg:32rem;--chakra-sizes-xl:36rem;--chakra-sizes-2xl:42rem;--chakra-sizes-3xl:48rem;--chakra-sizes-4xl:56rem;--chakra-sizes-5xl:64rem;--chakra-sizes-6xl:72rem;--chakra-sizes-7xl:80rem;--chakra-sizes-8xl:90rem;--chakra-sizes-container-sm:640px;--chakra-sizes-container-md:768px;--chakra-sizes-container-lg:1024px;--chakra-sizes-container-xl:1280px;--chakra-zIndices-hide:-1;--chakra-zIndices-auto:auto;--chakra-zIndices-base:0;--chakra-zIndices-docked:10;--chakra-zIndices-dropdown:1000;--chakra-zIndices-sticky:1100;--chakra-zIndices-banner:1200;--chakra-zIndices-overlay:1300;--chakra-zIndices-modal:1400;--chakra-zIndices-popover:1500;--chakra-zIndices-skipLink:1600;--chakra-zIndices-toast:1700;--chakra-zIndices-tooltip:1800;--chakra-transition-property-common:background-color,border-color,color,fill,stroke,opacity,box-shadow,transform;--chakra-transition-property-colors:background-color,border-color,color,fill,stroke;--chakra-transition-property-dimensions:width,height;--chakra-transition-property-position:left,right,top,bottom;--chakra-transition-property-background:background-color,background-image,background-position;--chakra-transition-easing-ease-in:cubic-bezier(0.4, 0, 1, 1);--chakra-transition-easing-ease-out:cubic-bezier(0, 0, 0.2, 1);--chakra-transition-easing-ease-in-out:cubic-bezier(0.4, 0, 0.2, 1);--chakra-transition-duration-ultra-fast:50ms;--chakra-transition-duration-faster:100ms;--chakra-transition-duration-fast:150ms;--chakra-transition-duration-normal:200ms;--chakra-transition-duration-slow:300ms;--chakra-transition-duration-slower:400ms;--chakra-transition-duration-ultra-slow:500ms;--chakra-blur-none:0;--chakra-blur-sm:4px;--chakra-blur-base:8px;--chakra-blur-md:12px;--chakra-blur-lg:16px;--chakra-blur-xl:24px;--chakra-blur-2xl:40px;--chakra-blur-3xl:64px;}</style><style data-emotion="css-global 1jqlf9g">html{line-height:1.5;-webkit-text-size-adjust:100%;font-family:system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;-moz-osx-font-smoothing:grayscale;touch-action:manipulation;}body{position:relative;min-height:100%;font-feature-settings:'kern';}*,*::before,*::after{border-width:0;border-style:solid;box-sizing:border-box;}main{display:block;}hr{border-top-width:1px;box-sizing:content-box;height:0;overflow:visible;}pre,code,kbd,samp{font-family:SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:1em;}a{background-color:transparent;color:inherit;-webkit-text-decoration:inherit;text-decoration:inherit;}abbr[title]{border-bottom:none;-webkit-text-decoration:underline;text-decoration:underline;-webkit-text-decoration:underline dotted;-webkit-text-decoration:underline dotted;text-decoration:underline dotted;}b,strong{font-weight:bold;}small{font-size:80%;}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline;}sub{bottom:-0.25em;}sup{top:-0.5em;}img{border-style:none;}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0;}button,input{overflow:visible;}button,select{text-transform:none;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner{border-style:none;padding:0;}fieldset{padding:0.35em 0.75em 0.625em;}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal;}progress{vertical-align:baseline;}textarea{overflow:auto;}[type="checkbox"],[type="radio"]{box-sizing:border-box;padding:0;}[type="number"]::-webkit-inner-spin-button,[type="number"]::-webkit-outer-spin-button{-webkit-appearance:none!important;}input[type="number"]{-moz-appearance:textfield;}[type="search"]{-webkit-appearance:textfield;outline-offset:-2px;}[type="search"]::-webkit-search-decoration{-webkit-appearance:none!important;}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit;}details{display:block;}summary{display:-webkit-box;display:-webkit-list-item;display:-ms-list-itembox;display:list-item;}template{display:none;}[hidden]{display:none!important;}body,blockquote,dl,dd,h1,h2,h3,h4,h5,h6,hr,figure,p,pre{margin:0;}button{background:transparent;padding:0;}fieldset{margin:0;padding:0;}ol,ul{margin:0;padding:0;}textarea{resize:vertical;}button,[role="button"]{cursor:pointer;}button::-moz-focus-inner{border:0!important;}table{border-collapse:collapse;}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit;}button,input,optgroup,select,textarea{padding:0;line-height:inherit;color:inherit;}img,svg,video,canvas,audio,iframe,embed,object{display:block;}img,video{max-width:100%;height:auto;}[data-js-focus-visible] :focus:not([data-focus-visible-added]){outline:none;box-shadow:none;}select::-ms-expand{display:none;}</style><style data-emotion="css-global 1of8e4g">body{font-family:var(--chakra-fonts-body);color:var(--chakra-colors-gray-800);background:var(--chakra-colors-white);transition-property:background-color;transition-duration:var(--chakra-transition-duration-normal);line-height:var(--chakra-lineHeights-base);}*::-webkit-input-placeholder{color:var(--chakra-colors-gray-400);}*::-moz-placeholder{color:var(--chakra-colors-gray-400);}*:-ms-input-placeholder{color:var(--chakra-colors-gray-400);}*::placeholder{color:var(--chakra-colors-gray-400);}*,*::before,::after{border-color:var(--chakra-colors-gray-200);word-wrap:break-word;}html,body{background:var(--chakra-colors-home-bg);}img,#write iframe{-webkit-filter:unset;filter:unset;transition-property:filter;transition-duration:var(--chakra-transition-duration-normal);}div{transition-property:background-color;transition-duration:var(--chakra-transition-duration-normal);}</style><style data-emotion="css 1ghv3an">.css-1ghv3an{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:flex-start;-webkit-box-align:flex-start;-ms-flex-align:flex-start;align-items:flex-start;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;height:unset;overflow:auto;-webkit-box-flex-flow:column;-webkit-flex-flow:column;-ms-flex-flow:column;flex-flow:column;-webkit-padding-start:0.5rem;padding-inline-start:0.5rem;-webkit-padding-end:0.5rem;padding-inline-end:0.5rem;}@media screen and (min-width: 30em){.css-1ghv3an{height:unset;-webkit-box-flex-flow:column;-webkit-flex-flow:column;-ms-flex-flow:column;flex-flow:column;}}@media screen and (min-width: 48em){.css-1ghv3an{height:100vh;-webkit-box-flex-flow:row;-webkit-flex-flow:row;-ms-flex-flow:row;flex-flow:row;}}</style><div class="css-1ghv3an"><style data-emotion="css xte4wg">.css-xte4wg{display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;position:unset;white-space:nowrap;vertical-align:middle;outline:2px solid transparent;outline-offset:2px;width:auto;line-height:1.2;border-radius:var(--chakra-radii-md);font-weight:var(--chakra-fontWeights-semibold);transition-property:var(--chakra-transition-property-common);transition-duration:var(--chakra-transition-duration-normal);height:var(--chakra-sizes-12);min-width:var(--chakra-sizes-12);font-size:var(--chakra-fontSizes-lg);-webkit-padding-start:var(--chakra-space-6);padding-inline-start:var(--chakra-space-6);-webkit-padding-end:var(--chakra-space-6);padding-inline-end:var(--chakra-space-6);background:var(--chakra-colors-gray-100);margin-top:1rem;top:3rem;}@media screen and (min-width: 30em){.css-xte4wg{position:unset;margin-top:1rem;}}@media screen and (min-width: 48em){.css-xte4wg{position:-webkit-sticky;position:sticky;margin-top:3rem;}}.css-xte4wg:focus,.css-xte4wg[data-focus]{box-shadow:var(--chakra-shadows-outline);}.css-xte4wg[disabled],.css-xte4wg[aria-disabled=true],.css-xte4wg[data-disabled]{opacity:0.4;cursor:not-allowed;box-shadow:var(--chakra-shadows-none);}.css-xte4wg:hover,.css-xte4wg[data-hover]{background:var(--chakra-colors-gray-200);}.css-xte4wg:hover[disabled],.css-xte4wg[data-hover][disabled],.css-xte4wg:hover[aria-disabled=true],.css-xte4wg[data-hover][aria-disabled=true],.css-xte4wg:hover[data-disabled],.css-xte4wg[data-hover][data-disabled]{background:var(--chakra-colors-gray-100);}.css-xte4wg:active,.css-xte4wg[data-active]{background:var(--chakra-colors-gray-300);}</style><button type="button" class="chakra-button css-xte4wg">BACK</button><style data-emotion="css a06krq">.css-a06krq{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;width:var(--chakra-sizes-full);-webkit-box-flex-flow:column;-webkit-flex-flow:column;-ms-flex-flow:column;flex-flow:column;-webkit-padding-start:unset;padding-inline-start:unset;-webkit-padding-end:unset;padding-inline-end:unset;}@media screen and (min-width: 30em){.css-a06krq{width:var(--chakra-sizes-full);-webkit-padding-start:unset;padding-inline-start:unset;-webkit-padding-end:unset;padding-inline-end:unset;}}@media screen and (min-width: 48em){.css-a06krq{width:55rem;-webkit-padding-start:1.5rem;padding-inline-start:1.5rem;-webkit-padding-end:1.5rem;padding-inline-end:1.5rem;}}@media screen and (min-width: 62em){.css-a06krq{width:55rem;}}@media screen and (min-width: 80em){.css-a06krq{width:55rem;}}@media screen and (min-width: 96em){.css-a06krq{width:68rem;}}</style><div class="css-a06krq"><style data-emotion="css 1if659q">.css-1if659q{border-radius:10px;margin-top:1rem;box-shadow:var(--chakra-shadows-lg);background:var(--chakra-colors-white);overflow:hidden;-webkit-flex:1;-ms-flex:1;flex:1;}@media screen and (min-width: 30em){.css-1if659q{margin-top:1rem;}}@media screen and (min-width: 48em){.css-1if659q{margin-top:3rem;}}</style><div class="css-1if659q"><style data-emotion="css 81xunj">.css-81xunj{padding:1rem;}@media screen and (min-width: 30em){.css-81xunj{padding:1rem;}}@media screen and (min-width: 48em){.css-81xunj{padding:2rem;}}</style><article class="css-81xunj"><header class="css-0"><style data-emotion="css 1m7qnzk">.css-1m7qnzk{font-family:var(--chakra-fonts-heading);font-weight:var(--chakra-fontWeights-bold);font-size:var(--chakra-fontSizes-3xl);line-height:1.33;margin-bottom:1rem;color:rgba(0, 0, 0, 0.85);}@media screen and (min-width: 48em){.css-1m7qnzk{font-size:var(--chakra-fontSizes-4xl);line-height:1.2;}}</style><h1 class="chakra-heading css-1m7qnzk">异步 JavaScript-现在与将来</h1><style data-emotion="css acwcvw">.css-acwcvw{margin-bottom:1rem;}</style><div class="css-acwcvw"><style data-emotion="css 1kpd5c2">.css-1kpd5c2{display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;vertical-align:top;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;max-width:100%;font-weight:var(--chakra-fontWeights-medium);line-height:1.2;outline:2px solid transparent;outline-offset:2px;min-height:1.5rem;min-width:1.5rem;font-size:var(--chakra-fontSizes-sm);border-radius:var(--chakra-radii-md);-webkit-padding-start:var(--chakra-space-2);padding-inline-start:var(--chakra-space-2);-webkit-padding-end:var(--chakra-space-2);padding-inline-end:var(--chakra-space-2);background:var(--chakra-colors-gray-100);color:var(--chakra-colors-gray-800);}.css-1kpd5c2:focus,.css-1kpd5c2[data-focus]{box-shadow:var(--chakra-shadows-outline);}</style><span class="css-1kpd5c2">JavaScript</span></div><style data-emotion="css x8djax">.css-x8djax{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;color:var(--chakra-colors-gray-600);}</style><div class="css-x8djax"><style data-emotion="css 1lr2xj">.css-1lr2xj{width:1em;height:1em;display:inline-block;line-height:1em;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;color:currentColor;margin-right:0.5rem;}</style><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" focusable="false" class="chakra-icon css-1lr2xj" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg><style data-emotion="css 129gw94">.css-129gw94{line-height:0;}</style><time dateTime="2021-07-12T15:21:03.000Z" class="css-129gw94">2021/07/12</time></div></header><style data-emotion="css i51og3">.css-i51og3{margin-top:2rem;}</style><section id="write" class="css-i51og3"><p>所有重要的程序都需要通过这样或那样的方法来管理持续一段时间的程序行为。这可能是用户输入、从数据库或文件系统中请求数据、通过网络发送数据并等待响应等。在诸如此类的场景中，程序都需要管理这段时间间隔执行重复任务。</p>
+<p>事实上，程序中现在运行的部分和将来运行的部分之间的关系就是异步编程的核心。</p>
+<h2 id="分块的程序">分块的程序</h2>
+<p>可以将 JavaScript 程序写在单个<code>.js</code>文件中，但是这个程序几乎一定是由多个块组成。这些块中只有一个是现在执行，其余的则会在将来执行。最常见的块单位是函数。</p>
+<p>通常，如果发送一个异步的 ajax 请求，像这样：</p>
+<pre><style data-emotion="css 19bp9bt">.css-19bp9bt{display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;position:absolute;white-space:nowrap;vertical-align:middle;outline:2px solid transparent;outline-offset:2px;width:auto;line-height:1.2;border-radius:var(--chakra-radii-md);font-weight:var(--chakra-fontWeights-semibold);transition-property:var(--chakra-transition-property-common);transition-duration:var(--chakra-transition-duration-normal);height:var(--chakra-sizes-6);min-width:var(--chakra-sizes-6);font-size:var(--chakra-fontSizes-xs);-webkit-padding-start:var(--chakra-space-2);padding-inline-start:var(--chakra-space-2);-webkit-padding-end:var(--chakra-space-2);padding-inline-end:var(--chakra-space-2);background:var(--chakra-colors-teal-500);color:var(--chakra-colors-white);top:5px;right:5px;}.css-19bp9bt:focus,.css-19bp9bt[data-focus]{box-shadow:var(--chakra-shadows-outline);}.css-19bp9bt[disabled],.css-19bp9bt[aria-disabled=true],.css-19bp9bt[data-disabled]{opacity:0.4;cursor:not-allowed;box-shadow:var(--chakra-shadows-none);}.css-19bp9bt:hover,.css-19bp9bt[data-hover]{background:var(--chakra-colors-teal-600);}.css-19bp9bt:hover[disabled],.css-19bp9bt[data-hover][disabled],.css-19bp9bt:hover[aria-disabled=true],.css-19bp9bt[data-hover][aria-disabled=true],.css-19bp9bt:hover[data-disabled],.css-19bp9bt[data-hover][data-disabled]{background:var(--chakra-colors-teal-500);}.css-19bp9bt:active,.css-19bp9bt[data-active]{background:var(--chakra-colors-teal-700);}</style><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">const</span> data = <span class="hljs-title hljs-function">ajax</span>(<span class="hljs-string">&#x27;some.url.1&#x27;</span>);
+
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(data); <span class="hljs-comment">// 没有结果</span>
+</code></pre>
+<p>经常与异步打交道可能就明白是由于这段 ajax 是异步进行的，程序在 ajax 请求还未完成时就就执行了下面的打印 data 的语句。所以没有结果。</p>
+<p>通常，最常见的异步代码还是回调函数：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-title hljs-function">ajax</span>(<span class="hljs-string">&#x27;some.url.1&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">data</span>) =&gt;</span> {
+  <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(data);
+});
+</code></pre>
+<p>我们交给 ajax 函数一个回调函数，让其在准备完成后调用我们的回调函数就可以正常的获取到数据了。看上去很棒，至少现在是的。</p>
+<blockquote>
+<p>ajax 请求也是可以同步的，但没人会那样用的。</p>
+</blockquote>
+<p>这和分块的程序有什么关系呢？来研究下下列代码：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">const</span> <span class="hljs-title hljs-function">now</span> = (<span class="hljs-params"></span>) =&gt; {
+  <span class="hljs-keyword">return</span> <span class="hljs-number">21</span>;
+};
+
+<span class="hljs-keyword">const</span> <span class="hljs-title hljs-function">later</span> = (<span class="hljs-params"></span>) =&gt; {
+  answer = answer * <span class="hljs-number">2</span>;
+  <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-string">&#x27;Meaning of life: 42&#x27;</span>);
+};
+
+<span class="hljs-keyword">let</span> answer = <span class="hljs-title hljs-function">now</span>();
+
+<span class="hljs-built_in">setTimeout</span>(later, <span class="hljs-number">999</span>);
+</code></pre>
+<p>通常，分块的程序都是以函数为块来进行执行的。如上述代码，它有两个块（也有两个函数）：一个是现在要执行的部分，另一个是将来要执行的部分。</p>
+<p>很明显，now 函数是同步的被执行和赋值到的一个变量上的。但，我们还设置了一个定时器，将 later 函数于 999 毫秒后执行，也就是之后的某个时间执行。</p>
+<p>任何时候，我们只要把一段代码包装成一个函数，并指定它在响应某个事件（定时器、鼠标点击、ajax 响应等）时执行，我们就是在代码中创建了一个将来执行的块， 也由此在这个程序中引入了异步机制。像 later 函数就是被异步执行的。</p>
+<h3 id="异步控制台">异步控制台</h3>
+<p>目前还没有规范定义了 console 对象下的方法应该如何工作的，它们并不是 JavaScript 正式的一部分，而是由宿主环境实现的。所有不同的宿主环境实现的方式可能不同。但，某些浏览器并不会把传入像<code>console.log(...)</code>这样的内容立即输出，而是异步处理。不过正常延迟输出的情况不多见。</p>
+<h2 id="事件循环">事件循环</h2>
+<p>很早之前我们就能给编写上述的异步 JavaScript 代码，但直到最近（ES6），JavaScript 才真正内建有直接的异步概念。</p>
+<p>JavaScript 语言本身被设计的是单线程语言，宿主环境的实现中都提供了一种机制来处理程序中多个块的执行，且执行每个块时调用 JavaScript 引擎，这种机制被称之为事件循环。</p>
+<p>JavaScript 引擎本身没有时间概念，它只是按需求执行 JavaScript 任意代码片段的环境。“事件”（JavaScript 代码执行）调度总是由包含它的环境进行。</p>
+<p>例如发送一个 ajax 请求，从服务器获取一些数据，并设置了一个回调函数，用于完成请求时回调。一旦完成了网络请求，JavaScript 引起就会通知宿主环境，执行对应的回调函数。</p>
+<p>什么是事件循环？</p>
+<p>来看一段伪代码：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-comment">// 事件循环队列，先进先出</span>
+<span class="hljs-keyword">const</span> eventLoop = [];
+<span class="hljs-keyword">let</span> event;
+
+<span class="hljs-comment">// while 相当于执行代码</span>
+<span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) {
+  <span class="hljs-comment">// 每拿出一个事件进行执行，都是一次 tick</span>
+  <span class="hljs-keyword">if</span> (eventLoop.<span class="hljs-property">length</span> &gt; <span class="hljs-number">0</span>) {
+    <span class="hljs-comment">// 拿到事件队列中的下个事件</span>
+    event = eventLoop.<span class="hljs-title hljs-function">shift</span>();
+    <span class="hljs-comment">// 执行下一个事件</span>
+    <span class="hljs-keyword">try</span> {
+      <span class="hljs-title hljs-function">event</span>();
+    } <span class="hljs-keyword">catch</span> (e) {
+      <span class="hljs-title hljs-function">reportError</span>(e);
+    }
+  }
+}
+</code></pre>
+<p>这是一段只能用来说明概念的简单的伪代码。这里用一个 while 代表持续运行的循环，循环的每一轮称为一个 tick。对每个 tick 而言，如果在队列中有等待事件，那么就会从队列中摘下一个事件并执行。这些事件就是我们的回调函数。</p>
+<p>常见的<code>setTimeout()</code>方法是设置异步的好方法，但它实际上并没有将我们的回调函数直接挂在事件队列上。而是设置一个定时器，当定时器到时后，环境会把回调函数放到事件队列中。这样，在未来某个时刻的 tick 就会摘下并执行这个回调，且没有办法将其直接排在队首。这也是<code>setTimeout()</code>方法精度不高的主要原因。</p>
+<p>总的来说，程序通常分成了很多小块，在事件循环队列中一个接一个地执行。严格来说，和程序不直接相关的事件也可能会插入到队列中。</p>
+<p>在 Node.js 中，<code>setImmediate()</code>方法会将回调函数准确的插入到所有事件循环队列最后。</p>
+<h2 id="并行线程">并行线程</h2>
+<p>异步与并行虽然常常被混为一谈，但它们实际上意义完全不同。</p>
+<p>计算机常见的工具是线程和进程，多个线程能够共享单个进程的内存。</p>
+<p>事件循环机制将自身的工作分成一个个任务并顺序执行，不允许对共享内存进行并行访问和修改。通过分立线程中彼此合作的事件循环，并行和顺序执行可以共存。</p>
+<p>多线程的交替执行与异步事件的交替调度，其颗粒度是完全不同的。</p>
+<p>在单线程的 JavaScript 中，线程本身不会被中断。如果在多线程系统中，同一个程序中可能有两个不同的线程在运作，这时可能会得到很多不确定的结果。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> a = <span class="hljs-number">20</span>;
+
+<span class="hljs-keyword">const</span> <span class="hljs-title hljs-function">foo</span> = (<span class="hljs-params"></span>) =&gt; {
+  a += <span class="hljs-number">1</span>;
+};
+
+<span class="hljs-keyword">const</span> <span class="hljs-title hljs-function">bar</span> = (<span class="hljs-params"></span>) =&gt; {
+  a *= <span class="hljs-number">2</span>;
+};
+
+<span class="hljs-title hljs-function">ajax</span>(<span class="hljs-string">&#x27;url.1&#x27;</span>, foo);
+<span class="hljs-title hljs-function">ajax</span>(<span class="hljs-string">&#x27;url.2&#x27;</span>, bar);
+</code></pre>
+<p>根据 JavaScript 单线程与事件循环的特性，上述代码也会有不确定性。如果第一个请求先到达，那么 a 的结果就是 42，如果第二个请求先到达，a 的结果就是 41。</p>
+<p>如果是多线程允许的话，事情就会变的更加微妙了。因为两个函数可能同时运行，并且共享内存中的 a，其结果的不确定性会更多。多线程编程是非常复杂的，如果不通过特殊的步骤来防止中断和交替运行，可能会得到出乎意料的不确定性行为。</p>
+<blockquote>
+<p>上述 JavaScript 所表现的不确定性不全都是有害的。有时是无关紧要的，有时可能是我们刻意追求的结果。</p>
+</blockquote>
+<h3 id="完整运行">完整运行</h3>
+<p>由于 JavaScript 的单线程特性，函数中的代码具有原子性。也就是说，函数<code>foo()</code>一旦开始执行，它的所有代码都会在<code>bar()</code>开始执行前完成，或者相反。这称之为完整运行（run-to-completion）特性。</p>
+<p>虽然异步函数的先后执行顺序还是存在着不确定性。但是，这种不确定性是在函数（事件）顺序级别上，而不是多线程的语句顺序级别。</p>
+<p>在 JavaScript 的特性中，这种函数顺序的不确定性就是通常所说的竞态条件（race condition）。</p>
+<h2 id="并发">并发</h2>
+<p>通常想到并发，我们就可能与多线程联系上，因为它字面意思上理解就是多个任务同时运作（或者多个请求同时发送）。</p>
+<p>在 JavaScript 中的并发通常是这样的情况：我们维护着一个状态更新列表（社交网页或新闻帖子）的网站，它有一个很常见的功能，下拉加载。当用户下拉到列表底部时，就会触发这个事件，由 JavaScript 发送网络请求来获取新的数据。如果在获取数据期间，用户频繁触发了下拉加载这个事件，就会导致更多的请求被发送（虽然实际情况中我们可能会避免这一状况）。</p>
+<p>假如用户一瞬间触发了 6 个请求，而在接下来的时间里便会陆续的收到对应的 6 个响应：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ini">// onscroll 事件
+请求1<span class="hljs-comment">;</span>
+请求2<span class="hljs-comment">;</span>
+请求3<span class="hljs-comment">;</span>
+请求4<span class="hljs-comment">;</span>
+请求5<span class="hljs-comment">;</span>
+请求6<span class="hljs-comment">;</span>
+
+// ajax 响应事件
+响应1<span class="hljs-comment">;</span>
+响应2<span class="hljs-comment">;</span>
+响应3<span class="hljs-comment">;</span>
+响应4<span class="hljs-comment">;</span>
+响应5<span class="hljs-comment">;</span>
+响应6<span class="hljs-comment">;</span>
+</code></pre>
+<p>这是我们认为的情况，但根据 JavaScript 单线程事件循环的概念来看，实际上时间线可能是这样的：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">onscroll, 请求<span class="hljs-number">1</span>; <span class="hljs-comment">// onscroll 事件</span>
+onscroll, 请求<span class="hljs-number">2</span>;
+响应<span class="hljs-number">1</span>; <span class="hljs-comment">// ajax 响应事件</span>
+onscroll, 请求<span class="hljs-number">3</span>;
+onscroll, 请求<span class="hljs-number">4</span>;
+响应<span class="hljs-number">2</span>;
+响应<span class="hljs-number">3</span>;
+onscroll, 请求<span class="hljs-number">5</span>;
+响应<span class="hljs-number">5</span>;
+onscroll, 请求<span class="hljs-number">6</span>;
+响应<span class="hljs-number">4</span>;
+响应<span class="hljs-number">6</span>;
+</code></pre>
+<p>由于单线程的事件循环，JavaScript 一次只能处理一个事件，所以当在发送多个请求的间隙之间，有对应的响应到达时，JavaScript 便会去处理它。这就像在学校食堂排队一样，都得一个一个按顺序来。另外，由于不同的响应时间，响应的顺序可能也是乱序的。</p>
+<h3 id="非交互">非交互</h3>
+<p>两个或多个任务之间由异步交替进行任务时，如果这些任务不相干，则不一定需要交互。<strong>如果进程间没有相互影响的话，不确定性是完全可以接收的。</strong></p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">const</span> res = {};
+
+<span class="hljs-keyword">const</span> <span class="hljs-title hljs-function">foo</span> = (<span class="hljs-params">result</span>) =&gt; {
+  res.<span class="hljs-property">foo</span> = result;
+};
+
+<span class="hljs-keyword">const</span> <span class="hljs-title hljs-function">bar</span> = (<span class="hljs-params">result</span>) =&gt; {
+  res.<span class="hljs-property">bar</span> = result;
+};
+
+<span class="hljs-title hljs-function">ajax</span>(<span class="hljs-string">&#x27;url.1&#x27;</span>, foo);
+<span class="hljs-title hljs-function">ajax</span>(<span class="hljs-string">&#x27;url.2&#x27;</span>, bar);
+</code></pre>
+<p>例如上述的伪代码，foo 和 bar 的两个回调按照什么顺序执行是不确定的，但它们是独立运行的，不会相互影响。</p>
+<h3 id="交互">交互</h3>
+<p>现实中更常见的情况是多个任务之间需要相互进行交流，如果它们是交互的，则需要进行协调以避免竞态的出现。</p>
+<p>再来看一段伪代码：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">const</span> res = [];
+
+<span class="hljs-keyword">const</span> <span class="hljs-title hljs-function">foo</span> = (<span class="hljs-params">result</span>) =&gt; {
+  res.<span class="hljs-title hljs-function">push</span>(result);
+};
+
+<span class="hljs-title hljs-function">ajax</span>(<span class="hljs-string">&#x27;url.1&#x27;</span>, foo);
+<span class="hljs-title hljs-function">ajax</span>(<span class="hljs-string">&#x27;url.2&#x27;</span>, bar);
+</code></pre>
+<p>这里两个回调都是对数组进行追加结果，并且存在不确定性。这就导致了<code>res[0]</code>可能是任意一个回调的结果。这种不确定性很可能就是一个竞态 Bug。</p>
+<p>如果需要解决这种不确定性带来的问题，可以尝试进行协调：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> a, b;
+
+<span class="hljs-keyword">const</span> <span class="hljs-title hljs-function">foo</span> = (<span class="hljs-params">x</span>) =&gt; {
+  a = x * <span class="hljs-number">2</span>;
+  <span class="hljs-keyword">if</span> (a &amp;&amp; b) {
+    <span class="hljs-title hljs-function">baz</span>();
+  }
+};
+
+<span class="hljs-keyword">const</span> <span class="hljs-title hljs-function">bar</span> = (<span class="hljs-params">y</span>) =&gt; {
+  b = y * <span class="hljs-number">2</span>;
+  <span class="hljs-keyword">if</span> (a &amp;&amp; b) {
+    <span class="hljs-title hljs-function">baz</span>();
+  }
+};
+
+<span class="hljs-keyword">const</span> <span class="hljs-title hljs-function">baz</span> = (<span class="hljs-params"></span>) =&gt; {
+  <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(a + b);
+};
+
+<span class="hljs-title hljs-function">ajax</span>(<span class="hljs-string">&#x27;url.1&#x27;</span>, foo);
+<span class="hljs-title hljs-function">ajax</span>(<span class="hljs-string">&#x27;url.2&#x27;</span>, bar);
+</code></pre>
+<p>这是一种竞态（race），或者称之为门闩（latch）。</p>
+<h3 id="协作">协作</h3>
+<p>还有一种合作方式，称为并发协作（cooperative concurrency）。这里的重点是利用异步的事件循环来将复杂繁重的任务插入到事件队列中，使得其他的并发任务有机会也在事件循环队列中被执行。</p>
+<p>通俗的来说，就是分割耗时过长的同步任务到异步队列中，从而避免进程阻塞。</p>
+<p>来看一段伪代码：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">const</span> res = [];
+
+<span class="hljs-keyword">const</span> <span class="hljs-title hljs-function">response</span> = (<span class="hljs-params">data</span>) =&gt; {
+  res = res.<span class="hljs-title hljs-function">concat</span>(data.<span class="hljs-title hljs-function">map</span>(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> item * <span class="hljs-number">3.14</span>));
+};
+
+<span class="hljs-title hljs-function">ajax</span>(<span class="hljs-string">&#x27;url.1&#x27;</span>, response);
+<span class="hljs-title hljs-function">ajax</span>(<span class="hljs-string">&#x27;url.2&#x27;</span>, response);
+</code></pre>
+<p>这里假设需要从某处发送 ajax 请求来取得某些数据，并将这些数据进行一系列操作后存入 res 数组中。如果数据只有几千几百条的话，那可能不是什么问题。但如果数据是千万级别甚至更多呢？这时可能就会阻塞进程好一会，效果类似于死循环几秒钟。</p>
+<p>这种情况下，我们先处理一部分的数据，让后将剩下的数据处理添加到事件循环的队列中，使其它任务也拥有处理的时间。这样就有助于防止程序运行阻塞，进而提高性能。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">const</span> res = [];
+
+<span class="hljs-keyword">const</span> <span class="hljs-title hljs-function">response</span> = (<span class="hljs-params">data</span>) =&gt; {
+  <span class="hljs-keyword">const</span> chunk = data.<span class="hljs-title hljs-function">splice</span>(<span class="hljs-number">0</span>, <span class="hljs-number">1000</span>);
+
+  res = res.<span class="hljs-title hljs-function">concat</span>(chunk.<span class="hljs-title hljs-function">map</span>(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> item * <span class="hljs-number">3.14</span>));
+
+  <span class="hljs-keyword">if</span> (data.<span class="hljs-property">length</span> &gt; <span class="hljs-number">0</span>) {
+    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
+      <span class="hljs-title hljs-function">response</span>(data);
+    }, <span class="hljs-number">0</span>);
+  }
+};
+
+<span class="hljs-title hljs-function">ajax</span>(<span class="hljs-string">&#x27;url.1&#x27;</span>, response);
+<span class="hljs-title hljs-function">ajax</span>(<span class="hljs-string">&#x27;url.2&#x27;</span>, response);
+</code></pre>
+<p>这里使用的是<code>setTimeout(.., 0)</code>的一个 hack 方式，它的大概意思就是尽早的将这个函数添加到事件循环队列，这不是一个推荐的添加到事件循环队列的方式。</p>
+<h2 id="任务">任务</h2>
+<p>在 ES6 中，有一个新的概念建立在事件循环队列（宏任务）上，叫作<strong>任务队列</strong>（job queue）。现在流行的称呼也为微任务。微任务最大的影响就是 promise 的异步特性。</p>
+<p>目前最好理解任务队列（微任务）的方法就是与事件循环队列（宏任务）一起理解。上述中，我们将宏任务描述为一个数组，每次从数组中取出一个任务（块）进行执行时，都称之为一次 tick。而微任务就是挂在每一次 tick 之后所进行的循环队列（常见的说法也有是挂在下次一 tick 开始之前，但这细微的差距不影响我们理解微任务）。</p>
+<p>这里上一张上次看到的很好的一张图，图中的原文讲解 <style data-emotion="css wox0k7">.css-wox0k7{transition-property:var(--chakra-transition-property-common);transition-duration:var(--chakra-transition-duration-fast);transition-timing-function:var(--chakra-transition-easing-ease-out);cursor:pointer;-webkit-text-decoration:none;text-decoration:none;outline:2px solid transparent;outline-offset:2px;color:inherit;display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}.css-wox0k7:hover,.css-wox0k7[data-hover]{-webkit-text-decoration:underline;text-decoration:underline;}.css-wox0k7:focus,.css-wox0k7[data-focus]{box-shadow:var(--chakra-shadows-outline);}</style><a target="_blank" rel="noopener noreferrer" class="chakra-link css-wox0k7" href="https://www.zhihu.com/question/23028843">Process.nextTick 和 setImmediate 的区别？ - 知乎 (zhihu.com)<style data-emotion="css 2y6psj">.css-2y6psj{width:1em;height:1em;display:inline-block;line-height:1em;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;color:currentColor;vertical-align:middle;-webkit-margin-start:2px;margin-inline-start:2px;-webkit-margin-end:2px;margin-inline-end:2px;}</style><svg viewBox="0 0 24 24" focusable="false" class="chakra-icon css-2y6psj"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><path d="M15 3h6v6"></path><path d="M10 14L21 3"></path></g></svg></a> 的。但同时也很好的说明了微任务（剧透一下，<code>process.nextTick()</code>就是会添加到微任务队列中）。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-title hljs-class">Promise</span>.<span class="hljs-title hljs-function">resolve</span>(<span class="hljs-string">&#x27;B&#x27;</span>).<span class="hljs-title hljs-function">then</span>(<span class="hljs-function">(<span class="hljs-params">val</span>) =&gt;</span> {
+  <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(val);
+});
+
+<span class="hljs-keyword">const</span> <span class="hljs-title hljs-function">a</span> = (<span class="hljs-params"></span>) =&gt; {
+  <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-string">&#x27;A&#x27;</span>);
+};
+
+<span class="hljs-keyword">const</span> <span class="hljs-title hljs-function">c</span> = (<span class="hljs-params"></span>) =&gt; {
+  <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-string">&#x27;C&#x27;</span>);
+};
+
+<span class="hljs-keyword">const</span> <span class="hljs-title hljs-function">d</span> = (<span class="hljs-params"></span>) =&gt; {
+  <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-string">&#x27;D&#x27;</span>);
+};
+
+<span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-title hljs-function">d</span>();
+}, <span class="hljs-number">0</span>);
+
+<span class="hljs-title hljs-function">a</span>();
+<span class="hljs-title hljs-function">c</span>();
+<span class="hljs-comment">// A C B D</span>
+</code></pre>
+<p><picture data-rmiz-wrap="visible"><style data-emotion="css 185nr5j">.css-185nr5j{object-fit:cover;border-radius:10px;-webkit-filter:blur(20px);filter:blur(20px);transition-duration:var(--chakra-transition-duration-slower);height:100%;}</style><img alt="Post image" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" class="chakra-image css-185nr5j"/><button aria-label="Zoom image" data-rmiz-btn-open="true"></button></picture></p>
+<p>这里的函数<code>a()</code>和<code>c()</code>都是同步执行的（同步可以直接理解为第一次执行的宏任务队列），而函数<code>d()</code>是添加到宏任务的后续队列中的。Promise 的微任务则如图中一样，挂在同步（正在执行）队列后，等待队列（宏任务）之前。</p>
+<h2 id="小结">小结</h2>
+<p>异步 JavaScript 的程序总是会至少分成两个块来运行：一个是现在运行的块；另一个是将来运行的块。尽管程序是一块一块执行的，但是所有这些块共享对程序的作用域和状态的访问，所以对状态的修改都是在之前累计的修改上进行的。</p>
+<p>并发是指两个或多个事件链随着事件的发展交替执行，以至于从更高层次来看，就像是同时在运行（尽管在任意时刻只处理一个事件）。</p></section></article></div><style data-emotion="css 1i6v8fa">.css-1i6v8fa{min-height:346px;}@media screen and (min-width: 30em){.css-1i6v8fa{min-height:350px;}}</style><div class="css-1i6v8fa"></div><style data-emotion="css 3ydw18">.css-3ydw18{height:3px;width:50px;background:var(--chakra-colors-gray-500);border-radius:var(--chakra-radii-xl);margin-top:2.5rem;}</style><div class="css-3ydw18"></div><style data-emotion="css 1lwvw50">.css-1lwvw50{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-flex-flow:column;-webkit-flex-flow:column;-ms-flex-flow:column;flex-flow:column;padding-top:1.5rem;padding-bottom:1.5rem;}</style><footer class="css-1lwvw50"><style data-emotion="css yld109">.css-yld109{color:var(--chakra-colors-gray-600);font-weight:var(--chakra-fontWeights-bold);margin-bottom:0.5rem;}</style><p class="chakra-text css-yld109">©<!-- -->2022<!-- --> 小肥羊</p><style data-emotion="css 3eyczr">.css-3eyczr{color:var(--chakra-colors-gray-400);font-size:small;}</style><p class="chakra-text css-3eyczr">Powered by Next.js ❤️ Chakra UI</p></footer></div><style data-emotion="css kl7qz4">.css-kl7qz4{display:none;position:-webkit-sticky;position:sticky;top:3rem;margin-top:3rem;}@media screen and (min-width: 30em){.css-kl7qz4{display:none;}}@media screen and (min-width: 48em){.css-kl7qz4{display:none;}}@media screen and (min-width: 62em){.css-kl7qz4{display:block;}}</style><div class="css-kl7qz4"><h2 id="table-of-contents">Table of contents</h2>
+<ul>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#%E5%88%86%E5%9D%97%E7%9A%84%E7%A8%8B%E5%BA%8F">分块的程序</a></p>
+<ul>
+<li><a class="chakra-link css-wox0k7" href="#%E5%BC%82%E6%AD%A5%E6%8E%A7%E5%88%B6%E5%8F%B0">异步控制台</a></li>
+</ul>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF">事件循环</a></p>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#%E5%B9%B6%E8%A1%8C%E7%BA%BF%E7%A8%8B">并行线程</a></p>
+<ul>
+<li><a class="chakra-link css-wox0k7" href="#%E5%AE%8C%E6%95%B4%E8%BF%90%E8%A1%8C">完整运行</a></li>
+</ul>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#%E5%B9%B6%E5%8F%91">并发</a></p>
+<ul>
+<li><a class="chakra-link css-wox0k7" href="#%E9%9D%9E%E4%BA%A4%E4%BA%92">非交互</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E4%BA%A4%E4%BA%92">交互</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E5%8D%8F%E4%BD%9C">协作</a></li>
+</ul>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#%E4%BB%BB%E5%8A%A1">任务</a></p>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#%E5%B0%8F%E7%BB%93">小结</a></p>
+</li>
+</ul></div></div><span></span></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"postData":{"id":"asynchronous-javascript-now-and-future","content":"\n所有重要的程序都需要通过这样或那样的方法来管理持续一段时间的程序行为。这可能是用户输入、从数据库或文件系统中请求数据、通过网络发送数据并等待响应等。在诸如此类的场景中，程序都需要管理这段时间间隔执行重复任务。\n\n事实上，程序中现在运行的部分和将来运行的部分之间的关系就是异步编程的核心。\n\n## 分块的程序\n\n可以将 JavaScript 程序写在单个`.js`文件中，但是这个程序几乎一定是由多个块组成。这些块中只有一个是现在执行，其余的则会在将来执行。最常见的块单位是函数。\n\n通常，如果发送一个异步的 ajax 请求，像这样：\n\n```js\nconst data = ajax('some.url.1');\n\nconsole.log(data); // 没有结果\n```\n\n经常与异步打交道可能就明白是由于这段 ajax 是异步进行的，程序在 ajax 请求还未完成时就就执行了下面的打印 data 的语句。所以没有结果。\n\n通常，最常见的异步代码还是回调函数：\n\n```js\najax('some.url.1', (data) =\u003e {\n  console.log(data);\n});\n```\n\n我们交给 ajax 函数一个回调函数，让其在准备完成后调用我们的回调函数就可以正常的获取到数据了。看上去很棒，至少现在是的。\n\n\u003e ajax 请求也是可以同步的，但没人会那样用的。\n\n这和分块的程序有什么关系呢？来研究下下列代码：\n\n```js\nconst now = () =\u003e {\n  return 21;\n};\n\nconst later = () =\u003e {\n  answer = answer * 2;\n  console.log('Meaning of life: 42');\n};\n\nlet answer = now();\n\nsetTimeout(later, 999);\n```\n\n通常，分块的程序都是以函数为块来进行执行的。如上述代码，它有两个块（也有两个函数）：一个是现在要执行的部分，另一个是将来要执行的部分。\n\n很明显，now 函数是同步的被执行和赋值到的一个变量上的。但，我们还设置了一个定时器，将 later 函数于 999 毫秒后执行，也就是之后的某个时间执行。\n\n任何时候，我们只要把一段代码包装成一个函数，并指定它在响应某个事件（定时器、鼠标点击、ajax 响应等）时执行，我们就是在代码中创建了一个将来执行的块， 也由此在这个程序中引入了异步机制。像 later 函数就是被异步执行的。\n\n### 异步控制台\n\n目前还没有规范定义了 console 对象下的方法应该如何工作的，它们并不是 JavaScript 正式的一部分，而是由宿主环境实现的。所有不同的宿主环境实现的方式可能不同。但，某些浏览器并不会把传入像`console.log(...)`这样的内容立即输出，而是异步处理。不过正常延迟输出的情况不多见。\n\n## 事件循环\n\n很早之前我们就能给编写上述的异步 JavaScript 代码，但直到最近（ES6），JavaScript 才真正内建有直接的异步概念。\n\nJavaScript 语言本身被设计的是单线程语言，宿主环境的实现中都提供了一种机制来处理程序中多个块的执行，且执行每个块时调用 JavaScript 引擎，这种机制被称之为事件循环。\n\nJavaScript 引擎本身没有时间概念，它只是按需求执行 JavaScript 任意代码片段的环境。“事件”（JavaScript 代码执行）调度总是由包含它的环境进行。\n\n例如发送一个 ajax 请求，从服务器获取一些数据，并设置了一个回调函数，用于完成请求时回调。一旦完成了网络请求，JavaScript 引起就会通知宿主环境，执行对应的回调函数。\n\n什么是事件循环？\n\n来看一段伪代码：\n\n```js\n// 事件循环队列，先进先出\nconst eventLoop = [];\nlet event;\n\n// while 相当于执行代码\nwhile (true) {\n  // 每拿出一个事件进行执行，都是一次 tick\n  if (eventLoop.length \u003e 0) {\n    // 拿到事件队列中的下个事件\n    event = eventLoop.shift();\n    // 执行下一个事件\n    try {\n      event();\n    } catch (e) {\n      reportError(e);\n    }\n  }\n}\n```\n\n这是一段只能用来说明概念的简单的伪代码。这里用一个 while 代表持续运行的循环，循环的每一轮称为一个 tick。对每个 tick 而言，如果在队列中有等待事件，那么就会从队列中摘下一个事件并执行。这些事件就是我们的回调函数。\n\n常见的`setTimeout()`方法是设置异步的好方法，但它实际上并没有将我们的回调函数直接挂在事件队列上。而是设置一个定时器，当定时器到时后，环境会把回调函数放到事件队列中。这样，在未来某个时刻的 tick 就会摘下并执行这个回调，且没有办法将其直接排在队首。这也是`setTimeout()`方法精度不高的主要原因。\n\n总的来说，程序通常分成了很多小块，在事件循环队列中一个接一个地执行。严格来说，和程序不直接相关的事件也可能会插入到队列中。\n\n在 Node.js 中，`setImmediate()`方法会将回调函数准确的插入到所有事件循环队列最后。\n\n## 并行线程\n\n异步与并行虽然常常被混为一谈，但它们实际上意义完全不同。\n\n计算机常见的工具是线程和进程，多个线程能够共享单个进程的内存。\n\n事件循环机制将自身的工作分成一个个任务并顺序执行，不允许对共享内存进行并行访问和修改。通过分立线程中彼此合作的事件循环，并行和顺序执行可以共存。\n\n多线程的交替执行与异步事件的交替调度，其颗粒度是完全不同的。\n\n在单线程的 JavaScript 中，线程本身不会被中断。如果在多线程系统中，同一个程序中可能有两个不同的线程在运作，这时可能会得到很多不确定的结果。\n\n```js\nlet a = 20;\n\nconst foo = () =\u003e {\n  a += 1;\n};\n\nconst bar = () =\u003e {\n  a *= 2;\n};\n\najax('url.1', foo);\najax('url.2', bar);\n```\n\n根据 JavaScript 单线程与事件循环的特性，上述代码也会有不确定性。如果第一个请求先到达，那么 a 的结果就是 42，如果第二个请求先到达，a 的结果就是 41。\n\n如果是多线程允许的话，事情就会变的更加微妙了。因为两个函数可能同时运行，并且共享内存中的 a，其结果的不确定性会更多。多线程编程是非常复杂的，如果不通过特殊的步骤来防止中断和交替运行，可能会得到出乎意料的不确定性行为。\n\n\u003e 上述 JavaScript 所表现的不确定性不全都是有害的。有时是无关紧要的，有时可能是我们刻意追求的结果。\n\n### 完整运行\n\n由于 JavaScript 的单线程特性，函数中的代码具有原子性。也就是说，函数`foo()`一旦开始执行，它的所有代码都会在`bar()`开始执行前完成，或者相反。这称之为完整运行（run-to-completion）特性。\n\n虽然异步函数的先后执行顺序还是存在着不确定性。但是，这种不确定性是在函数（事件）顺序级别上，而不是多线程的语句顺序级别。\n\n在 JavaScript 的特性中，这种函数顺序的不确定性就是通常所说的竞态条件（race condition）。\n\n## 并发\n\n通常想到并发，我们就可能与多线程联系上，因为它字面意思上理解就是多个任务同时运作（或者多个请求同时发送）。\n\n在 JavaScript 中的并发通常是这样的情况：我们维护着一个状态更新列表（社交网页或新闻帖子）的网站，它有一个很常见的功能，下拉加载。当用户下拉到列表底部时，就会触发这个事件，由 JavaScript 发送网络请求来获取新的数据。如果在获取数据期间，用户频繁触发了下拉加载这个事件，就会导致更多的请求被发送（虽然实际情况中我们可能会避免这一状况）。\n\n假如用户一瞬间触发了 6 个请求，而在接下来的时间里便会陆续的收到对应的 6 个响应：\n\n```\n// onscroll 事件\n请求1;\n请求2;\n请求3;\n请求4;\n请求5;\n请求6;\n\n// ajax 响应事件\n响应1;\n响应2;\n响应3;\n响应4;\n响应5;\n响应6;\n```\n\n这是我们认为的情况，但根据 JavaScript 单线程事件循环的概念来看，实际上时间线可能是这样的：\n\n```js\nonscroll, 请求1; // onscroll 事件\nonscroll, 请求2;\n响应1; // ajax 响应事件\nonscroll, 请求3;\nonscroll, 请求4;\n响应2;\n响应3;\nonscroll, 请求5;\n响应5;\nonscroll, 请求6;\n响应4;\n响应6;\n```\n\n由于单线程的事件循环，JavaScript 一次只能处理一个事件，所以当在发送多个请求的间隙之间，有对应的响应到达时，JavaScript 便会去处理它。这就像在学校食堂排队一样，都得一个一个按顺序来。另外，由于不同的响应时间，响应的顺序可能也是乱序的。\n\n### 非交互\n\n两个或多个任务之间由异步交替进行任务时，如果这些任务不相干，则不一定需要交互。**如果进程间没有相互影响的话，不确定性是完全可以接收的。**\n\n```js\nconst res = {};\n\nconst foo = (result) =\u003e {\n  res.foo = result;\n};\n\nconst bar = (result) =\u003e {\n  res.bar = result;\n};\n\najax('url.1', foo);\najax('url.2', bar);\n```\n\n例如上述的伪代码，foo 和 bar 的两个回调按照什么顺序执行是不确定的，但它们是独立运行的，不会相互影响。\n\n### 交互\n\n现实中更常见的情况是多个任务之间需要相互进行交流，如果它们是交互的，则需要进行协调以避免竞态的出现。\n\n再来看一段伪代码：\n\n```js\nconst res = [];\n\nconst foo = (result) =\u003e {\n  res.push(result);\n};\n\najax('url.1', foo);\najax('url.2', bar);\n```\n\n这里两个回调都是对数组进行追加结果，并且存在不确定性。这就导致了`res[0]`可能是任意一个回调的结果。这种不确定性很可能就是一个竞态 Bug。\n\n如果需要解决这种不确定性带来的问题，可以尝试进行协调：\n\n```js\nlet a, b;\n\nconst foo = (x) =\u003e {\n  a = x * 2;\n  if (a \u0026\u0026 b) {\n    baz();\n  }\n};\n\nconst bar = (y) =\u003e {\n  b = y * 2;\n  if (a \u0026\u0026 b) {\n    baz();\n  }\n};\n\nconst baz = () =\u003e {\n  console.log(a + b);\n};\n\najax('url.1', foo);\najax('url.2', bar);\n```\n\n这是一种竞态（race），或者称之为门闩（latch）。\n\n### 协作\n\n还有一种合作方式，称为并发协作（cooperative concurrency）。这里的重点是利用异步的事件循环来将复杂繁重的任务插入到事件队列中，使得其他的并发任务有机会也在事件循环队列中被执行。\n\n通俗的来说，就是分割耗时过长的同步任务到异步队列中，从而避免进程阻塞。\n\n来看一段伪代码：\n\n```js\nconst res = [];\n\nconst response = (data) =\u003e {\n  res = res.concat(data.map((item) =\u003e item * 3.14));\n};\n\najax('url.1', response);\najax('url.2', response);\n```\n\n这里假设需要从某处发送 ajax 请求来取得某些数据，并将这些数据进行一系列操作后存入 res 数组中。如果数据只有几千几百条的话，那可能不是什么问题。但如果数据是千万级别甚至更多呢？这时可能就会阻塞进程好一会，效果类似于死循环几秒钟。\n\n这种情况下，我们先处理一部分的数据，让后将剩下的数据处理添加到事件循环的队列中，使其它任务也拥有处理的时间。这样就有助于防止程序运行阻塞，进而提高性能。\n\n```js\nconst res = [];\n\nconst response = (data) =\u003e {\n  const chunk = data.splice(0, 1000);\n\n  res = res.concat(chunk.map((item) =\u003e item * 3.14));\n\n  if (data.length \u003e 0) {\n    setTimeout(() =\u003e {\n      response(data);\n    }, 0);\n  }\n};\n\najax('url.1', response);\najax('url.2', response);\n```\n\n这里使用的是`setTimeout(.., 0)`的一个 hack 方式，它的大概意思就是尽早的将这个函数添加到事件循环队列，这不是一个推荐的添加到事件循环队列的方式。\n\n## 任务\n\n在 ES6 中，有一个新的概念建立在事件循环队列（宏任务）上，叫作**任务队列**（job queue）。现在流行的称呼也为微任务。微任务最大的影响就是 promise 的异步特性。\n\n目前最好理解任务队列（微任务）的方法就是与事件循环队列（宏任务）一起理解。上述中，我们将宏任务描述为一个数组，每次从数组中取出一个任务（块）进行执行时，都称之为一次 tick。而微任务就是挂在每一次 tick 之后所进行的循环队列（常见的说法也有是挂在下次一 tick 开始之前，但这细微的差距不影响我们理解微任务）。\n\n这里上一张上次看到的很好的一张图，图中的原文讲解 [Process.nextTick 和 setImmediate 的区别？ - 知乎 (zhihu.com)](https://www.zhihu.com/question/23028843) 的。但同时也很好的说明了微任务（剧透一下，`process.nextTick()`就是会添加到微任务队列中）。\n\n```js\nPromise.resolve('B').then((val) =\u003e {\n  console.log(val);\n});\n\nconst a = () =\u003e {\n  console.log('A');\n};\n\nconst c = () =\u003e {\n  console.log('C');\n};\n\nconst d = () =\u003e {\n  console.log('D');\n};\n\nsetTimeout(() =\u003e {\n  d();\n}, 0);\n\na();\nc();\n// A C B D\n```\n\n![img](../images/%E5%BC%82%E6%AD%A5JavaScript/3a591f00cfe6b3c3b51137c2a8bda382_720w.jpg)\n\n这里的函数`a()`和`c()`都是同步执行的（同步可以直接理解为第一次执行的宏任务队列），而函数`d()`是添加到宏任务的后续队列中的。Promise 的微任务则如图中一样，挂在同步（正在执行）队列后，等待队列（宏任务）之前。\n\n## 小结\n\n异步 JavaScript 的程序总是会至少分成两个块来运行：一个是现在运行的块；另一个是将来运行的块。尽管程序是一块一块执行的，但是所有这些块共享对程序的作用域和状态的访问，所以对状态的修改都是在之前累计的修改上进行的。\n\n并发是指两个或多个事件链随着事件的发展交替执行，以至于从更高层次来看，就像是同时在运行（尽管在任意时刻只处理一个事件）。\n","desc":"所有重要的程序都需要通过这样或那样的方法来管理持续一段时间的程序行为。这可能是用户输入、从数据库或文件系统中请求数据、通过网络发送数据并等待响应等。在诸如此类的场景中，程序都需要管理这段时间间隔执行重...","title":"异步 JavaScript-现在与将来","date":"2021-07-12T15:21:03.000Z","tags":"JavaScript","categories":"笔记","url":"asynchronous-javascript-now-and-future"}},"__N_SSG":true},"page":"/p/[slug]","query":{"slug":"asynchronous-javascript-now-and-future"},"buildId":"k6NIc4JfXUsE09z9QnALx","isFallback":false,"dynamicIds":[3419,6929,9125,1189,3780,2980,5106],"gsp":true,"scriptLoader":[]}</script></body></html>

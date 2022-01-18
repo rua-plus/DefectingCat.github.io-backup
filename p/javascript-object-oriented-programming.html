@@ -1,0 +1,1013 @@
+<!DOCTYPE html><html lang="en"><head><meta name="viewport" content="width=device-width"/><meta charSet="utf-8"/><link rel="shortcut icon" href="/images/img/favicon.webp"/><meta name="keywords" content="Blog RUA"/><meta name="description" content="Personal blog."/><meta name="author" content="Arthur,i@rua.plus"/><title>RUA - JavaScript 面向对象的程序设计</title><meta name="next-head-count" content="7"/><link rel="preload" href="/_next/static/css/39834862c769c308.css" as="style"/><link rel="stylesheet" href="/_next/static/css/39834862c769c308.css" data-n-g=""/><link rel="preload" href="/_next/static/css/c2a527101433f11d.css" as="style"/><link rel="stylesheet" href="/_next/static/css/c2a527101433f11d.css" data-n-p=""/><link rel="preload" href="/_next/static/css/6e1d66a70b5d9fed.css" as="style"/><link rel="stylesheet" href="/_next/static/css/6e1d66a70b5d9fed.css"/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/_next/static/chunks/polyfills-5cd94c89d3acac5f.js"></script><script defer="" src="/_next/static/chunks/219-ddf2abc0472da9bd.js"></script><script defer="" src="/_next/static/chunks/419.d5302bfd9d8378c2.js"></script><script defer="" src="/_next/static/chunks/771.84a2737df445ba88.js"></script><script defer="" src="/_next/static/chunks/929.b2c0b4f7606bfefe.js"></script><script defer="" src="/_next/static/chunks/780.f3b2fc2ce5caea55.js"></script><script defer="" src="/_next/static/chunks/125.4ff7adc183744312.js"></script><script defer="" src="/_next/static/chunks/980.41f5e97cd35a6621.js"></script><script defer="" src="/_next/static/chunks/106.7a94988fd220337e.js"></script><script defer="" src="/_next/static/chunks/485-3e3bf066e6f4a6bd.js"></script><script defer="" src="/_next/static/chunks/189.ee2e569101c160eb.js"></script><script src="/_next/static/chunks/webpack-c08977534ec7c137.js" defer=""></script><script src="/_next/static/chunks/framework-5cd9e2157a4a6aee.js" defer=""></script><script src="/_next/static/chunks/main-472dbb675bbf7f67.js" defer=""></script><script src="/_next/static/chunks/pages/_app-a34fa0ed9496fbe8.js" defer=""></script><script src="/_next/static/chunks/84-43981acebe84e1d3.js" defer=""></script><script src="/_next/static/chunks/pages/p/%5Bslug%5D-684bfb16186b52fe.js" defer=""></script><script src="/_next/static/k6NIc4JfXUsE09z9QnALx/_buildManifest.js" defer=""></script><script src="/_next/static/k6NIc4JfXUsE09z9QnALx/_ssgManifest.js" defer=""></script><script src="/_next/static/k6NIc4JfXUsE09z9QnALx/_middlewareManifest.js" defer=""></script></head><body><script>(function setScript(initialValue) {
+  var mql = window.matchMedia("(prefers-color-scheme: dark)");
+  var systemPreference = mql.matches ? "dark" : "light";
+  var persistedPreference;
+
+  try {
+    persistedPreference = localStorage.getItem("chakra-ui-color-mode");
+  } catch (error) {
+    console.log("Chakra UI: localStorage is not available. Color mode persistence might not work as expected");
+  }
+
+  var isInStorage = typeof persistedPreference === "string";
+  var colorMode;
+
+  if (isInStorage) {
+    colorMode = persistedPreference;
+  } else {
+    colorMode = initialValue === "system" ? systemPreference : initialValue;
+  }
+
+  if (colorMode) {
+    var root = document.documentElement;
+    root.style.setProperty("--chakra-ui-color-mode", colorMode);
+  }
+})('light')</script><div id="__next"><style data-emotion="css-global 1r47v8">:host,:root{--chakra-ring-inset:var(--chakra-empty,/*!*/ /*!*/);--chakra-ring-offset-width:0px;--chakra-ring-offset-color:#fff;--chakra-ring-color:rgba(66, 153, 225, 0.6);--chakra-ring-offset-shadow:0 0 #0000;--chakra-ring-shadow:0 0 #0000;--chakra-space-x-reverse:0;--chakra-space-y-reverse:0;--chakra-colors-transparent:transparent;--chakra-colors-current:currentColor;--chakra-colors-black:#000000;--chakra-colors-white:#FFFFFF;--chakra-colors-whiteAlpha-50:rgba(255, 255, 255, 0.04);--chakra-colors-whiteAlpha-100:rgba(255, 255, 255, 0.06);--chakra-colors-whiteAlpha-200:rgba(255, 255, 255, 0.08);--chakra-colors-whiteAlpha-300:rgba(255, 255, 255, 0.16);--chakra-colors-whiteAlpha-400:rgba(255, 255, 255, 0.24);--chakra-colors-whiteAlpha-500:rgba(255, 255, 255, 0.36);--chakra-colors-whiteAlpha-600:rgba(255, 255, 255, 0.48);--chakra-colors-whiteAlpha-700:rgba(255, 255, 255, 0.64);--chakra-colors-whiteAlpha-800:rgba(255, 255, 255, 0.80);--chakra-colors-whiteAlpha-900:rgba(255, 255, 255, 0.92);--chakra-colors-blackAlpha-50:rgba(0, 0, 0, 0.04);--chakra-colors-blackAlpha-100:rgba(0, 0, 0, 0.06);--chakra-colors-blackAlpha-200:rgba(0, 0, 0, 0.08);--chakra-colors-blackAlpha-300:rgba(0, 0, 0, 0.16);--chakra-colors-blackAlpha-400:rgba(0, 0, 0, 0.24);--chakra-colors-blackAlpha-500:rgba(0, 0, 0, 0.36);--chakra-colors-blackAlpha-600:rgba(0, 0, 0, 0.48);--chakra-colors-blackAlpha-700:rgba(0, 0, 0, 0.64);--chakra-colors-blackAlpha-800:rgba(0, 0, 0, 0.80);--chakra-colors-blackAlpha-900:rgba(0, 0, 0, 0.92);--chakra-colors-gray-50:#F7FAFC;--chakra-colors-gray-100:#EDF2F7;--chakra-colors-gray-200:#E2E8F0;--chakra-colors-gray-300:#CBD5E0;--chakra-colors-gray-400:#A0AEC0;--chakra-colors-gray-500:#718096;--chakra-colors-gray-600:#4A5568;--chakra-colors-gray-700:#2D3748;--chakra-colors-gray-800:#1A202C;--chakra-colors-gray-900:#171923;--chakra-colors-red-50:#FFF5F5;--chakra-colors-red-100:#FED7D7;--chakra-colors-red-200:#FEB2B2;--chakra-colors-red-300:#FC8181;--chakra-colors-red-400:#F56565;--chakra-colors-red-500:#E53E3E;--chakra-colors-red-600:#C53030;--chakra-colors-red-700:#9B2C2C;--chakra-colors-red-800:#822727;--chakra-colors-red-900:#63171B;--chakra-colors-orange-50:#FFFAF0;--chakra-colors-orange-100:#FEEBC8;--chakra-colors-orange-200:#FBD38D;--chakra-colors-orange-300:#F6AD55;--chakra-colors-orange-400:#ED8936;--chakra-colors-orange-500:#DD6B20;--chakra-colors-orange-600:#C05621;--chakra-colors-orange-700:#9C4221;--chakra-colors-orange-800:#7B341E;--chakra-colors-orange-900:#652B19;--chakra-colors-yellow-50:#FFFFF0;--chakra-colors-yellow-100:#FEFCBF;--chakra-colors-yellow-200:#FAF089;--chakra-colors-yellow-300:#F6E05E;--chakra-colors-yellow-400:#ECC94B;--chakra-colors-yellow-500:#D69E2E;--chakra-colors-yellow-600:#B7791F;--chakra-colors-yellow-700:#975A16;--chakra-colors-yellow-800:#744210;--chakra-colors-yellow-900:#5F370E;--chakra-colors-green-50:#F0FFF4;--chakra-colors-green-100:#C6F6D5;--chakra-colors-green-200:#9AE6B4;--chakra-colors-green-300:#68D391;--chakra-colors-green-400:#48BB78;--chakra-colors-green-500:#38A169;--chakra-colors-green-600:#2F855A;--chakra-colors-green-700:#276749;--chakra-colors-green-800:#22543D;--chakra-colors-green-900:#1C4532;--chakra-colors-teal-50:#E6FFFA;--chakra-colors-teal-100:#B2F5EA;--chakra-colors-teal-200:#81E6D9;--chakra-colors-teal-300:#4FD1C5;--chakra-colors-teal-400:#38B2AC;--chakra-colors-teal-500:#319795;--chakra-colors-teal-600:#2C7A7B;--chakra-colors-teal-700:#285E61;--chakra-colors-teal-800:#234E52;--chakra-colors-teal-900:#1D4044;--chakra-colors-blue-50:#ebf8ff;--chakra-colors-blue-100:#bee3f8;--chakra-colors-blue-200:#90cdf4;--chakra-colors-blue-300:#63b3ed;--chakra-colors-blue-400:#4299e1;--chakra-colors-blue-500:#3182ce;--chakra-colors-blue-600:#2b6cb0;--chakra-colors-blue-700:#2c5282;--chakra-colors-blue-800:#2a4365;--chakra-colors-blue-900:#1A365D;--chakra-colors-cyan-50:#EDFDFD;--chakra-colors-cyan-100:#C4F1F9;--chakra-colors-cyan-200:#9DECF9;--chakra-colors-cyan-300:#76E4F7;--chakra-colors-cyan-400:#0BC5EA;--chakra-colors-cyan-500:#00B5D8;--chakra-colors-cyan-600:#00A3C4;--chakra-colors-cyan-700:#0987A0;--chakra-colors-cyan-800:#086F83;--chakra-colors-cyan-900:#065666;--chakra-colors-purple-50:#FAF5FF;--chakra-colors-purple-100:#E9D8FD;--chakra-colors-purple-200:#D6BCFA;--chakra-colors-purple-300:#B794F4;--chakra-colors-purple-400:#9F7AEA;--chakra-colors-purple-500:#805AD5;--chakra-colors-purple-600:#6B46C1;--chakra-colors-purple-700:#553C9A;--chakra-colors-purple-800:#44337A;--chakra-colors-purple-900:#322659;--chakra-colors-pink-50:#FFF5F7;--chakra-colors-pink-100:#FED7E2;--chakra-colors-pink-200:#FBB6CE;--chakra-colors-pink-300:#F687B3;--chakra-colors-pink-400:#ED64A6;--chakra-colors-pink-500:#D53F8C;--chakra-colors-pink-600:#B83280;--chakra-colors-pink-700:#97266D;--chakra-colors-pink-800:#702459;--chakra-colors-pink-900:#521B41;--chakra-colors-linkedin-50:#E8F4F9;--chakra-colors-linkedin-100:#CFEDFB;--chakra-colors-linkedin-200:#9BDAF3;--chakra-colors-linkedin-300:#68C7EC;--chakra-colors-linkedin-400:#34B3E4;--chakra-colors-linkedin-500:#00A0DC;--chakra-colors-linkedin-600:#008CC9;--chakra-colors-linkedin-700:#0077B5;--chakra-colors-linkedin-800:#005E93;--chakra-colors-linkedin-900:#004471;--chakra-colors-facebook-50:#E8F4F9;--chakra-colors-facebook-100:#D9DEE9;--chakra-colors-facebook-200:#B7C2DA;--chakra-colors-facebook-300:#6482C0;--chakra-colors-facebook-400:#4267B2;--chakra-colors-facebook-500:#385898;--chakra-colors-facebook-600:#314E89;--chakra-colors-facebook-700:#29487D;--chakra-colors-facebook-800:#223B67;--chakra-colors-facebook-900:#1E355B;--chakra-colors-messenger-50:#D0E6FF;--chakra-colors-messenger-100:#B9DAFF;--chakra-colors-messenger-200:#A2CDFF;--chakra-colors-messenger-300:#7AB8FF;--chakra-colors-messenger-400:#2E90FF;--chakra-colors-messenger-500:#0078FF;--chakra-colors-messenger-600:#0063D1;--chakra-colors-messenger-700:#0052AC;--chakra-colors-messenger-800:#003C7E;--chakra-colors-messenger-900:#002C5C;--chakra-colors-whatsapp-50:#dffeec;--chakra-colors-whatsapp-100:#b9f5d0;--chakra-colors-whatsapp-200:#90edb3;--chakra-colors-whatsapp-300:#65e495;--chakra-colors-whatsapp-400:#3cdd78;--chakra-colors-whatsapp-500:#22c35e;--chakra-colors-whatsapp-600:#179848;--chakra-colors-whatsapp-700:#0c6c33;--chakra-colors-whatsapp-800:#01421c;--chakra-colors-whatsapp-900:#001803;--chakra-colors-twitter-50:#E5F4FD;--chakra-colors-twitter-100:#C8E9FB;--chakra-colors-twitter-200:#A8DCFA;--chakra-colors-twitter-300:#83CDF7;--chakra-colors-twitter-400:#57BBF5;--chakra-colors-twitter-500:#1DA1F2;--chakra-colors-twitter-600:#1A94DA;--chakra-colors-twitter-700:#1681BF;--chakra-colors-twitter-800:#136B9E;--chakra-colors-twitter-900:#0D4D71;--chakra-colors-telegram-50:#E3F2F9;--chakra-colors-telegram-100:#C5E4F3;--chakra-colors-telegram-200:#A2D4EC;--chakra-colors-telegram-300:#7AC1E4;--chakra-colors-telegram-400:#47A9DA;--chakra-colors-telegram-500:#0088CC;--chakra-colors-telegram-600:#007AB8;--chakra-colors-telegram-700:#006BA1;--chakra-colors-telegram-800:#005885;--chakra-colors-telegram-900:#003F5E;--chakra-colors-home-bg:#f5f5fa;--chakra-borders-none:0;--chakra-borders-1px:1px solid;--chakra-borders-2px:2px solid;--chakra-borders-4px:4px solid;--chakra-borders-8px:8px solid;--chakra-fonts-heading:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";--chakra-fonts-body:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Helvetica,Segoe UI,Arial,Roboto,'PingFang SC',miui,'Hiragino Sans GB','Microsoft Yahei',sans-serif;--chakra-fonts-mono:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;--chakra-fontSizes-xs:0.75rem;--chakra-fontSizes-sm:0.875rem;--chakra-fontSizes-md:1rem;--chakra-fontSizes-lg:1.125rem;--chakra-fontSizes-xl:1.25rem;--chakra-fontSizes-2xl:1.5rem;--chakra-fontSizes-3xl:1.875rem;--chakra-fontSizes-4xl:2.25rem;--chakra-fontSizes-5xl:3rem;--chakra-fontSizes-6xl:3.75rem;--chakra-fontSizes-7xl:4.5rem;--chakra-fontSizes-8xl:6rem;--chakra-fontSizes-9xl:8rem;--chakra-fontWeights-hairline:100;--chakra-fontWeights-thin:200;--chakra-fontWeights-light:300;--chakra-fontWeights-normal:400;--chakra-fontWeights-medium:500;--chakra-fontWeights-semibold:600;--chakra-fontWeights-bold:700;--chakra-fontWeights-extrabold:800;--chakra-fontWeights-black:900;--chakra-letterSpacings-tighter:-0.05em;--chakra-letterSpacings-tight:-0.025em;--chakra-letterSpacings-normal:0;--chakra-letterSpacings-wide:0.025em;--chakra-letterSpacings-wider:0.05em;--chakra-letterSpacings-widest:0.1em;--chakra-lineHeights-3:.75rem;--chakra-lineHeights-4:1rem;--chakra-lineHeights-5:1.25rem;--chakra-lineHeights-6:1.5rem;--chakra-lineHeights-7:1.75rem;--chakra-lineHeights-8:2rem;--chakra-lineHeights-9:2.25rem;--chakra-lineHeights-10:2.5rem;--chakra-lineHeights-normal:normal;--chakra-lineHeights-none:1;--chakra-lineHeights-shorter:1.25;--chakra-lineHeights-short:1.375;--chakra-lineHeights-base:1.5;--chakra-lineHeights-tall:1.625;--chakra-lineHeights-taller:2;--chakra-radii-none:0;--chakra-radii-sm:0.125rem;--chakra-radii-base:0.25rem;--chakra-radii-md:0.375rem;--chakra-radii-lg:0.5rem;--chakra-radii-xl:0.75rem;--chakra-radii-2xl:1rem;--chakra-radii-3xl:1.5rem;--chakra-radii-full:9999px;--chakra-space-1:0.25rem;--chakra-space-2:0.5rem;--chakra-space-3:0.75rem;--chakra-space-4:1rem;--chakra-space-5:1.25rem;--chakra-space-6:1.5rem;--chakra-space-7:1.75rem;--chakra-space-8:2rem;--chakra-space-9:2.25rem;--chakra-space-10:2.5rem;--chakra-space-12:3rem;--chakra-space-14:3.5rem;--chakra-space-16:4rem;--chakra-space-20:5rem;--chakra-space-24:6rem;--chakra-space-28:7rem;--chakra-space-32:8rem;--chakra-space-36:9rem;--chakra-space-40:10rem;--chakra-space-44:11rem;--chakra-space-48:12rem;--chakra-space-52:13rem;--chakra-space-56:14rem;--chakra-space-60:15rem;--chakra-space-64:16rem;--chakra-space-72:18rem;--chakra-space-80:20rem;--chakra-space-96:24rem;--chakra-space-px:1px;--chakra-space-0\.5:0.125rem;--chakra-space-1\.5:0.375rem;--chakra-space-2\.5:0.625rem;--chakra-space-3\.5:0.875rem;--chakra-shadows-xs:0 0 0 1px rgba(0, 0, 0, 0.05);--chakra-shadows-sm:0 1px 2px 0 rgba(0, 0, 0, 0.05);--chakra-shadows-base:0 1px 3px 0 rgba(0, 0, 0, 0.1),0 1px 2px 0 rgba(0, 0, 0, 0.06);--chakra-shadows-md:0 4px 6px -1px rgba(0, 0, 0, 0.1),0 2px 4px -1px rgba(0, 0, 0, 0.06);--chakra-shadows-lg:0 10px 15px -3px rgba(0, 0, 0, 0.1),0 4px 6px -2px rgba(0, 0, 0, 0.05);--chakra-shadows-xl:0 20px 25px -5px rgba(0, 0, 0, 0.1),0 10px 10px -5px rgba(0, 0, 0, 0.04);--chakra-shadows-2xl:0 25px 50px -12px rgba(0, 0, 0, 0.25);--chakra-shadows-outline:0 0 0 3px rgba(66, 153, 225, 0.6);--chakra-shadows-inner:inset 0 2px 4px 0 rgba(0,0,0,0.06);--chakra-shadows-none:none;--chakra-shadows-dark-lg:rgba(0, 0, 0, 0.1) 0px 0px 0px 1px,rgba(0, 0, 0, 0.2) 0px 5px 10px,rgba(0, 0, 0, 0.4) 0px 15px 40px;--chakra-shadows-card:0px 4px 8px rgba(0, 0, 0, 0.04),0px 0px 2px rgba(0, 0, 0, 0.06),0px 0px 1px rgba(0, 0, 0, 0.04);--chakra-sizes-1:0.25rem;--chakra-sizes-2:0.5rem;--chakra-sizes-3:0.75rem;--chakra-sizes-4:1rem;--chakra-sizes-5:1.25rem;--chakra-sizes-6:1.5rem;--chakra-sizes-7:1.75rem;--chakra-sizes-8:2rem;--chakra-sizes-9:2.25rem;--chakra-sizes-10:2.5rem;--chakra-sizes-12:3rem;--chakra-sizes-14:3.5rem;--chakra-sizes-16:4rem;--chakra-sizes-20:5rem;--chakra-sizes-24:6rem;--chakra-sizes-28:7rem;--chakra-sizes-32:8rem;--chakra-sizes-36:9rem;--chakra-sizes-40:10rem;--chakra-sizes-44:11rem;--chakra-sizes-48:12rem;--chakra-sizes-52:13rem;--chakra-sizes-56:14rem;--chakra-sizes-60:15rem;--chakra-sizes-64:16rem;--chakra-sizes-72:18rem;--chakra-sizes-80:20rem;--chakra-sizes-96:24rem;--chakra-sizes-px:1px;--chakra-sizes-0\.5:0.125rem;--chakra-sizes-1\.5:0.375rem;--chakra-sizes-2\.5:0.625rem;--chakra-sizes-3\.5:0.875rem;--chakra-sizes-max:max-content;--chakra-sizes-min:min-content;--chakra-sizes-full:100%;--chakra-sizes-3xs:14rem;--chakra-sizes-2xs:16rem;--chakra-sizes-xs:20rem;--chakra-sizes-sm:24rem;--chakra-sizes-md:28rem;--chakra-sizes-lg:32rem;--chakra-sizes-xl:36rem;--chakra-sizes-2xl:42rem;--chakra-sizes-3xl:48rem;--chakra-sizes-4xl:56rem;--chakra-sizes-5xl:64rem;--chakra-sizes-6xl:72rem;--chakra-sizes-7xl:80rem;--chakra-sizes-8xl:90rem;--chakra-sizes-container-sm:640px;--chakra-sizes-container-md:768px;--chakra-sizes-container-lg:1024px;--chakra-sizes-container-xl:1280px;--chakra-zIndices-hide:-1;--chakra-zIndices-auto:auto;--chakra-zIndices-base:0;--chakra-zIndices-docked:10;--chakra-zIndices-dropdown:1000;--chakra-zIndices-sticky:1100;--chakra-zIndices-banner:1200;--chakra-zIndices-overlay:1300;--chakra-zIndices-modal:1400;--chakra-zIndices-popover:1500;--chakra-zIndices-skipLink:1600;--chakra-zIndices-toast:1700;--chakra-zIndices-tooltip:1800;--chakra-transition-property-common:background-color,border-color,color,fill,stroke,opacity,box-shadow,transform;--chakra-transition-property-colors:background-color,border-color,color,fill,stroke;--chakra-transition-property-dimensions:width,height;--chakra-transition-property-position:left,right,top,bottom;--chakra-transition-property-background:background-color,background-image,background-position;--chakra-transition-easing-ease-in:cubic-bezier(0.4, 0, 1, 1);--chakra-transition-easing-ease-out:cubic-bezier(0, 0, 0.2, 1);--chakra-transition-easing-ease-in-out:cubic-bezier(0.4, 0, 0.2, 1);--chakra-transition-duration-ultra-fast:50ms;--chakra-transition-duration-faster:100ms;--chakra-transition-duration-fast:150ms;--chakra-transition-duration-normal:200ms;--chakra-transition-duration-slow:300ms;--chakra-transition-duration-slower:400ms;--chakra-transition-duration-ultra-slow:500ms;--chakra-blur-none:0;--chakra-blur-sm:4px;--chakra-blur-base:8px;--chakra-blur-md:12px;--chakra-blur-lg:16px;--chakra-blur-xl:24px;--chakra-blur-2xl:40px;--chakra-blur-3xl:64px;}</style><style data-emotion="css-global 1jqlf9g">html{line-height:1.5;-webkit-text-size-adjust:100%;font-family:system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;-moz-osx-font-smoothing:grayscale;touch-action:manipulation;}body{position:relative;min-height:100%;font-feature-settings:'kern';}*,*::before,*::after{border-width:0;border-style:solid;box-sizing:border-box;}main{display:block;}hr{border-top-width:1px;box-sizing:content-box;height:0;overflow:visible;}pre,code,kbd,samp{font-family:SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:1em;}a{background-color:transparent;color:inherit;-webkit-text-decoration:inherit;text-decoration:inherit;}abbr[title]{border-bottom:none;-webkit-text-decoration:underline;text-decoration:underline;-webkit-text-decoration:underline dotted;-webkit-text-decoration:underline dotted;text-decoration:underline dotted;}b,strong{font-weight:bold;}small{font-size:80%;}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline;}sub{bottom:-0.25em;}sup{top:-0.5em;}img{border-style:none;}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0;}button,input{overflow:visible;}button,select{text-transform:none;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner{border-style:none;padding:0;}fieldset{padding:0.35em 0.75em 0.625em;}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal;}progress{vertical-align:baseline;}textarea{overflow:auto;}[type="checkbox"],[type="radio"]{box-sizing:border-box;padding:0;}[type="number"]::-webkit-inner-spin-button,[type="number"]::-webkit-outer-spin-button{-webkit-appearance:none!important;}input[type="number"]{-moz-appearance:textfield;}[type="search"]{-webkit-appearance:textfield;outline-offset:-2px;}[type="search"]::-webkit-search-decoration{-webkit-appearance:none!important;}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit;}details{display:block;}summary{display:-webkit-box;display:-webkit-list-item;display:-ms-list-itembox;display:list-item;}template{display:none;}[hidden]{display:none!important;}body,blockquote,dl,dd,h1,h2,h3,h4,h5,h6,hr,figure,p,pre{margin:0;}button{background:transparent;padding:0;}fieldset{margin:0;padding:0;}ol,ul{margin:0;padding:0;}textarea{resize:vertical;}button,[role="button"]{cursor:pointer;}button::-moz-focus-inner{border:0!important;}table{border-collapse:collapse;}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit;}button,input,optgroup,select,textarea{padding:0;line-height:inherit;color:inherit;}img,svg,video,canvas,audio,iframe,embed,object{display:block;}img,video{max-width:100%;height:auto;}[data-js-focus-visible] :focus:not([data-focus-visible-added]){outline:none;box-shadow:none;}select::-ms-expand{display:none;}</style><style data-emotion="css-global 1of8e4g">body{font-family:var(--chakra-fonts-body);color:var(--chakra-colors-gray-800);background:var(--chakra-colors-white);transition-property:background-color;transition-duration:var(--chakra-transition-duration-normal);line-height:var(--chakra-lineHeights-base);}*::-webkit-input-placeholder{color:var(--chakra-colors-gray-400);}*::-moz-placeholder{color:var(--chakra-colors-gray-400);}*:-ms-input-placeholder{color:var(--chakra-colors-gray-400);}*::placeholder{color:var(--chakra-colors-gray-400);}*,*::before,::after{border-color:var(--chakra-colors-gray-200);word-wrap:break-word;}html,body{background:var(--chakra-colors-home-bg);}img,#write iframe{-webkit-filter:unset;filter:unset;transition-property:filter;transition-duration:var(--chakra-transition-duration-normal);}div{transition-property:background-color;transition-duration:var(--chakra-transition-duration-normal);}</style><style data-emotion="css 1ghv3an">.css-1ghv3an{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:flex-start;-webkit-box-align:flex-start;-ms-flex-align:flex-start;align-items:flex-start;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;height:unset;overflow:auto;-webkit-box-flex-flow:column;-webkit-flex-flow:column;-ms-flex-flow:column;flex-flow:column;-webkit-padding-start:0.5rem;padding-inline-start:0.5rem;-webkit-padding-end:0.5rem;padding-inline-end:0.5rem;}@media screen and (min-width: 30em){.css-1ghv3an{height:unset;-webkit-box-flex-flow:column;-webkit-flex-flow:column;-ms-flex-flow:column;flex-flow:column;}}@media screen and (min-width: 48em){.css-1ghv3an{height:100vh;-webkit-box-flex-flow:row;-webkit-flex-flow:row;-ms-flex-flow:row;flex-flow:row;}}</style><div class="css-1ghv3an"><style data-emotion="css xte4wg">.css-xte4wg{display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;position:unset;white-space:nowrap;vertical-align:middle;outline:2px solid transparent;outline-offset:2px;width:auto;line-height:1.2;border-radius:var(--chakra-radii-md);font-weight:var(--chakra-fontWeights-semibold);transition-property:var(--chakra-transition-property-common);transition-duration:var(--chakra-transition-duration-normal);height:var(--chakra-sizes-12);min-width:var(--chakra-sizes-12);font-size:var(--chakra-fontSizes-lg);-webkit-padding-start:var(--chakra-space-6);padding-inline-start:var(--chakra-space-6);-webkit-padding-end:var(--chakra-space-6);padding-inline-end:var(--chakra-space-6);background:var(--chakra-colors-gray-100);margin-top:1rem;top:3rem;}@media screen and (min-width: 30em){.css-xte4wg{position:unset;margin-top:1rem;}}@media screen and (min-width: 48em){.css-xte4wg{position:-webkit-sticky;position:sticky;margin-top:3rem;}}.css-xte4wg:focus,.css-xte4wg[data-focus]{box-shadow:var(--chakra-shadows-outline);}.css-xte4wg[disabled],.css-xte4wg[aria-disabled=true],.css-xte4wg[data-disabled]{opacity:0.4;cursor:not-allowed;box-shadow:var(--chakra-shadows-none);}.css-xte4wg:hover,.css-xte4wg[data-hover]{background:var(--chakra-colors-gray-200);}.css-xte4wg:hover[disabled],.css-xte4wg[data-hover][disabled],.css-xte4wg:hover[aria-disabled=true],.css-xte4wg[data-hover][aria-disabled=true],.css-xte4wg:hover[data-disabled],.css-xte4wg[data-hover][data-disabled]{background:var(--chakra-colors-gray-100);}.css-xte4wg:active,.css-xte4wg[data-active]{background:var(--chakra-colors-gray-300);}</style><button type="button" class="chakra-button css-xte4wg">BACK</button><style data-emotion="css a06krq">.css-a06krq{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;width:var(--chakra-sizes-full);-webkit-box-flex-flow:column;-webkit-flex-flow:column;-ms-flex-flow:column;flex-flow:column;-webkit-padding-start:unset;padding-inline-start:unset;-webkit-padding-end:unset;padding-inline-end:unset;}@media screen and (min-width: 30em){.css-a06krq{width:var(--chakra-sizes-full);-webkit-padding-start:unset;padding-inline-start:unset;-webkit-padding-end:unset;padding-inline-end:unset;}}@media screen and (min-width: 48em){.css-a06krq{width:55rem;-webkit-padding-start:1.5rem;padding-inline-start:1.5rem;-webkit-padding-end:1.5rem;padding-inline-end:1.5rem;}}@media screen and (min-width: 62em){.css-a06krq{width:55rem;}}@media screen and (min-width: 80em){.css-a06krq{width:55rem;}}@media screen and (min-width: 96em){.css-a06krq{width:68rem;}}</style><div class="css-a06krq"><style data-emotion="css 1if659q">.css-1if659q{border-radius:10px;margin-top:1rem;box-shadow:var(--chakra-shadows-lg);background:var(--chakra-colors-white);overflow:hidden;-webkit-flex:1;-ms-flex:1;flex:1;}@media screen and (min-width: 30em){.css-1if659q{margin-top:1rem;}}@media screen and (min-width: 48em){.css-1if659q{margin-top:3rem;}}</style><div class="css-1if659q"><style data-emotion="css 81xunj">.css-81xunj{padding:1rem;}@media screen and (min-width: 30em){.css-81xunj{padding:1rem;}}@media screen and (min-width: 48em){.css-81xunj{padding:2rem;}}</style><article class="css-81xunj"><header class="css-0"><style data-emotion="css 1m7qnzk">.css-1m7qnzk{font-family:var(--chakra-fonts-heading);font-weight:var(--chakra-fontWeights-bold);font-size:var(--chakra-fontSizes-3xl);line-height:1.33;margin-bottom:1rem;color:rgba(0, 0, 0, 0.85);}@media screen and (min-width: 48em){.css-1m7qnzk{font-size:var(--chakra-fontSizes-4xl);line-height:1.2;}}</style><h1 class="chakra-heading css-1m7qnzk">JavaScript 面向对象的程序设计</h1><style data-emotion="css acwcvw">.css-acwcvw{margin-bottom:1rem;}</style><div class="css-acwcvw"><style data-emotion="css 1kpd5c2">.css-1kpd5c2{display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;vertical-align:top;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;max-width:100%;font-weight:var(--chakra-fontWeights-medium);line-height:1.2;outline:2px solid transparent;outline-offset:2px;min-height:1.5rem;min-width:1.5rem;font-size:var(--chakra-fontSizes-sm);border-radius:var(--chakra-radii-md);-webkit-padding-start:var(--chakra-space-2);padding-inline-start:var(--chakra-space-2);-webkit-padding-end:var(--chakra-space-2);padding-inline-end:var(--chakra-space-2);background:var(--chakra-colors-gray-100);color:var(--chakra-colors-gray-800);}.css-1kpd5c2:focus,.css-1kpd5c2[data-focus]{box-shadow:var(--chakra-shadows-outline);}</style><span class="css-1kpd5c2">JavaScript</span></div><style data-emotion="css x8djax">.css-x8djax{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;color:var(--chakra-colors-gray-600);}</style><div class="css-x8djax"><style data-emotion="css 1lr2xj">.css-1lr2xj{width:1em;height:1em;display:inline-block;line-height:1em;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;color:currentColor;margin-right:0.5rem;}</style><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" focusable="false" class="chakra-icon css-1lr2xj" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg><style data-emotion="css 129gw94">.css-129gw94{line-height:0;}</style><time dateTime="2020-07-27T16:42:32.000Z" class="css-129gw94">2020/07/27</time></div></header><style data-emotion="css i51og3">.css-i51og3{margin-top:2rem;}</style><section id="write" class="css-i51og3"><blockquote>
+<p>Standing on Shoulders of Giants.</p>
+<p>本篇参考与《JavaScript高级程序设计》第六章：面向对象的程序设计。</p>
+</blockquote>
+<p>面向对象（Object-Oriented，OO）的语言都有一个标志，那就是他们都有类的概念。通过类来创建任意多个具有相同属性和方法的对象。</p>
+<p>ECMAScript中没有类的概念，所以它的对象也与基于类的语言中的对象有所不同。</p>
+<p>ECMAScript-262的对象定义为：“无序属性的集合，其属性可以是基本值、对象和函数。”也就是说对象是一个没有属性的键值映射对，其值可以是数据和函数。</p>
+<p><picture data-rmiz-wrap="visible"><style data-emotion="css 185nr5j">.css-185nr5j{object-fit:cover;border-radius:10px;-webkit-filter:blur(20px);filter:blur(20px);transition-duration:var(--chakra-transition-duration-slower);height:100%;}</style><img alt="Post image" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" class="chakra-image css-185nr5j"/><button aria-label="Zoom image" data-rmiz-btn-open="true"></button></picture></p>
+<h2 id="属性类型">属性类型</h2>
+<p>虽然在JavaScript中不能直接访问属性类型，但是为了表示特性是内部值，ECMA-262将其放在了两对方括号中。</p>
+<p><strong>ECMAScript中有两种属性：数据属性和访问器类型属性。</strong></p>
+<ul>
+<li>[[Configurable]]：表示能否通过delete删除属性从而定义属性，能否修改属性特性，或者能否把属性修改为访问器属性。默认为true</li>
+<li>[[Enumerable]]：表示能否通过for-in循环返回属性。默认为true</li>
+<li>[[Writable]]：表示能否修改属性的值。默认为true</li>
+<li>[[Value]]：包含这个属性的数据值。读取属性的时候从这个位置读取，写入属性值的时候把新值保存在这个位置。默认值为undefined</li>
+</ul>
+<p>使用对象字面量创建一个对象时，上述四个特性都为true。value则为属性的值。</p>
+<h3 id="修改属性的默认特性">修改属性的默认特性</h3>
+<p>要修改默认的特性必须要使用ECMAScritpt5的<code>Object.prototype.defineProperty()</code>方法。</p>
+<p>Syntax：</p>
+<pre><style data-emotion="css 19bp9bt">.css-19bp9bt{display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;position:absolute;white-space:nowrap;vertical-align:middle;outline:2px solid transparent;outline-offset:2px;width:auto;line-height:1.2;border-radius:var(--chakra-radii-md);font-weight:var(--chakra-fontWeights-semibold);transition-property:var(--chakra-transition-property-common);transition-duration:var(--chakra-transition-duration-normal);height:var(--chakra-sizes-6);min-width:var(--chakra-sizes-6);font-size:var(--chakra-fontSizes-xs);-webkit-padding-start:var(--chakra-space-2);padding-inline-start:var(--chakra-space-2);-webkit-padding-end:var(--chakra-space-2);padding-inline-end:var(--chakra-space-2);background:var(--chakra-colors-teal-500);color:var(--chakra-colors-white);top:5px;right:5px;}.css-19bp9bt:focus,.css-19bp9bt[data-focus]{box-shadow:var(--chakra-shadows-outline);}.css-19bp9bt[disabled],.css-19bp9bt[aria-disabled=true],.css-19bp9bt[data-disabled]{opacity:0.4;cursor:not-allowed;box-shadow:var(--chakra-shadows-none);}.css-19bp9bt:hover,.css-19bp9bt[data-hover]{background:var(--chakra-colors-teal-600);}.css-19bp9bt:hover[disabled],.css-19bp9bt[data-hover][disabled],.css-19bp9bt:hover[aria-disabled=true],.css-19bp9bt[data-hover][aria-disabled=true],.css-19bp9bt:hover[data-disabled],.css-19bp9bt[data-hover][data-disabled]{background:var(--chakra-colors-teal-500);}.css-19bp9bt:active,.css-19bp9bt[data-active]{background:var(--chakra-colors-teal-700);}</style><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-title hljs-class">Object</span>.<span class="hljs-title hljs-function">defineProperty</span>(obj, prop, descriptor)
+</code></pre>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> obj = {
+    <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;xfy&#x27;</span>,
+    <span class="hljs-attr">age</span>: <span class="hljs-number">18</span>,
+    <span class="hljs-attr">saySomthing</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+        <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">name</span>);
+    }
+}
+<span class="hljs-title hljs-class">Object</span>.<span class="hljs-title hljs-function">defineProperty</span>(obj, <span class="hljs-string">&#x27;name&#x27;</span>, {
+    <span class="hljs-attr">writable</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-attr">value</span>: <span class="hljs-string">&#x27;xxxxfy&#x27;</span>,
+    <span class="hljs-attr">configurable</span>: <span class="hljs-literal">false</span>
+})
+</code></pre>
+<blockquote>
+<p>将configurable修改为false之后就无法再进行配置了，也就说无法再修改回来了。其他特性都是可以再修改的。</p>
+</blockquote>
+<h3 id="访问器属性">访问器属性</h3>
+<p>为对象设置一个访问器的属性，这个属性不包含数据值，它包含一对setter和getter函数（不是必需的）。在读取这个访问器属性时，会调用getter函数。在写入这个访问器属性时，会调用setter函数。setter决定了如何处理数据。</p>
+<p>访问器属性具有如下4个值：</p>
+<ul>
+<li>[[Configurable]]：表示能否通过delete删除属性从而定义属性，能否修改属性特性，或者能否把属性修改为访问器属性。默认为true</li>
+<li>[[Enumerable]]：表示能否通过for-in循环返回属性。默认为true</li>
+<li>[[Get]]：在读取属性时调用的函数。默认为undefined</li>
+<li>[[Set]]：在写入属性时调用的函数。默认为undefined</li>
+</ul>
+<p>访问器属性不能直接定义，必须使用<code>Object.defineProperty()</code>方法来定义。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> arr = [<span class="hljs-string">&#x27;zero&#x27;</span>, <span class="hljs-string">&#x27;one&#x27;</span>, <span class="hljs-string">&#x27;two&#x27;</span>, <span class="hljs-string">&#x27;three&#x27;</span>, <span class="hljs-string">&#x27;four&#x27;</span>, <span class="hljs-string">&#x27;five&#x27;</span>, <span class="hljs-string">&#x27;six&#x27;</span>, <span class="hljs-string">&#x27;seven&#x27;</span>, <span class="hljs-string">&#x27;eight&#x27;</span>, <span class="hljs-string">&#x27;nine&#x27;</span>, <span class="hljs-string">&#x27;ten&#x27;</span>];
+<span class="hljs-keyword">let</span> xbox = {
+    <span class="hljs-attr">_name</span>: <span class="hljs-string">&#x27;xbox &#x27;</span>,
+    <span class="hljs-attr">_year</span>: <span class="hljs-number">2020</span>,
+    <span class="hljs-attr">edition</span>: arr[<span class="hljs-number">1</span>],
+    <span class="hljs-attr">name</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+        <span class="hljs-keyword">return</span> <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">_name</span> + <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">edition</span>;
+    }
+}
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(xbox.<span class="hljs-title hljs-function">name</span>());
+<span class="hljs-title hljs-class">Object</span>.<span class="hljs-title hljs-function">defineProperty</span>(xbox, <span class="hljs-string">&#x27;year&#x27;</span>, {
+    <span class="hljs-attr">get</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+        <span class="hljs-comment">// 返回对象方法访问的属性</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">_year</span>;
+    },
+    <span class="hljs-attr">set</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">value</span>) {
+        <span class="hljs-comment">// 值不小于2020且不大于2030（因为数组就10个🤣）</span>
+        <span class="hljs-keyword">if</span> (!(value &lt; <span class="hljs-number">2020</span>) &amp;&amp; !(value &gt; <span class="hljs-number">2030</span>)) {
+            <span class="hljs-comment">// 根据值判断版本，并在数组取值</span>
+            <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">edition</span> = arr[value - <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">_year</span> + <span class="hljs-number">1</span>];
+            <span class="hljs-comment">// 将属性访问的方法同时也设置</span>
+            <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">_year</span> = value;
+        }
+    }
+})
+xbox.<span class="hljs-property">year</span> = <span class="hljs-number">2021</span>;
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(xbox.<span class="hljs-property">year</span>);
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(xbox.<span class="hljs-title hljs-function">name</span>());
+
+<span class="hljs-comment">// PlayStation？</span>
+<span class="hljs-keyword">let</span> ps = {
+    <span class="hljs-attr">_name</span>: <span class="hljs-string">&#x27;PlayStation &#x27;</span>,
+    <span class="hljs-attr">_year</span>: <span class="hljs-number">2020</span>,
+    <span class="hljs-attr">edition</span>: <span class="hljs-number">4</span>,
+    <span class="hljs-attr">name</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+        <span class="hljs-keyword">return</span> <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">_name</span> + <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">edition</span>;
+    }
+}
+<span class="hljs-title hljs-class">Object</span>.<span class="hljs-title hljs-function">defineProperty</span>(ps, <span class="hljs-string">&#x27;year&#x27;</span>, {
+    <span class="hljs-attr">get</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+        <span class="hljs-comment">// 返回对象方法访问的属性</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">_year</span>;
+    },
+    <span class="hljs-attr">set</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">value</span>) {
+        <span class="hljs-comment">// 值不小于2020且不大于2030（xbox也10个🤣）</span>
+        <span class="hljs-keyword">if</span> (!(value &lt; <span class="hljs-number">2020</span>) &amp;&amp; !(value &gt; <span class="hljs-number">2030</span>)) {
+            <span class="hljs-comment">// 根据值判断版本，并加上基础版本：4</span>
+            <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">edition</span> = value - <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">_year</span> + <span class="hljs-number">4</span>;
+            <span class="hljs-comment">// 将属性访问的方法同时也设置</span>
+            <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">_year</span> = value;
+        }
+    }
+})
+ps.<span class="hljs-property">year</span> = <span class="hljs-number">2021</span>
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(ps.<span class="hljs-title hljs-function">name</span>());
+</code></pre>
+<p>访问器属性还有一个能够同时定义多个属性的方法。与单个定义对象相同，唯一区别是这里的属性都是同一时间创建的。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-comment">// 同时定义多个属性</span>
+<span class="hljs-keyword">let</span> ps = {};
+<span class="hljs-title hljs-class">Object</span>.<span class="hljs-title hljs-function">defineProperties</span>(ps, {
+    <span class="hljs-attr">_name</span>: {
+        <span class="hljs-attr">value</span>: <span class="hljs-string">&#x27;PlayStation&#x27;</span>,
+        <span class="hljs-attr">writable</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-attr">configurable</span>: <span class="hljs-literal">true</span>
+    },
+    <span class="hljs-attr">_year</span>: {
+        <span class="hljs-attr">value</span>: <span class="hljs-number">2020</span>,
+        <span class="hljs-attr">writable</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-attr">configurable</span>: <span class="hljs-literal">true</span>
+    },
+    <span class="hljs-attr">edition</span>: {
+        <span class="hljs-attr">value</span>: <span class="hljs-number">4</span>,
+        <span class="hljs-attr">writable</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-attr">configurable</span>: <span class="hljs-literal">true</span>
+    },
+    <span class="hljs-attr">name</span>: {
+        <span class="hljs-attr">value</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+            <span class="hljs-keyword">return</span> <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">_name</span> + <span class="hljs-string">&#x27; &#x27;</span> + <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">edition</span>;
+        },
+        <span class="hljs-attr">writable</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-attr">configurable</span>: <span class="hljs-literal">true</span>
+    },
+    <span class="hljs-attr">year</span>: {
+        <span class="hljs-attr">get</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+            <span class="hljs-keyword">return</span> <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">_year</span>;
+        },
+        <span class="hljs-attr">set</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">value</span>) {
+            <span class="hljs-keyword">if</span> (!(value &lt; <span class="hljs-number">2020</span>) &amp;&amp; !(value &gt; <span class="hljs-number">2030</span>)) {
+                <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">edition</span> = value - <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">_year</span> + <span class="hljs-number">4</span>;
+                <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">_year</span> = value;
+            }
+        }
+    }
+})
+</code></pre>
+<h3 id="读取属性的特性">读取属性的特性</h3>
+<p>属性的特性可以很方便的设置，当然也可以方便的读取。使用ECMAScript5的<code>Object.getOwnPropertyDescriptor()</code>方法就可以读取属性的特性。</p>
+<p>继上述案例：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-title hljs-class">Object</span>.<span class="hljs-title hljs-function">getOwnPropertyDescriptor</span>(ps, <span class="hljs-string">&#x27;year&#x27;</span>);
+<span class="hljs-comment">// 输出：</span>
+<span class="hljs-comment">// configurable: false</span>
+<span class="hljs-comment">// enumerable: false</span>
+<span class="hljs-comment">// get: function get()</span>
+<span class="hljs-comment">// set: function set(value)</span>
+<span class="hljs-comment">// &lt;prototype&gt;: Object { … }</span>
+</code></pre>
+<p>可以详细的看到属性的特性。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-title hljs-class">Object</span>.<span class="hljs-title hljs-function">getOwnPropertyDescriptor</span>(ps, <span class="hljs-string">&#x27;_year&#x27;</span>).<span class="hljs-property">value</span>
+<span class="hljs-comment">// 2021</span>
+</code></pre>
+<blockquote>
+<p>在JavaScript中可以针对任何对象--包括DOM和BOM对象使用<code>Object.getOwnPropertyDescriptor()</code>方法。</p>
+</blockquote>
+<h2 id="创建对象">创建对象</h2>
+<p>使用Object构造函数和对象字面量可以用来创建单个对象。但是这些方法都不能使用同一个接口创建大量的对象。</p>
+<h3 id="工厂模式">工厂模式</h3>
+<p>工厂模式应该是软件设计领域中一种广为人知的设计模式。但是在ECMAScript中无法创建类，早期的人们使用一种函数，来封装以特定接口创建对象的细节。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">createOne</span>(<span class="hljs-params">name, age, sex</span>) {
+    <span class="hljs-keyword">let</span> o = {};
+    o.<span class="hljs-property">name</span> = name;
+    o.<span class="hljs-property">age</span> = age;
+    o.<span class="hljs-property">sex</span> = sex;
+    o.<span class="hljs-property">say</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+        <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">name</span>);
+    }
+    <span class="hljs-keyword">return</span> o;
+}
+<span class="hljs-keyword">let</span> person1 = <span class="hljs-title hljs-function">createOne</span>(<span class="hljs-string">&#x27;xfy&#x27;</span>, <span class="hljs-number">18</span>, <span class="hljs-string">&#x27;male&#x27;</span>);
+<span class="hljs-keyword">let</span> person2 = <span class="hljs-title hljs-function">createOne</span>(<span class="hljs-string">&#x27;dfy&#x27;</span>, <span class="hljs-number">81</span>, <span class="hljs-string">&#x27;female&#x27;</span>);
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(person1);
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(person2);
+</code></pre>
+<p>工厂模式在函数内显式的创建一个空对象，然后让函数的参数传为对象属性。最后返回函数。这样就可以多次调用这个函数来创建多个相似对象。但这样却无法解决对象试别的问题。</p>
+<h3 id="构造函数">构造函数</h3>
+<p>像<code>Object()</code>和<code>Array()</code>都是原生的构造函数。在现在，可以创建自定义的构造函数，从而自定义对象类型的属性和方法。</p>
+<p>重写上述工厂模式：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">One</span>(<span class="hljs-params">name, age, sex</span>) {
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">name</span> = name;
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">age</span> = age;
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">sex</span> = sex;
+}
+<span class="hljs-keyword">let</span> person1 = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">One</span>(<span class="hljs-string">&#x27;xfy&#x27;</span>, <span class="hljs-number">18</span>, <span class="hljs-string">&#x27;female&#x27;</span>);
+<span class="hljs-keyword">let</span> person2 = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">One</span>(<span class="hljs-string">&#x27;dfy&#x27;</span>, <span class="hljs-number">81</span>, <span class="hljs-string">&#x27;male&#x27;</span>);
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(person1);
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(person2);
+</code></pre>
+<p>使用构造函数创建对象必须使用new操作符。此外构造函数的函数名通常为首字母大写，非构造函数首字母小写。这个做法借鉴自其他OO语言。</p>
+<p>使用构造函数创建的对象，constructor都指向这个构造函数。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(person1.<span class="hljs-property">constructor</span>);	<span class="hljs-comment">// function One(name, age, sex) { … }</span>
+</code></pre>
+<p>这就是构造函数胜过工厂模式的一个地方，工厂模式无法将其实例标记为一种特定的类型。在工厂模式下创建的实例，constructor都将指向<code>Object()</code>这个构造函数，因为工厂模式返回的对象是显式创建的，它继承自Object。</p>
+<h4 id="内部原理">内部原理</h4>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">Make</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">name</span> = <span class="hljs-string">&#x27;xfy&#x27;</span>;
+}
+</code></pre>
+<p>一个构造函数在生成时使用<code>new</code>操作符，此时的函数内部隐式的声明了一个对象：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">Make</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-comment">// this = {};</span>
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">name</span> = <span class="hljs-string">&#x27;xfy&#x27;</span>;
+}
+</code></pre>
+<p>有了this这个对象之后，函数的作用域赋给新对象（所以this指向了这个对象）：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">Make</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-comment">// this = {</span>
+    	<span class="hljs-comment">// name : &#x27;xfy&#x27;</span>
+	<span class="hljs-comment">// };</span>
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">name</span> = <span class="hljs-string">&#x27;xfy&#x27;</span>;
+}
+</code></pre>
+<p>最后再隐式的return this：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">Make</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-comment">// this = {</span>
+    	<span class="hljs-comment">// name : &#x27;xfy&#x27;</span>
+	<span class="hljs-comment">// };</span>
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">name</span> = <span class="hljs-string">&#x27;xfy&#x27;</span>;
+    <span class="hljs-comment">// return this;</span>
+}
+</code></pre>
+<p>总结四步：</p>
+<ol>
+<li>隐式的创建一个新对象；</li>
+<li>将构造函数的作用域赋值给新对象（this指向）；</li>
+<li>执行构造函数内的代码（添加属性）；</li>
+<li>返回新对象；</li>
+</ol>
+<p>也就是说可以不使用<code>new</code>来使用一个构造函数（工厂模式）：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">Xfy</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">let</span> that = {};
+    that.<span class="hljs-property">name</span> = <span class="hljs-string">&#x27;xfy&#x27;</span>;
+    that.<span class="hljs-property">age</span> = <span class="hljs-number">18</span>;
+    <span class="hljs-keyword">return</span> that;
+}
+<span class="hljs-keyword">let</span> xfy = <span class="hljs-title hljs-class">Xfy</span>();
+</code></pre>
+<p>不赋值给一个对象，直接返回执行的结果：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Person</span>().<span class="hljs-title hljs-function">say</span>();
+</code></pre>
+<p>若给构造函数显示的返回了一个空对象，则显示的返回优先级高于隐式的返回结果：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">Make</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">name</span> = <span class="hljs-string">&#x27;xfy&#x27;</span>;
+    <span class="hljs-keyword">return</span> {};
+}
+</code></pre>
+<p>但是如果显示的返回不是对象值，而是一个基本值，则构造函数不会收到影响：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">Make</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">name</span> = <span class="hljs-string">&#x27;xfy&#x27;</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">123</span>;  <span class="hljs-comment">// 不受影响</span>
+}
+</code></pre>
+<h4 id="普通函数">普通函数</h4>
+<p>构造函数也是函数，它也能当作普通函数来使用。在全局作用域下，直接使用构造函数将会使其this指向全局对象。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">One</span>(<span class="hljs-params">name, age, sex</span>) {
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">name</span> = name;
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">age</span> = age;
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">sex</span> = sex;
+}
+<span class="hljs-title hljs-class">One</span>(<span class="hljs-string">&#x27;xfy&#x27;</span>);
+<span class="hljs-variable hljs-language">window</span>.<span class="hljs-property">name</span>
+<span class="hljs-comment">// &quot;xfy&quot;</span>
+</code></pre>
+<p>所以可以将构造函数使用call/apply来调用：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> obj = {};
+<span class="hljs-title hljs-class">One</span>.<span class="hljs-title hljs-function">call</span>(obj, <span class="hljs-string">&#x27;xfy&#x27;</span>, <span class="hljs-number">18</span>, <span class="hljs-string">&#x27;female&#x27;</span>);
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(obj);
+</code></pre>
+<p>那么自然多个构造函数也可以互相利用，使用call/apply来改变调用函数的this为当前构造函数的this就可以利用上已经写过的代码。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">Two</span>(<span class="hljs-params">name, age, sex, say</span>) {
+    <span class="hljs-title hljs-class">One</span>.<span class="hljs-title hljs-function">call</span>(<span class="hljs-variable hljs-language">this</span>, name, age, sex);
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">say</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+        <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(say);
+    }
+}
+<span class="hljs-keyword">let</span> two = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Two</span>(<span class="hljs-string">&#x27;xfy&#x27;</span>, <span class="hljs-number">18</span>, <span class="hljs-string">&#x27;female&#x27;</span>, <span class="hljs-string">&#x27;嘤嘤嘤&#x27;</span>);
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(two.<span class="hljs-title hljs-function">say</span>());
+</code></pre>
+<h3 id="构造函数的问题">构造函数的问题</h3>
+<p>构造函数虽然好用，但也并非没有缺点。构造函数的主要问题就是每个方法都要在实例上重新创建一遍。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">Two</span>(<span class="hljs-params">name, age, sex, say</span>) {
+    <span class="hljs-title hljs-class">One</span>.<span class="hljs-title hljs-function">call</span>(<span class="hljs-variable hljs-language">this</span>, name, age, sex);
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">say</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+        <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(say);
+    }
+    <span class="hljs-comment">// this.say = new Function(&#x27;console.log(say)&#x27;)</span>
+}
+<span class="hljs-keyword">let</span> two = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Two</span>(<span class="hljs-string">&#x27;xfy&#x27;</span>, <span class="hljs-number">18</span>, <span class="hljs-string">&#x27;female&#x27;</span>, <span class="hljs-string">&#x27;嘤嘤嘤&#x27;</span>);
+<span class="hljs-keyword">let</span> two1 = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Two</span>(<span class="hljs-string">&#x27;xfy&#x27;</span>, <span class="hljs-number">18</span>, <span class="hljs-string">&#x27;female&#x27;</span>, <span class="hljs-string">&#x27;咕咕咕&#x27;</span>);
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(two.<span class="hljs-property">say</span> === two1.<span class="hljs-property">say</span>);
+</code></pre>
+<p>继上述例子中，每个构造函数内都包含一个不同的Function实例。以这种方式创建函数，会导致不同的作用域链和标识解析符。但创建Function新实例的机制任然是相同的。所以导致由构造函数创建的实例的方法只是同名而不相等。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(two.<span class="hljs-property">say</span> === two1.<span class="hljs-property">say</span>);	<span class="hljs-comment">// false</span>
+</code></pre>
+<p>创建这样两个完成相同任务的Function实例根本没有必要；况且有this对象存在，根本不用在执行代码前就把函数绑定到特定的对象上面。</p>
+<p>所以可以考虑将特定的方法转移出构造函数内部来解决这个问题</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">Two</span>(<span class="hljs-params">name, age, sex, say</span>) {
+    <span class="hljs-title hljs-class">One</span>.<span class="hljs-title hljs-function">call</span>(<span class="hljs-variable hljs-language">this</span>, name, age, sex);
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">say</span> = say;
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">saySome</span> = saySome;
+}
+<span class="hljs-keyword">let</span> two = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Two</span>(<span class="hljs-string">&#x27;xfy&#x27;</span>, <span class="hljs-number">18</span>, <span class="hljs-string">&#x27;female&#x27;</span>, <span class="hljs-string">&#x27;嘤嘤嘤&#x27;</span>);
+<span class="hljs-keyword">let</span> two1 = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Two</span>(<span class="hljs-string">&#x27;xfy&#x27;</span>, <span class="hljs-number">18</span>, <span class="hljs-string">&#x27;female&#x27;</span>, <span class="hljs-string">&#x27;咕咕咕&#x27;</span>);
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(two.<span class="hljs-property">saySome</span>);
+
+<span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">saySome</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">say</span>);
+}
+</code></pre>
+<p>在构造函数的内部将方法指定为外部的全局函数，这样saySome包含的是一个函数的指针，因此创建出的对象的方法就共享了在全局作用域中定义的同一个函数。这样就能解决两个函数做同一件事的问题。当然这样还无法解决所有问题，如果对象需要很多的方法，那么就需要在全局作用域定义很多的函数，于是这个自定义的引用类型就毫无封装性可言了。</p>
+<p>好在，原型模式可以帮我们解决这些问题。</p>
+<h2 id="原型">原型</h2>
+<p>每创建一个函数都有一个prototype（原型）属性，这个属性是一个指针，指向一个对象。这个对象的好处就在于可以包含特定类型的所有实例共享的方法和属性。也就是说，构造函数的prototype（原型）这个对象的属性，可以包含到所有由这个构造函数创建的实例上。</p>
+<p>这样，上述出现的全局函数不需要去污染全局环境，可以定义在原型上。另外，一些固有的属性也可以直接放在原型上。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-title hljs-class">Two</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">name</span> = <span class="hljs-string">&#x27;xfy&#x27;</span>;
+<span class="hljs-title hljs-class">Two</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">age</span> = <span class="hljs-number">18</span>;
+<span class="hljs-title hljs-class">Two</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">saySome</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+    <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">say</span>);
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">Two</span>(<span class="hljs-params">sex, say</span>) {
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">sex</span> = sex;
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">say</span> = say;
+}
+<span class="hljs-keyword">let</span> two = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Two</span>(<span class="hljs-string">&#x27;female&#x27;</span>, <span class="hljs-string">&#x27;嘤嘤嘤&#x27;</span>);
+<span class="hljs-keyword">let</span> two1 = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Two</span>(<span class="hljs-string">&#x27;male&#x27;</span>, <span class="hljs-string">&#x27;咕咕咕&#x27;</span>);
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(two.<span class="hljs-property">saySome</span>);
+</code></pre>
+<h3 id="理解原型对象">理解原型对象</h3>
+<p>无论在何时，只要创建了一个新的函数，就会根据一组特定规则为该函数创建一个prototype属性，这个属性指向函数的原型对象。在默认情况下，原型对象会自动获得一个constructor属性。这个属性指向prototype属性所在函数的指针。也就是说指向构造函数本身<code>Two.prototype.constructor = Two</code>。</p>
+<p>创建了自定义的构造函数之后，其原型对象默认只会取得constructor属性。其他的方法都是由Object继承而来。当使用构造函数创建新实例后，这个实例会包含一个指针（内部属性），指向构造函数的原型。ECMA-262第5版管这个指针叫做[[Prototype]]。虽然在js中没有标准访问[[Prototype]]的方法。但在多数浏览器中都支持一个属性：<code>__proto__</code>。</p>
+<p>不过真正要明确的是，这个连接只存在与实例与构造函数的原型对象之间，而不存在与实例与构造函数之间。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">(<span class="hljs-title hljs-class">Two</span> <span class="hljs-title hljs-class">Prototype</span>)
+<span class="hljs-title hljs-class">Two</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> --&gt; <span class="hljs-title hljs-class">Two</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>
+two1.<span class="hljs-property">__proto__</span> --&gt; <span class="hljs-title hljs-class">Two</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>
+</code></pre>
+<p>所有在原型上的属性与方法都能被创建的实例所调用。这是通过查找对象属性的过程来实现的。就和作用域链类似，在实例上没有找到的属性会继续向上至原型链查找。</p>
+<p>有两种方法来检测/访问到实例的原型对象：<code>isPrototypeOf()</code>和<code>Object.getPrototypeOf()</code>。</p>
+<ul>
+<li><code>isPrototypeOf()</code>用来检测函数是否是实例的原型；</li>
+<li><code>Object.getPrototypeOf()</code>返回的就是实例的原型；</li>
+</ul>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-title hljs-class">Two</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-title hljs-function">isPrototypeOf</span>(two));
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-title hljs-class">Object</span>.<span class="hljs-title hljs-function">getPrototypeOf</span>(two) == <span class="hljs-title hljs-class">Two</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>);
+</code></pre>
+<blockquote>
+<p>constructor属性也是共享的，可以通过实例对象访问。</p>
+</blockquote>
+<h3 id="无法重写">无法重写</h3>
+<p>实例无法重写原型上的属性。虽然对象实例可以访问原型，但是对于原型上的属性的增、删操作都是不可以的。如果对象实例上设置了一个和原型属性同名的属性，那么就会优先访问实例本身的属性。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-title hljs-class">Two</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">name</span> = <span class="hljs-string">&#x27;xfy&#x27;</span>;
+<span class="hljs-title hljs-class">Two</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">age</span> = <span class="hljs-number">18</span>;
+<span class="hljs-title hljs-class">Two</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">saySome</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+    <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">say</span>);
+}
+<span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">Two</span>(<span class="hljs-params">sex, say</span>) {
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">sex</span> = sex;
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">say</span> = say;
+}
+<span class="hljs-keyword">let</span> two = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Two</span>(<span class="hljs-string">&#x27;female&#x27;</span>, <span class="hljs-string">&#x27;嘤嘤嘤&#x27;</span>);
+<span class="hljs-keyword">let</span> two1 = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Two</span>(<span class="hljs-string">&#x27;male&#x27;</span>, <span class="hljs-string">&#x27;咕咕咕&#x27;</span>);
+two.<span class="hljs-property">name</span> = <span class="hljs-string">&#x27;dfy&#x27;</span>;
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(two.<span class="hljs-property">name</span>);	<span class="hljs-comment">// dfy</span>
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(two1.<span class="hljs-property">name</span>);	<span class="hljs-comment">// xfy</span>
+</code></pre>
+<p>就相当于屏蔽了实例去访问原型上的同名属性，即使将实例本身的属性设置为null也不会恢复其指向原型的连接。不过使用delete操作符删除这个属性后，就能重新访问原型上的属性。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">two.<span class="hljs-property">name</span> = <span class="hljs-string">&#x27;dfy&#x27;</span>;
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(two.<span class="hljs-property">name</span>);	<span class="hljs-comment">// dfy</span>
+<span class="hljs-keyword">delete</span> two.<span class="hljs-property">name</span>;
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(two.<span class="hljs-property">name</span>);	<span class="hljs-comment">// xfy</span>
+</code></pre>
+<p>当然它也有检测的方法：<code>hasOwnProperty()</code>。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">two.<span class="hljs-property">name</span> = <span class="hljs-string">&#x27;dfy&#x27;</span>;
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(two.<span class="hljs-title hljs-function">hasOwnProperty</span>(<span class="hljs-string">&#x27;name&#x27;</span>));	<span class="hljs-comment">// true</span>
+<span class="hljs-keyword">delete</span> two.<span class="hljs-property">name</span>;
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(two.<span class="hljs-title hljs-function">hasOwnProperty</span>(<span class="hljs-string">&#x27;name&#x27;</span>));	<span class="hljs-comment">// false</span>
+</code></pre>
+<h3 id="in操作符">in操作符</h3>
+<p>in操作符可以单独使用和在for-in循环中使用。在单独使用时，in用于检测给定的属性通过对象能否访问，无论是继承还是自有属性。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-string">&#x27;saySome&#x27;</span> <span class="hljs-keyword">in</span> two);
+</code></pre>
+<p>配合<code>hasOwnProperty()</code>来使用就能检测属性是否是继承来的。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">inheritProperty</span>(<span class="hljs-params">target, prep</span>) {
+    <span class="hljs-keyword">return</span> !target.<span class="hljs-title hljs-function">hasOwnProperty</span>(prep) &amp;&amp; (prep <span class="hljs-keyword">in</span> target);	<span class="hljs-comment">// 不是自有属性，同时能够访问</span>
+}
+</code></pre>
+<p>for-in循环会便利所有能访问、可枚举(enumerated)的属性。无论是否是继承来的属性。另外，屏蔽了原型中不能枚举的实例属性也能在for-in循环中返回。因为根据规定，所有开发人员定义的属性都是可枚举的。（只有IE8及更早的版本除外）</p>
+<p>这里的two实例重写了<code>toString()</code>方法，可以被for-in循环遍历出来。</p>
+<p><picture data-rmiz-wrap="visible"><img alt="Post image" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" class="chakra-image css-185nr5j"/><button aria-label="Zoom image" data-rmiz-btn-open="true"></button></picture></p>
+<p>若要更方便的取出实例的自有属性，可以使用<code>Object.keys()</code>方法。它会返回所有自有的可枚举的属性。返回结果为一个数组，出现顺序与for-in循环相同。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-title hljs-class">Object</span>.<span class="hljs-title hljs-function">keys</span>(two)
+<span class="hljs-comment">// Array(3) [ &quot;sex&quot;, &quot;say&quot;, &quot;toString&quot; ]</span>
+</code></pre>
+<p>可以使用<code>Object.getOwnPropertyNames()</code>来访问所有属性，包括不可枚举的属性</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-title hljs-class">Object</span>.<span class="hljs-title hljs-function">getOwnPropertyNames</span>(<span class="hljs-title hljs-class">Two</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>)
+<span class="hljs-comment">// vArray(4) [ &quot;constructor&quot;, &quot;name&quot;, &quot;age&quot;, &quot;saySome&quot; ]</span>
+</code></pre>
+<h3 id="更简单的原型语法">更简单的原型语法</h3>
+<p>前面给原型添加属性都是一行一行的写的，每添加一个属性都要<code>Two.prototype</code>一遍。为了减少输入，常见的做法是使用对象字面量来重写整个原型对象。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-title hljs-class">Two</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> = {
+    <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;xfy&#x27;</span>,
+    <span class="hljs-attr">age</span>: <span class="hljs-number">18</span>,
+    <span class="hljs-attr">saySome</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+        <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">say</span>);
+    }
+}
+</code></pre>
+<p>将构造函数的prototype以对象字面量形式重新创建一个对象。最终结果没有任何变化，除了constructor不在指向这个构造函数以外。因为重写了prototype，所有constructor也就不存在了。</p>
+<p>可以手动将constructor设置为正确是值，但此时的constructor就会变为可枚举的属性。在支持ECMAScript5的环境下，可以再手动设置为不可枚举的属性。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-title hljs-class">Two</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> = {
+    <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;xfy&#x27;</span>,
+    <span class="hljs-attr">age</span>: <span class="hljs-number">18</span>,
+    <span class="hljs-attr">saySome</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+        <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">say</span>);
+    }
+}
+<span class="hljs-title hljs-class">Object</span>.<span class="hljs-title hljs-function">defineProperty</span>(<span class="hljs-title hljs-class">Two</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>, <span class="hljs-string">&#x27;constructor&#x27;</span>, {
+    <span class="hljs-attr">enumerable</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-attr">value</span>: <span class="hljs-title hljs-class">Two</span>
+})
+</code></pre>
+<h3 id="原型的动态性">原型的动态性</h3>
+<p>由于在原型中查找值的过程是一次搜索，所以可以随时的修改原型的属性，并立即的在实例上反应出来。即使是先创建了实例再修改的原型也是如此。</p>
+<p>实例与原型之间的连接不过是一个指针，而非一个副本。因此在后面的语句中可以找到新的属性。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-title hljs-class">Two</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> = {
+    <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;xfy&#x27;</span>,
+    <span class="hljs-attr">age</span>: <span class="hljs-number">18</span>,
+    <span class="hljs-attr">saySome</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+        <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">say</span>);
+    }
+}
+<span class="hljs-title hljs-class">Object</span>.<span class="hljs-title hljs-function">defineProperty</span>(<span class="hljs-title hljs-class">Two</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>, <span class="hljs-string">&#x27;constructor&#x27;</span>, {
+    <span class="hljs-attr">enumerable</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-attr">value</span>: <span class="hljs-title hljs-class">Two</span>
+})
+
+<span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">Two</span>(<span class="hljs-params">sex, say</span>) {
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">sex</span> = sex;
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">say</span> = say;
+}
+<span class="hljs-keyword">let</span> two = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Two</span>(<span class="hljs-string">&#x27;female&#x27;</span>, <span class="hljs-string">&#x27;嘤嘤嘤&#x27;</span>);
+<span class="hljs-keyword">let</span> two1 = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Two</span>(<span class="hljs-string">&#x27;male&#x27;</span>, <span class="hljs-string">&#x27;咕咕咕&#x27;</span>);
+
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(two.<span class="hljs-property">name</span>);
+<span class="hljs-title hljs-class">Two</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">name</span> = <span class="hljs-string">&#x27;xxxfy&#x27;</span>;
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(two.<span class="hljs-property">name</span>);
+</code></pre>
+<p>尽管原型可以随时的修改属性和方法，并且能够在所有对象实例中立即反应出来。但是如果重写整个原型对象，那么情况就不一样了。</p>
+<p>在调用构造函数时会为实例添加一个<strong>指向最初原型</strong>的[[prototype]]指针，而重写整个原型对象之后，就相当于切断了构造函数与最初原型之间的联系。实例中的指向仅指向原型，而不指向构造函数。</p>
+<p>所以在实例之后重写整个原型并不会生效，且<strong>实例的指针还是指向最初的原型</strong>。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-title hljs-class">Two</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">name</span> = <span class="hljs-string">&#x27;xxxfy&#x27;</span>;
+
+<span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">Two</span>(<span class="hljs-params">sex, say</span>) {
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">sex</span> = sex;
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">say</span> = say;
+}
+<span class="hljs-keyword">let</span> two = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Two</span>(<span class="hljs-string">&#x27;female&#x27;</span>, <span class="hljs-string">&#x27;嘤嘤嘤&#x27;</span>);
+<span class="hljs-keyword">let</span> two1 = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Two</span>(<span class="hljs-string">&#x27;male&#x27;</span>, <span class="hljs-string">&#x27;咕咕咕&#x27;</span>);
+
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(two.<span class="hljs-property">name</span>);	<span class="hljs-comment">// xxxfy</span>
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(two.<span class="hljs-property">constructor</span>);
+
+<span class="hljs-title hljs-class">Two</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> = {
+    <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;xfy&#x27;</span>,
+    <span class="hljs-attr">age</span>: <span class="hljs-number">18</span>,
+    <span class="hljs-attr">saySome</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+        <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">say</span>);
+    }
+}
+<span class="hljs-title hljs-class">Object</span>.<span class="hljs-title hljs-function">defineProperty</span>(<span class="hljs-title hljs-class">Two</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>, <span class="hljs-string">&#x27;constructor&#x27;</span>, {
+    <span class="hljs-attr">enumerable</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-attr">value</span>: <span class="hljs-title hljs-class">Two</span>
+})
+</code></pre>
+<h3 id="原生对象的原型">原生对象的原型</h3>
+<p>毫不意外的，原生的引用类似也是采用这种模式。可以像修改自定义对象的原型一样修改原生对象的原型。</p>
+<p>由于声明了一个字符串变量，那么后台就会自动调用String来基本包装这个字符串，因此str这个变量可以直接调用String原型上的方法。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-title hljs-class">String</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">yyy</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;嘤嘤嘤&#x27;</span>;
+}
+<span class="hljs-keyword">let</span> str = <span class="hljs-string">&#x27;xfy&#x27;</span>;
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(str.<span class="hljs-title hljs-function">yyy</span>());
+</code></pre>
+<p>原生对象的原型是可以被重写的。</p>
+<h3 id="原型对象的问题">原型对象的问题</h3>
+<p>原型虽然很大程度上解决了很多问题，但它也是有缺点的。首先它省略了为构造函数传递初始化参数这一环节，导致了所有实例再默认情况下都将取得相同的属性值。但这并不是主要问题，主要问题还是其共享性的特征导致的。</p>
+<p>对于函数来说，这种共享性特别合适。对于包含基本值的属性也还行。但是对于引用值来说，就有很大的问题了。</p>
+<p>通过该构造函数创建的两个实例，当一个实例修改了原型上的引用值时，另一个实例也被一起更改。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">Person</span>(<span class="hljs-params"></span>) {
+
+}
+<span class="hljs-title hljs-class">Person</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> = {
+    <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;xfy&#x27;</span>,
+    <span class="hljs-attr">age</span>: <span class="hljs-number">18</span>,
+    <span class="hljs-attr">job</span>: <span class="hljs-literal">null</span>,
+    <span class="hljs-attr">consoles</span>: [<span class="hljs-string">&#x27;xbox&#x27;</span>, <span class="hljs-string">&#x27;playstation&#x27;</span>],
+    <span class="hljs-attr">sayName</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+        <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">name</span>);
+    }
+}
+<span class="hljs-title hljs-class">Object</span>.<span class="hljs-title hljs-function">defineProperty</span>(<span class="hljs-title hljs-class">Person</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>, <span class="hljs-string">&#x27;constructor&#x27;</span>, {
+    <span class="hljs-attr">enumerable</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-attr">value</span>: <span class="hljs-title hljs-class">Person</span>
+})
+
+<span class="hljs-keyword">let</span> xfy = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Person</span>();
+<span class="hljs-keyword">let</span> dfy = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Person</span>();
+
+xfy.<span class="hljs-property">consoles</span>.<span class="hljs-title hljs-function">push</span>(<span class="hljs-string">&#x27;nintendo&#x27;</span>);
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(xfy.<span class="hljs-property">consoles</span>);
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(dfy.<span class="hljs-property">consoles</span>);
+</code></pre>
+<h3 id="组合使用构造函数与原型">组合使用构造函数与原型</h3>
+<p>在了解构造函数的时候，了解到一个问题所在就是构造函数的每个属性/方法对于每个实例都是重新创建的。而原型则有着共享性。所以将二者组合使用就能互补其缺点。</p>
+<p>这种方法的使用，每个实例就有自己的一份实例属性副本，但是同时又共享着对方法的引用，最大限度的节省了内存。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">Person</span>(<span class="hljs-params">name, age, job</span>) {
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">name</span> = name;
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">age</span> = age;
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">job</span> = job;
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">consoles</span> = [<span class="hljs-string">&#x27;xbox&#x27;</span>, <span class="hljs-string">&#x27;playstation&#x27;</span>];
+}
+<span class="hljs-title hljs-class">Person</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> = {
+    <span class="hljs-attr">sayName</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+        <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">name</span>);
+    }
+}
+<span class="hljs-title hljs-class">Object</span>.<span class="hljs-title hljs-function">defineProperty</span>(<span class="hljs-title hljs-class">Person</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>, <span class="hljs-string">&#x27;constructor&#x27;</span>, {
+    <span class="hljs-attr">enumerable</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-attr">value</span>: <span class="hljs-title hljs-class">Person</span>
+})
+
+<span class="hljs-keyword">let</span> xfy = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Person</span>();
+<span class="hljs-keyword">let</span> dfy = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Person</span>();
+
+xfy.<span class="hljs-property">consoles</span>.<span class="hljs-title hljs-function">push</span>(<span class="hljs-string">&#x27;nintendo&#x27;</span>);
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(xfy.<span class="hljs-property">consoles</span>);	<span class="hljs-comment">// [ &quot;xbox&quot;, &quot;playstation&quot;, &quot;nintendo&quot; ]</span>
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(dfy.<span class="hljs-property">consoles</span>);	<span class="hljs-comment">// [ &quot;xbox&quot;, &quot;playstation&quot; ]</span>
+</code></pre>
+<h3 id="动添原型模式">动添原型模式</h3>
+<p>原型的动态性把所有信息都封装在了构造函数中。这样可以在构造函数中初始化原型（必要情况下），又保持了原型和构造函数的优点。也就是说，可以通过检查某个应该存在的方法是否有效，来决定是否需要初始化原型。</p>
+<p>对于这种模式创建的对象，还可以是使用<code>instanceof</code>来确定它的类型。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">Person</span>(<span class="hljs-params">name, age, job</span>) {
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">name</span> = name;
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">age</span> = age;
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">job</span> = job;
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">consoles</span> = [<span class="hljs-string">&#x27;xbox&#x27;</span>, <span class="hljs-string">&#x27;playstation&#x27;</span>];
+    <span class="hljs-keyword">if</span> (<span class="hljs-title hljs-function">typeof</span>(sayName) != <span class="hljs-string">&#x27;function&#x27;</span>) {
+        <span class="hljs-title hljs-class">Person</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">sayName</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+            <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">name</span>);
+        }
+    }
+}
+
+<span class="hljs-keyword">let</span> xfy = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Person</span>(<span class="hljs-string">&#x27;xfy&#x27;</span>, <span class="hljs-number">18</span>, <span class="hljs-literal">null</span>);
+<span class="hljs-keyword">let</span> dfy = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Person</span>();
+
+xfy.<span class="hljs-property">consoles</span>.<span class="hljs-title hljs-function">push</span>(<span class="hljs-string">&#x27;nintendo&#x27;</span>);
+xfy.<span class="hljs-title hljs-function">sayName</span>();
+</code></pre>
+<blockquote>
+<p>如果在已经创建了实例的情况下重写原型，则会切断实例与新原型的联系。</p>
+</blockquote>
+<h3 id="寄生构造函数模式">寄生构造函数模式</h3>
+<p>在前面几种模式都不适用的情况下，可以适用寄生(parasitic)构造函数模式。在这个模式下会新建一个对象，并以相应的属性和方法初始化该对象，最后返回该对象。除了使用new操作符之外，这个模式与工厂模式一模一样。</p>
+<p>构造函数在不返回值的情况下，默认会返回新对象实例。而在构造函数末尾添加一个return语句，可以重写调用构造函数时返回的语句。</p>
+<p>这个模式可以用在特殊的情况下为对象创建构造函数。如果需要一个具有额外方法的特殊数组，而且不能直接Array构造函数，可以使用这个模式。</p>
+<p>在这个模式下返回的对象与构造函数的原型直接没有任何关系。构造函数返回的对象与外部创建的对象没有任何的不同。无法用instanceof来确定对象类型。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">myArray</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-comment">// 创建一个数组</span>
+    <span class="hljs-keyword">let</span> val = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Array</span>();
+    <span class="hljs-comment">// 将参数全部传递进去</span>
+    val.<span class="hljs-property">push</span>.<span class="hljs-title hljs-function">apply</span>(val, <span class="hljs-variable hljs-language">arguments</span>);
+    <span class="hljs-comment">// 自定义一个方法</span>
+    val.<span class="hljs-property">pid</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+        <span class="hljs-keyword">return</span> val.<span class="hljs-title hljs-function">join</span>(<span class="hljs-string">&#x27;|&#x27;</span>);
+    }
+    <span class="hljs-keyword">return</span> val
+}
+<span class="hljs-keyword">let</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-function">myArray</span>(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>, <span class="hljs-number">0</span>);
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(arr.<span class="hljs-title hljs-function">pid</span>());
+</code></pre>
+<h3 id="稳妥构造函数模式">稳妥构造函数模式</h3>
+<p>所谓稳妥对象，指的是没有公共属性，而且其方法也不能引用this的对象。稳妥对象最时候在一些安全的环境中（禁用this和new的环境）使用。</p>
+<p>稳妥与寄生构造函数类似，但有两点不同：</p>
+<ol>
+<li>创建新对象的实例方法不引用this；</li>
+<li>不适用new操作符调用构造函数；</li>
+</ol>
+<p>除了调用定义的方法外，没有其他方法去访问传递的参数。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">Person</span>(<span class="hljs-params">name, age</span>) {
+    <span class="hljs-keyword">let</span> o = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Object</span>();
+    o.<span class="hljs-property">sayName</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+        <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(name);
+    }
+    o.<span class="hljs-property">sayAge</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+        <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(age);
+    }
+    <span class="hljs-keyword">return</span> o;
+}
+
+<span class="hljs-keyword">let</span> xfy = <span class="hljs-title hljs-class">Person</span>(<span class="hljs-string">&#x27;yyy&#x27;</span>, <span class="hljs-number">18</span>);
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(xfy.<span class="hljs-property">name</span>);
+xfy.<span class="hljs-title hljs-function">sayName</span>();
+</code></pre>
+<p>它和私有化变量也很相似，同样的也是不引用this和不使用new操作符。</p>
+<blockquote>
+<p>它也和寄生构造函数一样，与构造函数的原型没有多大关系，也无法通过instanceof来确定类型。</p>
+</blockquote>
+<h2 id="私有化变量">私有化变量</h2>
+<p>闭包的另一种应用，在构造函数上的应用。</p>
+<p>在使用构造函数构造对象时，属性中的函数会向闭包一样返回为对象的功能，因为闭包的特征，所以构造函数中AO中的变量能被属性内的函数保存和读取。</p>
+<p>而构造函数中创建的变量不能使用通常的方法被对象直接访问，只有对象调用指定的方法才能访问。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">Xfy</span>(<span class="hljs-params">name, consoled</span>) {
+    <span class="hljs-keyword">let</span> anotherConsole = <span class="hljs-string">&#x27;ps4&#x27;</span>;
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">name</span> = name;
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">consoled</span> = consoled;
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">changeConsole</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+        <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">console</span> = anotherConsole;
+    }
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">buyConsole</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">target</span>) {
+        anotherConsole = target;
+    }
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">sayTrueth</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+        <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(anotherConsole);
+    }
+}
+<span class="hljs-keyword">let</span> xfy = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Xfy</span>(<span class="hljs-string">&#x27;xfy&#x27;</span>, <span class="hljs-string">&#x27;xbox&#x27;</span>);
+</code></pre>
+<blockquote>
+<p>console.log中的console也是关键字，和变量等不能重名……</p>
+</blockquote>
+<h2 id="继承">继承</h2>
+<p>继承是OO语言中的一个最为人津津乐道的概念。许多OO语言都支持两种继承方式：接口继承和实现继承。接口继承只继承方法签名，而实现继承则继承实际的方法。由于JS的函数没有签名，所有无法实现接口继承，只有实现继承。而实现继承主要依靠的是原型链。</p>
+<h3 id="原型链">原型链</h3>
+<p>ECMAScript中描述的原型链的概念，并将原型链作为实现继承的主要方法。其基本思想就是让一个引用类型继承另一个引用类型的属性和方法。</p>
+<p>构造函数和原型与实例的关系：每个构造函数都一个原型对象，原型对象都包含一个指向构造函数的指针。而实例都包含一个指向原型对象的内部指针。</p>
+<p>如果让构造函数的原型对象等于另一个类型的实例，另一个原型也包含另一个构造函数的指针，如果另一个原型又是另一个类型的实例，那么原型的关系就会层层递进，呈链式结构。这就是原型链的基本概念。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">SuperType</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-comment">// 为实例设置属性</span>
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">property</span> = <span class="hljs-literal">true</span>;
+}
+<span class="hljs-comment">// 在原型上添加一个方法，通过该构造函数创建的实例就会有该方法。</span>
+<span class="hljs-title hljs-class">SuperType</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">getProperty</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">property</span>);
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">SubType</span>(<span class="hljs-params"></span>) {
+
+}
+<span class="hljs-comment">// 将次级构造函数的原型对象设置为上级构造函数的实例。上级构造函数的实例包含其原型对象，将其设置到该构造函数的原型对象上。</span>
+<span class="hljs-title hljs-class">SubType</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">SuperType</span>();
+
+<span class="hljs-comment">// 通过该构造函数创建的实例就会继承最高级构造函数的原型对象。</span>
+<span class="hljs-keyword">let</span> xfy = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">SubType</span>();
+xfy.<span class="hljs-title hljs-function">getProperty</span>();  <span class="hljs-comment">// true</span>
+</code></pre>
+<p>由于SubType的原型对象是SuperType的实例，相当于重写了SubType的原型对象，所以通过SubType创建的实例对象的constructor指向的是SuperType。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">xfy <span class="hljs-keyword">instanceof</span> <span class="hljs-title hljs-class">SubType</span>;
+<span class="hljs-comment">// true</span>
+xfy <span class="hljs-keyword">instanceof</span> <span class="hljs-title hljs-class">SuperType</span>;
+<span class="hljs-comment">// true</span>
+xfy.<span class="hljs-property">constructor</span>;
+<span class="hljs-comment">// function SuperType()</span>
+</code></pre>
+<h3 id="默认原型">默认原型</h3>
+<p>所有引用类型都继承了Object，这个继承也是通过原型链来实现的。<strong>所有函数的默认原型都是Object的实例</strong>，因此默认原型都会包含一个内部指针，指向Object.prototype。这也就是所有自定义类型都会继承<code>toString()</code>、<code>valueOf()</code>等方法的根本原因。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-title hljs-class">String</span> <span class="hljs-keyword">instanceof</span> <span class="hljs-title hljs-class">Object</span>;	<span class="hljs-comment">// true</span>
+</code></pre>
+<h3 id="确定原型与实例的关系">确定原型与实例的关系</h3>
+<p>可以使用instanceof，instanceof用于检测该对象的原型链中有没有该函数的原型。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-title hljs-class">String</span> <span class="hljs-keyword">instanceof</span> <span class="hljs-title hljs-class">Object</span>;	<span class="hljs-comment">// true</span>
+<span class="hljs-title hljs-class">SuperType</span> <span class="hljs-keyword">instanceof</span> <span class="hljs-title hljs-class">Object</span>;	<span class="hljs-comment">// true</span>
+xfy <span class="hljs-keyword">instanceof</span> <span class="hljs-title hljs-class">SubType</span>;		<span class="hljs-comment">// true</span>
+xfy <span class="hljs-keyword">instanceof</span> <span class="hljs-title hljs-class">SuperType</span>;	<span class="hljs-comment">// true</span>
+xfy <span class="hljs-keyword">instanceof</span> <span class="hljs-title hljs-class">Object</span>;		<span class="hljs-comment">// true</span>
+</code></pre>
+<p><code>isPrototypeOf()</code>方法与instanceof类似，只要是原型链中出现过的原型，都可以说是该原型链所派生的实例的原型。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-title hljs-class">Object</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-title hljs-function">isPrototypeOf</span>(xfy);	<span class="hljs-comment">// true</span>
+<span class="hljs-title hljs-class">SuperType</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-title hljs-function">isPrototypeOf</span>(xfy);	<span class="hljs-comment">// true</span>
+<span class="hljs-title hljs-class">SubType</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-title hljs-function">isPrototypeOf</span>(xfy);	<span class="hljs-comment">// true</span>
+</code></pre>
+<h3 id="谨慎的定义方法">谨慎的定义方法</h3>
+<p>在原型链中，如果给子类型添加一个与超类型的同名的方法，那么子类型的实例就会继承覆盖超类型的方法。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">SuperType</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">property</span> = <span class="hljs-literal">true</span>;
+}
+<span class="hljs-title hljs-class">SuperType</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">getProperty</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">property</span>);
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">SubType</span>(<span class="hljs-params"></span>) {
+
+}
+<span class="hljs-title hljs-class">SubType</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">SuperType</span>();
+<span class="hljs-title hljs-class">SubType</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">getProperty</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+}
+
+<span class="hljs-keyword">let</span> xfy = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">SubType</span>();
+xfy.<span class="hljs-title hljs-function">getProperty</span>();  <span class="hljs-comment">// false</span>
+</code></pre>
+<p>此外，重写原型链的方法时，不能使用对象字面量的方法来创建方法。这样会切断刚刚创建的原型链的联系。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">SuperType</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">property</span> = <span class="hljs-literal">true</span>;
+}
+<span class="hljs-title hljs-class">SuperType</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">getProperty</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">property</span>);
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">SubType</span>(<span class="hljs-params"></span>) {
+
+}
+<span class="hljs-title hljs-class">SubType</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">SuperType</span>();
+<span class="hljs-title hljs-class">SubType</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> = {
+    <span class="hljs-attr">getProperty</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+}
+
+<span class="hljs-keyword">let</span> xfy = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">SubType</span>();
+xfy.<span class="hljs-property">property</span> <span class="hljs-comment">// undefined</span>
+</code></pre>
+<h3 id="原型链的问题">原型链的问题</h3>
+<p>原型链和原型一样非常的强大，但是它也有和原型一样的问题。那就是对引用值的问题。</p>
+<p>修改子类型任何一个实例原型上的值，都是对<code>SubType.prototype</code>这个原型对象的修改。并且会实时的反应到SubType创建的实例上去。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">SuperType</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">arr</span> = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>];
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">property</span> = <span class="hljs-literal">true</span>;
+}
+<span class="hljs-title hljs-class">SuperType</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">getProperty</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+    <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">property</span>);
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">SubType</span>(<span class="hljs-params"></span>) {
+
+}
+<span class="hljs-title hljs-class">SubType</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">SuperType</span>();
+
+
+<span class="hljs-keyword">let</span> xfy = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">SubType</span>();
+<span class="hljs-keyword">let</span> dfy = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">SubType</span>();
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(xfy.<span class="hljs-property">arr</span>);	<span class="hljs-comment">// [1, 2, 3, 4, 5]</span>
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(dfy.<span class="hljs-property">arr</span>);	<span class="hljs-comment">// [1, 2, 3, 4, 5]</span>
+
+<span class="hljs-comment">// 修改子类型任何一个实例原型上的值</span>
+dfy.<span class="hljs-property">arr</span>.<span class="hljs-title hljs-function">push</span>(<span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>)
+
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(xfy.<span class="hljs-property">arr</span>);	<span class="hljs-comment">// [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]</span>
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(dfy.<span class="hljs-property">arr</span>);	<span class="hljs-comment">// [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]</span>
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-title hljs-class">SubType</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">arr</span>);	<span class="hljs-comment">// [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]</span>
+</code></pre>
+<p>除此之外，原型链创建实例还有另外一个问题。在子类创建实例时无法向超类传递参数。实际上，无法在布影响所有对象实例的情况下，给超类的构造函数传递参数。</p>
+<h3 id="借用构造函数">借用构造函数</h3>
+<p>原型链中所出现的问题可以配合构造函数使用来解决。这种方法称之为（constructor stealing）有时候也称为伪造对象或经典继承。</p>
+<p>这种思想非常简单，即在子类型构造函数的内部调用超类型的构造函数。函数只不过是在特定环境中执行代码的对象，通过使用apply/call来调用另个构造函数也可以创建实例。</p>
+<p>当然为了确保没有重写子类型的属性，可以先调用超类型的构造函数，在其后添加自定义属性。</p>
+<p>这样创建出的实例就会有自己的属性副本了，而不是从原型链上继承得来的。所以修改其他实例的属性就不会影响到原型链，也就不会影响到其他实例了。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">SuperType</span>(<span class="hljs-params">name, age</span>) {
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">name</span> = name;
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">age</span> = age;
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">arr</span> = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>];
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">SubType</span>(<span class="hljs-params">name, age</span>) {
+    <span class="hljs-comment">// 可以称之为继承自SuperType</span>
+    <span class="hljs-comment">// 同时还能传递参数</span>
+    <span class="hljs-title hljs-class">SuperType</span>.<span class="hljs-title hljs-function">call</span>(<span class="hljs-variable hljs-language">this</span>, name, age);
+}
+
+<span class="hljs-keyword">let</span> xfy = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">SubType</span>(<span class="hljs-string">&#x27;xfy&#x27;</span>, <span class="hljs-number">18</span>);
+<span class="hljs-keyword">let</span> dfy = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">SubType</span>(<span class="hljs-string">&#x27;dfy&#x27;</span>, <span class="hljs-number">188</span>);
+
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(xfy);
+
+xfy.<span class="hljs-property">arr</span>.<span class="hljs-title hljs-function">push</span>(<span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>);
+
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(xfy.<span class="hljs-property">arr</span>);	<span class="hljs-comment">// [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]</span>
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(dfy.<span class="hljs-property">arr</span>);	<span class="hljs-comment">// [ 1, 2, 3, 4, 5 ]</span>
+</code></pre>
+<p>不过借用构造函数也有问题，就和构造函数本身的问题一样，无法解决函数复用的问题。</p>
+<h3 id="组合继承">组合继承</h3>
+<p>组合继承，有时候也称之为伪继承。指的是将原型链和构造函数的技术结合使用，从而发挥二者之长的一种模式。</p>
+<p>这种方法将实例的属性通过借用构造函数来实现继承，让实例都有自己的属性副本，而不是在原型链上。为了解决方法能够复用的问题，将方法定义在原型链上，并通过原型链来继承。</p>
+<p>组合继承避免了原型链和构造函数的缺点，融合了它们的优点。而且<code>instanceof</code>和<code>isPrototypeOf()</code>也能够识别基于组合继承创建的对象。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">SuperType</span>(<span class="hljs-params">name, age</span>) {
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">name</span> = name;
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">age</span> = age;
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">arr</span> = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>];
+}
+<span class="hljs-title hljs-class">SuperType</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">sayName</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+    <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">name</span>);
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">SubType</span>(<span class="hljs-params">name, age</span>) {
+    <span class="hljs-comment">// 借用构造函数继承属性</span>
+    <span class="hljs-title hljs-class">SuperType</span>.<span class="hljs-title hljs-function">call</span>(<span class="hljs-variable hljs-language">this</span>, name, age);
+}
+<span class="hljs-comment">// 原型链继承方法</span>
+<span class="hljs-title hljs-class">SubType</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">SuperType</span>;
+
+<span class="hljs-keyword">let</span> xfy = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">SubType</span>(<span class="hljs-string">&#x27;xfy&#x27;</span>, <span class="hljs-number">18</span>);
+<span class="hljs-keyword">let</span> dfy = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">SubType</span>(<span class="hljs-string">&#x27;dfy&#x27;</span>, <span class="hljs-number">188</span>);
+
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(xfy.<span class="hljs-title hljs-function">sayName</span>());
+
+xfy.<span class="hljs-property">arr</span>.<span class="hljs-title hljs-function">push</span>(<span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>);
+
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(xfy.<span class="hljs-property">arr</span>);
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(dfy.<span class="hljs-property">arr</span>);
+</code></pre>
+<h3 id="原型式继承">原型式继承</h3>
+<p>道格拉斯·克罗克在06年写了一篇题为Prototypal Inheritance in JavaScript（JavaScript中的原型式继承）的文章。他介绍了一种实现继承的方法。这种方法没有使用严格意义上的构造函数，他的想法是借助原型可以基于<strong>已有的对象创建对象</strong>，同时还不必因此创建自定义类型。</p>
+<p>在object函数内部先创建一个临时性的构造函数，然后将传入的对象作为这个构造函数的原型，最后返回了这个临时构造函数的一个新实例。从本质上来说，对传入的构造函数进行了一次浅复制。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">object</span>(<span class="hljs-params">o</span>) {
+    <span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">F</span>(<span class="hljs-params"></span>) {};
+    F.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> = o;
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title hljs-function">F</span>();
+}
+</code></pre>
+<p>ECMAScript5通过新增<code>Object.create()</code>规范化了原型式继承。并且它接受两个参数：</p>
+<ol>
+<li>作为新对象原型的对象；</li>
+<li>为新对象定义额外属性的对象；</li>
+</ol>
+<p>第二个参数与<code>Object.defineProperties()</code>方法的第二个参数格式相同：每个属性都是通过自己的描述符定义了。以这种方式指定的属性都会覆盖原型对象上的同名属性。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> one = {
+    <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;xfy&#x27;</span>,
+    <span class="hljs-attr">age</span>: <span class="hljs-number">18</span>
+}
+<span class="hljs-keyword">let</span> two = <span class="hljs-title hljs-class">Object</span>.<span class="hljs-title hljs-function">create</span>(one, {
+    <span class="hljs-attr">name</span>: {
+        <span class="hljs-attr">configurable</span>: <span class="hljs-literal">false</span>,
+        <span class="hljs-attr">value</span>: <span class="hljs-string">&#x27;dfy&#x27;</span>
+    }
+})
+
+two.<span class="hljs-property">name</span> = <span class="hljs-number">123</span>;
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(two.<span class="hljs-property">name</span>);
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(two.<span class="hljs-property">age</span>);	<span class="hljs-comment">// 18</span>
+</code></pre>
+<h3 id="寄生式继承">寄生式继承</h3>
+<p>寄生式继承式与原型式继承紧密相关的一种思路。它也是用克罗克福德推广而之的。寄生式继承的思路和寄生构造函数和工厂模式类似，即创建一个仅用于封装继承过程的函数，该函数在内部以某种方式来增强对象，最后在真的像它做了所有工作一样返回对象。</p>
+<p>基于寄生式继承的对象，不仅仅有了继承的对象属性方法，而且还有自己自定义的方法。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> person = {
+    <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;xfy&#x27;</span>,
+    <span class="hljs-attr">age</span>: <span class="hljs-number">18</span>
+}
+<span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">test</span>(<span class="hljs-params">target</span>) {
+    <span class="hljs-keyword">let</span> clone = <span class="hljs-title hljs-class">Object</span>.<span class="hljs-title hljs-function">create</span>(target);
+    clone.<span class="hljs-property">hello</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+        <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-string">&#x27;hi(｡･∀･)ﾉﾞ&#x27;</span>);
+    }
+    <span class="hljs-keyword">return</span> clone;
+}
+<span class="hljs-keyword">let</span> xfy = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-function">test</span>(person);
+
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(xfy.<span class="hljs-property">name</span>);
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(xfy.<span class="hljs-title hljs-function">hello</span>());
+</code></pre>
+<blockquote>
+<p>这种方法同样不能做到复用函数。</p>
+</blockquote>
+<h3 id="寄生组合继承">寄生组合继承</h3>
+<p>组合继承式一个常用的继承模式，不过它也有自己的不足。那就是无论在什么情况下，它都需要调用两次超类型的构造函数。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">SubType</span>(<span class="hljs-params">name, age</span>) {
+    <span class="hljs-comment">// 借用构造函数继承属性</span>
+    <span class="hljs-title hljs-class">SuperType</span>.<span class="hljs-title hljs-function">call</span>(<span class="hljs-variable hljs-language">this</span>, name, age);
+}
+<span class="hljs-comment">// 原型链继承方法</span>
+<span class="hljs-title hljs-class">SubType</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">SuperType</span>;
+</code></pre>
+<p>调用两次超类型构造函数就会导致同样的属性和方法会分别出现在子类型的prototype上和子类型创建的实例上。</p>
+<p>寄生组合继承便可以解决这个问题：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">inherit</span>(<span class="hljs-params">subtype, supertype</span>) {
+    <span class="hljs-keyword">let</span> prototype = <span class="hljs-title hljs-class">Object</span>.<span class="hljs-title hljs-function">create</span>(supertype.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>);
+    prototype.<span class="hljs-property">constructor</span> = subtype;
+    subtype.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> = prototype;
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">One</span>(<span class="hljs-params">name</span>) {
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">name</span> = name;
+}
+<span class="hljs-title hljs-class">One</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">sayName</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+    <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">name</span>);
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">Two</span>(<span class="hljs-params">name, age</span>) {
+    <span class="hljs-title hljs-class">One</span>.<span class="hljs-title hljs-function">call</span>(<span class="hljs-variable hljs-language">this</span>, name);
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">age</span> = age;
+}
+<span class="hljs-title hljs-class">Two</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">sayAge</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+    <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">age</span>);
+}
+
+<span class="hljs-title hljs-function">inherit</span>(<span class="hljs-title hljs-class">Two</span>, <span class="hljs-title hljs-class">One</span>);
+
+<span class="hljs-keyword">let</span> xfy = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Two</span>(<span class="hljs-string">&#x27;xfy&#x27;</span>, <span class="hljs-number">18</span>);
+
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(xfy.<span class="hljs-property">name</span>);
+</code></pre>
+<p>这种方法解决了多次调用超类型函数，已经在子类型原型上创建多余不必要的属性。同时原型链还能保持不变。</p>
+<p>同样，所谓的圣杯模式也是同样的道理。这里直接就使用<code>Object.create()</code>方法来代替寄生式继承的详细写法。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">inherit</span>(<span class="hljs-params">target, origin</span>) {
+    <span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">F</span>(<span class="hljs-params"></span>) {};
+    F.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> = origin.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>;
+    target.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-function">F</span>();
+    target.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">constructor</span> = target;
+    target.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">uber</span> = origin;
+}
+</code></pre>
+<h2 id="小结">小结</h2>
+<p>​	ECMAScript支持面向对象（OO）编程，但不使用类或者接口。对象可以在代码执行过程中创建和增强，因此具有动态性而非严格定义的实体。在没有类的情况下，可以采用下列模式创建对象：</p>
+<ul>
+<li>工厂模式，使用简单的函数传教对象，为对象添加属性和方法，然后返回对象。这个模式后来被构造函数模式所取代。</li>
+<li>构造函数模式，可以创建自定义引用类型，可以像创建内置对象实例一样使用new操作符。不过，构造函数模式也有缺点，即它的每个成员都无法得到复用，包括函数。由于函数不局限于任何对象（即与对象具有松散耦合的特点），因此没有理由不在多个对象间共享函数。</li>
+<li>原型模式，使用构造函数的prototype属性来指定那些应该共享的属性和方法。组合使用构造函数模式和原型模式时，使用构造函数定义实例属性，而使用原型定义共享的属性和方法。</li>
+</ul>
+<p>​	JavaScript主要通过原型链实现继承。原型链的构建时通过将一个类的实例赋值给另一个构造函数的原型实现的。这样，子类型就能够访问超类型的所有属性和方法，这一点与基于类的继承很相似。原型链的问题是对象实例共享所有继承的属性和方法，因此不宜单独使用。解决这个问题的技术是借用构造函数，即在子类型构造函数的内部调用超类型构造函数。这样就可以做到每个实例都具有自己的属性，同时还能保证只使用构造函数模式来定义类型。使用最多的继承模式是组合继承，这种模式使用原型链继承共享的属性和方法，而通过构造函数继承实例属性。</p>
+<p>​	此外，还存在下列可供选择的继承模式：</p>
+<ul>
+<li>原型式继承，可以在不必预先定义构造函数的情况下实现继承，其本质式执行对给定对象的浅复制。而复制得到的副本还可以得到进一步改造。</li>
+<li>寄生式继承，与原型式继承非常相似，也是基于某个对象或某些信息创建一个对象，然后增强对象，最后返回对象。为了解决组合继承模式由于多次调用超类型构造函数而导致的低效率问题，可以将这个模式与组合继承一起使用。</li>
+<li>寄生组合式继承，集寄生式继承和组合继承的优点于一身，是实现基于类型继承的最有效方式。</li>
+</ul>
+<blockquote>
+<p>我更加喜欢寄生组合式继承，也就是常说的“圣杯模式”。</p>
+</blockquote></section></article></div><style data-emotion="css 1i6v8fa">.css-1i6v8fa{min-height:346px;}@media screen and (min-width: 30em){.css-1i6v8fa{min-height:350px;}}</style><div class="css-1i6v8fa"></div><style data-emotion="css 3ydw18">.css-3ydw18{height:3px;width:50px;background:var(--chakra-colors-gray-500);border-radius:var(--chakra-radii-xl);margin-top:2.5rem;}</style><div class="css-3ydw18"></div><style data-emotion="css 1lwvw50">.css-1lwvw50{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-flex-flow:column;-webkit-flex-flow:column;-ms-flex-flow:column;flex-flow:column;padding-top:1.5rem;padding-bottom:1.5rem;}</style><footer class="css-1lwvw50"><style data-emotion="css yld109">.css-yld109{color:var(--chakra-colors-gray-600);font-weight:var(--chakra-fontWeights-bold);margin-bottom:0.5rem;}</style><p class="chakra-text css-yld109">©<!-- -->2022<!-- --> 小肥羊</p><style data-emotion="css 3eyczr">.css-3eyczr{color:var(--chakra-colors-gray-400);font-size:small;}</style><p class="chakra-text css-3eyczr">Powered by Next.js ❤️ Chakra UI</p></footer></div><style data-emotion="css kl7qz4">.css-kl7qz4{display:none;position:-webkit-sticky;position:sticky;top:3rem;margin-top:3rem;}@media screen and (min-width: 30em){.css-kl7qz4{display:none;}}@media screen and (min-width: 48em){.css-kl7qz4{display:none;}}@media screen and (min-width: 62em){.css-kl7qz4{display:block;}}</style><div class="css-kl7qz4"><h2 id="table-of-contents">Table of contents</h2>
+<ul>
+<li>
+<p><style data-emotion="css wox0k7">.css-wox0k7{transition-property:var(--chakra-transition-property-common);transition-duration:var(--chakra-transition-duration-fast);transition-timing-function:var(--chakra-transition-easing-ease-out);cursor:pointer;-webkit-text-decoration:none;text-decoration:none;outline:2px solid transparent;outline-offset:2px;color:inherit;display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}.css-wox0k7:hover,.css-wox0k7[data-hover]{-webkit-text-decoration:underline;text-decoration:underline;}.css-wox0k7:focus,.css-wox0k7[data-focus]{box-shadow:var(--chakra-shadows-outline);}</style><a class="chakra-link css-wox0k7" href="#%E5%B1%9E%E6%80%A7%E7%B1%BB%E5%9E%8B">属性类型</a></p>
+<ul>
+<li><a class="chakra-link css-wox0k7" href="#%E4%BF%AE%E6%94%B9%E5%B1%9E%E6%80%A7%E7%9A%84%E9%BB%98%E8%AE%A4%E7%89%B9%E6%80%A7">修改属性的默认特性</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E8%AE%BF%E9%97%AE%E5%99%A8%E5%B1%9E%E6%80%A7">访问器属性</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E8%AF%BB%E5%8F%96%E5%B1%9E%E6%80%A7%E7%9A%84%E7%89%B9%E6%80%A7">读取属性的特性</a></li>
+</ul>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1">创建对象</a></p>
+<ul>
+<li><a class="chakra-link css-wox0k7" href="#%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F">工厂模式</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0">构造函数</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%9A%84%E9%97%AE%E9%A2%98">构造函数的问题</a></li>
+</ul>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#%E5%8E%9F%E5%9E%8B">原型</a></p>
+<ul>
+<li><a class="chakra-link css-wox0k7" href="#%E7%90%86%E8%A7%A3%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1">理解原型对象</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E6%97%A0%E6%B3%95%E9%87%8D%E5%86%99">无法重写</a></li>
+<li><a class="chakra-link css-wox0k7" href="#in%E6%93%8D%E4%BD%9C%E7%AC%A6">in操作符</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E6%9B%B4%E7%AE%80%E5%8D%95%E7%9A%84%E5%8E%9F%E5%9E%8B%E8%AF%AD%E6%B3%95">更简单的原型语法</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E5%8E%9F%E5%9E%8B%E7%9A%84%E5%8A%A8%E6%80%81%E6%80%A7">原型的动态性</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E5%8E%9F%E7%94%9F%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%8E%9F%E5%9E%8B">原生对象的原型</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1%E7%9A%84%E9%97%AE%E9%A2%98">原型对象的问题</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E7%BB%84%E5%90%88%E4%BD%BF%E7%94%A8%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E4%B8%8E%E5%8E%9F%E5%9E%8B">组合使用构造函数与原型</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E5%8A%A8%E6%B7%BB%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F">动添原型模式</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E5%AF%84%E7%94%9F%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E6%A8%A1%E5%BC%8F">寄生构造函数模式</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E7%A8%B3%E5%A6%A5%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E6%A8%A1%E5%BC%8F">稳妥构造函数模式</a></li>
+</ul>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#%E7%A7%81%E6%9C%89%E5%8C%96%E5%8F%98%E9%87%8F">私有化变量</a></p>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#%E7%BB%A7%E6%89%BF">继承</a></p>
+<ul>
+<li><a class="chakra-link css-wox0k7" href="#%E5%8E%9F%E5%9E%8B%E9%93%BE">原型链</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E9%BB%98%E8%AE%A4%E5%8E%9F%E5%9E%8B">默认原型</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E7%A1%AE%E5%AE%9A%E5%8E%9F%E5%9E%8B%E4%B8%8E%E5%AE%9E%E4%BE%8B%E7%9A%84%E5%85%B3%E7%B3%BB">确定原型与实例的关系</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E8%B0%A8%E6%85%8E%E7%9A%84%E5%AE%9A%E4%B9%89%E6%96%B9%E6%B3%95">谨慎的定义方法</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E5%8E%9F%E5%9E%8B%E9%93%BE%E7%9A%84%E9%97%AE%E9%A2%98">原型链的问题</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E5%80%9F%E7%94%A8%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0">借用构造函数</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E7%BB%84%E5%90%88%E7%BB%A7%E6%89%BF">组合继承</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E5%8E%9F%E5%9E%8B%E5%BC%8F%E7%BB%A7%E6%89%BF">原型式继承</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E5%AF%84%E7%94%9F%E5%BC%8F%E7%BB%A7%E6%89%BF">寄生式继承</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E5%AF%84%E7%94%9F%E7%BB%84%E5%90%88%E7%BB%A7%E6%89%BF">寄生组合继承</a></li>
+</ul>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#%E5%B0%8F%E7%BB%93">小结</a></p>
+</li>
+</ul></div></div><span></span></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"postData":{"id":"javascript-object-oriented-programming","content":"\n\u003e Standing on Shoulders of Giants.\n\u003e\n\u003e 本篇参考与《JavaScript高级程序设计》第六章：面向对象的程序设计。\n\n面向对象（Object-Oriented，OO）的语言都有一个标志，那就是他们都有类的概念。通过类来创建任意多个具有相同属性和方法的对象。\n\nECMAScript中没有类的概念，所以它的对象也与基于类的语言中的对象有所不同。\n\nECMAScript-262的对象定义为：“无序属性的集合，其属性可以是基本值、对象和函数。”也就是说对象是一个没有属性的键值映射对，其值可以是数据和函数。\n\n![logo](../images/JavaScript面向对象的程序设计/logo.webp)\n\n## 属性类型\n\n虽然在JavaScript中不能直接访问属性类型，但是为了表示特性是内部值，ECMA-262将其放在了两对方括号中。\n\n**ECMAScript中有两种属性：数据属性和访问器类型属性。**\n\n* [[Configurable]]：表示能否通过delete删除属性从而定义属性，能否修改属性特性，或者能否把属性修改为访问器属性。默认为true\n* [[Enumerable]]：表示能否通过for-in循环返回属性。默认为true\n* [[Writable]]：表示能否修改属性的值。默认为true\n* [[Value]]：包含这个属性的数据值。读取属性的时候从这个位置读取，写入属性值的时候把新值保存在这个位置。默认值为undefined\n\n使用对象字面量创建一个对象时，上述四个特性都为true。value则为属性的值。\n\n### 修改属性的默认特性\n\n要修改默认的特性必须要使用ECMAScritpt5的`Object.prototype.defineProperty()`方法。\n\nSyntax：\n\n```js\nObject.defineProperty(obj, prop, descriptor)\n```\n\n```js\nlet obj = {\n    name: 'xfy',\n    age: 18,\n    saySomthing: function () {\n        console.log(this.name);\n    }\n}\nObject.defineProperty(obj, 'name', {\n    writable: false,\n    value: 'xxxxfy',\n    configurable: false\n})\n```\n\n\u003e 将configurable修改为false之后就无法再进行配置了，也就说无法再修改回来了。其他特性都是可以再修改的。\n\n### 访问器属性\n\n为对象设置一个访问器的属性，这个属性不包含数据值，它包含一对setter和getter函数（不是必需的）。在读取这个访问器属性时，会调用getter函数。在写入这个访问器属性时，会调用setter函数。setter决定了如何处理数据。\n\n访问器属性具有如下4个值：\n\n* [[Configurable]]：表示能否通过delete删除属性从而定义属性，能否修改属性特性，或者能否把属性修改为访问器属性。默认为true\n* [[Enumerable]]：表示能否通过for-in循环返回属性。默认为true\n* [[Get]]：在读取属性时调用的函数。默认为undefined\n* [[Set]]：在写入属性时调用的函数。默认为undefined\n\n访问器属性不能直接定义，必须使用`Object.defineProperty()`方法来定义。\n\n```js\nlet arr = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];\nlet xbox = {\n    _name: 'xbox ',\n    _year: 2020,\n    edition: arr[1],\n    name: function () {\n        return this._name + this.edition;\n    }\n}\nconsole.log(xbox.name());\nObject.defineProperty(xbox, 'year', {\n    get: function () {\n        // 返回对象方法访问的属性\n        return this._year;\n    },\n    set: function (value) {\n        // 值不小于2020且不大于2030（因为数组就10个🤣）\n        if (!(value \u003c 2020) \u0026\u0026 !(value \u003e 2030)) {\n            // 根据值判断版本，并在数组取值\n            this.edition = arr[value - this._year + 1];\n            // 将属性访问的方法同时也设置\n            this._year = value;\n        }\n    }\n})\nxbox.year = 2021;\nconsole.log(xbox.year);\nconsole.log(xbox.name());\n\n// PlayStation？\nlet ps = {\n    _name: 'PlayStation ',\n    _year: 2020,\n    edition: 4,\n    name: function () {\n        return this._name + this.edition;\n    }\n}\nObject.defineProperty(ps, 'year', {\n    get: function () {\n        // 返回对象方法访问的属性\n        return this._year;\n    },\n    set: function (value) {\n        // 值不小于2020且不大于2030（xbox也10个🤣）\n        if (!(value \u003c 2020) \u0026\u0026 !(value \u003e 2030)) {\n            // 根据值判断版本，并加上基础版本：4\n            this.edition = value - this._year + 4;\n            // 将属性访问的方法同时也设置\n            this._year = value;\n        }\n    }\n})\nps.year = 2021\nconsole.log(ps.name());\n```\n\n访问器属性还有一个能够同时定义多个属性的方法。与单个定义对象相同，唯一区别是这里的属性都是同一时间创建的。\n\n```js\n// 同时定义多个属性\nlet ps = {};\nObject.defineProperties(ps, {\n    _name: {\n        value: 'PlayStation',\n        writable: true,\n        configurable: true\n    },\n    _year: {\n        value: 2020,\n        writable: true,\n        configurable: true\n    },\n    edition: {\n        value: 4,\n        writable: true,\n        configurable: true\n    },\n    name: {\n        value: function () {\n            return this._name + ' ' + this.edition;\n        },\n        writable: true,\n        configurable: true\n    },\n    year: {\n        get: function () {\n            return this._year;\n        },\n        set: function (value) {\n            if (!(value \u003c 2020) \u0026\u0026 !(value \u003e 2030)) {\n                this.edition = value - this._year + 4;\n                this._year = value;\n            }\n        }\n    }\n})\n```\n\n### 读取属性的特性\n\n属性的特性可以很方便的设置，当然也可以方便的读取。使用ECMAScript5的`Object.getOwnPropertyDescriptor()`方法就可以读取属性的特性。\n\n继上述案例：\n\n```js\nObject.getOwnPropertyDescriptor(ps, 'year');\n// 输出：\n// configurable: false\n// enumerable: false\n// get: function get()\n// set: function set(value)\n// \u003cprototype\u003e: Object { … }\n```\n\n可以详细的看到属性的特性。\n\n```js\nObject.getOwnPropertyDescriptor(ps, '_year').value\n// 2021\n```\n\n\u003e 在JavaScript中可以针对任何对象--包括DOM和BOM对象使用`Object.getOwnPropertyDescriptor()`方法。\n\n## 创建对象\n\n使用Object构造函数和对象字面量可以用来创建单个对象。但是这些方法都不能使用同一个接口创建大量的对象。\n\n### 工厂模式\n\n工厂模式应该是软件设计领域中一种广为人知的设计模式。但是在ECMAScript中无法创建类，早期的人们使用一种函数，来封装以特定接口创建对象的细节。\n\n```js\nfunction createOne(name, age, sex) {\n    let o = {};\n    o.name = name;\n    o.age = age;\n    o.sex = sex;\n    o.say = function () {\n        console.log(this.name);\n    }\n    return o;\n}\nlet person1 = createOne('xfy', 18, 'male');\nlet person2 = createOne('dfy', 81, 'female');\nconsole.log(person1);\nconsole.log(person2);\n```\n\n工厂模式在函数内显式的创建一个空对象，然后让函数的参数传为对象属性。最后返回函数。这样就可以多次调用这个函数来创建多个相似对象。但这样却无法解决对象试别的问题。\n\n### 构造函数\n\n像`Object()`和`Array()`都是原生的构造函数。在现在，可以创建自定义的构造函数，从而自定义对象类型的属性和方法。\n\n重写上述工厂模式：\n\n```js\nfunction One(name, age, sex) {\n    this.name = name;\n    this.age = age;\n    this.sex = sex;\n}\nlet person1 = new One('xfy', 18, 'female');\nlet person2 = new One('dfy', 81, 'male');\nconsole.log(person1);\nconsole.log(person2);\n```\n\n使用构造函数创建对象必须使用new操作符。此外构造函数的函数名通常为首字母大写，非构造函数首字母小写。这个做法借鉴自其他OO语言。\n\n使用构造函数创建的对象，constructor都指向这个构造函数。\n\n```js\nconsole.log(person1.constructor);\t// function One(name, age, sex) { … }\n```\n\n这就是构造函数胜过工厂模式的一个地方，工厂模式无法将其实例标记为一种特定的类型。在工厂模式下创建的实例，constructor都将指向`Object()`这个构造函数，因为工厂模式返回的对象是显式创建的，它继承自Object。\n\n#### 内部原理\n\n```js\nfunction Make() {\n    this.name = 'xfy';\n}\n```\n\n一个构造函数在生成时使用`new`操作符，此时的函数内部隐式的声明了一个对象：\n\n```js\nfunction Make() {\n    // this = {};\n    this.name = 'xfy';\n}\n```\n\n有了this这个对象之后，函数的作用域赋给新对象（所以this指向了这个对象）：\n\n```js\nfunction Make() {\n    // this = {\n    \t// name : 'xfy'\n\t// };\n    this.name = 'xfy';\n}\n```\n\n最后再隐式的return this：\n\n```js\nfunction Make() {\n    // this = {\n    \t// name : 'xfy'\n\t// };\n    this.name = 'xfy';\n    // return this;\n}\n```\n\n总结四步：\n\n1. 隐式的创建一个新对象；\n2. 将构造函数的作用域赋值给新对象（this指向）；\n3. 执行构造函数内的代码（添加属性）；\n4. 返回新对象；\n\n也就是说可以不使用`new`来使用一个构造函数（工厂模式）：\n\n```js\nfunction Xfy() {\n    let that = {};\n    that.name = 'xfy';\n    that.age = 18;\n    return that;\n}\nlet xfy = Xfy();\n```\n\n不赋值给一个对象，直接返回执行的结果：\n\n```js\nnew Person().say();\n```\n\n若给构造函数显示的返回了一个空对象，则显示的返回优先级高于隐式的返回结果：\n\n```js\nfunction Make() {\n    this.name = 'xfy';\n    return {};\n}\n```\n\n但是如果显示的返回不是对象值，而是一个基本值，则构造函数不会收到影响：\n\n```js\nfunction Make() {\n    this.name = 'xfy';\n    return 123;  // 不受影响\n}\n```\n\n#### 普通函数\n\n构造函数也是函数，它也能当作普通函数来使用。在全局作用域下，直接使用构造函数将会使其this指向全局对象。\n\n```js\nfunction One(name, age, sex) {\n    this.name = name;\n    this.age = age;\n    this.sex = sex;\n}\nOne('xfy');\nwindow.name\n// \"xfy\"\n```\n\n所以可以将构造函数使用call/apply来调用：\n\n```js\nlet obj = {};\nOne.call(obj, 'xfy', 18, 'female');\nconsole.log(obj);\n```\n\n那么自然多个构造函数也可以互相利用，使用call/apply来改变调用函数的this为当前构造函数的this就可以利用上已经写过的代码。\n\n```js\nfunction Two(name, age, sex, say) {\n    One.call(this, name, age, sex);\n    this.say = function () {\n        console.log(say);\n    }\n}\nlet two = new Two('xfy', 18, 'female', '嘤嘤嘤');\nconsole.log(two.say());\n```\n\n### 构造函数的问题\n\n构造函数虽然好用，但也并非没有缺点。构造函数的主要问题就是每个方法都要在实例上重新创建一遍。\n\n```js\nfunction Two(name, age, sex, say) {\n    One.call(this, name, age, sex);\n    this.say = function () {\n        console.log(say);\n    }\n    // this.say = new Function('console.log(say)')\n}\nlet two = new Two('xfy', 18, 'female', '嘤嘤嘤');\nlet two1 = new Two('xfy', 18, 'female', '咕咕咕');\nconsole.log(two.say === two1.say);\n```\n\n继上述例子中，每个构造函数内都包含一个不同的Function实例。以这种方式创建函数，会导致不同的作用域链和标识解析符。但创建Function新实例的机制任然是相同的。所以导致由构造函数创建的实例的方法只是同名而不相等。\n\n```js\nconsole.log(two.say === two1.say);\t// false\n```\n\n创建这样两个完成相同任务的Function实例根本没有必要；况且有this对象存在，根本不用在执行代码前就把函数绑定到特定的对象上面。\n\n所以可以考虑将特定的方法转移出构造函数内部来解决这个问题\n\n```js\nfunction Two(name, age, sex, say) {\n    One.call(this, name, age, sex);\n    this.say = say;\n    this.saySome = saySome;\n}\nlet two = new Two('xfy', 18, 'female', '嘤嘤嘤');\nlet two1 = new Two('xfy', 18, 'female', '咕咕咕');\nconsole.log(two.saySome);\n\nfunction saySome() {\n    console.log(this.say);\n}\n```\n\n在构造函数的内部将方法指定为外部的全局函数，这样saySome包含的是一个函数的指针，因此创建出的对象的方法就共享了在全局作用域中定义的同一个函数。这样就能解决两个函数做同一件事的问题。当然这样还无法解决所有问题，如果对象需要很多的方法，那么就需要在全局作用域定义很多的函数，于是这个自定义的引用类型就毫无封装性可言了。\n\n好在，原型模式可以帮我们解决这些问题。\n\n## 原型\n\n每创建一个函数都有一个prototype（原型）属性，这个属性是一个指针，指向一个对象。这个对象的好处就在于可以包含特定类型的所有实例共享的方法和属性。也就是说，构造函数的prototype（原型）这个对象的属性，可以包含到所有由这个构造函数创建的实例上。\n\n这样，上述出现的全局函数不需要去污染全局环境，可以定义在原型上。另外，一些固有的属性也可以直接放在原型上。\n\n```js\nTwo.prototype.name = 'xfy';\nTwo.prototype.age = 18;\nTwo.prototype.saySome = function () {\n    console.log(this.say);\n}\n\nfunction Two(sex, say) {\n    this.sex = sex;\n    this.say = say;\n}\nlet two = new Two('female', '嘤嘤嘤');\nlet two1 = new Two('male', '咕咕咕');\nconsole.log(two.saySome);\n```\n\n### 理解原型对象\n\n无论在何时，只要创建了一个新的函数，就会根据一组特定规则为该函数创建一个prototype属性，这个属性指向函数的原型对象。在默认情况下，原型对象会自动获得一个constructor属性。这个属性指向prototype属性所在函数的指针。也就是说指向构造函数本身`Two.prototype.constructor = Two`。\n\n创建了自定义的构造函数之后，其原型对象默认只会取得constructor属性。其他的方法都是由Object继承而来。当使用构造函数创建新实例后，这个实例会包含一个指针（内部属性），指向构造函数的原型。ECMA-262第5版管这个指针叫做[[Prototype]]。虽然在js中没有标准访问[[Prototype]]的方法。但在多数浏览器中都支持一个属性：`__proto__`。\n\n不过真正要明确的是，这个连接只存在与实例与构造函数的原型对象之间，而不存在与实例与构造函数之间。\n\n```js\n(Two Prototype)\nTwo.prototype --\u003e Two.prototype\ntwo1.__proto__ --\u003e Two.prototype\n```\n\n所有在原型上的属性与方法都能被创建的实例所调用。这是通过查找对象属性的过程来实现的。就和作用域链类似，在实例上没有找到的属性会继续向上至原型链查找。\n\n有两种方法来检测/访问到实例的原型对象：`isPrototypeOf()`和`Object.getPrototypeOf()`。\n\n* `isPrototypeOf()`用来检测函数是否是实例的原型；\n* `Object.getPrototypeOf()`返回的就是实例的原型；\n\n```js\nconsole.log(Two.prototype.isPrototypeOf(two));\nconsole.log(Object.getPrototypeOf(two) == Two.prototype);\n```\n\n\u003e constructor属性也是共享的，可以通过实例对象访问。\n\n### 无法重写\n\n实例无法重写原型上的属性。虽然对象实例可以访问原型，但是对于原型上的属性的增、删操作都是不可以的。如果对象实例上设置了一个和原型属性同名的属性，那么就会优先访问实例本身的属性。\n\n```js\nTwo.prototype.name = 'xfy';\nTwo.prototype.age = 18;\nTwo.prototype.saySome = function () {\n    console.log(this.say);\n}\nfunction Two(sex, say) {\n    this.sex = sex;\n    this.say = say;\n}\nlet two = new Two('female', '嘤嘤嘤');\nlet two1 = new Two('male', '咕咕咕');\ntwo.name = 'dfy';\nconsole.log(two.name);\t// dfy\nconsole.log(two1.name);\t// xfy\n```\n\n就相当于屏蔽了实例去访问原型上的同名属性，即使将实例本身的属性设置为null也不会恢复其指向原型的连接。不过使用delete操作符删除这个属性后，就能重新访问原型上的属性。\n\n```js\ntwo.name = 'dfy';\nconsole.log(two.name);\t// dfy\ndelete two.name;\nconsole.log(two.name);\t// xfy\n```\n\n当然它也有检测的方法：`hasOwnProperty()`。\n\n```js\ntwo.name = 'dfy';\nconsole.log(two.hasOwnProperty('name'));\t// true\ndelete two.name;\nconsole.log(two.hasOwnProperty('name'));\t// false\n```\n\n### in操作符\n\nin操作符可以单独使用和在for-in循环中使用。在单独使用时，in用于检测给定的属性通过对象能否访问，无论是继承还是自有属性。\n\n```js\nconsole.log('saySome' in two);\n```\n\n配合`hasOwnProperty()`来使用就能检测属性是否是继承来的。\n\n```js\nfunction inheritProperty(target, prep) {\n    return !target.hasOwnProperty(prep) \u0026\u0026 (prep in target);\t// 不是自有属性，同时能够访问\n}\n```\n\nfor-in循环会便利所有能访问、可枚举(enumerated)的属性。无论是否是继承来的属性。另外，屏蔽了原型中不能枚举的实例属性也能在for-in循环中返回。因为根据规定，所有开发人员定义的属性都是可枚举的。（只有IE8及更早的版本除外）\n\n这里的two实例重写了`toString()`方法，可以被for-in循环遍历出来。\n\n![image-20200726171729248](../images/JavaScript面向对象的程序设计/image-20200726171729248.webp)\n\n若要更方便的取出实例的自有属性，可以使用`Object.keys()`方法。它会返回所有自有的可枚举的属性。返回结果为一个数组，出现顺序与for-in循环相同。\n\n```js\nObject.keys(two)\n// Array(3) [ \"sex\", \"say\", \"toString\" ]\n```\n\n可以使用`Object.getOwnPropertyNames()`来访问所有属性，包括不可枚举的属性\n\n```js\nObject.getOwnPropertyNames(Two.prototype)\n// vArray(4) [ \"constructor\", \"name\", \"age\", \"saySome\" ]\n```\n\n### 更简单的原型语法\n\n前面给原型添加属性都是一行一行的写的，每添加一个属性都要`Two.prototype`一遍。为了减少输入，常见的做法是使用对象字面量来重写整个原型对象。\n\n```js\nTwo.prototype = {\n    name: 'xfy',\n    age: 18,\n    saySome: function () {\n        console.log(this.say);\n    }\n}\n```\n\n将构造函数的prototype以对象字面量形式重新创建一个对象。最终结果没有任何变化，除了constructor不在指向这个构造函数以外。因为重写了prototype，所有constructor也就不存在了。\n\n可以手动将constructor设置为正确是值，但此时的constructor就会变为可枚举的属性。在支持ECMAScript5的环境下，可以再手动设置为不可枚举的属性。\n\n```js\nTwo.prototype = {\n    name: 'xfy',\n    age: 18,\n    saySome: function () {\n        console.log(this.say);\n    }\n}\nObject.defineProperty(Two.prototype, 'constructor', {\n    enumerable: false,\n    value: Two\n})\n```\n\n### 原型的动态性\n\n由于在原型中查找值的过程是一次搜索，所以可以随时的修改原型的属性，并立即的在实例上反应出来。即使是先创建了实例再修改的原型也是如此。\n\n实例与原型之间的连接不过是一个指针，而非一个副本。因此在后面的语句中可以找到新的属性。\n\n```js\nTwo.prototype = {\n    name: 'xfy',\n    age: 18,\n    saySome: function () {\n        console.log(this.say);\n    }\n}\nObject.defineProperty(Two.prototype, 'constructor', {\n    enumerable: false,\n    value: Two\n})\n\nfunction Two(sex, say) {\n    this.sex = sex;\n    this.say = say;\n}\nlet two = new Two('female', '嘤嘤嘤');\nlet two1 = new Two('male', '咕咕咕');\n\nconsole.log(two.name);\nTwo.prototype.name = 'xxxfy';\nconsole.log(two.name);\n```\n\n尽管原型可以随时的修改属性和方法，并且能够在所有对象实例中立即反应出来。但是如果重写整个原型对象，那么情况就不一样了。\n\n在调用构造函数时会为实例添加一个**指向最初原型**的[[prototype]]指针，而重写整个原型对象之后，就相当于切断了构造函数与最初原型之间的联系。实例中的指向仅指向原型，而不指向构造函数。\n\n所以在实例之后重写整个原型并不会生效，且**实例的指针还是指向最初的原型**。\n\n```js\nTwo.prototype.name = 'xxxfy';\n\nfunction Two(sex, say) {\n    this.sex = sex;\n    this.say = say;\n}\nlet two = new Two('female', '嘤嘤嘤');\nlet two1 = new Two('male', '咕咕咕');\n\nconsole.log(two.name);\t// xxxfy\nconsole.log(two.constructor);\n\nTwo.prototype = {\n    name: 'xfy',\n    age: 18,\n    saySome: function () {\n        console.log(this.say);\n    }\n}\nObject.defineProperty(Two.prototype, 'constructor', {\n    enumerable: false,\n    value: Two\n})\n```\n\n### 原生对象的原型\n\n毫不意外的，原生的引用类似也是采用这种模式。可以像修改自定义对象的原型一样修改原生对象的原型。\n\n由于声明了一个字符串变量，那么后台就会自动调用String来基本包装这个字符串，因此str这个变量可以直接调用String原型上的方法。\n\n```js\nString.prototype.yyy = function () {\n    return '嘤嘤嘤';\n}\nlet str = 'xfy';\nconsole.log(str.yyy());\n```\n\n原生对象的原型是可以被重写的。\n\n### 原型对象的问题\n\n原型虽然很大程度上解决了很多问题，但它也是有缺点的。首先它省略了为构造函数传递初始化参数这一环节，导致了所有实例再默认情况下都将取得相同的属性值。但这并不是主要问题，主要问题还是其共享性的特征导致的。\n\n对于函数来说，这种共享性特别合适。对于包含基本值的属性也还行。但是对于引用值来说，就有很大的问题了。\n\n通过该构造函数创建的两个实例，当一个实例修改了原型上的引用值时，另一个实例也被一起更改。\n\n```js\nfunction Person() {\n\n}\nPerson.prototype = {\n    name: 'xfy',\n    age: 18,\n    job: null,\n    consoles: ['xbox', 'playstation'],\n    sayName: function () {\n        console.log(this.name);\n    }\n}\nObject.defineProperty(Person.prototype, 'constructor', {\n    enumerable: false,\n    value: Person\n})\n\nlet xfy = new Person();\nlet dfy = new Person();\n\nxfy.consoles.push('nintendo');\nconsole.log(xfy.consoles);\nconsole.log(dfy.consoles);\n```\n\n### 组合使用构造函数与原型\n\n在了解构造函数的时候，了解到一个问题所在就是构造函数的每个属性/方法对于每个实例都是重新创建的。而原型则有着共享性。所以将二者组合使用就能互补其缺点。\n\n这种方法的使用，每个实例就有自己的一份实例属性副本，但是同时又共享着对方法的引用，最大限度的节省了内存。\n\n```js\nfunction Person(name, age, job) {\n    this.name = name;\n    this.age = age;\n    this.job = job;\n    this.consoles = ['xbox', 'playstation'];\n}\nPerson.prototype = {\n    sayName: function () {\n        console.log(this.name);\n    }\n}\nObject.defineProperty(Person.prototype, 'constructor', {\n    enumerable: false,\n    value: Person\n})\n\nlet xfy = new Person();\nlet dfy = new Person();\n\nxfy.consoles.push('nintendo');\nconsole.log(xfy.consoles);\t// [ \"xbox\", \"playstation\", \"nintendo\" ]\nconsole.log(dfy.consoles);\t// [ \"xbox\", \"playstation\" ]\n```\n\n### 动添原型模式\n\n原型的动态性把所有信息都封装在了构造函数中。这样可以在构造函数中初始化原型（必要情况下），又保持了原型和构造函数的优点。也就是说，可以通过检查某个应该存在的方法是否有效，来决定是否需要初始化原型。\n\n对于这种模式创建的对象，还可以是使用`instanceof`来确定它的类型。\n\n```js\nfunction Person(name, age, job) {\n    this.name = name;\n    this.age = age;\n    this.job = job;\n    this.consoles = ['xbox', 'playstation'];\n    if (typeof(sayName) != 'function') {\n        Person.prototype.sayName = function () {\n            console.log(this.name);\n        }\n    }\n}\n\nlet xfy = new Person('xfy', 18, null);\nlet dfy = new Person();\n\nxfy.consoles.push('nintendo');\nxfy.sayName();\n```\n\n\u003e 如果在已经创建了实例的情况下重写原型，则会切断实例与新原型的联系。\n\n### 寄生构造函数模式\n\n在前面几种模式都不适用的情况下，可以适用寄生(parasitic)构造函数模式。在这个模式下会新建一个对象，并以相应的属性和方法初始化该对象，最后返回该对象。除了使用new操作符之外，这个模式与工厂模式一模一样。\n\n构造函数在不返回值的情况下，默认会返回新对象实例。而在构造函数末尾添加一个return语句，可以重写调用构造函数时返回的语句。\n\n这个模式可以用在特殊的情况下为对象创建构造函数。如果需要一个具有额外方法的特殊数组，而且不能直接Array构造函数，可以使用这个模式。\n\n在这个模式下返回的对象与构造函数的原型直接没有任何关系。构造函数返回的对象与外部创建的对象没有任何的不同。无法用instanceof来确定对象类型。\n\n```js\nfunction myArray() {\n    // 创建一个数组\n    let val = new Array();\n    // 将参数全部传递进去\n    val.push.apply(val, arguments);\n    // 自定义一个方法\n    val.pid = function () {\n        return val.join('|');\n    }\n    return val\n}\nlet arr = new myArray(1, 2, 3, 4, 5, 6, 7, 8, 9, 0);\nconsole.log(arr.pid());\n```\n\n### 稳妥构造函数模式\n\n所谓稳妥对象，指的是没有公共属性，而且其方法也不能引用this的对象。稳妥对象最时候在一些安全的环境中（禁用this和new的环境）使用。\n\n稳妥与寄生构造函数类似，但有两点不同：\n\n1. 创建新对象的实例方法不引用this；\n2. 不适用new操作符调用构造函数；\n\n除了调用定义的方法外，没有其他方法去访问传递的参数。\n\n```js\nfunction Person(name, age) {\n    let o = new Object();\n    o.sayName = function () {\n        console.log(name);\n    }\n    o.sayAge = function () {\n        console.log(age);\n    }\n    return o;\n}\n\nlet xfy = Person('yyy', 18);\nconsole.log(xfy.name);\nxfy.sayName();\n```\n\n它和私有化变量也很相似，同样的也是不引用this和不使用new操作符。\n\n\u003e 它也和寄生构造函数一样，与构造函数的原型没有多大关系，也无法通过instanceof来确定类型。\n\n## 私有化变量\n\n闭包的另一种应用，在构造函数上的应用。\n\n在使用构造函数构造对象时，属性中的函数会向闭包一样返回为对象的功能，因为闭包的特征，所以构造函数中AO中的变量能被属性内的函数保存和读取。\n\n而构造函数中创建的变量不能使用通常的方法被对象直接访问，只有对象调用指定的方法才能访问。\n\n```js\nfunction Xfy(name, consoled) {\n    let anotherConsole = 'ps4';\n    this.name = name;\n    this.consoled = consoled;\n    this.changeConsole = function () {\n        this.console = anotherConsole;\n    }\n    this.buyConsole = function (target) {\n        anotherConsole = target;\n    }\n    this.sayTrueth = function () {\n        console.log(anotherConsole);\n    }\n}\nlet xfy = new Xfy('xfy', 'xbox');\n```\n\n\u003e console.log中的console也是关键字，和变量等不能重名……\n\n## 继承\n\n继承是OO语言中的一个最为人津津乐道的概念。许多OO语言都支持两种继承方式：接口继承和实现继承。接口继承只继承方法签名，而实现继承则继承实际的方法。由于JS的函数没有签名，所有无法实现接口继承，只有实现继承。而实现继承主要依靠的是原型链。\n\n### 原型链\n\nECMAScript中描述的原型链的概念，并将原型链作为实现继承的主要方法。其基本思想就是让一个引用类型继承另一个引用类型的属性和方法。\n\n构造函数和原型与实例的关系：每个构造函数都一个原型对象，原型对象都包含一个指向构造函数的指针。而实例都包含一个指向原型对象的内部指针。\n\n如果让构造函数的原型对象等于另一个类型的实例，另一个原型也包含另一个构造函数的指针，如果另一个原型又是另一个类型的实例，那么原型的关系就会层层递进，呈链式结构。这就是原型链的基本概念。\n\n```js\nfunction SuperType() {\n    // 为实例设置属性\n    this.property = true;\n}\n// 在原型上添加一个方法，通过该构造函数创建的实例就会有该方法。\nSuperType.prototype.getProperty = function() {\n    console.log(this.property);\n}\n\nfunction SubType() {\n\n}\n// 将次级构造函数的原型对象设置为上级构造函数的实例。上级构造函数的实例包含其原型对象，将其设置到该构造函数的原型对象上。\nSubType.prototype = new SuperType();\n\n// 通过该构造函数创建的实例就会继承最高级构造函数的原型对象。\nlet xfy = new SubType();\nxfy.getProperty();  // true\n```\n\n由于SubType的原型对象是SuperType的实例，相当于重写了SubType的原型对象，所以通过SubType创建的实例对象的constructor指向的是SuperType。\n\n```js\nxfy instanceof SubType;\n// true\nxfy instanceof SuperType;\n// true\nxfy.constructor;\n// function SuperType()\n```\n\n### 默认原型\n\n所有引用类型都继承了Object，这个继承也是通过原型链来实现的。**所有函数的默认原型都是Object的实例**，因此默认原型都会包含一个内部指针，指向Object.prototype。这也就是所有自定义类型都会继承`toString()`、`valueOf()`等方法的根本原因。\n\n```js\nString instanceof Object;\t// true\n```\n\n### 确定原型与实例的关系\n\n可以使用instanceof，instanceof用于检测该对象的原型链中有没有该函数的原型。\n\n```js\nString instanceof Object;\t// true\nSuperType instanceof Object;\t// true\nxfy instanceof SubType;\t\t// true\nxfy instanceof SuperType;\t// true\nxfy instanceof Object;\t\t// true\n```\n\n`isPrototypeOf()`方法与instanceof类似，只要是原型链中出现过的原型，都可以说是该原型链所派生的实例的原型。\n\n```js\nObject.prototype.isPrototypeOf(xfy);\t// true\nSuperType.prototype.isPrototypeOf(xfy);\t// true\nSubType.prototype.isPrototypeOf(xfy);\t// true\n```\n\n### 谨慎的定义方法\n\n在原型链中，如果给子类型添加一个与超类型的同名的方法，那么子类型的实例就会继承覆盖超类型的方法。\n\n```js\nfunction SuperType() {\n    this.property = true;\n}\nSuperType.prototype.getProperty = function() {\n    console.log(this.property);\n}\n\nfunction SubType() {\n\n}\nSubType.prototype = new SuperType();\nSubType.prototype.getProperty = function() {\n    return false;\n}\n\nlet xfy = new SubType();\nxfy.getProperty();  // false\n```\n\n此外，重写原型链的方法时，不能使用对象字面量的方法来创建方法。这样会切断刚刚创建的原型链的联系。\n\n```js\nfunction SuperType() {\n    this.property = true;\n}\nSuperType.prototype.getProperty = function() {\n    console.log(this.property);\n}\n\nfunction SubType() {\n\n}\nSubType.prototype = new SuperType();\nSubType.prototype = {\n    getProperty: function () {\n        return false;\n    }\n}\n\nlet xfy = new SubType();\nxfy.property // undefined\n```\n\n### 原型链的问题\n\n原型链和原型一样非常的强大，但是它也有和原型一样的问题。那就是对引用值的问题。\n\n修改子类型任何一个实例原型上的值，都是对`SubType.prototype`这个原型对象的修改。并且会实时的反应到SubType创建的实例上去。\n\n```js\nfunction SuperType() {\n    this.arr = [1, 2, 3, 4, 5];\n    this.property = true;\n}\nSuperType.prototype.getProperty = function () {\n    console.log(this.property);\n}\n\nfunction SubType() {\n\n}\nSubType.prototype = new SuperType();\n\n\nlet xfy = new SubType();\nlet dfy = new SubType();\nconsole.log(xfy.arr);\t// [1, 2, 3, 4, 5]\nconsole.log(dfy.arr);\t// [1, 2, 3, 4, 5]\n\n// 修改子类型任何一个实例原型上的值\ndfy.arr.push(6, 7, 8, 9)\n\nconsole.log(xfy.arr);\t// [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]\nconsole.log(dfy.arr);\t// [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]\nconsole.log(SubType.prototype.arr);\t// [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]\n```\n\n除此之外，原型链创建实例还有另外一个问题。在子类创建实例时无法向超类传递参数。实际上，无法在布影响所有对象实例的情况下，给超类的构造函数传递参数。\n\n### 借用构造函数\n\n原型链中所出现的问题可以配合构造函数使用来解决。这种方法称之为（constructor stealing）有时候也称为伪造对象或经典继承。\n\n这种思想非常简单，即在子类型构造函数的内部调用超类型的构造函数。函数只不过是在特定环境中执行代码的对象，通过使用apply/call来调用另个构造函数也可以创建实例。\n\n当然为了确保没有重写子类型的属性，可以先调用超类型的构造函数，在其后添加自定义属性。\n\n这样创建出的实例就会有自己的属性副本了，而不是从原型链上继承得来的。所以修改其他实例的属性就不会影响到原型链，也就不会影响到其他实例了。\n\n```js\nfunction SuperType(name, age) {\n    this.name = name;\n    this.age = age;\n    this.arr = [1, 2, 3, 4, 5];\n}\n\nfunction SubType(name, age) {\n    // 可以称之为继承自SuperType\n    // 同时还能传递参数\n    SuperType.call(this, name, age);\n}\n\nlet xfy = new SubType('xfy', 18);\nlet dfy = new SubType('dfy', 188);\n\nconsole.log(xfy);\n\nxfy.arr.push(6, 7, 8, 9);\n\nconsole.log(xfy.arr);\t// [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]\nconsole.log(dfy.arr);\t// [ 1, 2, 3, 4, 5 ]\n```\n\n不过借用构造函数也有问题，就和构造函数本身的问题一样，无法解决函数复用的问题。\n\n### 组合继承\n\n组合继承，有时候也称之为伪继承。指的是将原型链和构造函数的技术结合使用，从而发挥二者之长的一种模式。\n\n这种方法将实例的属性通过借用构造函数来实现继承，让实例都有自己的属性副本，而不是在原型链上。为了解决方法能够复用的问题，将方法定义在原型链上，并通过原型链来继承。\n\n组合继承避免了原型链和构造函数的缺点，融合了它们的优点。而且`instanceof`和`isPrototypeOf()`也能够识别基于组合继承创建的对象。\n\n```js\nfunction SuperType(name, age) {\n    this.name = name;\n    this.age = age;\n    this.arr = [1, 2, 3, 4, 5];\n}\nSuperType.prototype.sayName = function () {\n    console.log(this.name);\n}\n\nfunction SubType(name, age) {\n    // 借用构造函数继承属性\n    SuperType.call(this, name, age);\n}\n// 原型链继承方法\nSubType.prototype = new SuperType;\n\nlet xfy = new SubType('xfy', 18);\nlet dfy = new SubType('dfy', 188);\n\nconsole.log(xfy.sayName());\n\nxfy.arr.push(6, 7, 8, 9);\n\nconsole.log(xfy.arr);\nconsole.log(dfy.arr);\n```\n\n### 原型式继承\n\n道格拉斯·克罗克在06年写了一篇题为Prototypal Inheritance in JavaScript（JavaScript中的原型式继承）的文章。他介绍了一种实现继承的方法。这种方法没有使用严格意义上的构造函数，他的想法是借助原型可以基于**已有的对象创建对象**，同时还不必因此创建自定义类型。\n\n在object函数内部先创建一个临时性的构造函数，然后将传入的对象作为这个构造函数的原型，最后返回了这个临时构造函数的一个新实例。从本质上来说，对传入的构造函数进行了一次浅复制。\n\n```js\nfunction object(o) {\n    function F() {};\n    F.prototype = o;\n    return new F();\n}\n```\n\nECMAScript5通过新增`Object.create()`规范化了原型式继承。并且它接受两个参数：\n\n1. 作为新对象原型的对象；\n2. 为新对象定义额外属性的对象；\n\n第二个参数与`Object.defineProperties()`方法的第二个参数格式相同：每个属性都是通过自己的描述符定义了。以这种方式指定的属性都会覆盖原型对象上的同名属性。\n\n```js\nlet one = {\n    name: 'xfy',\n    age: 18\n}\nlet two = Object.create(one, {\n    name: {\n        configurable: false,\n        value: 'dfy'\n    }\n})\n\ntwo.name = 123;\nconsole.log(two.name);\nconsole.log(two.age);\t// 18\n```\n\n### 寄生式继承\n\n寄生式继承式与原型式继承紧密相关的一种思路。它也是用克罗克福德推广而之的。寄生式继承的思路和寄生构造函数和工厂模式类似，即创建一个仅用于封装继承过程的函数，该函数在内部以某种方式来增强对象，最后在真的像它做了所有工作一样返回对象。\n\n基于寄生式继承的对象，不仅仅有了继承的对象属性方法，而且还有自己自定义的方法。\n\n```js\nlet person = {\n    name: 'xfy',\n    age: 18\n}\nfunction test(target) {\n    let clone = Object.create(target);\n    clone.hello = function () {\n        console.log('hi(｡･∀･)ﾉﾞ');\n    }\n    return clone;\n}\nlet xfy = new test(person);\n\nconsole.log(xfy.name);\nconsole.log(xfy.hello());\n```\n\n\u003e 这种方法同样不能做到复用函数。\n\n### 寄生组合继承\n\n组合继承式一个常用的继承模式，不过它也有自己的不足。那就是无论在什么情况下，它都需要调用两次超类型的构造函数。\n\n```js\nfunction SubType(name, age) {\n    // 借用构造函数继承属性\n    SuperType.call(this, name, age);\n}\n// 原型链继承方法\nSubType.prototype = new SuperType;\n```\n\n调用两次超类型构造函数就会导致同样的属性和方法会分别出现在子类型的prototype上和子类型创建的实例上。\n\n寄生组合继承便可以解决这个问题：\n\n```js\nfunction inherit(subtype, supertype) {\n    let prototype = Object.create(supertype.prototype);\n    prototype.constructor = subtype;\n    subtype.prototype = prototype;\n}\n\nfunction One(name) {\n    this.name = name;\n}\nOne.prototype.sayName = function () {\n    console.log(this.name);\n}\n\nfunction Two(name, age) {\n    One.call(this, name);\n    this.age = age;\n}\nTwo.prototype.sayAge = function () {\n    console.log(this.age);\n}\n\ninherit(Two, One);\n\nlet xfy = new Two('xfy', 18);\n\nconsole.log(xfy.name);\n```\n\n这种方法解决了多次调用超类型函数，已经在子类型原型上创建多余不必要的属性。同时原型链还能保持不变。\n\n同样，所谓的圣杯模式也是同样的道理。这里直接就使用`Object.create()`方法来代替寄生式继承的详细写法。\n\n```js\nfunction inherit(target, origin) {\n    function F() {};\n    F.prototype = origin.prototype;\n    target.prototype = new F();\n    target.prototype.constructor = target;\n    target.prototype.uber = origin;\n}\n```\n\n## 小结\n\n​\tECMAScript支持面向对象（OO）编程，但不使用类或者接口。对象可以在代码执行过程中创建和增强，因此具有动态性而非严格定义的实体。在没有类的情况下，可以采用下列模式创建对象：\n\n* 工厂模式，使用简单的函数传教对象，为对象添加属性和方法，然后返回对象。这个模式后来被构造函数模式所取代。\n* 构造函数模式，可以创建自定义引用类型，可以像创建内置对象实例一样使用new操作符。不过，构造函数模式也有缺点，即它的每个成员都无法得到复用，包括函数。由于函数不局限于任何对象（即与对象具有松散耦合的特点），因此没有理由不在多个对象间共享函数。\n* 原型模式，使用构造函数的prototype属性来指定那些应该共享的属性和方法。组合使用构造函数模式和原型模式时，使用构造函数定义实例属性，而使用原型定义共享的属性和方法。\n\n​\tJavaScript主要通过原型链实现继承。原型链的构建时通过将一个类的实例赋值给另一个构造函数的原型实现的。这样，子类型就能够访问超类型的所有属性和方法，这一点与基于类的继承很相似。原型链的问题是对象实例共享所有继承的属性和方法，因此不宜单独使用。解决这个问题的技术是借用构造函数，即在子类型构造函数的内部调用超类型构造函数。这样就可以做到每个实例都具有自己的属性，同时还能保证只使用构造函数模式来定义类型。使用最多的继承模式是组合继承，这种模式使用原型链继承共享的属性和方法，而通过构造函数继承实例属性。\n\n​\t此外，还存在下列可供选择的继承模式：\n\n* 原型式继承，可以在不必预先定义构造函数的情况下实现继承，其本质式执行对给定对象的浅复制。而复制得到的副本还可以得到进一步改造。\n* 寄生式继承，与原型式继承非常相似，也是基于某个对象或某些信息创建一个对象，然后增强对象，最后返回对象。为了解决组合继承模式由于多次调用超类型构造函数而导致的低效率问题，可以将这个模式与组合继承一起使用。\n* 寄生组合式继承，集寄生式继承和组合继承的优点于一身，是实现基于类型继承的最有效方式。\n\n\u003e 我更加喜欢寄生组合式继承，也就是常说的“圣杯模式”。","desc":"Standing on Shoulders of Giants.\n\n本篇参考与《JavaScript高级程序设计》第六章：面向对象的程序设计。\n\n面向对象（Object-Oriented，OO）的语言...","title":"JavaScript 面向对象的程序设计","date":"2020-07-27T16:42:32.000Z","tags":"JavaScript","categories":"笔记","url":"javascript-object-oriented-programming","index_img":"/images/JavaScript面向对象的程序设计/logo.webp"}},"__N_SSG":true},"page":"/p/[slug]","query":{"slug":"javascript-object-oriented-programming"},"buildId":"k6NIc4JfXUsE09z9QnALx","isFallback":false,"dynamicIds":[3419,6929,3780,9125,2980,5106,1189],"gsp":true,"scriptLoader":[]}</script></body></html>

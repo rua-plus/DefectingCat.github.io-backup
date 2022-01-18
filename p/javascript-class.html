@@ -1,0 +1,339 @@
+<!DOCTYPE html><html lang="en"><head><meta name="viewport" content="width=device-width"/><meta charSet="utf-8"/><link rel="shortcut icon" href="/images/img/favicon.webp"/><meta name="keywords" content="Blog RUA"/><meta name="description" content="Personal blog."/><meta name="author" content="Arthur,i@rua.plus"/><title>RUA - JavaScript-类</title><meta name="next-head-count" content="7"/><link rel="preload" href="/_next/static/css/39834862c769c308.css" as="style"/><link rel="stylesheet" href="/_next/static/css/39834862c769c308.css" data-n-g=""/><link rel="preload" href="/_next/static/css/c2a527101433f11d.css" as="style"/><link rel="stylesheet" href="/_next/static/css/c2a527101433f11d.css" data-n-p=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/_next/static/chunks/polyfills-5cd94c89d3acac5f.js"></script><script defer="" src="/_next/static/chunks/219-ddf2abc0472da9bd.js"></script><script defer="" src="/_next/static/chunks/419.d5302bfd9d8378c2.js"></script><script defer="" src="/_next/static/chunks/771.84a2737df445ba88.js"></script><script defer="" src="/_next/static/chunks/929.b2c0b4f7606bfefe.js"></script><script defer="" src="/_next/static/chunks/125.4ff7adc183744312.js"></script><script defer="" src="/_next/static/chunks/485-3e3bf066e6f4a6bd.js"></script><script defer="" src="/_next/static/chunks/189.ee2e569101c160eb.js"></script><script defer="" src="/_next/static/chunks/980.41f5e97cd35a6621.js"></script><script defer="" src="/_next/static/chunks/106.7a94988fd220337e.js"></script><script src="/_next/static/chunks/webpack-c08977534ec7c137.js" defer=""></script><script src="/_next/static/chunks/framework-5cd9e2157a4a6aee.js" defer=""></script><script src="/_next/static/chunks/main-472dbb675bbf7f67.js" defer=""></script><script src="/_next/static/chunks/pages/_app-a34fa0ed9496fbe8.js" defer=""></script><script src="/_next/static/chunks/84-43981acebe84e1d3.js" defer=""></script><script src="/_next/static/chunks/pages/p/%5Bslug%5D-684bfb16186b52fe.js" defer=""></script><script src="/_next/static/k6NIc4JfXUsE09z9QnALx/_buildManifest.js" defer=""></script><script src="/_next/static/k6NIc4JfXUsE09z9QnALx/_ssgManifest.js" defer=""></script><script src="/_next/static/k6NIc4JfXUsE09z9QnALx/_middlewareManifest.js" defer=""></script></head><body><script>(function setScript(initialValue) {
+  var mql = window.matchMedia("(prefers-color-scheme: dark)");
+  var systemPreference = mql.matches ? "dark" : "light";
+  var persistedPreference;
+
+  try {
+    persistedPreference = localStorage.getItem("chakra-ui-color-mode");
+  } catch (error) {
+    console.log("Chakra UI: localStorage is not available. Color mode persistence might not work as expected");
+  }
+
+  var isInStorage = typeof persistedPreference === "string";
+  var colorMode;
+
+  if (isInStorage) {
+    colorMode = persistedPreference;
+  } else {
+    colorMode = initialValue === "system" ? systemPreference : initialValue;
+  }
+
+  if (colorMode) {
+    var root = document.documentElement;
+    root.style.setProperty("--chakra-ui-color-mode", colorMode);
+  }
+})('light')</script><div id="__next"><style data-emotion="css-global 1r47v8">:host,:root{--chakra-ring-inset:var(--chakra-empty,/*!*/ /*!*/);--chakra-ring-offset-width:0px;--chakra-ring-offset-color:#fff;--chakra-ring-color:rgba(66, 153, 225, 0.6);--chakra-ring-offset-shadow:0 0 #0000;--chakra-ring-shadow:0 0 #0000;--chakra-space-x-reverse:0;--chakra-space-y-reverse:0;--chakra-colors-transparent:transparent;--chakra-colors-current:currentColor;--chakra-colors-black:#000000;--chakra-colors-white:#FFFFFF;--chakra-colors-whiteAlpha-50:rgba(255, 255, 255, 0.04);--chakra-colors-whiteAlpha-100:rgba(255, 255, 255, 0.06);--chakra-colors-whiteAlpha-200:rgba(255, 255, 255, 0.08);--chakra-colors-whiteAlpha-300:rgba(255, 255, 255, 0.16);--chakra-colors-whiteAlpha-400:rgba(255, 255, 255, 0.24);--chakra-colors-whiteAlpha-500:rgba(255, 255, 255, 0.36);--chakra-colors-whiteAlpha-600:rgba(255, 255, 255, 0.48);--chakra-colors-whiteAlpha-700:rgba(255, 255, 255, 0.64);--chakra-colors-whiteAlpha-800:rgba(255, 255, 255, 0.80);--chakra-colors-whiteAlpha-900:rgba(255, 255, 255, 0.92);--chakra-colors-blackAlpha-50:rgba(0, 0, 0, 0.04);--chakra-colors-blackAlpha-100:rgba(0, 0, 0, 0.06);--chakra-colors-blackAlpha-200:rgba(0, 0, 0, 0.08);--chakra-colors-blackAlpha-300:rgba(0, 0, 0, 0.16);--chakra-colors-blackAlpha-400:rgba(0, 0, 0, 0.24);--chakra-colors-blackAlpha-500:rgba(0, 0, 0, 0.36);--chakra-colors-blackAlpha-600:rgba(0, 0, 0, 0.48);--chakra-colors-blackAlpha-700:rgba(0, 0, 0, 0.64);--chakra-colors-blackAlpha-800:rgba(0, 0, 0, 0.80);--chakra-colors-blackAlpha-900:rgba(0, 0, 0, 0.92);--chakra-colors-gray-50:#F7FAFC;--chakra-colors-gray-100:#EDF2F7;--chakra-colors-gray-200:#E2E8F0;--chakra-colors-gray-300:#CBD5E0;--chakra-colors-gray-400:#A0AEC0;--chakra-colors-gray-500:#718096;--chakra-colors-gray-600:#4A5568;--chakra-colors-gray-700:#2D3748;--chakra-colors-gray-800:#1A202C;--chakra-colors-gray-900:#171923;--chakra-colors-red-50:#FFF5F5;--chakra-colors-red-100:#FED7D7;--chakra-colors-red-200:#FEB2B2;--chakra-colors-red-300:#FC8181;--chakra-colors-red-400:#F56565;--chakra-colors-red-500:#E53E3E;--chakra-colors-red-600:#C53030;--chakra-colors-red-700:#9B2C2C;--chakra-colors-red-800:#822727;--chakra-colors-red-900:#63171B;--chakra-colors-orange-50:#FFFAF0;--chakra-colors-orange-100:#FEEBC8;--chakra-colors-orange-200:#FBD38D;--chakra-colors-orange-300:#F6AD55;--chakra-colors-orange-400:#ED8936;--chakra-colors-orange-500:#DD6B20;--chakra-colors-orange-600:#C05621;--chakra-colors-orange-700:#9C4221;--chakra-colors-orange-800:#7B341E;--chakra-colors-orange-900:#652B19;--chakra-colors-yellow-50:#FFFFF0;--chakra-colors-yellow-100:#FEFCBF;--chakra-colors-yellow-200:#FAF089;--chakra-colors-yellow-300:#F6E05E;--chakra-colors-yellow-400:#ECC94B;--chakra-colors-yellow-500:#D69E2E;--chakra-colors-yellow-600:#B7791F;--chakra-colors-yellow-700:#975A16;--chakra-colors-yellow-800:#744210;--chakra-colors-yellow-900:#5F370E;--chakra-colors-green-50:#F0FFF4;--chakra-colors-green-100:#C6F6D5;--chakra-colors-green-200:#9AE6B4;--chakra-colors-green-300:#68D391;--chakra-colors-green-400:#48BB78;--chakra-colors-green-500:#38A169;--chakra-colors-green-600:#2F855A;--chakra-colors-green-700:#276749;--chakra-colors-green-800:#22543D;--chakra-colors-green-900:#1C4532;--chakra-colors-teal-50:#E6FFFA;--chakra-colors-teal-100:#B2F5EA;--chakra-colors-teal-200:#81E6D9;--chakra-colors-teal-300:#4FD1C5;--chakra-colors-teal-400:#38B2AC;--chakra-colors-teal-500:#319795;--chakra-colors-teal-600:#2C7A7B;--chakra-colors-teal-700:#285E61;--chakra-colors-teal-800:#234E52;--chakra-colors-teal-900:#1D4044;--chakra-colors-blue-50:#ebf8ff;--chakra-colors-blue-100:#bee3f8;--chakra-colors-blue-200:#90cdf4;--chakra-colors-blue-300:#63b3ed;--chakra-colors-blue-400:#4299e1;--chakra-colors-blue-500:#3182ce;--chakra-colors-blue-600:#2b6cb0;--chakra-colors-blue-700:#2c5282;--chakra-colors-blue-800:#2a4365;--chakra-colors-blue-900:#1A365D;--chakra-colors-cyan-50:#EDFDFD;--chakra-colors-cyan-100:#C4F1F9;--chakra-colors-cyan-200:#9DECF9;--chakra-colors-cyan-300:#76E4F7;--chakra-colors-cyan-400:#0BC5EA;--chakra-colors-cyan-500:#00B5D8;--chakra-colors-cyan-600:#00A3C4;--chakra-colors-cyan-700:#0987A0;--chakra-colors-cyan-800:#086F83;--chakra-colors-cyan-900:#065666;--chakra-colors-purple-50:#FAF5FF;--chakra-colors-purple-100:#E9D8FD;--chakra-colors-purple-200:#D6BCFA;--chakra-colors-purple-300:#B794F4;--chakra-colors-purple-400:#9F7AEA;--chakra-colors-purple-500:#805AD5;--chakra-colors-purple-600:#6B46C1;--chakra-colors-purple-700:#553C9A;--chakra-colors-purple-800:#44337A;--chakra-colors-purple-900:#322659;--chakra-colors-pink-50:#FFF5F7;--chakra-colors-pink-100:#FED7E2;--chakra-colors-pink-200:#FBB6CE;--chakra-colors-pink-300:#F687B3;--chakra-colors-pink-400:#ED64A6;--chakra-colors-pink-500:#D53F8C;--chakra-colors-pink-600:#B83280;--chakra-colors-pink-700:#97266D;--chakra-colors-pink-800:#702459;--chakra-colors-pink-900:#521B41;--chakra-colors-linkedin-50:#E8F4F9;--chakra-colors-linkedin-100:#CFEDFB;--chakra-colors-linkedin-200:#9BDAF3;--chakra-colors-linkedin-300:#68C7EC;--chakra-colors-linkedin-400:#34B3E4;--chakra-colors-linkedin-500:#00A0DC;--chakra-colors-linkedin-600:#008CC9;--chakra-colors-linkedin-700:#0077B5;--chakra-colors-linkedin-800:#005E93;--chakra-colors-linkedin-900:#004471;--chakra-colors-facebook-50:#E8F4F9;--chakra-colors-facebook-100:#D9DEE9;--chakra-colors-facebook-200:#B7C2DA;--chakra-colors-facebook-300:#6482C0;--chakra-colors-facebook-400:#4267B2;--chakra-colors-facebook-500:#385898;--chakra-colors-facebook-600:#314E89;--chakra-colors-facebook-700:#29487D;--chakra-colors-facebook-800:#223B67;--chakra-colors-facebook-900:#1E355B;--chakra-colors-messenger-50:#D0E6FF;--chakra-colors-messenger-100:#B9DAFF;--chakra-colors-messenger-200:#A2CDFF;--chakra-colors-messenger-300:#7AB8FF;--chakra-colors-messenger-400:#2E90FF;--chakra-colors-messenger-500:#0078FF;--chakra-colors-messenger-600:#0063D1;--chakra-colors-messenger-700:#0052AC;--chakra-colors-messenger-800:#003C7E;--chakra-colors-messenger-900:#002C5C;--chakra-colors-whatsapp-50:#dffeec;--chakra-colors-whatsapp-100:#b9f5d0;--chakra-colors-whatsapp-200:#90edb3;--chakra-colors-whatsapp-300:#65e495;--chakra-colors-whatsapp-400:#3cdd78;--chakra-colors-whatsapp-500:#22c35e;--chakra-colors-whatsapp-600:#179848;--chakra-colors-whatsapp-700:#0c6c33;--chakra-colors-whatsapp-800:#01421c;--chakra-colors-whatsapp-900:#001803;--chakra-colors-twitter-50:#E5F4FD;--chakra-colors-twitter-100:#C8E9FB;--chakra-colors-twitter-200:#A8DCFA;--chakra-colors-twitter-300:#83CDF7;--chakra-colors-twitter-400:#57BBF5;--chakra-colors-twitter-500:#1DA1F2;--chakra-colors-twitter-600:#1A94DA;--chakra-colors-twitter-700:#1681BF;--chakra-colors-twitter-800:#136B9E;--chakra-colors-twitter-900:#0D4D71;--chakra-colors-telegram-50:#E3F2F9;--chakra-colors-telegram-100:#C5E4F3;--chakra-colors-telegram-200:#A2D4EC;--chakra-colors-telegram-300:#7AC1E4;--chakra-colors-telegram-400:#47A9DA;--chakra-colors-telegram-500:#0088CC;--chakra-colors-telegram-600:#007AB8;--chakra-colors-telegram-700:#006BA1;--chakra-colors-telegram-800:#005885;--chakra-colors-telegram-900:#003F5E;--chakra-colors-home-bg:#f5f5fa;--chakra-borders-none:0;--chakra-borders-1px:1px solid;--chakra-borders-2px:2px solid;--chakra-borders-4px:4px solid;--chakra-borders-8px:8px solid;--chakra-fonts-heading:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";--chakra-fonts-body:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Helvetica,Segoe UI,Arial,Roboto,'PingFang SC',miui,'Hiragino Sans GB','Microsoft Yahei',sans-serif;--chakra-fonts-mono:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;--chakra-fontSizes-xs:0.75rem;--chakra-fontSizes-sm:0.875rem;--chakra-fontSizes-md:1rem;--chakra-fontSizes-lg:1.125rem;--chakra-fontSizes-xl:1.25rem;--chakra-fontSizes-2xl:1.5rem;--chakra-fontSizes-3xl:1.875rem;--chakra-fontSizes-4xl:2.25rem;--chakra-fontSizes-5xl:3rem;--chakra-fontSizes-6xl:3.75rem;--chakra-fontSizes-7xl:4.5rem;--chakra-fontSizes-8xl:6rem;--chakra-fontSizes-9xl:8rem;--chakra-fontWeights-hairline:100;--chakra-fontWeights-thin:200;--chakra-fontWeights-light:300;--chakra-fontWeights-normal:400;--chakra-fontWeights-medium:500;--chakra-fontWeights-semibold:600;--chakra-fontWeights-bold:700;--chakra-fontWeights-extrabold:800;--chakra-fontWeights-black:900;--chakra-letterSpacings-tighter:-0.05em;--chakra-letterSpacings-tight:-0.025em;--chakra-letterSpacings-normal:0;--chakra-letterSpacings-wide:0.025em;--chakra-letterSpacings-wider:0.05em;--chakra-letterSpacings-widest:0.1em;--chakra-lineHeights-3:.75rem;--chakra-lineHeights-4:1rem;--chakra-lineHeights-5:1.25rem;--chakra-lineHeights-6:1.5rem;--chakra-lineHeights-7:1.75rem;--chakra-lineHeights-8:2rem;--chakra-lineHeights-9:2.25rem;--chakra-lineHeights-10:2.5rem;--chakra-lineHeights-normal:normal;--chakra-lineHeights-none:1;--chakra-lineHeights-shorter:1.25;--chakra-lineHeights-short:1.375;--chakra-lineHeights-base:1.5;--chakra-lineHeights-tall:1.625;--chakra-lineHeights-taller:2;--chakra-radii-none:0;--chakra-radii-sm:0.125rem;--chakra-radii-base:0.25rem;--chakra-radii-md:0.375rem;--chakra-radii-lg:0.5rem;--chakra-radii-xl:0.75rem;--chakra-radii-2xl:1rem;--chakra-radii-3xl:1.5rem;--chakra-radii-full:9999px;--chakra-space-1:0.25rem;--chakra-space-2:0.5rem;--chakra-space-3:0.75rem;--chakra-space-4:1rem;--chakra-space-5:1.25rem;--chakra-space-6:1.5rem;--chakra-space-7:1.75rem;--chakra-space-8:2rem;--chakra-space-9:2.25rem;--chakra-space-10:2.5rem;--chakra-space-12:3rem;--chakra-space-14:3.5rem;--chakra-space-16:4rem;--chakra-space-20:5rem;--chakra-space-24:6rem;--chakra-space-28:7rem;--chakra-space-32:8rem;--chakra-space-36:9rem;--chakra-space-40:10rem;--chakra-space-44:11rem;--chakra-space-48:12rem;--chakra-space-52:13rem;--chakra-space-56:14rem;--chakra-space-60:15rem;--chakra-space-64:16rem;--chakra-space-72:18rem;--chakra-space-80:20rem;--chakra-space-96:24rem;--chakra-space-px:1px;--chakra-space-0\.5:0.125rem;--chakra-space-1\.5:0.375rem;--chakra-space-2\.5:0.625rem;--chakra-space-3\.5:0.875rem;--chakra-shadows-xs:0 0 0 1px rgba(0, 0, 0, 0.05);--chakra-shadows-sm:0 1px 2px 0 rgba(0, 0, 0, 0.05);--chakra-shadows-base:0 1px 3px 0 rgba(0, 0, 0, 0.1),0 1px 2px 0 rgba(0, 0, 0, 0.06);--chakra-shadows-md:0 4px 6px -1px rgba(0, 0, 0, 0.1),0 2px 4px -1px rgba(0, 0, 0, 0.06);--chakra-shadows-lg:0 10px 15px -3px rgba(0, 0, 0, 0.1),0 4px 6px -2px rgba(0, 0, 0, 0.05);--chakra-shadows-xl:0 20px 25px -5px rgba(0, 0, 0, 0.1),0 10px 10px -5px rgba(0, 0, 0, 0.04);--chakra-shadows-2xl:0 25px 50px -12px rgba(0, 0, 0, 0.25);--chakra-shadows-outline:0 0 0 3px rgba(66, 153, 225, 0.6);--chakra-shadows-inner:inset 0 2px 4px 0 rgba(0,0,0,0.06);--chakra-shadows-none:none;--chakra-shadows-dark-lg:rgba(0, 0, 0, 0.1) 0px 0px 0px 1px,rgba(0, 0, 0, 0.2) 0px 5px 10px,rgba(0, 0, 0, 0.4) 0px 15px 40px;--chakra-shadows-card:0px 4px 8px rgba(0, 0, 0, 0.04),0px 0px 2px rgba(0, 0, 0, 0.06),0px 0px 1px rgba(0, 0, 0, 0.04);--chakra-sizes-1:0.25rem;--chakra-sizes-2:0.5rem;--chakra-sizes-3:0.75rem;--chakra-sizes-4:1rem;--chakra-sizes-5:1.25rem;--chakra-sizes-6:1.5rem;--chakra-sizes-7:1.75rem;--chakra-sizes-8:2rem;--chakra-sizes-9:2.25rem;--chakra-sizes-10:2.5rem;--chakra-sizes-12:3rem;--chakra-sizes-14:3.5rem;--chakra-sizes-16:4rem;--chakra-sizes-20:5rem;--chakra-sizes-24:6rem;--chakra-sizes-28:7rem;--chakra-sizes-32:8rem;--chakra-sizes-36:9rem;--chakra-sizes-40:10rem;--chakra-sizes-44:11rem;--chakra-sizes-48:12rem;--chakra-sizes-52:13rem;--chakra-sizes-56:14rem;--chakra-sizes-60:15rem;--chakra-sizes-64:16rem;--chakra-sizes-72:18rem;--chakra-sizes-80:20rem;--chakra-sizes-96:24rem;--chakra-sizes-px:1px;--chakra-sizes-0\.5:0.125rem;--chakra-sizes-1\.5:0.375rem;--chakra-sizes-2\.5:0.625rem;--chakra-sizes-3\.5:0.875rem;--chakra-sizes-max:max-content;--chakra-sizes-min:min-content;--chakra-sizes-full:100%;--chakra-sizes-3xs:14rem;--chakra-sizes-2xs:16rem;--chakra-sizes-xs:20rem;--chakra-sizes-sm:24rem;--chakra-sizes-md:28rem;--chakra-sizes-lg:32rem;--chakra-sizes-xl:36rem;--chakra-sizes-2xl:42rem;--chakra-sizes-3xl:48rem;--chakra-sizes-4xl:56rem;--chakra-sizes-5xl:64rem;--chakra-sizes-6xl:72rem;--chakra-sizes-7xl:80rem;--chakra-sizes-8xl:90rem;--chakra-sizes-container-sm:640px;--chakra-sizes-container-md:768px;--chakra-sizes-container-lg:1024px;--chakra-sizes-container-xl:1280px;--chakra-zIndices-hide:-1;--chakra-zIndices-auto:auto;--chakra-zIndices-base:0;--chakra-zIndices-docked:10;--chakra-zIndices-dropdown:1000;--chakra-zIndices-sticky:1100;--chakra-zIndices-banner:1200;--chakra-zIndices-overlay:1300;--chakra-zIndices-modal:1400;--chakra-zIndices-popover:1500;--chakra-zIndices-skipLink:1600;--chakra-zIndices-toast:1700;--chakra-zIndices-tooltip:1800;--chakra-transition-property-common:background-color,border-color,color,fill,stroke,opacity,box-shadow,transform;--chakra-transition-property-colors:background-color,border-color,color,fill,stroke;--chakra-transition-property-dimensions:width,height;--chakra-transition-property-position:left,right,top,bottom;--chakra-transition-property-background:background-color,background-image,background-position;--chakra-transition-easing-ease-in:cubic-bezier(0.4, 0, 1, 1);--chakra-transition-easing-ease-out:cubic-bezier(0, 0, 0.2, 1);--chakra-transition-easing-ease-in-out:cubic-bezier(0.4, 0, 0.2, 1);--chakra-transition-duration-ultra-fast:50ms;--chakra-transition-duration-faster:100ms;--chakra-transition-duration-fast:150ms;--chakra-transition-duration-normal:200ms;--chakra-transition-duration-slow:300ms;--chakra-transition-duration-slower:400ms;--chakra-transition-duration-ultra-slow:500ms;--chakra-blur-none:0;--chakra-blur-sm:4px;--chakra-blur-base:8px;--chakra-blur-md:12px;--chakra-blur-lg:16px;--chakra-blur-xl:24px;--chakra-blur-2xl:40px;--chakra-blur-3xl:64px;}</style><style data-emotion="css-global 1jqlf9g">html{line-height:1.5;-webkit-text-size-adjust:100%;font-family:system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;-moz-osx-font-smoothing:grayscale;touch-action:manipulation;}body{position:relative;min-height:100%;font-feature-settings:'kern';}*,*::before,*::after{border-width:0;border-style:solid;box-sizing:border-box;}main{display:block;}hr{border-top-width:1px;box-sizing:content-box;height:0;overflow:visible;}pre,code,kbd,samp{font-family:SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:1em;}a{background-color:transparent;color:inherit;-webkit-text-decoration:inherit;text-decoration:inherit;}abbr[title]{border-bottom:none;-webkit-text-decoration:underline;text-decoration:underline;-webkit-text-decoration:underline dotted;-webkit-text-decoration:underline dotted;text-decoration:underline dotted;}b,strong{font-weight:bold;}small{font-size:80%;}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline;}sub{bottom:-0.25em;}sup{top:-0.5em;}img{border-style:none;}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0;}button,input{overflow:visible;}button,select{text-transform:none;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner{border-style:none;padding:0;}fieldset{padding:0.35em 0.75em 0.625em;}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal;}progress{vertical-align:baseline;}textarea{overflow:auto;}[type="checkbox"],[type="radio"]{box-sizing:border-box;padding:0;}[type="number"]::-webkit-inner-spin-button,[type="number"]::-webkit-outer-spin-button{-webkit-appearance:none!important;}input[type="number"]{-moz-appearance:textfield;}[type="search"]{-webkit-appearance:textfield;outline-offset:-2px;}[type="search"]::-webkit-search-decoration{-webkit-appearance:none!important;}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit;}details{display:block;}summary{display:-webkit-box;display:-webkit-list-item;display:-ms-list-itembox;display:list-item;}template{display:none;}[hidden]{display:none!important;}body,blockquote,dl,dd,h1,h2,h3,h4,h5,h6,hr,figure,p,pre{margin:0;}button{background:transparent;padding:0;}fieldset{margin:0;padding:0;}ol,ul{margin:0;padding:0;}textarea{resize:vertical;}button,[role="button"]{cursor:pointer;}button::-moz-focus-inner{border:0!important;}table{border-collapse:collapse;}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit;}button,input,optgroup,select,textarea{padding:0;line-height:inherit;color:inherit;}img,svg,video,canvas,audio,iframe,embed,object{display:block;}img,video{max-width:100%;height:auto;}[data-js-focus-visible] :focus:not([data-focus-visible-added]){outline:none;box-shadow:none;}select::-ms-expand{display:none;}</style><style data-emotion="css-global 1of8e4g">body{font-family:var(--chakra-fonts-body);color:var(--chakra-colors-gray-800);background:var(--chakra-colors-white);transition-property:background-color;transition-duration:var(--chakra-transition-duration-normal);line-height:var(--chakra-lineHeights-base);}*::-webkit-input-placeholder{color:var(--chakra-colors-gray-400);}*::-moz-placeholder{color:var(--chakra-colors-gray-400);}*:-ms-input-placeholder{color:var(--chakra-colors-gray-400);}*::placeholder{color:var(--chakra-colors-gray-400);}*,*::before,::after{border-color:var(--chakra-colors-gray-200);word-wrap:break-word;}html,body{background:var(--chakra-colors-home-bg);}img,#write iframe{-webkit-filter:unset;filter:unset;transition-property:filter;transition-duration:var(--chakra-transition-duration-normal);}div{transition-property:background-color;transition-duration:var(--chakra-transition-duration-normal);}</style><style data-emotion="css 1ghv3an">.css-1ghv3an{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:flex-start;-webkit-box-align:flex-start;-ms-flex-align:flex-start;align-items:flex-start;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;height:unset;overflow:auto;-webkit-box-flex-flow:column;-webkit-flex-flow:column;-ms-flex-flow:column;flex-flow:column;-webkit-padding-start:0.5rem;padding-inline-start:0.5rem;-webkit-padding-end:0.5rem;padding-inline-end:0.5rem;}@media screen and (min-width: 30em){.css-1ghv3an{height:unset;-webkit-box-flex-flow:column;-webkit-flex-flow:column;-ms-flex-flow:column;flex-flow:column;}}@media screen and (min-width: 48em){.css-1ghv3an{height:100vh;-webkit-box-flex-flow:row;-webkit-flex-flow:row;-ms-flex-flow:row;flex-flow:row;}}</style><div class="css-1ghv3an"><style data-emotion="css xte4wg">.css-xte4wg{display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;position:unset;white-space:nowrap;vertical-align:middle;outline:2px solid transparent;outline-offset:2px;width:auto;line-height:1.2;border-radius:var(--chakra-radii-md);font-weight:var(--chakra-fontWeights-semibold);transition-property:var(--chakra-transition-property-common);transition-duration:var(--chakra-transition-duration-normal);height:var(--chakra-sizes-12);min-width:var(--chakra-sizes-12);font-size:var(--chakra-fontSizes-lg);-webkit-padding-start:var(--chakra-space-6);padding-inline-start:var(--chakra-space-6);-webkit-padding-end:var(--chakra-space-6);padding-inline-end:var(--chakra-space-6);background:var(--chakra-colors-gray-100);margin-top:1rem;top:3rem;}@media screen and (min-width: 30em){.css-xte4wg{position:unset;margin-top:1rem;}}@media screen and (min-width: 48em){.css-xte4wg{position:-webkit-sticky;position:sticky;margin-top:3rem;}}.css-xte4wg:focus,.css-xte4wg[data-focus]{box-shadow:var(--chakra-shadows-outline);}.css-xte4wg[disabled],.css-xte4wg[aria-disabled=true],.css-xte4wg[data-disabled]{opacity:0.4;cursor:not-allowed;box-shadow:var(--chakra-shadows-none);}.css-xte4wg:hover,.css-xte4wg[data-hover]{background:var(--chakra-colors-gray-200);}.css-xte4wg:hover[disabled],.css-xte4wg[data-hover][disabled],.css-xte4wg:hover[aria-disabled=true],.css-xte4wg[data-hover][aria-disabled=true],.css-xte4wg:hover[data-disabled],.css-xte4wg[data-hover][data-disabled]{background:var(--chakra-colors-gray-100);}.css-xte4wg:active,.css-xte4wg[data-active]{background:var(--chakra-colors-gray-300);}</style><button type="button" class="chakra-button css-xte4wg">BACK</button><style data-emotion="css a06krq">.css-a06krq{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;width:var(--chakra-sizes-full);-webkit-box-flex-flow:column;-webkit-flex-flow:column;-ms-flex-flow:column;flex-flow:column;-webkit-padding-start:unset;padding-inline-start:unset;-webkit-padding-end:unset;padding-inline-end:unset;}@media screen and (min-width: 30em){.css-a06krq{width:var(--chakra-sizes-full);-webkit-padding-start:unset;padding-inline-start:unset;-webkit-padding-end:unset;padding-inline-end:unset;}}@media screen and (min-width: 48em){.css-a06krq{width:55rem;-webkit-padding-start:1.5rem;padding-inline-start:1.5rem;-webkit-padding-end:1.5rem;padding-inline-end:1.5rem;}}@media screen and (min-width: 62em){.css-a06krq{width:55rem;}}@media screen and (min-width: 80em){.css-a06krq{width:55rem;}}@media screen and (min-width: 96em){.css-a06krq{width:68rem;}}</style><div class="css-a06krq"><style data-emotion="css 1if659q">.css-1if659q{border-radius:10px;margin-top:1rem;box-shadow:var(--chakra-shadows-lg);background:var(--chakra-colors-white);overflow:hidden;-webkit-flex:1;-ms-flex:1;flex:1;}@media screen and (min-width: 30em){.css-1if659q{margin-top:1rem;}}@media screen and (min-width: 48em){.css-1if659q{margin-top:3rem;}}</style><div class="css-1if659q"><style data-emotion="css 81xunj">.css-81xunj{padding:1rem;}@media screen and (min-width: 30em){.css-81xunj{padding:1rem;}}@media screen and (min-width: 48em){.css-81xunj{padding:2rem;}}</style><article class="css-81xunj"><header class="css-0"><style data-emotion="css 1m7qnzk">.css-1m7qnzk{font-family:var(--chakra-fonts-heading);font-weight:var(--chakra-fontWeights-bold);font-size:var(--chakra-fontSizes-3xl);line-height:1.33;margin-bottom:1rem;color:rgba(0, 0, 0, 0.85);}@media screen and (min-width: 48em){.css-1m7qnzk{font-size:var(--chakra-fontSizes-4xl);line-height:1.2;}}</style><h1 class="chakra-heading css-1m7qnzk">JavaScript-类</h1><style data-emotion="css acwcvw">.css-acwcvw{margin-bottom:1rem;}</style><div class="css-acwcvw"><style data-emotion="css 1kpd5c2">.css-1kpd5c2{display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;vertical-align:top;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;max-width:100%;font-weight:var(--chakra-fontWeights-medium);line-height:1.2;outline:2px solid transparent;outline-offset:2px;min-height:1.5rem;min-width:1.5rem;font-size:var(--chakra-fontSizes-sm);border-radius:var(--chakra-radii-md);-webkit-padding-start:var(--chakra-space-2);padding-inline-start:var(--chakra-space-2);-webkit-padding-end:var(--chakra-space-2);padding-inline-end:var(--chakra-space-2);background:var(--chakra-colors-gray-100);color:var(--chakra-colors-gray-800);}.css-1kpd5c2:focus,.css-1kpd5c2[data-focus]{box-shadow:var(--chakra-shadows-outline);}</style><span class="css-1kpd5c2">JavaScript</span></div><style data-emotion="css x8djax">.css-x8djax{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;color:var(--chakra-colors-gray-600);}</style><div class="css-x8djax"><style data-emotion="css 1lr2xj">.css-1lr2xj{width:1em;height:1em;display:inline-block;line-height:1em;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;color:currentColor;margin-right:0.5rem;}</style><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" focusable="false" class="chakra-icon css-1lr2xj" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg><style data-emotion="css 129gw94">.css-129gw94{line-height:0;}</style><time dateTime="2021-07-12T15:19:24.000Z" class="css-129gw94">2021/07/12</time></div></header><style data-emotion="css i51og3">.css-i51og3{margin-top:2rem;}</style><section id="write" class="css-i51og3"><h2 id="对象">对象</h2>
+<h3 id="将数组当作对象">将数组当作对象</h3>
+<p>数组和对象的差距貌似并不大，好像完全可以将一个数组当作对象使用，但这并不是一个好主意。数组和普通的对象都根据其对应的行为和用途进行了优化，所以最好只用对象来存储键/值对，只用数组来存储下标/值对。</p>
+<p>如果试图给一个数组添加一个类似数字的属性，例如字符串<code>&#x27;3&#x27;</code>，那么在数组进行存储之后会将其作为下标，并且转为数字。</p>
+<pre><style data-emotion="css 19bp9bt">.css-19bp9bt{display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;position:absolute;white-space:nowrap;vertical-align:middle;outline:2px solid transparent;outline-offset:2px;width:auto;line-height:1.2;border-radius:var(--chakra-radii-md);font-weight:var(--chakra-fontWeights-semibold);transition-property:var(--chakra-transition-property-common);transition-duration:var(--chakra-transition-duration-normal);height:var(--chakra-sizes-6);min-width:var(--chakra-sizes-6);font-size:var(--chakra-fontSizes-xs);-webkit-padding-start:var(--chakra-space-2);padding-inline-start:var(--chakra-space-2);-webkit-padding-end:var(--chakra-space-2);padding-inline-end:var(--chakra-space-2);background:var(--chakra-colors-teal-500);color:var(--chakra-colors-white);top:5px;right:5px;}.css-19bp9bt:focus,.css-19bp9bt[data-focus]{box-shadow:var(--chakra-shadows-outline);}.css-19bp9bt[disabled],.css-19bp9bt[aria-disabled=true],.css-19bp9bt[data-disabled]{opacity:0.4;cursor:not-allowed;box-shadow:var(--chakra-shadows-none);}.css-19bp9bt:hover,.css-19bp9bt[data-hover]{background:var(--chakra-colors-teal-600);}.css-19bp9bt:hover[disabled],.css-19bp9bt[data-hover][disabled],.css-19bp9bt:hover[aria-disabled=true],.css-19bp9bt[data-hover][aria-disabled=true],.css-19bp9bt:hover[data-disabled],.css-19bp9bt[data-hover][data-disabled]{background:var(--chakra-colors-teal-500);}.css-19bp9bt:active,.css-19bp9bt[data-active]{background:var(--chakra-colors-teal-700);}</style><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> arr = []
+arr.<span class="hljs-property">a</span> = <span class="hljs-number">123</span>
+arr.<span class="hljs-property">length</span>  <span class="hljs-comment">// 0</span>
+arr[<span class="hljs-string">&#x27;3&#x27;</span>] = <span class="hljs-number">333</span>
+arr.<span class="hljs-property">length</span>  <span class="hljs-comment">// 4</span>
+arr  <span class="hljs-comment">// (4) [空 ×3, 333, a: 123]</span>
+</code></pre>
+<h3 id="get">[[Get]]</h3>
+<p>对象属性访问有些很微妙同时非常重要的细节，例如一次经典的属性访问：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">const</span> obj = {
+  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;xfy&#x27;</span>,
+};
+obj.<span class="hljs-property">name</span>;
+</code></pre>
+<p><code>obj.name</code>是一次属性访问，但这不是简单的在对象 obj 中查找这个属性。</p>
+<p>在语言规范中，<code>obj.name</code>在 obj 上实现了<code>[[Get]]</code>操作（这有点类似于函数调用：<code>[[Get]]()</code>）。对象默认的<code>[[Get]]</code>操作会先在该对象中查找是否具有名称相同的属性，如果有就返回。</p>
+<p>如果没有找到名称相同的属性，则会继续遍历原型链，直到找到为止。如果原型链上也没有找到同名的属性，那么<code>[[Get]]</code>操作就会返回 undefined。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js">obj.<span class="hljs-property">age</span>; <span class="hljs-comment">// undefined</span>
+</code></pre>
+<p>这和访问变量时行为略微不同，如果引用了一个当前词法作用域中不存在的变量，则会抛出 ReferenceError。</p>
+<p>所以仅通过返回值无法判断一个属性是否存在：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">const</span> myObj = {
+  <span class="hljs-attr">a</span>: <span class="hljs-literal">undefined</span>,
+};
+myObj.<span class="hljs-property">a</span>; <span class="hljs-comment">// undefined</span>
+myObj.<span class="hljs-property">b</span>; <span class="hljs-comment">// undefined</span>
+</code></pre>
+<h3 id="put">[[Put]]</h3>
+<p>有<code>[[Get]]</code>操作就有对应的<code>[[Put]]</code>操作。<code>[[Put]]</code>被触发时，实际行为取决于很多因素，包括对象中是否已经存在这个属性。</p>
+<p>如果已经存在这个属性，<code>[[Put]]</code>算法大概会检查这些内容：</p>
+<ol>
+<li>属性是否是访问描述符 Setter？如果是，则直接调用 Setter。</li>
+<li>属性的数据描述符中 writable 是否是 false？如果是，非严格模式下静默失败，严格模式抛出 TypeError 异常。</li>
+<li>如果都不是，将该值设置为属性的值。</li>
+</ol>
+<h3 id="getter-和-setter">Getter 和 Setter</h3>
+<p>对象有默认的<code>[[Get]]</code>与<code>[[Put]]</code>操作可以分别控制属性值的设置与获取。在 ES5 中可以是使用 getter 和 setter 来改写单个属性的默认操作。</p>
+<blockquote>
+<p>目前只能改写对象的某个属性，未来可能能够修改整个对象的默认行为。</p>
+</blockquote>
+<p>当给一个属性定义了一个 getter 或者 setter 时，这个属性会被定义为“访问描述符”（和“数据描述符”相对）。这会使其忽略他们的 value 和 writable 属性，取而代之的时 set 与 get（还有 configurable 和 enumerable）特性。</p>
+<p>两种定义方式相同，都会在对象中创建一个不包含值的属性。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> obj = {
+  <span class="hljs-keyword">get</span> <span class="hljs-title hljs-function">a</span>() {
+    <span class="hljs-keyword">return</span> <span class="hljs-number">123</span>;
+  },
+};
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(obj.<span class="hljs-property">a</span>);
+
+<span class="hljs-title hljs-class">Object</span>.<span class="hljs-title hljs-function">defineProperty</span>(obj, <span class="hljs-string">&#x27;b&#x27;</span>, {
+  <span class="hljs-attr">get</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">a</span> * <span class="hljs-number">2</span>;
+  },
+});
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(obj.<span class="hljs-property">b</span>);
+</code></pre>
+<p>getter 和 setter 通常成对出现</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> myObj = {
+  <span class="hljs-keyword">get</span> <span class="hljs-title hljs-function">a</span>() {
+    <span class="hljs-keyword">return</span> <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">_a_</span>;
+  },
+  <span class="hljs-keyword">set</span> <span class="hljs-title hljs-function">a</span>(<span class="hljs-params">val</span>) {
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">_a_</span> = val * <span class="hljs-number">3.14</span>;
+  },
+};
+myObj.<span class="hljs-property">a</span> = <span class="hljs-number">15</span>;
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(myObj.<span class="hljs-property">a</span>);
+</code></pre>
+<h3 id="存在性">存在性</h3>
+<p>前面介绍过一般情况下对象无法区分属性值不存在还是其值为 undefined。我们可以使用<code>in</code>操作符与<code>Object.hasOwnProperty()</code>方法来判断一个对象中是否有这个属性。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> obj = {
+  <span class="hljs-attr">a</span>: <span class="hljs-number">123</span>,
+};
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-string">&#x27;a&#x27;</span> <span class="hljs-keyword">in</span> obj);
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-string">&#x27;b&#x27;</span> <span class="hljs-keyword">in</span> obj);
+
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(obj.<span class="hljs-title hljs-function">hasOwnProperty</span>(<span class="hljs-string">&#x27;a&#x27;</span>));
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(obj.<span class="hljs-title hljs-function">hasOwnProperty</span>(<span class="hljs-string">&#x27;b&#x27;</span>));
+</code></pre>
+<p>这两个方法不同的是：</p>
+<ul>
+<li><code>in</code>会检查属性是否存在于对象以及原型链中；</li>
+<li><code>Object.hasOwnProperty()</code>只会检查属性是否在对象中。</li>
+</ul>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> obj = {
+  <span class="hljs-attr">a</span>: <span class="hljs-number">123</span>,
+};
+
+<span class="hljs-keyword">let</span> myObj = <span class="hljs-title hljs-class">Object</span>.<span class="hljs-title hljs-function">create</span>(obj);
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-string">&#x27;a&#x27;</span> <span class="hljs-keyword">in</span> myObj);
+</code></pre>
+<p>另外，enumerable 属性描述符直接影响到<code>for/in</code>的遍历，不可枚举的属性<code>for/in</code>会直接忽略。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> obj = {
+  <span class="hljs-attr">a</span>: <span class="hljs-number">123</span>,
+};
+
+<span class="hljs-title hljs-class">Object</span>.<span class="hljs-title hljs-function">defineProperty</span>(obj, <span class="hljs-string">&#x27;b&#x27;</span>, {
+  <span class="hljs-attr">enumerable</span>: <span class="hljs-literal">false</span>,
+  <span class="hljs-attr">value</span>: <span class="hljs-number">456</span>,
+});
+
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> i <span class="hljs-keyword">in</span> obj) {
+  <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(i);
+}
+</code></pre>
+<p>还有另外几个方法也能区分属性是否可枚举：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> obj = {
+  <span class="hljs-attr">a</span>: <span class="hljs-number">123</span>,
+};
+
+<span class="hljs-title hljs-class">Object</span>.<span class="hljs-title hljs-function">defineProperty</span>(obj, <span class="hljs-string">&#x27;b&#x27;</span>, {
+  <span class="hljs-attr">enumerable</span>: <span class="hljs-literal">false</span>,
+  <span class="hljs-attr">value</span>: <span class="hljs-number">456</span>,
+});
+
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(obj.<span class="hljs-title hljs-function">propertyIsEnumerable</span>(<span class="hljs-string">&#x27;a&#x27;</span>));
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(obj.<span class="hljs-title hljs-function">propertyIsEnumerable</span>(<span class="hljs-string">&#x27;b&#x27;</span>));
+
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-title hljs-class">Object</span>.<span class="hljs-title hljs-function">keys</span>(obj));
+
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-title hljs-class">Object</span>.<span class="hljs-title hljs-function">getOwnPropertyNames</span>(obj));
+</code></pre>
+<p>他们的区别是：</p>
+<ul>
+<li><code>propertyIsEnumerable()</code>当前对象中的属性是否可枚举，不检查原型链；</li>
+<li><code>Object.keys()</code>返回当前对象所有可枚举属性的数组；</li>
+<li><code>getOwnPropertyNames()</code>会返回对象的所有属性，无论是否可枚举；</li>
+</ul>
+<h3 id="遍历">遍历</h3>
+<p>这里记录下<code>[Symbol.iterator]()</code>方法的一些使用习惯。一个可迭代对象需要拥有<code>[Symbol.iterator]()</code>方法才是可迭代对象，而<code>[Symbol.iterator]()</code>方法是这样组成的：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> obj = {
+  <span class="hljs-attr">start</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">end</span>: <span class="hljs-number">10</span>,
+  [<span class="hljs-title hljs-class">Symbol</span>.<span class="hljs-property">iterator</span>]() { <span class="hljs-comment">// Symbol.iterator是对象中的一个方法</span>
+    <span class="hljs-keyword">return</span> { <span class="hljs-comment">// 它返回一个next方法</span>
+      <span class="hljs-attr">next</span>: <span class="hljs-function">() =&gt;</span> {
+        <span class="hljs-keyword">return</span> { <span class="hljs-comment">// next方法还需要返回一个包含 value 和 done 的对象</span>
+          <span class="hljs-attr">value</span>: ++<span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">start</span>,
+          <span class="hljs-attr">done</span>: <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">start</span> &gt; <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">end</span>,
+        };
+      },
+    };
+  },
+};
+</code></pre>
+<p>Symbol.iterator 是对象中的一个方法，它返回一个 next 方法（当然也可以不返回），而 next 方法还需要返回一个包含 value 和 done 的对象。这样才构成了一个可迭代的对象。</p>
+<p>Symbol.iterator 方法可以直接通过 this 访问原对象，而 next 方法是 Symbol.iterator 方法返回的一个方法，它需要通过 this 来获取原本对象时就需要使用箭头函数，因为普通函数会有自己的 this 值。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> obj = {
+  <span class="hljs-attr">start</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">end</span>: <span class="hljs-number">10</span>,
+  [<span class="hljs-title hljs-class">Symbol</span>.<span class="hljs-property">iterator</span>]() {
+    <span class="hljs-keyword">return</span> {
+      <span class="hljs-title hljs-function">next</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-keyword">return</span> {
+          <span class="hljs-attr">value</span>: ++<span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">start</span>, <span class="hljs-comment">// undefined</span>
+          <span class="hljs-attr">done</span>: <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">start</span> &gt; <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">end</span>,
+        };
+      },
+    };
+  },
+};
+</code></pre>
+<p>另外，Symbol.iterator 也可以不返回 next 方法，它通过返回 this，然后在原对象中定义一个 next 方法。这样迭代器就照样能找到 next 方法，且能够使用 this 了。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-comment">// 这样也是可以的</span>
+<span class="hljs-keyword">let</span> obj = {
+  <span class="hljs-attr">start</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">end</span>: <span class="hljs-number">10</span>,
+  [<span class="hljs-title hljs-class">Symbol</span>.<span class="hljs-property">iterator</span>]() {
+    <span class="hljs-keyword">return</span> <span class="hljs-variable hljs-language">this</span>;
+  },
+  <span class="hljs-title hljs-function">next</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">return</span> {
+      <span class="hljs-attr">value</span>: ++<span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">start</span>,
+      <span class="hljs-attr">done</span>: <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">start</span> &gt; <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">end</span>,
+    };
+  },
+};
+</code></pre>
+<h2 id="类">类</h2>
+<p>类是一种设计模式。许多语言提供了对于面向类软件设计的原生语法。JavaScript 也有类似的语法，但是和其他语言的类完全不同。</p>
+<p>类意味着复制。</p>
+<p>传统的类被实例化时，它的行为会被复制到实例中。类被继承时，行为也会被复制到子类中。</p>
+<p>多态（在继承链的不同层次名称相同但是功能不同的函数）看起来似乎是从子类中引用父类，但是本质上引用的其实是复制的结果。</p>
+<p>JavaScript 并不会（像类那样）自动创建对象的副本。</p>
+<h2 id="原型">原型</h2>
+<p>考虑原型链之前先来看下什么是原型。我在《JavaScript 权威指南》中读到的最容易理解的一句话就是：对象不仅仅是简单的字符串（和 Symbol）到值的映射。除了维持自己的属性之外，JavaScript 对象也可以从其他对象继承属性，这个其他对象称其为“原型”。</p>
+<p>JavaScript 与传统的 OOP 语言不同的是，它没有通常的类的概念。对象的方法通常是继承来的属性，而这种“原型式继承”也是 JavaScript 的主要特性。</p>
+<p>JavaScript 的对象有个特殊的<code>[[Prototype]]</code>内置属性，也就是原型，其实就是对于其他对象的引用。几乎所有对象在创建时<code>[[Prototype]]</code>属性都会被赋予一个非空的值。一个对象的原型是其他的对象的引用，而其他的对象也会拥有原型，这样就形成了所谓的“原型链”。看上去和作用域链有点类似，虽然他们是两种东西，但是某些查找值的行为确实很类似。</p>
+<p><code>[[Prototype]]</code>引用有什么用呢，上述介绍过<code>[[Get]]</code>操作会在当前对象内寻找指定的属性，如果找不到，它就会继续上<code>[[Prototype]]</code>上寻找。</p>
+<blockquote>
+<p>这里对<code>[[Get]]</code>的讨论是不考虑 ES6 的 Proxy 的情况下的。</p>
+</blockquote>
+<p>这样的代码在前面可能已经见过，<code>Object.create</code>应该是用来描述原型最方便的方法了。先不考虑它的实现，它在这里的作用就是将 obj 设置为 otherObj 的原型。这样在对<code>otherObj.name</code>实施<code>[[Get]]</code>操作时，otherObj 本身并 name 这个属性，但是它会随着原型查找到 obj 上，并成功的访问到了值。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> obj = {
+  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;xfy&#x27;</span>,
+};
+<span class="hljs-keyword">const</span> otherObj = <span class="hljs-title hljs-class">Object</span>.<span class="hljs-title hljs-function">create</span>(obj);
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(otherObj.<span class="hljs-property">name</span>);
+</code></pre>
+<h3 id="原型链的尽头">原型链的尽头</h3>
+<p>前面说过，一个对象的原型是其他的对象的引用，而其他的对象也会拥有原型，这样就形成了所谓的“原型链”。那么这样的原型链到哪里才是个头呢？</p>
+<p>所有普通的对象原型最终都会指向<code>Object.prototype</code>。这也就是为什么几乎所有对象都有<code>toString()</code>和<code>valueOf()</code>之类的方法了，因为他们是通过原型链访问到 Object 对应的方法的。</p>
+<h3 id="属性设置和屏蔽">属性设置和屏蔽</h3>
+<p>在我刚学 JavaScript 的时候，有人曾告诉过我，如果给一个对象设置一个和其原型链上同名的方法，那么就会屏蔽它的方法，访问到的是该对象自己定义的同名方法。这种情况称之为重写。</p>
+<p>重写方法这里就不多说了，但重写远比我们想象中的更复杂。它只是多种情况下的一种。如果为一个对象 obj 赋值一个 foo 属性，假设它的原型链已经有这个同名的属性了，那么它会出现三种情况：</p>
+<ol>
+<li>如果在<code>[[Prototype]]</code>链上这个同名属性没有被设置为只读（<code>writable:false</code>）属性，那么就会直接在 obj 添加一个 foo 属性，它是屏蔽属性。</li>
+<li>如果<code>[[Prototype]]</code>链上这个同名属性为只读，那么无法修改已有属性或者在 obj 上创建屏蔽属性。在严格模式下会抛出一个错误，非严格模式下会静默失败。</li>
+<li>如果<code>[[Prototype]]</code>链上这个同名属性是一个 setter，那就一定会调用这个 setter。不会创建屏蔽属性，也会重新定义这个 setter。</li>
+</ol>
+<p>前面两种情况都好理解，来看下 setter 的情况：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">let</span> myObj = {
+  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;xfy&#x27;</span>,
+  <span class="hljs-keyword">set</span> <span class="hljs-title hljs-function">foo</span>(<span class="hljs-params">val</span>) {
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">_a_</span> = val * <span class="hljs-number">2</span>;
+  },
+  <span class="hljs-keyword">get</span> <span class="hljs-title hljs-function">foo</span>() {
+    <span class="hljs-keyword">return</span> <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">_a_</span>;
+  },
+};
+<span class="hljs-keyword">const</span> obj = <span class="hljs-title hljs-class">Object</span>.<span class="hljs-title hljs-function">create</span>(myObj);
+obj.<span class="hljs-property">foo</span> = <span class="hljs-string">&#x27;110&#x27;</span>;
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(obj.<span class="hljs-property">foo</span>); <span class="hljs-comment">// 220</span>
+</code></pre>
+<p>也就说属性屏蔽只是三种情况种的一种而已。</p>
+<blockquote>
+<p>第二种令人意外的情况主要是为了模拟类属性的继承。更令人意外的是它只会发生在使用<code>=</code>赋值中，使用<code>Object.defineProperty()</code>并不会受到影响。</p>
+</blockquote>
+<h3 id="原型式继承">原型式继承</h3>
+<p>本咸鱼曾经在读高程三的时候研究过 JavaScript 的原型式继承： <style data-emotion="css wox0k7">.css-wox0k7{transition-property:var(--chakra-transition-property-common);transition-duration:var(--chakra-transition-duration-fast);transition-timing-function:var(--chakra-transition-easing-ease-out);cursor:pointer;-webkit-text-decoration:none;text-decoration:none;outline:2px solid transparent;outline-offset:2px;color:inherit;display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}.css-wox0k7:hover,.css-wox0k7[data-hover]{-webkit-text-decoration:underline;text-decoration:underline;}.css-wox0k7:focus,.css-wox0k7[data-focus]{box-shadow:var(--chakra-shadows-outline);}</style><a target="_blank" rel="noopener noreferrer" class="chakra-link css-wox0k7" href="https://www.defectink.com/defect/javascript-object-oriented-programming.html">JavaScript 面向对象的程序设计 - 🍭Defectink<style data-emotion="css 2y6psj">.css-2y6psj{width:1em;height:1em;display:inline-block;line-height:1em;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;color:currentColor;vertical-align:middle;-webkit-margin-start:2px;margin-inline-start:2px;-webkit-margin-end:2px;margin-inline-end:2px;}</style><svg viewBox="0 0 24 24" focusable="false" class="chakra-icon css-2y6psj"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><path d="M15 3h6v6"></path><path d="M10 14L21 3"></path></g></svg></a> 。所以这里不再赘述关于构造函数还有模拟类的历史问题等，这里记录一些那篇文章没有提到的东西。</p>
+<p>那篇文章里记录过 Douglas Crockford 所介绍的实现继承的方法。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">object</span>(<span class="hljs-params">o</span>) {
+    <span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">F</span>(<span class="hljs-params"></span>) {};
+    F.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> = o;
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title hljs-function">F</span>();
+}
+</code></pre>
+<p>也就是<code>Object.create()</code>。</p>
+<p>但当时并没有讨论构造函数之间的继承为什么用这种方式。如果有两个构造函数 Foo 和 Bar，假设 Bar 需要继承自 Foo，那么这两种写法为何不行？</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-comment">// 引用机制！</span>
+<span class="hljs-title hljs-class">Bar</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> = <span class="hljs-title hljs-class">Foo</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>;
+<span class="hljs-comment">// 可能会有副作用</span>
+<span class="hljs-title hljs-class">Bar</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Foo</span>();
+</code></pre>
+<p>第一种方法有很严重的问题，因为 JavaScript 中的对象并不是按值赋值的，而是而引用赋值的。直接将<code>Bar.prototype = Foo.prototype</code>，那么二者就会关联起来，任何在子类原型上的修改都会翻译到父类原型上，因为他们本质上是一个 prototype。</p>
+<p>第二种方法确实可能正常关联，但是如果父类 Foo 有一些副作用操作（例如修改状态、注册到其他对象，给 this 添加属性，等等），这样就会影响到子类创建的实例。</p>
+<p>所以合适的方法就是使用<code>Object.create()</code>。但这是在 ES6 之前的情况，ES6 添加了新的辅助函数<code>Object.setPrototypeOf()</code>，可以用标准且可靠的方法来修改关联。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-comment">// ES6 之前需要抛弃默认的 Bar.prototype</span>
+<span class="hljs-title hljs-class">Bar</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> = <span class="hljs-title hljs-class">Object</span>.<span class="hljs-title hljs-function">create</span>(<span class="hljs-title hljs-class">Foo</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>);
+<span class="hljs-comment">// ES6 之后可以直接修改现有的 Bar.prototype</span>
+<span class="hljs-title hljs-class">Object</span>.<span class="hljs-title hljs-function">setPrototypeOf</span>(<span class="hljs-title hljs-class">Bar</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>, <span class="hljs-title hljs-class">Foo</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>);
+</code></pre>
+<h3 id="检查类关联">检查“类”关联</h3>
+<p>在传统的面向类的环境中，检查一个实例（JavaScript 的对象）的继承祖先（JavaScript 的委托关联）通常被称之为内省（反射）。</p>
+<p>在 JavaScript 中也有类似的操作：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">Foo</span>(<span class="hljs-params"></span>) {}
+<span class="hljs-keyword">const</span> obj = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Foo</span>();
+
+obj <span class="hljs-keyword">instanceof</span> <span class="hljs-title hljs-class">Foo</span>; <span class="hljs-comment">// true</span>
+</code></pre>
+<p>instanceof 操作符的左侧是一个对象，右侧是一个函数。它回答的问题是：在 obj 的整条原型链<code>[[Prototype]]</code>上是否有<code>Foo.prototype</code>指向的对象？</p>
+<p>但这个方法只能用在对象和函数之间的关系，如果需要判断两个对象之间是否通过<code>[[Prototype]]</code>关联，只用 instanceof 无法实现。</p>
+<p>可以使用<code>.isPrototypeOf()</code>来检查两个对象之间是否关联，当然，它也可以用来检查“实例”和“类”之间的关联。</p>
+<p>因为 JavaScript 中的类本质上就是使用原型链模仿出的结果，所以判断 obj 与其构造函数 Foo 之间的关系也可以这样：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-title hljs-class">Foo</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-title hljs-function">isPrototypeOf</span>(obj);
+</code></pre>
+<p>由于类是虚假的，实际上我们并不需要 Foo，只需要它的原型对象 prototype。<code>.isPrototypeOf()</code>回答的问题是：在 obj 的整个原型链中是否出现过<code>Foo.prototype</code>？</p>
+<p>在 ES5 中我们可以直接获取一个对象的原型：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">class</span> <span class="hljs-title hljs-class">Foo</span> {
+  <span class="hljs-title hljs-function">constructor</span>(<span class="hljs-params">name</span>) {
+    <span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">name</span> = name;
+  }
+  <span class="hljs-title hljs-function">sayName</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-variable hljs-language">this</span>.<span class="hljs-property">name</span>);
+  }
+}
+
+<span class="hljs-keyword">const</span> obj = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Foo</span>(<span class="hljs-string">&#x27;xfy&#x27;</span>);
+
+<span class="hljs-title hljs-class">Object</span>.<span class="hljs-title hljs-function">getPrototypeOf</span>(obj)
+<span class="hljs-comment">// {constructor: ƒ, sayName: ƒ}</span>
+<span class="hljs-comment">// constructor: class Foo</span>
+<span class="hljs-comment">// sayName: ƒ sayName()</span>
+<span class="hljs-comment">// __proto__: Object</span>
+</code></pre>
+<p>如果经常和 Chrome 之类的浏览器打交道的话，可能还在对象中见到过<code>.__proto__</code>属性。这个属性神奇的引用了<code>[[Prototype]]</code>对象，并且在 ES6 成为了标准。</p></section></article></div><style data-emotion="css 1i6v8fa">.css-1i6v8fa{min-height:346px;}@media screen and (min-width: 30em){.css-1i6v8fa{min-height:350px;}}</style><div class="css-1i6v8fa"></div><style data-emotion="css 3ydw18">.css-3ydw18{height:3px;width:50px;background:var(--chakra-colors-gray-500);border-radius:var(--chakra-radii-xl);margin-top:2.5rem;}</style><div class="css-3ydw18"></div><style data-emotion="css 1lwvw50">.css-1lwvw50{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-flex-flow:column;-webkit-flex-flow:column;-ms-flex-flow:column;flex-flow:column;padding-top:1.5rem;padding-bottom:1.5rem;}</style><footer class="css-1lwvw50"><style data-emotion="css yld109">.css-yld109{color:var(--chakra-colors-gray-600);font-weight:var(--chakra-fontWeights-bold);margin-bottom:0.5rem;}</style><p class="chakra-text css-yld109">©<!-- -->2022<!-- --> 小肥羊</p><style data-emotion="css 3eyczr">.css-3eyczr{color:var(--chakra-colors-gray-400);font-size:small;}</style><p class="chakra-text css-3eyczr">Powered by Next.js ❤️ Chakra UI</p></footer></div><style data-emotion="css kl7qz4">.css-kl7qz4{display:none;position:-webkit-sticky;position:sticky;top:3rem;margin-top:3rem;}@media screen and (min-width: 30em){.css-kl7qz4{display:none;}}@media screen and (min-width: 48em){.css-kl7qz4{display:none;}}@media screen and (min-width: 62em){.css-kl7qz4{display:block;}}</style><div class="css-kl7qz4"><h2 id="table-of-contents">Table of contents</h2>
+<ul>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#%E5%AF%B9%E8%B1%A1">对象</a></p>
+<ul>
+<li><a class="chakra-link css-wox0k7" href="#%E5%B0%86%E6%95%B0%E7%BB%84%E5%BD%93%E4%BD%9C%E5%AF%B9%E8%B1%A1">将数组当作对象</a></li>
+<li><a class="chakra-link css-wox0k7" href="#get">[[Get]]</a></li>
+<li><a class="chakra-link css-wox0k7" href="#put">[[Put]]</a></li>
+<li><a class="chakra-link css-wox0k7" href="#getter-%E5%92%8C-setter">Getter 和 Setter</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E5%AD%98%E5%9C%A8%E6%80%A7">存在性</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E9%81%8D%E5%8E%86">遍历</a></li>
+</ul>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#%E7%B1%BB">类</a></p>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#%E5%8E%9F%E5%9E%8B">原型</a></p>
+<ul>
+<li><a class="chakra-link css-wox0k7" href="#%E5%8E%9F%E5%9E%8B%E9%93%BE%E7%9A%84%E5%B0%BD%E5%A4%B4">原型链的尽头</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E5%B1%9E%E6%80%A7%E8%AE%BE%E7%BD%AE%E5%92%8C%E5%B1%8F%E8%94%BD">属性设置和屏蔽</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E5%8E%9F%E5%9E%8B%E5%BC%8F%E7%BB%A7%E6%89%BF">原型式继承</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E6%A3%80%E6%9F%A5%E7%B1%BB%E5%85%B3%E8%81%94">检查“类”关联</a></li>
+</ul>
+</li>
+</ul></div></div><span></span></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"postData":{"id":"javascript-class","content":"\n## 对象\n\n### 将数组当作对象\n\n数组和对象的差距貌似并不大，好像完全可以将一个数组当作对象使用，但这并不是一个好主意。数组和普通的对象都根据其对应的行为和用途进行了优化，所以最好只用对象来存储键/值对，只用数组来存储下标/值对。\n\n如果试图给一个数组添加一个类似数字的属性，例如字符串`'3'`，那么在数组进行存储之后会将其作为下标，并且转为数字。\n\n```js\nlet arr = []\narr.a = 123\narr.length  // 0\narr['3'] = 333\narr.length  // 4\narr  // (4) [空 ×3, 333, a: 123]\n```\n\n### [[Get]]\n\n对象属性访问有些很微妙同时非常重要的细节，例如一次经典的属性访问：\n\n```js\nconst obj = {\n  name: 'xfy',\n};\nobj.name;\n```\n\n`obj.name`是一次属性访问，但这不是简单的在对象 obj 中查找这个属性。\n\n在语言规范中，`obj.name`在 obj 上实现了`[[Get]]`操作（这有点类似于函数调用：`[[Get]]()`）。对象默认的`[[Get]]`操作会先在该对象中查找是否具有名称相同的属性，如果有就返回。\n\n如果没有找到名称相同的属性，则会继续遍历原型链，直到找到为止。如果原型链上也没有找到同名的属性，那么`[[Get]]`操作就会返回 undefined。\n\n```js\nobj.age; // undefined\n```\n\n这和访问变量时行为略微不同，如果引用了一个当前词法作用域中不存在的变量，则会抛出 ReferenceError。\n\n所以仅通过返回值无法判断一个属性是否存在：\n\n```js\nconst myObj = {\n  a: undefined,\n};\nmyObj.a; // undefined\nmyObj.b; // undefined\n```\n\n### [[Put]]\n\n有`[[Get]]`操作就有对应的`[[Put]]`操作。`[[Put]]`被触发时，实际行为取决于很多因素，包括对象中是否已经存在这个属性。\n\n如果已经存在这个属性，`[[Put]]`算法大概会检查这些内容：\n\n1. 属性是否是访问描述符 Setter？如果是，则直接调用 Setter。\n2. 属性的数据描述符中 writable 是否是 false？如果是，非严格模式下静默失败，严格模式抛出 TypeError 异常。\n3. 如果都不是，将该值设置为属性的值。\n\n### Getter 和 Setter\n\n对象有默认的`[[Get]]`与`[[Put]]`操作可以分别控制属性值的设置与获取。在 ES5 中可以是使用 getter 和 setter 来改写单个属性的默认操作。\n\n\u003e 目前只能改写对象的某个属性，未来可能能够修改整个对象的默认行为。\n\n当给一个属性定义了一个 getter 或者 setter 时，这个属性会被定义为“访问描述符”（和“数据描述符”相对）。这会使其忽略他们的 value 和 writable 属性，取而代之的时 set 与 get（还有 configurable 和 enumerable）特性。\n\n两种定义方式相同，都会在对象中创建一个不包含值的属性。\n\n```js\nlet obj = {\n  get a() {\n    return 123;\n  },\n};\nconsole.log(obj.a);\n\nObject.defineProperty(obj, 'b', {\n  get: function () {\n    return this.a * 2;\n  },\n});\nconsole.log(obj.b);\n```\n\ngetter 和 setter 通常成对出现\n\n```js\nlet myObj = {\n  get a() {\n    return this._a_;\n  },\n  set a(val) {\n    this._a_ = val * 3.14;\n  },\n};\nmyObj.a = 15;\nconsole.log(myObj.a);\n```\n\n### 存在性\n\n前面介绍过一般情况下对象无法区分属性值不存在还是其值为 undefined。我们可以使用`in`操作符与`Object.hasOwnProperty()`方法来判断一个对象中是否有这个属性。\n\n```js\nlet obj = {\n  a: 123,\n};\nconsole.log('a' in obj);\nconsole.log('b' in obj);\n\nconsole.log(obj.hasOwnProperty('a'));\nconsole.log(obj.hasOwnProperty('b'));\n```\n\n这两个方法不同的是：\n\n* `in`会检查属性是否存在于对象以及原型链中；\n* `Object.hasOwnProperty()`只会检查属性是否在对象中。\n\n```js\nlet obj = {\n  a: 123,\n};\n\nlet myObj = Object.create(obj);\nconsole.log('a' in myObj);\n```\n\n另外，enumerable 属性描述符直接影响到`for/in`的遍历，不可枚举的属性`for/in`会直接忽略。\n\n```js\nlet obj = {\n  a: 123,\n};\n\nObject.defineProperty(obj, 'b', {\n  enumerable: false,\n  value: 456,\n});\n\nfor (const i in obj) {\n  console.log(i);\n}\n```\n\n还有另外几个方法也能区分属性是否可枚举：\n\n```js\nlet obj = {\n  a: 123,\n};\n\nObject.defineProperty(obj, 'b', {\n  enumerable: false,\n  value: 456,\n});\n\nconsole.log(obj.propertyIsEnumerable('a'));\nconsole.log(obj.propertyIsEnumerable('b'));\n\nconsole.log(Object.keys(obj));\n\nconsole.log(Object.getOwnPropertyNames(obj));\n```\n\n他们的区别是：\n\n* `propertyIsEnumerable()`当前对象中的属性是否可枚举，不检查原型链；\n* `Object.keys()`返回当前对象所有可枚举属性的数组；\n* `getOwnPropertyNames()`会返回对象的所有属性，无论是否可枚举；\n\n### 遍历\n\n这里记录下`[Symbol.iterator]()`方法的一些使用习惯。一个可迭代对象需要拥有`[Symbol.iterator]()`方法才是可迭代对象，而`[Symbol.iterator]()`方法是这样组成的：\n\n```js\nlet obj = {\n  start: 0,\n  end: 10,\n  [Symbol.iterator]() { // Symbol.iterator是对象中的一个方法\n    return { // 它返回一个next方法\n      next: () =\u003e {\n        return { // next方法还需要返回一个包含 value 和 done 的对象\n          value: ++this.start,\n          done: this.start \u003e this.end,\n        };\n      },\n    };\n  },\n};\n```\n\nSymbol.iterator 是对象中的一个方法，它返回一个 next 方法（当然也可以不返回），而 next 方法还需要返回一个包含 value 和 done 的对象。这样才构成了一个可迭代的对象。\n\nSymbol.iterator 方法可以直接通过 this 访问原对象，而 next 方法是 Symbol.iterator 方法返回的一个方法，它需要通过 this 来获取原本对象时就需要使用箭头函数，因为普通函数会有自己的 this 值。\n\n```js\nlet obj = {\n  start: 0,\n  end: 10,\n  [Symbol.iterator]() {\n    return {\n      next() {\n        return {\n          value: ++this.start, // undefined\n          done: this.start \u003e this.end,\n        };\n      },\n    };\n  },\n};\n```\n\n另外，Symbol.iterator 也可以不返回 next 方法，它通过返回 this，然后在原对象中定义一个 next 方法。这样迭代器就照样能找到 next 方法，且能够使用 this 了。\n\n```js\n// 这样也是可以的\nlet obj = {\n  start: 0,\n  end: 10,\n  [Symbol.iterator]() {\n    return this;\n  },\n  next() {\n    return {\n      value: ++this.start,\n      done: this.start \u003e this.end,\n    };\n  },\n};\n```\n\n## 类\n\n类是一种设计模式。许多语言提供了对于面向类软件设计的原生语法。JavaScript 也有类似的语法，但是和其他语言的类完全不同。\n\n类意味着复制。\n\n传统的类被实例化时，它的行为会被复制到实例中。类被继承时，行为也会被复制到子类中。\n\n多态（在继承链的不同层次名称相同但是功能不同的函数）看起来似乎是从子类中引用父类，但是本质上引用的其实是复制的结果。\n\nJavaScript 并不会（像类那样）自动创建对象的副本。\n\n## 原型\n\n考虑原型链之前先来看下什么是原型。我在《JavaScript 权威指南》中读到的最容易理解的一句话就是：对象不仅仅是简单的字符串（和 Symbol）到值的映射。除了维持自己的属性之外，JavaScript 对象也可以从其他对象继承属性，这个其他对象称其为“原型”。\n\nJavaScript 与传统的 OOP 语言不同的是，它没有通常的类的概念。对象的方法通常是继承来的属性，而这种“原型式继承”也是 JavaScript 的主要特性。\n\nJavaScript 的对象有个特殊的`[[Prototype]]`内置属性，也就是原型，其实就是对于其他对象的引用。几乎所有对象在创建时`[[Prototype]]`属性都会被赋予一个非空的值。一个对象的原型是其他的对象的引用，而其他的对象也会拥有原型，这样就形成了所谓的“原型链”。看上去和作用域链有点类似，虽然他们是两种东西，但是某些查找值的行为确实很类似。\n\n`[[Prototype]]`引用有什么用呢，上述介绍过`[[Get]]`操作会在当前对象内寻找指定的属性，如果找不到，它就会继续上`[[Prototype]]`上寻找。\n\n\u003e 这里对`[[Get]]`的讨论是不考虑 ES6 的 Proxy 的情况下的。\n\n这样的代码在前面可能已经见过，`Object.create`应该是用来描述原型最方便的方法了。先不考虑它的实现，它在这里的作用就是将 obj 设置为 otherObj 的原型。这样在对`otherObj.name`实施`[[Get]]`操作时，otherObj 本身并 name 这个属性，但是它会随着原型查找到 obj 上，并成功的访问到了值。\n\n```js\nlet obj = {\n  name: 'xfy',\n};\nconst otherObj = Object.create(obj);\nconsole.log(otherObj.name);\n```\n\n### 原型链的尽头\n\n前面说过，一个对象的原型是其他的对象的引用，而其他的对象也会拥有原型，这样就形成了所谓的“原型链”。那么这样的原型链到哪里才是个头呢？\n\n所有普通的对象原型最终都会指向`Object.prototype`。这也就是为什么几乎所有对象都有`toString()`和`valueOf()`之类的方法了，因为他们是通过原型链访问到 Object 对应的方法的。\n\n### 属性设置和屏蔽\n\n在我刚学 JavaScript 的时候，有人曾告诉过我，如果给一个对象设置一个和其原型链上同名的方法，那么就会屏蔽它的方法，访问到的是该对象自己定义的同名方法。这种情况称之为重写。\n\n重写方法这里就不多说了，但重写远比我们想象中的更复杂。它只是多种情况下的一种。如果为一个对象 obj 赋值一个 foo 属性，假设它的原型链已经有这个同名的属性了，那么它会出现三种情况：\n\n1. 如果在`[[Prototype]]`链上这个同名属性没有被设置为只读（`writable:false`）属性，那么就会直接在 obj 添加一个 foo 属性，它是屏蔽属性。\n2. 如果`[[Prototype]]`链上这个同名属性为只读，那么无法修改已有属性或者在 obj 上创建屏蔽属性。在严格模式下会抛出一个错误，非严格模式下会静默失败。\n3. 如果`[[Prototype]]`链上这个同名属性是一个 setter，那就一定会调用这个 setter。不会创建屏蔽属性，也会重新定义这个 setter。\n\n前面两种情况都好理解，来看下 setter 的情况：\n\n```js\nlet myObj = {\n  name: 'xfy',\n  set foo(val) {\n    this._a_ = val * 2;\n  },\n  get foo() {\n    return this._a_;\n  },\n};\nconst obj = Object.create(myObj);\nobj.foo = '110';\nconsole.log(obj.foo); // 220\n```\n\n也就说属性屏蔽只是三种情况种的一种而已。\n\n\u003e 第二种令人意外的情况主要是为了模拟类属性的继承。更令人意外的是它只会发生在使用`=`赋值中，使用`Object.defineProperty()`并不会受到影响。\n\n### 原型式继承\n\n本咸鱼曾经在读高程三的时候研究过 JavaScript 的原型式继承： [JavaScript 面向对象的程序设计 - 🍭Defectink](https://www.defectink.com/defect/javascript-object-oriented-programming.html) 。所以这里不再赘述关于构造函数还有模拟类的历史问题等，这里记录一些那篇文章没有提到的东西。\n\n那篇文章里记录过 Douglas Crockford 所介绍的实现继承的方法。\n\n```js\nfunction object(o) {\n    function F() {};\n    F.prototype = o;\n    return new F();\n}\n```\n\n也就是`Object.create()`。\n\n但当时并没有讨论构造函数之间的继承为什么用这种方式。如果有两个构造函数 Foo 和 Bar，假设 Bar 需要继承自 Foo，那么这两种写法为何不行？\n\n```js\n// 引用机制！\nBar.prototype = Foo.prototype;\n// 可能会有副作用\nBar.prototype = new Foo();\n```\n\n第一种方法有很严重的问题，因为 JavaScript 中的对象并不是按值赋值的，而是而引用赋值的。直接将`Bar.prototype = Foo.prototype`，那么二者就会关联起来，任何在子类原型上的修改都会翻译到父类原型上，因为他们本质上是一个 prototype。\n\n第二种方法确实可能正常关联，但是如果父类 Foo 有一些副作用操作（例如修改状态、注册到其他对象，给 this 添加属性，等等），这样就会影响到子类创建的实例。\n\n所以合适的方法就是使用`Object.create()`。但这是在 ES6 之前的情况，ES6 添加了新的辅助函数`Object.setPrototypeOf()`，可以用标准且可靠的方法来修改关联。\n\n```js\n// ES6 之前需要抛弃默认的 Bar.prototype\nBar.prototype = Object.create(Foo.prototype);\n// ES6 之后可以直接修改现有的 Bar.prototype\nObject.setPrototypeOf(Bar.prototype, Foo.prototype);\n```\n\n### 检查“类”关联\n\n在传统的面向类的环境中，检查一个实例（JavaScript 的对象）的继承祖先（JavaScript 的委托关联）通常被称之为内省（反射）。\n\n在 JavaScript 中也有类似的操作：\n\n```js\nfunction Foo() {}\nconst obj = new Foo();\n\nobj instanceof Foo; // true\n```\n\ninstanceof 操作符的左侧是一个对象，右侧是一个函数。它回答的问题是：在 obj 的整条原型链`[[Prototype]]`上是否有`Foo.prototype`指向的对象？\n\n但这个方法只能用在对象和函数之间的关系，如果需要判断两个对象之间是否通过`[[Prototype]]`关联，只用 instanceof 无法实现。\n\n可以使用`.isPrototypeOf()`来检查两个对象之间是否关联，当然，它也可以用来检查“实例”和“类”之间的关联。\n\n因为 JavaScript 中的类本质上就是使用原型链模仿出的结果，所以判断 obj 与其构造函数 Foo 之间的关系也可以这样：\n\n```js\nFoo.prototype.isPrototypeOf(obj);\n```\n\n由于类是虚假的，实际上我们并不需要 Foo，只需要它的原型对象 prototype。`.isPrototypeOf()`回答的问题是：在 obj 的整个原型链中是否出现过`Foo.prototype`？\n\n在 ES5 中我们可以直接获取一个对象的原型：\n\n```js\nclass Foo {\n  constructor(name) {\n    this.name = name;\n  }\n  sayName() {\n    console.log(this.name);\n  }\n}\n\nconst obj = new Foo('xfy');\n\nObject.getPrototypeOf(obj)\n// {constructor: ƒ, sayName: ƒ}\n// constructor: class Foo\n// sayName: ƒ sayName()\n// __proto__: Object\n```\n\n如果经常和 Chrome 之类的浏览器打交道的话，可能还在对象中见到过`.__proto__`属性。这个属性神奇的引用了`[[Prototype]]`对象，并且在 ES6 成为了标准。","desc":"对象\n\n将数组当作对象\n\n数组和对象的差距貌似并不大，好像完全可以将一个数组当作对象使用，但这并不是一个好主意。数组和普通的对象都根据其对应的行为和用途进行了优化，所以最好只用对象来存储键/值对，只用...","title":"JavaScript-类","date":"2021-07-12T15:19:24.000Z","tags":"JavaScript","categories":"笔记","url":"javascript-class"}},"__N_SSG":true},"page":"/p/[slug]","query":{"slug":"javascript-class"},"buildId":"k6NIc4JfXUsE09z9QnALx","isFallback":false,"dynamicIds":[3419,6929,9125,1189,2980,5106],"gsp":true,"scriptLoader":[]}</script></body></html>

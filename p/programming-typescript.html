@@ -1,0 +1,679 @@
+<!DOCTYPE html><html lang="en"><head><meta name="viewport" content="width=device-width"/><meta charSet="utf-8"/><link rel="shortcut icon" href="/images/img/favicon.webp"/><meta name="keywords" content="Blog RUA"/><meta name="description" content="Personal blog."/><meta name="author" content="Arthur,i@rua.plus"/><title>RUA - TypeScript编程</title><meta name="next-head-count" content="7"/><link rel="preload" href="/_next/static/css/39834862c769c308.css" as="style"/><link rel="stylesheet" href="/_next/static/css/39834862c769c308.css" data-n-g=""/><link rel="preload" href="/_next/static/css/c2a527101433f11d.css" as="style"/><link rel="stylesheet" href="/_next/static/css/c2a527101433f11d.css" data-n-p=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/_next/static/chunks/polyfills-5cd94c89d3acac5f.js"></script><script defer="" src="/_next/static/chunks/219-ddf2abc0472da9bd.js"></script><script defer="" src="/_next/static/chunks/419.d5302bfd9d8378c2.js"></script><script defer="" src="/_next/static/chunks/771.84a2737df445ba88.js"></script><script defer="" src="/_next/static/chunks/929.b2c0b4f7606bfefe.js"></script><script defer="" src="/_next/static/chunks/125.4ff7adc183744312.js"></script><script defer="" src="/_next/static/chunks/980.41f5e97cd35a6621.js"></script><script defer="" src="/_next/static/chunks/106.7a94988fd220337e.js"></script><script defer="" src="/_next/static/chunks/485-3e3bf066e6f4a6bd.js"></script><script defer="" src="/_next/static/chunks/189.ee2e569101c160eb.js"></script><script src="/_next/static/chunks/webpack-c08977534ec7c137.js" defer=""></script><script src="/_next/static/chunks/framework-5cd9e2157a4a6aee.js" defer=""></script><script src="/_next/static/chunks/main-472dbb675bbf7f67.js" defer=""></script><script src="/_next/static/chunks/pages/_app-a34fa0ed9496fbe8.js" defer=""></script><script src="/_next/static/chunks/84-43981acebe84e1d3.js" defer=""></script><script src="/_next/static/chunks/pages/p/%5Bslug%5D-684bfb16186b52fe.js" defer=""></script><script src="/_next/static/k6NIc4JfXUsE09z9QnALx/_buildManifest.js" defer=""></script><script src="/_next/static/k6NIc4JfXUsE09z9QnALx/_ssgManifest.js" defer=""></script><script src="/_next/static/k6NIc4JfXUsE09z9QnALx/_middlewareManifest.js" defer=""></script></head><body><script>(function setScript(initialValue) {
+  var mql = window.matchMedia("(prefers-color-scheme: dark)");
+  var systemPreference = mql.matches ? "dark" : "light";
+  var persistedPreference;
+
+  try {
+    persistedPreference = localStorage.getItem("chakra-ui-color-mode");
+  } catch (error) {
+    console.log("Chakra UI: localStorage is not available. Color mode persistence might not work as expected");
+  }
+
+  var isInStorage = typeof persistedPreference === "string";
+  var colorMode;
+
+  if (isInStorage) {
+    colorMode = persistedPreference;
+  } else {
+    colorMode = initialValue === "system" ? systemPreference : initialValue;
+  }
+
+  if (colorMode) {
+    var root = document.documentElement;
+    root.style.setProperty("--chakra-ui-color-mode", colorMode);
+  }
+})('light')</script><div id="__next"><style data-emotion="css-global 1r47v8">:host,:root{--chakra-ring-inset:var(--chakra-empty,/*!*/ /*!*/);--chakra-ring-offset-width:0px;--chakra-ring-offset-color:#fff;--chakra-ring-color:rgba(66, 153, 225, 0.6);--chakra-ring-offset-shadow:0 0 #0000;--chakra-ring-shadow:0 0 #0000;--chakra-space-x-reverse:0;--chakra-space-y-reverse:0;--chakra-colors-transparent:transparent;--chakra-colors-current:currentColor;--chakra-colors-black:#000000;--chakra-colors-white:#FFFFFF;--chakra-colors-whiteAlpha-50:rgba(255, 255, 255, 0.04);--chakra-colors-whiteAlpha-100:rgba(255, 255, 255, 0.06);--chakra-colors-whiteAlpha-200:rgba(255, 255, 255, 0.08);--chakra-colors-whiteAlpha-300:rgba(255, 255, 255, 0.16);--chakra-colors-whiteAlpha-400:rgba(255, 255, 255, 0.24);--chakra-colors-whiteAlpha-500:rgba(255, 255, 255, 0.36);--chakra-colors-whiteAlpha-600:rgba(255, 255, 255, 0.48);--chakra-colors-whiteAlpha-700:rgba(255, 255, 255, 0.64);--chakra-colors-whiteAlpha-800:rgba(255, 255, 255, 0.80);--chakra-colors-whiteAlpha-900:rgba(255, 255, 255, 0.92);--chakra-colors-blackAlpha-50:rgba(0, 0, 0, 0.04);--chakra-colors-blackAlpha-100:rgba(0, 0, 0, 0.06);--chakra-colors-blackAlpha-200:rgba(0, 0, 0, 0.08);--chakra-colors-blackAlpha-300:rgba(0, 0, 0, 0.16);--chakra-colors-blackAlpha-400:rgba(0, 0, 0, 0.24);--chakra-colors-blackAlpha-500:rgba(0, 0, 0, 0.36);--chakra-colors-blackAlpha-600:rgba(0, 0, 0, 0.48);--chakra-colors-blackAlpha-700:rgba(0, 0, 0, 0.64);--chakra-colors-blackAlpha-800:rgba(0, 0, 0, 0.80);--chakra-colors-blackAlpha-900:rgba(0, 0, 0, 0.92);--chakra-colors-gray-50:#F7FAFC;--chakra-colors-gray-100:#EDF2F7;--chakra-colors-gray-200:#E2E8F0;--chakra-colors-gray-300:#CBD5E0;--chakra-colors-gray-400:#A0AEC0;--chakra-colors-gray-500:#718096;--chakra-colors-gray-600:#4A5568;--chakra-colors-gray-700:#2D3748;--chakra-colors-gray-800:#1A202C;--chakra-colors-gray-900:#171923;--chakra-colors-red-50:#FFF5F5;--chakra-colors-red-100:#FED7D7;--chakra-colors-red-200:#FEB2B2;--chakra-colors-red-300:#FC8181;--chakra-colors-red-400:#F56565;--chakra-colors-red-500:#E53E3E;--chakra-colors-red-600:#C53030;--chakra-colors-red-700:#9B2C2C;--chakra-colors-red-800:#822727;--chakra-colors-red-900:#63171B;--chakra-colors-orange-50:#FFFAF0;--chakra-colors-orange-100:#FEEBC8;--chakra-colors-orange-200:#FBD38D;--chakra-colors-orange-300:#F6AD55;--chakra-colors-orange-400:#ED8936;--chakra-colors-orange-500:#DD6B20;--chakra-colors-orange-600:#C05621;--chakra-colors-orange-700:#9C4221;--chakra-colors-orange-800:#7B341E;--chakra-colors-orange-900:#652B19;--chakra-colors-yellow-50:#FFFFF0;--chakra-colors-yellow-100:#FEFCBF;--chakra-colors-yellow-200:#FAF089;--chakra-colors-yellow-300:#F6E05E;--chakra-colors-yellow-400:#ECC94B;--chakra-colors-yellow-500:#D69E2E;--chakra-colors-yellow-600:#B7791F;--chakra-colors-yellow-700:#975A16;--chakra-colors-yellow-800:#744210;--chakra-colors-yellow-900:#5F370E;--chakra-colors-green-50:#F0FFF4;--chakra-colors-green-100:#C6F6D5;--chakra-colors-green-200:#9AE6B4;--chakra-colors-green-300:#68D391;--chakra-colors-green-400:#48BB78;--chakra-colors-green-500:#38A169;--chakra-colors-green-600:#2F855A;--chakra-colors-green-700:#276749;--chakra-colors-green-800:#22543D;--chakra-colors-green-900:#1C4532;--chakra-colors-teal-50:#E6FFFA;--chakra-colors-teal-100:#B2F5EA;--chakra-colors-teal-200:#81E6D9;--chakra-colors-teal-300:#4FD1C5;--chakra-colors-teal-400:#38B2AC;--chakra-colors-teal-500:#319795;--chakra-colors-teal-600:#2C7A7B;--chakra-colors-teal-700:#285E61;--chakra-colors-teal-800:#234E52;--chakra-colors-teal-900:#1D4044;--chakra-colors-blue-50:#ebf8ff;--chakra-colors-blue-100:#bee3f8;--chakra-colors-blue-200:#90cdf4;--chakra-colors-blue-300:#63b3ed;--chakra-colors-blue-400:#4299e1;--chakra-colors-blue-500:#3182ce;--chakra-colors-blue-600:#2b6cb0;--chakra-colors-blue-700:#2c5282;--chakra-colors-blue-800:#2a4365;--chakra-colors-blue-900:#1A365D;--chakra-colors-cyan-50:#EDFDFD;--chakra-colors-cyan-100:#C4F1F9;--chakra-colors-cyan-200:#9DECF9;--chakra-colors-cyan-300:#76E4F7;--chakra-colors-cyan-400:#0BC5EA;--chakra-colors-cyan-500:#00B5D8;--chakra-colors-cyan-600:#00A3C4;--chakra-colors-cyan-700:#0987A0;--chakra-colors-cyan-800:#086F83;--chakra-colors-cyan-900:#065666;--chakra-colors-purple-50:#FAF5FF;--chakra-colors-purple-100:#E9D8FD;--chakra-colors-purple-200:#D6BCFA;--chakra-colors-purple-300:#B794F4;--chakra-colors-purple-400:#9F7AEA;--chakra-colors-purple-500:#805AD5;--chakra-colors-purple-600:#6B46C1;--chakra-colors-purple-700:#553C9A;--chakra-colors-purple-800:#44337A;--chakra-colors-purple-900:#322659;--chakra-colors-pink-50:#FFF5F7;--chakra-colors-pink-100:#FED7E2;--chakra-colors-pink-200:#FBB6CE;--chakra-colors-pink-300:#F687B3;--chakra-colors-pink-400:#ED64A6;--chakra-colors-pink-500:#D53F8C;--chakra-colors-pink-600:#B83280;--chakra-colors-pink-700:#97266D;--chakra-colors-pink-800:#702459;--chakra-colors-pink-900:#521B41;--chakra-colors-linkedin-50:#E8F4F9;--chakra-colors-linkedin-100:#CFEDFB;--chakra-colors-linkedin-200:#9BDAF3;--chakra-colors-linkedin-300:#68C7EC;--chakra-colors-linkedin-400:#34B3E4;--chakra-colors-linkedin-500:#00A0DC;--chakra-colors-linkedin-600:#008CC9;--chakra-colors-linkedin-700:#0077B5;--chakra-colors-linkedin-800:#005E93;--chakra-colors-linkedin-900:#004471;--chakra-colors-facebook-50:#E8F4F9;--chakra-colors-facebook-100:#D9DEE9;--chakra-colors-facebook-200:#B7C2DA;--chakra-colors-facebook-300:#6482C0;--chakra-colors-facebook-400:#4267B2;--chakra-colors-facebook-500:#385898;--chakra-colors-facebook-600:#314E89;--chakra-colors-facebook-700:#29487D;--chakra-colors-facebook-800:#223B67;--chakra-colors-facebook-900:#1E355B;--chakra-colors-messenger-50:#D0E6FF;--chakra-colors-messenger-100:#B9DAFF;--chakra-colors-messenger-200:#A2CDFF;--chakra-colors-messenger-300:#7AB8FF;--chakra-colors-messenger-400:#2E90FF;--chakra-colors-messenger-500:#0078FF;--chakra-colors-messenger-600:#0063D1;--chakra-colors-messenger-700:#0052AC;--chakra-colors-messenger-800:#003C7E;--chakra-colors-messenger-900:#002C5C;--chakra-colors-whatsapp-50:#dffeec;--chakra-colors-whatsapp-100:#b9f5d0;--chakra-colors-whatsapp-200:#90edb3;--chakra-colors-whatsapp-300:#65e495;--chakra-colors-whatsapp-400:#3cdd78;--chakra-colors-whatsapp-500:#22c35e;--chakra-colors-whatsapp-600:#179848;--chakra-colors-whatsapp-700:#0c6c33;--chakra-colors-whatsapp-800:#01421c;--chakra-colors-whatsapp-900:#001803;--chakra-colors-twitter-50:#E5F4FD;--chakra-colors-twitter-100:#C8E9FB;--chakra-colors-twitter-200:#A8DCFA;--chakra-colors-twitter-300:#83CDF7;--chakra-colors-twitter-400:#57BBF5;--chakra-colors-twitter-500:#1DA1F2;--chakra-colors-twitter-600:#1A94DA;--chakra-colors-twitter-700:#1681BF;--chakra-colors-twitter-800:#136B9E;--chakra-colors-twitter-900:#0D4D71;--chakra-colors-telegram-50:#E3F2F9;--chakra-colors-telegram-100:#C5E4F3;--chakra-colors-telegram-200:#A2D4EC;--chakra-colors-telegram-300:#7AC1E4;--chakra-colors-telegram-400:#47A9DA;--chakra-colors-telegram-500:#0088CC;--chakra-colors-telegram-600:#007AB8;--chakra-colors-telegram-700:#006BA1;--chakra-colors-telegram-800:#005885;--chakra-colors-telegram-900:#003F5E;--chakra-colors-home-bg:#f5f5fa;--chakra-borders-none:0;--chakra-borders-1px:1px solid;--chakra-borders-2px:2px solid;--chakra-borders-4px:4px solid;--chakra-borders-8px:8px solid;--chakra-fonts-heading:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";--chakra-fonts-body:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Helvetica,Segoe UI,Arial,Roboto,'PingFang SC',miui,'Hiragino Sans GB','Microsoft Yahei',sans-serif;--chakra-fonts-mono:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;--chakra-fontSizes-xs:0.75rem;--chakra-fontSizes-sm:0.875rem;--chakra-fontSizes-md:1rem;--chakra-fontSizes-lg:1.125rem;--chakra-fontSizes-xl:1.25rem;--chakra-fontSizes-2xl:1.5rem;--chakra-fontSizes-3xl:1.875rem;--chakra-fontSizes-4xl:2.25rem;--chakra-fontSizes-5xl:3rem;--chakra-fontSizes-6xl:3.75rem;--chakra-fontSizes-7xl:4.5rem;--chakra-fontSizes-8xl:6rem;--chakra-fontSizes-9xl:8rem;--chakra-fontWeights-hairline:100;--chakra-fontWeights-thin:200;--chakra-fontWeights-light:300;--chakra-fontWeights-normal:400;--chakra-fontWeights-medium:500;--chakra-fontWeights-semibold:600;--chakra-fontWeights-bold:700;--chakra-fontWeights-extrabold:800;--chakra-fontWeights-black:900;--chakra-letterSpacings-tighter:-0.05em;--chakra-letterSpacings-tight:-0.025em;--chakra-letterSpacings-normal:0;--chakra-letterSpacings-wide:0.025em;--chakra-letterSpacings-wider:0.05em;--chakra-letterSpacings-widest:0.1em;--chakra-lineHeights-3:.75rem;--chakra-lineHeights-4:1rem;--chakra-lineHeights-5:1.25rem;--chakra-lineHeights-6:1.5rem;--chakra-lineHeights-7:1.75rem;--chakra-lineHeights-8:2rem;--chakra-lineHeights-9:2.25rem;--chakra-lineHeights-10:2.5rem;--chakra-lineHeights-normal:normal;--chakra-lineHeights-none:1;--chakra-lineHeights-shorter:1.25;--chakra-lineHeights-short:1.375;--chakra-lineHeights-base:1.5;--chakra-lineHeights-tall:1.625;--chakra-lineHeights-taller:2;--chakra-radii-none:0;--chakra-radii-sm:0.125rem;--chakra-radii-base:0.25rem;--chakra-radii-md:0.375rem;--chakra-radii-lg:0.5rem;--chakra-radii-xl:0.75rem;--chakra-radii-2xl:1rem;--chakra-radii-3xl:1.5rem;--chakra-radii-full:9999px;--chakra-space-1:0.25rem;--chakra-space-2:0.5rem;--chakra-space-3:0.75rem;--chakra-space-4:1rem;--chakra-space-5:1.25rem;--chakra-space-6:1.5rem;--chakra-space-7:1.75rem;--chakra-space-8:2rem;--chakra-space-9:2.25rem;--chakra-space-10:2.5rem;--chakra-space-12:3rem;--chakra-space-14:3.5rem;--chakra-space-16:4rem;--chakra-space-20:5rem;--chakra-space-24:6rem;--chakra-space-28:7rem;--chakra-space-32:8rem;--chakra-space-36:9rem;--chakra-space-40:10rem;--chakra-space-44:11rem;--chakra-space-48:12rem;--chakra-space-52:13rem;--chakra-space-56:14rem;--chakra-space-60:15rem;--chakra-space-64:16rem;--chakra-space-72:18rem;--chakra-space-80:20rem;--chakra-space-96:24rem;--chakra-space-px:1px;--chakra-space-0\.5:0.125rem;--chakra-space-1\.5:0.375rem;--chakra-space-2\.5:0.625rem;--chakra-space-3\.5:0.875rem;--chakra-shadows-xs:0 0 0 1px rgba(0, 0, 0, 0.05);--chakra-shadows-sm:0 1px 2px 0 rgba(0, 0, 0, 0.05);--chakra-shadows-base:0 1px 3px 0 rgba(0, 0, 0, 0.1),0 1px 2px 0 rgba(0, 0, 0, 0.06);--chakra-shadows-md:0 4px 6px -1px rgba(0, 0, 0, 0.1),0 2px 4px -1px rgba(0, 0, 0, 0.06);--chakra-shadows-lg:0 10px 15px -3px rgba(0, 0, 0, 0.1),0 4px 6px -2px rgba(0, 0, 0, 0.05);--chakra-shadows-xl:0 20px 25px -5px rgba(0, 0, 0, 0.1),0 10px 10px -5px rgba(0, 0, 0, 0.04);--chakra-shadows-2xl:0 25px 50px -12px rgba(0, 0, 0, 0.25);--chakra-shadows-outline:0 0 0 3px rgba(66, 153, 225, 0.6);--chakra-shadows-inner:inset 0 2px 4px 0 rgba(0,0,0,0.06);--chakra-shadows-none:none;--chakra-shadows-dark-lg:rgba(0, 0, 0, 0.1) 0px 0px 0px 1px,rgba(0, 0, 0, 0.2) 0px 5px 10px,rgba(0, 0, 0, 0.4) 0px 15px 40px;--chakra-shadows-card:0px 4px 8px rgba(0, 0, 0, 0.04),0px 0px 2px rgba(0, 0, 0, 0.06),0px 0px 1px rgba(0, 0, 0, 0.04);--chakra-sizes-1:0.25rem;--chakra-sizes-2:0.5rem;--chakra-sizes-3:0.75rem;--chakra-sizes-4:1rem;--chakra-sizes-5:1.25rem;--chakra-sizes-6:1.5rem;--chakra-sizes-7:1.75rem;--chakra-sizes-8:2rem;--chakra-sizes-9:2.25rem;--chakra-sizes-10:2.5rem;--chakra-sizes-12:3rem;--chakra-sizes-14:3.5rem;--chakra-sizes-16:4rem;--chakra-sizes-20:5rem;--chakra-sizes-24:6rem;--chakra-sizes-28:7rem;--chakra-sizes-32:8rem;--chakra-sizes-36:9rem;--chakra-sizes-40:10rem;--chakra-sizes-44:11rem;--chakra-sizes-48:12rem;--chakra-sizes-52:13rem;--chakra-sizes-56:14rem;--chakra-sizes-60:15rem;--chakra-sizes-64:16rem;--chakra-sizes-72:18rem;--chakra-sizes-80:20rem;--chakra-sizes-96:24rem;--chakra-sizes-px:1px;--chakra-sizes-0\.5:0.125rem;--chakra-sizes-1\.5:0.375rem;--chakra-sizes-2\.5:0.625rem;--chakra-sizes-3\.5:0.875rem;--chakra-sizes-max:max-content;--chakra-sizes-min:min-content;--chakra-sizes-full:100%;--chakra-sizes-3xs:14rem;--chakra-sizes-2xs:16rem;--chakra-sizes-xs:20rem;--chakra-sizes-sm:24rem;--chakra-sizes-md:28rem;--chakra-sizes-lg:32rem;--chakra-sizes-xl:36rem;--chakra-sizes-2xl:42rem;--chakra-sizes-3xl:48rem;--chakra-sizes-4xl:56rem;--chakra-sizes-5xl:64rem;--chakra-sizes-6xl:72rem;--chakra-sizes-7xl:80rem;--chakra-sizes-8xl:90rem;--chakra-sizes-container-sm:640px;--chakra-sizes-container-md:768px;--chakra-sizes-container-lg:1024px;--chakra-sizes-container-xl:1280px;--chakra-zIndices-hide:-1;--chakra-zIndices-auto:auto;--chakra-zIndices-base:0;--chakra-zIndices-docked:10;--chakra-zIndices-dropdown:1000;--chakra-zIndices-sticky:1100;--chakra-zIndices-banner:1200;--chakra-zIndices-overlay:1300;--chakra-zIndices-modal:1400;--chakra-zIndices-popover:1500;--chakra-zIndices-skipLink:1600;--chakra-zIndices-toast:1700;--chakra-zIndices-tooltip:1800;--chakra-transition-property-common:background-color,border-color,color,fill,stroke,opacity,box-shadow,transform;--chakra-transition-property-colors:background-color,border-color,color,fill,stroke;--chakra-transition-property-dimensions:width,height;--chakra-transition-property-position:left,right,top,bottom;--chakra-transition-property-background:background-color,background-image,background-position;--chakra-transition-easing-ease-in:cubic-bezier(0.4, 0, 1, 1);--chakra-transition-easing-ease-out:cubic-bezier(0, 0, 0.2, 1);--chakra-transition-easing-ease-in-out:cubic-bezier(0.4, 0, 0.2, 1);--chakra-transition-duration-ultra-fast:50ms;--chakra-transition-duration-faster:100ms;--chakra-transition-duration-fast:150ms;--chakra-transition-duration-normal:200ms;--chakra-transition-duration-slow:300ms;--chakra-transition-duration-slower:400ms;--chakra-transition-duration-ultra-slow:500ms;--chakra-blur-none:0;--chakra-blur-sm:4px;--chakra-blur-base:8px;--chakra-blur-md:12px;--chakra-blur-lg:16px;--chakra-blur-xl:24px;--chakra-blur-2xl:40px;--chakra-blur-3xl:64px;}</style><style data-emotion="css-global 1jqlf9g">html{line-height:1.5;-webkit-text-size-adjust:100%;font-family:system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;-moz-osx-font-smoothing:grayscale;touch-action:manipulation;}body{position:relative;min-height:100%;font-feature-settings:'kern';}*,*::before,*::after{border-width:0;border-style:solid;box-sizing:border-box;}main{display:block;}hr{border-top-width:1px;box-sizing:content-box;height:0;overflow:visible;}pre,code,kbd,samp{font-family:SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:1em;}a{background-color:transparent;color:inherit;-webkit-text-decoration:inherit;text-decoration:inherit;}abbr[title]{border-bottom:none;-webkit-text-decoration:underline;text-decoration:underline;-webkit-text-decoration:underline dotted;-webkit-text-decoration:underline dotted;text-decoration:underline dotted;}b,strong{font-weight:bold;}small{font-size:80%;}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline;}sub{bottom:-0.25em;}sup{top:-0.5em;}img{border-style:none;}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0;}button,input{overflow:visible;}button,select{text-transform:none;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner{border-style:none;padding:0;}fieldset{padding:0.35em 0.75em 0.625em;}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal;}progress{vertical-align:baseline;}textarea{overflow:auto;}[type="checkbox"],[type="radio"]{box-sizing:border-box;padding:0;}[type="number"]::-webkit-inner-spin-button,[type="number"]::-webkit-outer-spin-button{-webkit-appearance:none!important;}input[type="number"]{-moz-appearance:textfield;}[type="search"]{-webkit-appearance:textfield;outline-offset:-2px;}[type="search"]::-webkit-search-decoration{-webkit-appearance:none!important;}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit;}details{display:block;}summary{display:-webkit-box;display:-webkit-list-item;display:-ms-list-itembox;display:list-item;}template{display:none;}[hidden]{display:none!important;}body,blockquote,dl,dd,h1,h2,h3,h4,h5,h6,hr,figure,p,pre{margin:0;}button{background:transparent;padding:0;}fieldset{margin:0;padding:0;}ol,ul{margin:0;padding:0;}textarea{resize:vertical;}button,[role="button"]{cursor:pointer;}button::-moz-focus-inner{border:0!important;}table{border-collapse:collapse;}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit;}button,input,optgroup,select,textarea{padding:0;line-height:inherit;color:inherit;}img,svg,video,canvas,audio,iframe,embed,object{display:block;}img,video{max-width:100%;height:auto;}[data-js-focus-visible] :focus:not([data-focus-visible-added]){outline:none;box-shadow:none;}select::-ms-expand{display:none;}</style><style data-emotion="css-global 1of8e4g">body{font-family:var(--chakra-fonts-body);color:var(--chakra-colors-gray-800);background:var(--chakra-colors-white);transition-property:background-color;transition-duration:var(--chakra-transition-duration-normal);line-height:var(--chakra-lineHeights-base);}*::-webkit-input-placeholder{color:var(--chakra-colors-gray-400);}*::-moz-placeholder{color:var(--chakra-colors-gray-400);}*:-ms-input-placeholder{color:var(--chakra-colors-gray-400);}*::placeholder{color:var(--chakra-colors-gray-400);}*,*::before,::after{border-color:var(--chakra-colors-gray-200);word-wrap:break-word;}html,body{background:var(--chakra-colors-home-bg);}img,#write iframe{-webkit-filter:unset;filter:unset;transition-property:filter;transition-duration:var(--chakra-transition-duration-normal);}div{transition-property:background-color;transition-duration:var(--chakra-transition-duration-normal);}</style><style data-emotion="css 1ghv3an">.css-1ghv3an{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:flex-start;-webkit-box-align:flex-start;-ms-flex-align:flex-start;align-items:flex-start;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;height:unset;overflow:auto;-webkit-box-flex-flow:column;-webkit-flex-flow:column;-ms-flex-flow:column;flex-flow:column;-webkit-padding-start:0.5rem;padding-inline-start:0.5rem;-webkit-padding-end:0.5rem;padding-inline-end:0.5rem;}@media screen and (min-width: 30em){.css-1ghv3an{height:unset;-webkit-box-flex-flow:column;-webkit-flex-flow:column;-ms-flex-flow:column;flex-flow:column;}}@media screen and (min-width: 48em){.css-1ghv3an{height:100vh;-webkit-box-flex-flow:row;-webkit-flex-flow:row;-ms-flex-flow:row;flex-flow:row;}}</style><div class="css-1ghv3an"><style data-emotion="css xte4wg">.css-xte4wg{display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;position:unset;white-space:nowrap;vertical-align:middle;outline:2px solid transparent;outline-offset:2px;width:auto;line-height:1.2;border-radius:var(--chakra-radii-md);font-weight:var(--chakra-fontWeights-semibold);transition-property:var(--chakra-transition-property-common);transition-duration:var(--chakra-transition-duration-normal);height:var(--chakra-sizes-12);min-width:var(--chakra-sizes-12);font-size:var(--chakra-fontSizes-lg);-webkit-padding-start:var(--chakra-space-6);padding-inline-start:var(--chakra-space-6);-webkit-padding-end:var(--chakra-space-6);padding-inline-end:var(--chakra-space-6);background:var(--chakra-colors-gray-100);margin-top:1rem;top:3rem;}@media screen and (min-width: 30em){.css-xte4wg{position:unset;margin-top:1rem;}}@media screen and (min-width: 48em){.css-xte4wg{position:-webkit-sticky;position:sticky;margin-top:3rem;}}.css-xte4wg:focus,.css-xte4wg[data-focus]{box-shadow:var(--chakra-shadows-outline);}.css-xte4wg[disabled],.css-xte4wg[aria-disabled=true],.css-xte4wg[data-disabled]{opacity:0.4;cursor:not-allowed;box-shadow:var(--chakra-shadows-none);}.css-xte4wg:hover,.css-xte4wg[data-hover]{background:var(--chakra-colors-gray-200);}.css-xte4wg:hover[disabled],.css-xte4wg[data-hover][disabled],.css-xte4wg:hover[aria-disabled=true],.css-xte4wg[data-hover][aria-disabled=true],.css-xte4wg:hover[data-disabled],.css-xte4wg[data-hover][data-disabled]{background:var(--chakra-colors-gray-100);}.css-xte4wg:active,.css-xte4wg[data-active]{background:var(--chakra-colors-gray-300);}</style><button type="button" class="chakra-button css-xte4wg">BACK</button><style data-emotion="css a06krq">.css-a06krq{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;width:var(--chakra-sizes-full);-webkit-box-flex-flow:column;-webkit-flex-flow:column;-ms-flex-flow:column;flex-flow:column;-webkit-padding-start:unset;padding-inline-start:unset;-webkit-padding-end:unset;padding-inline-end:unset;}@media screen and (min-width: 30em){.css-a06krq{width:var(--chakra-sizes-full);-webkit-padding-start:unset;padding-inline-start:unset;-webkit-padding-end:unset;padding-inline-end:unset;}}@media screen and (min-width: 48em){.css-a06krq{width:55rem;-webkit-padding-start:1.5rem;padding-inline-start:1.5rem;-webkit-padding-end:1.5rem;padding-inline-end:1.5rem;}}@media screen and (min-width: 62em){.css-a06krq{width:55rem;}}@media screen and (min-width: 80em){.css-a06krq{width:55rem;}}@media screen and (min-width: 96em){.css-a06krq{width:68rem;}}</style><div class="css-a06krq"><style data-emotion="css 1if659q">.css-1if659q{border-radius:10px;margin-top:1rem;box-shadow:var(--chakra-shadows-lg);background:var(--chakra-colors-white);overflow:hidden;-webkit-flex:1;-ms-flex:1;flex:1;}@media screen and (min-width: 30em){.css-1if659q{margin-top:1rem;}}@media screen and (min-width: 48em){.css-1if659q{margin-top:3rem;}}</style><div class="css-1if659q"><style data-emotion="css 81xunj">.css-81xunj{padding:1rem;}@media screen and (min-width: 30em){.css-81xunj{padding:1rem;}}@media screen and (min-width: 48em){.css-81xunj{padding:2rem;}}</style><article class="css-81xunj"><header class="css-0"><style data-emotion="css 1m7qnzk">.css-1m7qnzk{font-family:var(--chakra-fonts-heading);font-weight:var(--chakra-fontWeights-bold);font-size:var(--chakra-fontSizes-3xl);line-height:1.33;margin-bottom:1rem;color:rgba(0, 0, 0, 0.85);}@media screen and (min-width: 48em){.css-1m7qnzk{font-size:var(--chakra-fontSizes-4xl);line-height:1.2;}}</style><h1 class="chakra-heading css-1m7qnzk">TypeScript编程</h1><style data-emotion="css acwcvw">.css-acwcvw{margin-bottom:1rem;}</style><div class="css-acwcvw"><style data-emotion="css 1kpd5c2">.css-1kpd5c2{display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;vertical-align:top;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;max-width:100%;font-weight:var(--chakra-fontWeights-medium);line-height:1.2;outline:2px solid transparent;outline-offset:2px;min-height:1.5rem;min-width:1.5rem;font-size:var(--chakra-fontSizes-sm);border-radius:var(--chakra-radii-md);-webkit-padding-start:var(--chakra-space-2);padding-inline-start:var(--chakra-space-2);-webkit-padding-end:var(--chakra-space-2);padding-inline-end:var(--chakra-space-2);background:var(--chakra-colors-gray-100);color:var(--chakra-colors-gray-800);}.css-1kpd5c2:focus,.css-1kpd5c2[data-focus]{box-shadow:var(--chakra-shadows-outline);}</style><span class="css-1kpd5c2">TypeScript</span></div><style data-emotion="css x8djax">.css-x8djax{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;color:var(--chakra-colors-gray-600);}</style><div class="css-x8djax"><style data-emotion="css 1lr2xj">.css-1lr2xj{width:1em;height:1em;display:inline-block;line-height:1em;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;color:currentColor;margin-right:0.5rem;}</style><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" focusable="false" class="chakra-icon css-1lr2xj" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg><style data-emotion="css 129gw94">.css-129gw94{line-height:0;}</style><time dateTime="2021-05-20T21:03:19.000Z" class="css-129gw94">2021/05/20</time></div></header><style data-emotion="css i51og3">.css-i51og3{margin-top:2rem;}</style><section id="write" class="css-i51og3"><blockquote>
+<p>《Programming TypeScript》笔记。</p>
+</blockquote>
+<h2 id="函数">函数</h2>
+<h3 id="重载">重载</h3>
+<p>重载函数：有多个调用签名的函数。</p>
+<p>在多数编程语言中，声明函数时一旦指定了特定的参数和返回类型，就只能使用相应的参数调用参数。但 JavaScript 是一门动态语言，势必需要以多种方式调用一个函数的方法。不仅如此，而且有时输出的类型取决于参数的类型。</p>
+<p>TypeScript 也支持动态重载函数声明，而且函数的输出类型却决于输入类型。</p>
+<p>一个普通的函数类型注解：</p>
+<pre><style data-emotion="css 19bp9bt">.css-19bp9bt{display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;position:absolute;white-space:nowrap;vertical-align:middle;outline:2px solid transparent;outline-offset:2px;width:auto;line-height:1.2;border-radius:var(--chakra-radii-md);font-weight:var(--chakra-fontWeights-semibold);transition-property:var(--chakra-transition-property-common);transition-duration:var(--chakra-transition-duration-normal);height:var(--chakra-sizes-6);min-width:var(--chakra-sizes-6);font-size:var(--chakra-fontSizes-xs);-webkit-padding-start:var(--chakra-space-2);padding-inline-start:var(--chakra-space-2);-webkit-padding-end:var(--chakra-space-2);padding-inline-end:var(--chakra-space-2);background:var(--chakra-colors-teal-500);color:var(--chakra-colors-white);top:5px;right:5px;}.css-19bp9bt:focus,.css-19bp9bt[data-focus]{box-shadow:var(--chakra-shadows-outline);}.css-19bp9bt[disabled],.css-19bp9bt[aria-disabled=true],.css-19bp9bt[data-disabled]{opacity:0.4;cursor:not-allowed;box-shadow:var(--chakra-shadows-none);}.css-19bp9bt:hover,.css-19bp9bt[data-hover]{background:var(--chakra-colors-teal-600);}.css-19bp9bt:hover[disabled],.css-19bp9bt[data-hover][disabled],.css-19bp9bt:hover[aria-disabled=true],.css-19bp9bt[data-hover][aria-disabled=true],.css-19bp9bt:hover[data-disabled],.css-19bp9bt[data-hover][data-disabled]{background:var(--chakra-colors-teal-500);}.css-19bp9bt:active,.css-19bp9bt[data-active]{background:var(--chakra-colors-teal-700);}</style><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-keyword">type</span> <span class="hljs-title hljs-class">Reserve</span> = {
+  (<span class="hljs-attr">from</span>: <span class="hljs-title hljs-class">Date</span>, <span class="hljs-attr">to</span>: <span class="hljs-title hljs-class">Date</span>, <span class="hljs-attr">destination</span>: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">string</span>;
+};
+
+<span class="hljs-keyword">const</span> <span class="hljs-attr">reserve</span>: <span class="hljs-title hljs-class">Reserve</span> = <span class="hljs-function">(<span class="hljs-params"><span class="hljs-keyword">from</span>,toOrDest, destination</span>) =&gt;</span> {
+  <span class="hljs-keyword">const</span> cost = <span class="hljs-title hljs-class">Math</span>.<span class="hljs-title hljs-function">floor</span>(<span class="hljs-title hljs-class">Math</span>.<span class="hljs-title hljs-function">random</span>() * (<span class="hljs-number">998</span> - <span class="hljs-number">199</span>) + <span class="hljs-number">198</span>);
+  <span class="hljs-keyword">return</span> <span class="hljs-string">`To <span class="hljs-subst">${destination}</span> need <span class="hljs-subst">${cost}</span> <span class="hljs-subst">${<span class="hljs-keyword">from</span>.toLocaleString()}</span>`</span>
+};
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-title hljs-function">reserve</span>(<span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Date</span>(), <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Date</span>(), <span class="hljs-string">&#x27;bali&#x27;</span>));
+</code></pre>
+<p>函数的重载需要在注解时定义多个类型，在函数声明时需要手动组合两个签名：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-keyword">type</span> <span class="hljs-title hljs-class">Reserve</span> = {
+  (<span class="hljs-attr">from</span>: <span class="hljs-title hljs-class">Date</span>, <span class="hljs-attr">to</span>: <span class="hljs-title hljs-class">Date</span>, <span class="hljs-attr">destination</span>: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">string</span>;
+  (<span class="hljs-attr">from</span>: <span class="hljs-title hljs-class">Date</span>, <span class="hljs-attr">destination</span>: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">string</span>;
+};
+
+<span class="hljs-keyword">const</span> <span class="hljs-attr">reserve</span>: <span class="hljs-title hljs-class">Reserve</span> = <span class="hljs-function">(<span class="hljs-params">
+  <span class="hljs-comment">// 参数需要手动在注解并组合两个签名</span>
+  <span class="hljs-keyword">from</span>: <span class="hljs-built_in">Date</span>,
+  toOrDest: <span class="hljs-built_in">Date</span> | <span class="hljs-built_in">string</span>,
+  destination?: <span class="hljs-built_in">string</span>
+</span>) =&gt;</span> {
+  <span class="hljs-keyword">const</span> cost = <span class="hljs-title hljs-class">Math</span>.<span class="hljs-title hljs-function">floor</span>(<span class="hljs-title hljs-class">Math</span>.<span class="hljs-title hljs-function">random</span>() * (<span class="hljs-number">998</span> - <span class="hljs-number">199</span>) + <span class="hljs-number">198</span>);
+  <span class="hljs-keyword">if</span> (toOrDest <span class="hljs-keyword">instanceof</span> <span class="hljs-title hljs-class">Date</span> &amp;&amp; destination !== <span class="hljs-literal">undefined</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-string">`To <span class="hljs-subst">${destination}</span> need <span class="hljs-subst">${cost}</span> <span class="hljs-subst">${<span class="hljs-keyword">from</span>.toLocaleString()}</span> <span class="hljs-subst">${toOrDest.toLocaleString()}</span>`</span>;
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-string">`To <span class="hljs-subst">${toOrDest}</span> need <span class="hljs-subst">${cost}</span> <span class="hljs-subst">${<span class="hljs-keyword">from</span>.toLocaleString()}</span>`</span>;
+  }
+};
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-title hljs-function">reserve</span>(<span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Date</span>(), <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Date</span>(), <span class="hljs-string">&#x27;bali&#x27;</span>));
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-title hljs-function">reserve</span>(<span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Date</span>(), <span class="hljs-string">&#x27;bali&#x27;</span>));
+</code></pre>
+<h3 id="多态">多态</h3>
+<p>使用具体类型的前提是明确知道需要什么类型，并且想确认传入的确实是那个类型。但是，有时事先并不知道需要什么类型，不想限制函数只能接受某个类型。</p>
+<p>这种情况可以使用函数泛型（generic type）参数。</p>
+<blockquote>
+<p>在类型层面施加约束的占位类型，也称多态类型参数。</p>
+</blockquote>
+<p>例如我们重写一个简单的数组 filter 方法，在我们老朋友 JavaScript 中，这是一个很基本的函数。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-js"><span class="hljs-keyword">const</span> <span class="hljs-title hljs-function">filter</span> = (<span class="hljs-params">arr, fn</span>) =&gt; {
+  <span class="hljs-keyword">let</span> result = [];
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> i <span class="hljs-keyword">of</span> arr) {
+    <span class="hljs-keyword">if</span> (<span class="hljs-title hljs-function">fn</span>(i)) {
+      result.<span class="hljs-title hljs-function">push</span>(i);
+    }
+  }
+  <span class="hljs-keyword">return</span> result;
+};
+</code></pre>
+<p>但在 TypeScript 中，为了类型保护我们就需要为其添加类型注解。而这个函数的特点就是他可以（需要）接受多种类型的参数，且函数的返回值也是跟着参数的类型变化的。</p>
+<p>也许利用重载为其注解所有类型也是可以的：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-keyword">type</span> <span class="hljs-title hljs-class">Filter</span> = {
+  (<span class="hljs-attr">arr</span>: <span class="hljs-built_in">number</span>[], <span class="hljs-attr">fn</span>: <span class="hljs-function">(<span class="hljs-params">item: <span class="hljs-built_in">number</span></span>) =&gt;</span> <span class="hljs-built_in">boolean</span>): <span class="hljs-built_in">number</span>[];
+  (<span class="hljs-attr">arr</span>: <span class="hljs-built_in">string</span>[], <span class="hljs-attr">fn</span>: <span class="hljs-function">(<span class="hljs-params">item: <span class="hljs-built_in">string</span></span>) =&gt;</span> <span class="hljs-built_in">boolean</span>): <span class="hljs-built_in">string</span>[];
+};
+</code></pre>
+<p>但是如果遇到了对象数组呢：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-keyword">type</span> <span class="hljs-title hljs-class">Filter</span> = {
+  (<span class="hljs-attr">arr</span>: <span class="hljs-built_in">number</span>[], <span class="hljs-attr">fn</span>: <span class="hljs-function">(<span class="hljs-params">item: <span class="hljs-built_in">number</span></span>) =&gt;</span> <span class="hljs-built_in">boolean</span>): <span class="hljs-built_in">number</span>[];
+  (<span class="hljs-attr">arr</span>: <span class="hljs-built_in">string</span>[], <span class="hljs-attr">fn</span>: <span class="hljs-function">(<span class="hljs-params">item: <span class="hljs-built_in">string</span></span>) =&gt;</span> <span class="hljs-built_in">boolean</span>): <span class="hljs-built_in">string</span>[];
+  (<span class="hljs-attr">arr</span>: <span class="hljs-title hljs-class">Object</span>[], <span class="hljs-attr">fn</span>: <span class="hljs-function">(<span class="hljs-params">item: <span class="hljs-built_in">Object</span></span>) =&gt;</span> <span class="hljs-built_in">boolean</span>): <span class="hljs-title hljs-class">Object</span>[];
+};
+</code></pre>
+<p>Object 无法描述对象结构，它可以代表所有类似对象的结构。</p>
+<p>这时候就需要使用泛型了：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-keyword">type</span> <span class="hljs-title hljs-class">Filter</span> = {
+  &lt;T&gt;(<span class="hljs-attr">arr</span>: T[], <span class="hljs-attr">fn</span>: <span class="hljs-function">(<span class="hljs-params">item: T</span>) =&gt;</span> <span class="hljs-built_in">boolean</span>): T[];
+};
+</code></pre>
+<p>这里泛型的意思是：filter 函数使用一个泛型参数 T，在事先我们不知道其具体的类型。TypeScript 从传入的 arr 参数种推导出 T 的类型。调用 filter 时，T 的类型被推导出后，将把 T 出现的每一处替换为推导出的类型。T 就像是一个占位类型，类型检查器会根据上下文填充具体的类型。T 把 Filter 的类型参数化了，因此才称其为泛型参数。</p>
+<h4 id="泛型作用域">泛型作用域</h4>
+<p>泛型声明的位置不仅限定了泛型的作用域，还决定了 TypeScript 什么时候为泛型绑定具体的类型。</p>
+<p>例如之前 Filter 函数的类型：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-keyword">type</span> <span class="hljs-title hljs-class">Filter</span> = {
+  &lt;T&gt;(<span class="hljs-attr">arr</span>: T[], <span class="hljs-attr">fn</span>: <span class="hljs-function">(<span class="hljs-params">item: T</span>) =&gt;</span> <span class="hljs-built_in">boolean</span>): T[];
+};
+<span class="hljs-keyword">const</span> <span class="hljs-attr">filter</span>:<span class="hljs-title hljs-class">Filter</span> = (arr, fn) <span class="hljs-comment">// ...</span>
+</code></pre>
+<p><code>&lt;T&gt;</code>在调用签名中声明（位于签名开始的括号前），TypeScript 将在调用 Filter 类型的函数时为 T 绑定具体类型。</p>
+<p>而如果把 T 写在类型别名上，TypeScript 则要求在使用 Filter 时显式绑定类型：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-keyword">type</span> <span class="hljs-title hljs-class">Filter</span>&lt;T&gt; = {
+  (<span class="hljs-attr">arr</span>: T[], <span class="hljs-attr">fn</span>: <span class="hljs-function">(<span class="hljs-params">item: T</span>) =&gt;</span> <span class="hljs-built_in">boolean</span>): T[];
+};
+<span class="hljs-keyword">const</span> <span class="hljs-attr">filter</span>:<span class="hljs-title hljs-class">Filter</span>&lt;<span class="hljs-built_in">number</span>&gt; = (arr, fn) <span class="hljs-comment">// ...</span>
+</code></pre>
+<p>一般来说，TypeScript 在使用泛型时为泛型绑定具体类：对函数来说，在调用函数时；对类来说，在实例化类时；对类型别名和接口来说，在使用别名和接口时。</p>
+<h4 id="函数泛型的多种写法">函数泛型的多种写法</h4>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-keyword">type</span> <span class="hljs-title hljs-class">Filter</span> = {
+  &lt;T&gt;(<span class="hljs-attr">arr</span>: T[], <span class="hljs-attr">fn</span>: <span class="hljs-function">(<span class="hljs-params">item: T</span>) =&gt;</span> <span class="hljs-built_in">boolean</span>): T[];
+};
+<span class="hljs-keyword">const</span> <span class="hljs-attr">filter</span>: <span class="hljs-title hljs-class">Filter</span> = (arr, fn); <span class="hljs-comment">// ...</span>
+
+<span class="hljs-keyword">type</span> <span class="hljs-title hljs-class">Filter</span>&lt;T&gt; = {
+  (<span class="hljs-attr">arr</span>: T[], <span class="hljs-attr">fn</span>: <span class="hljs-function">(<span class="hljs-params">item: T</span>) =&gt;</span> <span class="hljs-built_in">boolean</span>): T[];
+};
+<span class="hljs-keyword">const</span> <span class="hljs-attr">filter</span>:<span class="hljs-title hljs-class">Filter</span>&lt;<span class="hljs-built_in">number</span>&gt; = (arr, fn) <span class="hljs-comment">// ...</span>
+
+<span class="hljs-keyword">type</span> <span class="hljs-title hljs-class">Filter</span> = &lt;T&gt;<span class="hljs-function">(<span class="hljs-params">arr: T[], fn: (item: T) =&gt; <span class="hljs-built_in">boolean</span></span>) =&gt;</span> T[];
+<span class="hljs-keyword">const</span> <span class="hljs-attr">filter</span>: <span class="hljs-title hljs-class">Filter</span> = (arr, fn); <span class="hljs-comment">// ...</span>
+
+<span class="hljs-keyword">type</span> <span class="hljs-title hljs-class">Filter</span>&lt;T&gt; = <span class="hljs-function">(<span class="hljs-params">arr: T[], fn: (item: T) =&gt; <span class="hljs-built_in">boolean</span></span>) =&gt;</span> T[];
+<span class="hljs-keyword">const</span> <span class="hljs-attr">filter</span>:<span class="hljs-title hljs-class">Filter</span>&lt;<span class="hljs-built_in">number</span>&gt; = (arr, fn) <span class="hljs-comment">// ...</span>
+</code></pre>
+<h4 id="约束受限多态">约束受限多态</h4>
+<p>施加一个类型约束很简单，语法有点类似于子类继承：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-keyword">function</span> test&lt;T <span class="hljs-keyword">extends</span> <span class="hljs-title hljs-class">Filter</span>&gt; { <span class="hljs-comment">//... }</span>
+</code></pre>
+<p>当然，也可以有多个约束，这时候就要使用到交集了：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-keyword">function</span> test&lt;T <span class="hljs-keyword">extends</span> <span class="hljs-title hljs-class">Filter</span> &amp; <span class="hljs-title hljs-class">Map</span>&gt; { <span class="hljs-comment">//... }</span>
+</code></pre>
+<p>除此之外还能借助受限的多态来模拟变长参数函数（可接受任意个参数的函数），例如之前一直困扰我的防抖函数：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-keyword">type</span> <span class="hljs-title hljs-class">Debounce</span> = {
+  &lt;T <span class="hljs-keyword">extends</span> unknown[]&gt;(<span class="hljs-attr">fn</span>: <span class="hljs-function">(<span class="hljs-params">...arg: T</span>) =&gt;</span> <span class="hljs-built_in">void</span> | unknown, <span class="hljs-attr">ms</span>: <span class="hljs-built_in">number</span>): <span class="hljs-function">(<span class="hljs-params">
+    <span class="hljs-variable hljs-language">this</span>: unknown,
+    ...arg: T
+  </span>) =&gt;</span> <span class="hljs-built_in">void</span> | unknown;
+};
+
+<span class="hljs-keyword">const</span> <span class="hljs-attr">debounce</span>: <span class="hljs-title hljs-class">Debounce</span> = <span class="hljs-function">(<span class="hljs-params">fn, ms</span>) =&gt;</span> {
+  <span class="hljs-keyword">let</span> timer = <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span> (<span class="hljs-params">...arg</span>) {
+    <span class="hljs-keyword">if</span> (timer) <span class="hljs-built_in">clearTimeout</span>(timer);
+    timer = <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
+      fn.<span class="hljs-title hljs-function">apply</span>(<span class="hljs-variable hljs-language">this</span>, arg);
+    }, ms);
+  };
+};
+</code></pre>
+<p><code>&lt;T extends unknown[]&gt;</code>表示 T 是<code>unknown[]</code>的子类型，即 T 是任意类型的数组或元组。</p>
+<h2 id="类">类</h2>
+<p>类是组织和规划代码的方式，是封装的基本单位。众所周知，JavaScript 的类是语法上的，在 ES6 时支持了 class 关键字。TypeScript 的类大量的借用了 C# 的理论，支持属性初始化语句、多态、装饰器和接口等。</p>
+<h3 id="基本语法">基本语法</h3>
+<p>public 或 private 关键字在 constructor 中将为我们创建对应的属性：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-keyword">class</span> <span class="hljs-title hljs-class">Person</span> {
+  <span class="hljs-title hljs-function">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">public</span> name: <span class="hljs-built_in">string</span>, <span class="hljs-keyword">public</span> age: <span class="hljs-built_in">number</span></span>) {}
+}
+
+<span class="hljs-keyword">const</span> xfy = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Person</span>(<span class="hljs-string">&#x27;xfy&#x27;</span>, <span class="hljs-number">18</span>);
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(xfy);
+
+<span class="hljs-keyword">class</span> <span class="hljs-title hljs-class">alotherPerson</span> <span class="hljs-keyword">extends</span> <span class="hljs-title hljs-class hljs-inherited">Person</span> {
+  <span class="hljs-keyword">protected</span> <span class="hljs-keyword">static</span> <span class="hljs-attr">country</span>: <span class="hljs-built_in">number</span>;
+  <span class="hljs-title hljs-function">constructor</span>(<span class="hljs-params">
+    name: <span class="hljs-built_in">string</span>,
+    age: <span class="hljs-built_in">number</span>,
+    <span class="hljs-keyword">public</span> sex: <span class="hljs-built_in">string</span>,
+    <span class="hljs-keyword">private</span> nickname: <span class="hljs-built_in">string</span>
+  </span>) {
+    <span class="hljs-variable hljs-language">super</span>(name, age);
+  }
+}
+<span class="hljs-keyword">const</span> dfy = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-function">alotherPerson</span>(<span class="hljs-string">&#x27;dfy&#x27;</span>, <span class="hljs-number">18</span>, <span class="hljs-string">&#x27;female&#x27;</span>, <span class="hljs-string">&#x27;xfy&#x27;</span>);
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(dfy);
+</code></pre>
+<h3 id="以-this-作为返回类型">以 this 作为返回类型</h3>
+<p>this 可以用作值，也可以用作类型。对类来说，this 类型还可以用于注解方法的返回类型。</p>
+<p>例如我们需要实现一个简单的 Set 数据结构，他有一个 add 方法，每次返回的就是一个 Set 实例。我们可以直接注解为 Set 类。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-keyword">class</span> <span class="hljs-title hljs-class">MySet</span> {
+  <span class="hljs-title hljs-function">has</span>(<span class="hljs-attr">value</span>: <span class="hljs-built_in">number</span>):<span class="hljs-built_in">boolean</span> {}
+  <span class="hljs-title hljs-function">add</span>(<span class="hljs-attr">value</span>: <span class="hljs-built_in">number</span>): <span class="hljs-title hljs-class">MySet</span> {}
+}
+</code></pre>
+<p>但这样的缺点就是，当子类需要继承自父类时，子类的同名方法需要重新注解为返回对应的子类：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-keyword">class</span> <span class="hljs-title hljs-class">MyOtherSet</span> <span class="hljs-keyword">extends</span> <span class="hljs-title hljs-class hljs-inherited">MySet</span> {
+  <span class="hljs-title hljs-function">add</span>(<span class="hljs-attr">value</span>: <span class="hljs-built_in">number</span>): <span class="hljs-title hljs-class">MyOtherSet</span> {}
+}
+</code></pre>
+<p>这样在拓展其他类时，要把返回的 this 的每个方法的签名覆盖掉，就显得十分麻烦。如果只是为了让类型检查器满意，这样做就失去了继承基类的意义。</p>
+<p>正确的方法是将 this 作为注解的返回类型，把相关工作交给 TypeScript：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-keyword">class</span> <span class="hljs-title hljs-class">MySet</span> {
+  <span class="hljs-title hljs-function">has</span>(<span class="hljs-attr">value</span>: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">boolean</span> {}
+  <span class="hljs-title hljs-function">add</span>(<span class="hljs-attr">value</span>: <span class="hljs-built_in">number</span>): <span class="hljs-variable hljs-language">this</span> {}
+}
+
+<span class="hljs-keyword">class</span> <span class="hljs-title hljs-class">MyOtherSet</span> <span class="hljs-keyword">extends</span> <span class="hljs-title hljs-class hljs-inherited">MySet</span> {
+  <span class="hljs-title hljs-function">add</span>(<span class="hljs-attr">value</span>: <span class="hljs-built_in">number</span>): <span class="hljs-variable hljs-language">this</span> {}
+}
+</code></pre>
+<h3 id="接口">接口</h3>
+<p>类经常被当作接口使用。</p>
+<p>接口是一种命名类型的方式，它和类型别名类似，不过二者还有一些细微的差别：</p>
+<p>第一，类型别名更为通用，右边可以是任何类型，包括类型表达式；而接口声明中，右边必须为结构。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-keyword">type</span> A = <span class="hljs-built_in">number</span>;
+<span class="hljs-keyword">type</span> B = A | <span class="hljs-built_in">string</span>;
+</code></pre>
+<p>第二个区别是，扩展接口时，TypeScript 将检查扩展的接口是否可赋值给被扩展的接口。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-keyword">interface</span> <span class="hljs-title hljs-class">Animal</span> {
+  <span class="hljs-title hljs-function">good</span>(<span class="hljs-attr">x</span>: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">string</span>;
+}
+<span class="hljs-keyword">interface</span> <span class="hljs-title hljs-class">Dog</span> <span class="hljs-keyword">extends</span> <span class="hljs-title hljs-class">Animal</span> {
+  <span class="hljs-title hljs-function">good</span>(<span class="hljs-attr">x</span>: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">void</span>;
+}
+</code></pre>
+<p>而使用类型别名使用交集运算符<code>&amp;</code>来扩展时，TypeScript 将尽自己所能，把扩展和被扩展的类型组合在一起，最终是重载冲突的签名。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-keyword">type</span> C = {
+  (<span class="hljs-attr">x</span>: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">string</span>;
+};
+<span class="hljs-keyword">type</span> D = C &amp; {
+  (<span class="hljs-attr">x</span>: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">string</span>;
+};
+
+<span class="hljs-keyword">const</span> <span class="hljs-attr">ef</span>: D = <span class="hljs-function">(<span class="hljs-params">x</span>) =&gt;</span> {
+  <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;xfy&#x27;</span>;
+};
+<span class="hljs-title hljs-function">ef</span>(<span class="hljs-string">&#x27;123&#x27;</span>);
+</code></pre>
+<p>第三个区别是，同一作用域中多个同名接口将自动合并；而同一作用域中的多个类型别名将导致编译时错误。这个特性称之为声明合并。</p>
+<h3 id="实现">实现</h3>
+<p>可以为类添加类型层面约束。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-keyword">interface</span> <span class="hljs-title hljs-class">Animal</span> {
+  <span class="hljs-title hljs-function">eat</span>(<span class="hljs-attr">food</span>: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">void</span>;
+  <span class="hljs-title hljs-function">sleep</span>(<span class="hljs-attr">hours</span>: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">void</span>;
+}
+
+<span class="hljs-keyword">class</span> <span class="hljs-title hljs-class">Cat</span> <span class="hljs-keyword">implements</span> <span class="hljs-title hljs-class">Animal</span> {
+  <span class="hljs-title hljs-function">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">public</span> name: <span class="hljs-built_in">string</span></span>) {}
+  <span class="hljs-title hljs-function">eat</span>(<span class="hljs-params">food: <span class="hljs-built_in">string</span></span>) {
+    <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-string">`eating <span class="hljs-subst">${food}</span>`</span>);
+  }
+  <span class="hljs-title hljs-function">sleep</span>(<span class="hljs-params">hours: <span class="hljs-built_in">number</span></span>) {
+    <span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-string">`slept for <span class="hljs-subst">${hours}</span> hours`</span>);
+  }
+}
+<span class="hljs-keyword">const</span> myCat = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Cat</span>(<span class="hljs-string">&#x27;xfy&#x27;</span>);
+myCat.<span class="hljs-title hljs-function">sleep</span>(<span class="hljs-number">10</span>);
+</code></pre>
+<h3 id="接口还是抽象类">接口还是抽象类</h3>
+<p>TypeScript 可以使用<code>abstract</code>关键字来实现抽象类，实现接口其实于抽象类差不多。区别是，接口更通用，更轻量，而抽象类的作用更具体，功能更丰富。</p>
+<p>接口是对结构建模的方式。在值层面可表示对象、数组、函数、类或类的实例。接口不生成 JavaScript 代码，只存在于编译时。</p>
+<p>抽象类只能对类建模，而且生成运行时代码，即 JavaScript 类。抽象类可以有构造方法，可以提供默认实现，还能为属性和方法设置访问修饰符。这些在接口都中做不到。</p>
+<p>具体使用哪一个，取决于实际用途。如果多个类共用一个实现，使用抽象类。如果需要一种轻量的方式表示“这个类是 T 型”，使用接口。</p>
+<h3 id="类是结构化类型">类是结构化类型</h3>
+<p>TypeScript 根据类的结构来比较类，与类的名称无关。类与其他类是否兼容，要看结构。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-keyword">class</span> <span class="hljs-title hljs-class">Cat</span> {
+  <span class="hljs-title hljs-function">sleep</span>(<span class="hljs-params">hours: <span class="hljs-built_in">number</span></span>) {}
+}
+<span class="hljs-keyword">class</span> <span class="hljs-title hljs-class">Dog</span> {
+  <span class="hljs-title hljs-function">sleep</span>(<span class="hljs-params">hours: <span class="hljs-built_in">number</span></span>) {}
+}
+<span class="hljs-keyword">const</span> <span class="hljs-title hljs-function">checkCat</span> = (<span class="hljs-params">animal: Cat</span>) =&gt; {
+  animal.<span class="hljs-title hljs-function">sleep</span>(<span class="hljs-number">10</span>);
+};
+
+<span class="hljs-comment">/* 这里传入狗狗也是可以的 */</span>
+<span class="hljs-title hljs-function">checkCat</span>(<span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Dog</span>());
+</code></pre>
+<h3 id="类既声明值也声明类型">类既声明值也声明类型</h3>
+<p>类和枚举比较特殊，它们即在类型命名中生成类型，也在值命名空间中生成值。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-keyword">class</span> <span class="hljs-title hljs-class">G</span> {}
+<span class="hljs-comment">// 声明值的同时也声明了类型</span>
+<span class="hljs-keyword">let</span> <span class="hljs-attr">g</span>: G = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-function">G</span>();
+
+<span class="hljs-built_in">enum</span> H {
+  J,
+  K,
+}
+<span class="hljs-keyword">let</span> <span class="hljs-attr">h</span>: H = H.<span class="hljs-property">J</span>;
+</code></pre>
+<h3 id="模拟-final-类">模拟 final 类</h3>
+<p>在某些面向对象的语言中，可以使用 final 关键字来吧类标记为不可拓展，或者把方法标记为不可覆盖。</p>
+<p>在 TypeScript 中可以使用私有的 constructor 来轻松的模拟 final 类：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-keyword">class</span> <span class="hljs-title hljs-class">Message</span> {
+  <span class="hljs-keyword">private</span> <span class="hljs-title hljs-function">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> msg: <span class="hljs-built_in">string</span></span>) {}
+}
+<span class="hljs-comment">// Cannot extend a class &#x27;Message&#x27;. Class constructor is marked as private.</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title hljs-class">NewMessage</span> <span class="hljs-keyword">extends</span> <span class="hljs-title hljs-class hljs-inherited">Message</span> {}
+</code></pre>
+<p>但将 constructor 标记为 private 后，同时也不能使用 new 来实例化类了。我们仅仅需要不能拓展即可，可以简单修改一下使其能够实例化：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-keyword">class</span> <span class="hljs-title hljs-class">Message</span> {
+  <span class="hljs-keyword">private</span> <span class="hljs-title hljs-function">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">private</span> msg: <span class="hljs-built_in">string</span></span>) {}
+  <span class="hljs-keyword">static</span> <span class="hljs-title hljs-function">create</span>(<span class="hljs-params">msg: <span class="hljs-built_in">string</span></span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Message</span>(msg);
+  }
+}
+
+<span class="hljs-comment">// Constructor of class &#x27;Message&#x27; is private and only accessible within the class declaration.</span>
+<span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Message</span>(<span class="hljs-string">&#x27;test&#x27;</span>);
+<span class="hljs-comment">// Ok</span>
+<span class="hljs-title hljs-class">Message</span>.<span class="hljs-title hljs-function">create</span>(<span class="hljs-string">&#x27;test&#x27;</span>);
+</code></pre>
+<p>如果将 private 换成 protect 之后，就实现了完全相反的效果。由于 protect 可以被子类所使用，所有可以拓展。而外部无法使用，所以就无法实例化该类。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-keyword">class</span> <span class="hljs-title hljs-class">Message</span> {
+  <span class="hljs-keyword">protected</span> <span class="hljs-title hljs-function">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">protected</span> msg: <span class="hljs-built_in">string</span></span>) {}
+}
+
+<span class="hljs-keyword">class</span> <span class="hljs-title hljs-class">NewMessage</span> <span class="hljs-keyword">extends</span> <span class="hljs-title hljs-class hljs-inherited">Message</span> {}
+</code></pre>
+<h3 id="工厂模式">工厂模式</h3>
+<p>工厂模式是创建某种类型的对象的一种方式，这种方式把创建哪种具体对象给创建该对象的工厂决定。</p>
+<p>这里实现了一个创建 Shoe 的工厂，Shoe 对象有一个<code>crarete()</code>方法，它根据传入的值来决定创建哪个鞋子。同时参数 type 使用了并集而不是 string 来进一步保证类型的安全。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-keyword">type</span> <span class="hljs-title hljs-class">Shoe</span> = {
+  <span class="hljs-attr">purpose</span>: <span class="hljs-built_in">string</span>;
+};
+<span class="hljs-keyword">class</span> <span class="hljs-title hljs-class">Boot</span> <span class="hljs-keyword">implements</span> <span class="hljs-title hljs-class">Shoe</span> {
+  purpose = <span class="hljs-string">&#x27;woodcutting&#x27;</span>;
+}
+<span class="hljs-keyword">class</span> <span class="hljs-title hljs-class">BalletFlat</span> <span class="hljs-keyword">implements</span> <span class="hljs-title hljs-class">Shoe</span> {
+  purpose = <span class="hljs-string">&#x27;dancing&#x27;</span>;
+}
+<span class="hljs-keyword">class</span> <span class="hljs-title hljs-class">Sneaker</span> <span class="hljs-keyword">implements</span> <span class="hljs-title hljs-class">Shoe</span> {
+  purpose = <span class="hljs-string">&#x27;walking&#x27;</span>;
+}
+
+<span class="hljs-keyword">const</span> <span class="hljs-title hljs-class">Shoe</span> = {
+  <span class="hljs-title hljs-function">crarete</span>(<span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;boot&#x27;</span> | <span class="hljs-string">&#x27;balletflat&#x27;</span> | <span class="hljs-string">&#x27;sneaker&#x27;</span>): <span class="hljs-title hljs-class">Shoe</span> {
+    <span class="hljs-keyword">switch</span> (<span class="hljs-keyword">type</span>) {
+      <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;boot&#x27;</span>:
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Boot</span>();
+      <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;balletflat&#x27;</span>:
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">BalletFlat</span>();
+      <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;sneaker&#x27;</span>:
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Sneaker</span>();
+    }
+  },
+};
+
+<span class="hljs-keyword">const</span> myShoe = <span class="hljs-title hljs-class">Shoe</span>.<span class="hljs-title hljs-function">crarete</span>(<span class="hljs-string">&#x27;sneaker&#x27;</span>);
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(myShoe.<span class="hljs-property">purpose</span>);
+</code></pre>
+<p>当然也可以牺牲一点抽象性，使用函数重载来明确返回类型：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-keyword">type</span> <span class="hljs-title hljs-class">Shoe</span> = {
+  <span class="hljs-attr">purpose</span>: <span class="hljs-built_in">string</span>;
+};
+<span class="hljs-keyword">class</span> <span class="hljs-title hljs-class">Boot</span> <span class="hljs-keyword">implements</span> <span class="hljs-title hljs-class">Shoe</span> {
+  purpose = <span class="hljs-string">&#x27;woodcutting&#x27;</span>;
+}
+<span class="hljs-keyword">class</span> <span class="hljs-title hljs-class">BalletFlat</span> <span class="hljs-keyword">implements</span> <span class="hljs-title hljs-class">Shoe</span> {
+  purpose = <span class="hljs-string">&#x27;dancing&#x27;</span>;
+}
+<span class="hljs-keyword">class</span> <span class="hljs-title hljs-class">Sneaker</span> <span class="hljs-keyword">implements</span> <span class="hljs-title hljs-class">Shoe</span> {
+  purpose = <span class="hljs-string">&#x27;walking&#x27;</span>;
+}
+
+<span class="hljs-keyword">type</span> <span class="hljs-title hljs-class">CreateShoe</span> = {
+  <span class="hljs-title hljs-function">crarete</span>(<span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;boot&#x27;</span>): <span class="hljs-title hljs-class">Boot</span>;
+  <span class="hljs-title hljs-function">crarete</span>(<span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;balletflat&#x27;</span>): <span class="hljs-title hljs-class">BalletFlat</span>;
+  <span class="hljs-title hljs-function">crarete</span>(<span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;sneaker&#x27;</span>): <span class="hljs-title hljs-class">Sneaker</span>;
+};
+
+<span class="hljs-keyword">const</span> <span class="hljs-title hljs-class">Shoe</span>: <span class="hljs-title hljs-class">CreateShoe</span> = {
+  <span class="hljs-title hljs-function">crarete</span>(<span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;boot&#x27;</span> | <span class="hljs-string">&#x27;balletflat&#x27;</span> | <span class="hljs-string">&#x27;sneaker&#x27;</span>): <span class="hljs-title hljs-class">Shoe</span> {
+    <span class="hljs-keyword">switch</span> (<span class="hljs-keyword">type</span>) {
+      <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;boot&#x27;</span>:
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Boot</span>();
+      <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;balletflat&#x27;</span>:
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">BalletFlat</span>();
+      <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;sneaker&#x27;</span>:
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Sneaker</span>();
+    }
+  },
+};
+
+<span class="hljs-keyword">const</span> myShoe = <span class="hljs-title hljs-class">Shoe</span>.<span class="hljs-title hljs-function">crarete</span>(<span class="hljs-string">&#x27;sneaker&#x27;</span>);
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(myShoe.<span class="hljs-property">purpose</span>);
+</code></pre>
+<h2 id="类型进阶">类型进阶</h2>
+<p>TypeScript 拥有一流的类型系统支持强大的类型层面编程特性。不仅具有极强的表现力，易于使用，而且可以通过简介明了的方式声明类型约束和关系，并且多数时候能为我们自动推导类型。</p>
+<h3 id="超类型和子类型">超类型和子类型</h3>
+<p>如同类一样，类型也有超类型与其子类型。并且在需要超类型的地方都可以安全的使用其子类型。类型的关系很常见，例如：</p>
+<ul>
+<li>Cat 类拓展自 Animal 类，那么 Cat 是 Animal 的子类型；</li>
+<li>Array 是 Object 的子类型；</li>
+<li>Tuple 是 Array 的子类型；</li>
+<li>所有类型都是 any 的子类型；</li>
+<li>never 是所有类型的子类型；</li>
+</ul>
+<p>反过来也是同样的，Animal 就是 Cat 的超类型。</p>
+<h3 id="函数型变">函数型变</h3>
+<p>如果 A 函数的参数数量小于或等于 B 函数的参数数量，且满足如下条件，那么函数 A 是函数 B 的子类型：</p>
+<ol>
+<li>函数 A 的 this 类型未指定，或者 this 是函数 B this 的<strong>超类型</strong>；</li>
+<li>函数 A 的各个参数的类型为函数 B 相应参数的<strong>超类型</strong>；</li>
+<li>函数 A 的返回类型为函数 B 返回类型的<strong>子类型</strong>；</li>
+</ol>
+<p>仔细研究就会发现，虽然函数 A 是函数 B 的子类型，但是它的 this 和参数缺都是函数 B 的超类型。</p>
+<p>来看一个简单的示例，这里通过几个类之间的继承，很好的描述了函数之间的型变：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-keyword">class</span> <span class="hljs-title hljs-class">Animal</span> {}
+<span class="hljs-keyword">class</span> <span class="hljs-title hljs-class">Cat</span> <span class="hljs-keyword">extends</span> <span class="hljs-title hljs-class hljs-inherited">Animal</span> {
+  <span class="hljs-title hljs-function">miao</span>(<span class="hljs-params"></span>) {}
+}
+<span class="hljs-keyword">class</span> <span class="hljs-title hljs-class">Lion</span> <span class="hljs-keyword">extends</span> <span class="hljs-title hljs-class hljs-inherited">Cat</span> {
+  <span class="hljs-title hljs-function">wawu</span>(<span class="hljs-params"></span>) {}
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">miaomiao</span>(<span class="hljs-params">cat: Cat</span>) {
+  cat.<span class="hljs-title hljs-function">miao</span>();
+  <span class="hljs-keyword">return</span> cat;
+}
+
+<span class="hljs-comment">// 需要超类型的地方也可以使用子类型</span>
+<span class="hljs-title hljs-function">miaomiao</span>(<span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Animal</span>());
+<span class="hljs-title hljs-function">miaomiao</span>(<span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Cat</span>());
+<span class="hljs-title hljs-function">miaomiao</span>(<span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Lion</span>());
+
+<span class="hljs-comment">// 回调函数 fn 为超类型</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">clone</span>(<span class="hljs-params">fn: (cat: Cat) =&gt; Cat</span>): <span class="hljs-built_in">void</span> {
+  <span class="hljs-keyword">const</span> parent = <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Cat</span>();
+  <span class="hljs-keyword">const</span> baby = <span class="hljs-title hljs-function">fn</span>(parent);
+  baby.<span class="hljs-title hljs-function">miao</span>();
+}
+
+<span class="hljs-comment">// catToLion 即是回调函数 fn 的子类型</span>
+<span class="hljs-comment">// 满足返回值是其子类型</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">catToLion</span>(<span class="hljs-params">c: Cat</span>): <span class="hljs-title hljs-class">Lion</span> {	
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Lion</span>();
+}
+<span class="hljs-title hljs-function">clone</span>(catToLion);
+
+<span class="hljs-comment">// catToAnimal 返回值是其超类型，所以无法调用</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">catToAnimal</span>(<span class="hljs-params">c: Cat</span>): <span class="hljs-title hljs-class">Animal</span> {
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Animal</span>();
+}
+<span class="hljs-title hljs-function">clone</span>(catToAnimal);
+
+<span class="hljs-comment">// animalToCat 即是回调函数 fn 的子类型</span>
+<span class="hljs-comment">// 满足参数是其超类型</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">animalToCat</span>(<span class="hljs-params">a: Animal</span>): <span class="hljs-title hljs-class">Cat</span> {
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Cat</span>();
+}
+<span class="hljs-title hljs-function">clone</span>(animalToCat);
+
+<span class="hljs-comment">// animalToLion 参数是其子类型，所以无法调用</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">animalToLion</span>(<span class="hljs-params">l: Lion</span>): <span class="hljs-title hljs-class">Cat</span> {
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title hljs-class">Cat</span>();
+}
+<span class="hljs-title hljs-function">clone</span>(animalToLion);
+</code></pre>
+<p>值得高兴的是，我们并不需要记诵这套规则。只需要了解一下就好了，剩下的 TypeScript 都帮我们做了（我们的老朋友，红色波浪线会告诉我们传递是否正确的）。</p>
+<h3 id="可赋值性">可赋值性</h3>
+<p>可赋值性之的就是判断需要 B 类型的地方是否可用 A 类型时 TypeScript 采用的规则。</p>
+<p>在非枚举类型来说，A 类型是否可赋值给 B 类型有两个规则：</p>
+<ol>
+<li>A 是 B 的子类型；</li>
+<li>A 是 any；</li>
+</ol>
+<p>也就是说能用到超类型的地方，都能可以用其子类型。</p>
+<p>对于枚举类型来说，也是有两个规则：</p>
+<ol>
+<li>A 是枚举 B 的成员；</li>
+<li>B 至少有一个成员是 number 类型，且 A 是数字；</li>
+</ol>
+<h3 id="类型拓宽">类型拓宽</h3>
+<p>TypeScript 在一般情况下推导类型时会放宽要求，故意推导出一个更宽泛的类型，而不是限定为一个具体的类型。不过在使用<code>const</code>关键字声明标识符的时候会严格限定类型。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-comment">// a: string</span>
+<span class="hljs-keyword">let</span> a = <span class="hljs-string">&#x27;xfy&#x27;</span>;
+<span class="hljs-comment">// b: &#x27;xfy&#x27;</span>
+<span class="hljs-keyword">const</span> b = <span class="hljs-string">&#x27;xfy&#x27;</span>;
+</code></pre>
+<p>可以显式注解，防止类型拓宽。</p>
+<h4 id="const-类型">const 类型</h4>
+<p>TypeScript 中有一个特殊的类型<code>const</code>类型，可以禁止类型拓宽并且还递归的将成员设置为<code>readonly</code>，不管嵌套有多深。这个类型作用与类型断言。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-keyword">let</span> c = { <span class="hljs-attr">x</span>: <span class="hljs-number">123</span> } <span class="hljs-keyword">as</span> <span class="hljs-keyword">const</span>;
+<span class="hljs-comment">// d: { readonly x: 1; readonly y: { readonly z: 3; }; }</span>
+<span class="hljs-keyword">let</span> d = { <span class="hljs-attr">x</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">y</span>: { <span class="hljs-attr">z</span>: <span class="hljs-number">3</span> } } <span class="hljs-keyword">as</span> <span class="hljs-keyword">const</span>;
+</code></pre>
+<h4 id="多余属性检查">多余属性检查</h4>
+<p>TypeScript 在检查一个对象是否可赋值给另一个对象时，也涉及到类型拓宽。</p>
+<p>传递一个对象字面量时，TypeScript 会对所有属性进行检查，也就是多余属性检查。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-keyword">type</span> <span class="hljs-title hljs-class">Option</span> = {
+  <span class="hljs-attr">baseUrl</span>: <span class="hljs-built_in">string</span>;
+  cacheSize?: <span class="hljs-built_in">number</span>;
+};
+
+<span class="hljs-keyword">class</span> <span class="hljs-title hljs-class">API</span> {
+  <span class="hljs-title hljs-function">constructor</span>(<span class="hljs-params">option: Option</span>) {}
+}
+
+<span class="hljs-keyword">new</span> <span class="hljs-title hljs-function">API</span>({
+  <span class="hljs-attr">baseUrl</span>: <span class="hljs-string">&#x27;https://xfy.plus&#x27;</span>,
+  <span class="hljs-attr">cacheSizee</span>: <span class="hljs-number">123</span>, <span class="hljs-comment">// 错误</span>
+});
+</code></pre>
+<p>但多余属性检查在将对象赋值给一个变量时则不会详细检查：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-keyword">let</span> option = {
+  <span class="hljs-attr">baseUrl</span>: <span class="hljs-string">&#x27;https://xfy.plus&#x27;</span>,
+  <span class="hljs-attr">cacheSizee</span>: <span class="hljs-number">123</span>,
+};
+<span class="hljs-keyword">new</span> <span class="hljs-title hljs-function">API</span>(option);  <span class="hljs-comment">// 没有错误</span>
+</code></pre>
+<h3 id="对象类型进阶">对象类型进阶</h3>
+<p>对象是 JavaScript 语言的核心，为了以安全的方式描述和处理对象，TypeScript 提供了一系列方式。</p>
+<h4 id="对象类型运算符">对象类型运算符</h4>
+<p><strong>键入运算符</strong></p>
+<p>键入运算符提供了类似与对象字面量的方式来对类型的访问，在对顶层类型做访问时，能提供更简便的方法：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-keyword">type</span> <span class="hljs-title hljs-class">APIResponse</span> = {
+  <span class="hljs-attr">user</span>: {
+    <span class="hljs-attr">userId</span>: <span class="hljs-built_in">number</span>;
+    <span class="hljs-attr">frientList</span>: {
+      <span class="hljs-attr">count</span>: <span class="hljs-built_in">number</span>;
+      <span class="hljs-attr">friends</span>: {
+        <span class="hljs-attr">firstName</span>: <span class="hljs-built_in">string</span>;
+        <span class="hljs-attr">lastName</span>: <span class="hljs-built_in">string</span>;
+      }[];
+    };
+  };
+};
+<span class="hljs-keyword">type</span> <span class="hljs-title hljs-class">FriendList</span> = <span class="hljs-title hljs-class">APIResponse</span>[<span class="hljs-string">&#x27;user&#x27;</span>][<span class="hljs-string">&#x27;frientList&#x27;</span>];
+</code></pre>
+<p><strong><code>keyof</code>运算符</strong></p>
+<p>与<code>Object.keys</code>类似，不过<code>keyof</code>取的是作为类型的键。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-keyword">const</span> <span class="hljs-title hljs-class">Obj</span> = {
+  <span class="hljs-attr">a</span>: <span class="hljs-number">1</span>,
+  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;xfy&#x27;</span>,
+};
+
+<span class="hljs-keyword">type</span> <span class="hljs-title hljs-class">PickOne</span> = {
+  <span class="hljs-comment">// T 是一个对象，K 是 T 中的一个键</span>
+  &lt;T <span class="hljs-keyword">extends</span> <span class="hljs-built_in">object</span>, K <span class="hljs-keyword">extends</span> keyof T&gt;(<span class="hljs-attr">obj</span>: T, <span class="hljs-attr">key</span>: K): T[K];
+};
+
+<span class="hljs-keyword">const</span> <span class="hljs-attr">pickOne</span>: <span class="hljs-title hljs-class">PickOne</span> = <span class="hljs-function">(<span class="hljs-params">obj, key</span>) =&gt;</span> {
+  <span class="hljs-keyword">return</span> obj[key];
+};
+
+<span class="hljs-keyword">const</span> t1 = <span class="hljs-title hljs-function">pickOne</span>(<span class="hljs-title hljs-class">Obj</span>, <span class="hljs-string">&#x27;a&#x27;</span>);
+</code></pre>
+<h4 id="映射类型">映射类型</h4>
+<p>TypeScript 还提供了一种更强大的方式，即映射类型（mapped type）。一个对象最多有一个映射类型</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-keyword">const</span> <span class="hljs-attr">nextDay</span>: { [key <span class="hljs-keyword">in</span> <span class="hljs-title hljs-class">Day</span>]: <span class="hljs-built_in">string</span> } = {
+  <span class="hljs-title hljs-class">Mon</span>: <span class="hljs-string">&#x27;Thu&#x27;</span>,
+};
+</code></pre>
+<p>内置的映射类型</p>
+<ul>
+<li><code>Record&lt;Keys, Values&gt;</code>：键的的类型为 Keys、值的类型为 Values 的对象。</li>
+<li><code>Partial&lt;Object&gt;</code>：把 Object 中的每个字段都标记为可选的。</li>
+<li><code>Required&lt;Object&gt;</code>：把 Object 中的每个字段都标记为必须的。</li>
+<li><code>Readonly&lt;Object&gt;</code>：把 Object 中的每个字段都标记为只读的。</li>
+<li><code>Pick&lt;Object, Keys&gt;</code>：返回 Object 的子类型，只包含指定的 Keys。</li>
+</ul>
+<h3 id="函数类型进阶">函数类型进阶</h3>
+<p>函数类型常用的几种高级技术。</p>
+<h4 id="改善数组的类型推导">改善数组的类型推导</h4>
+<p>TypeScript 在推导元组类型的时候会放宽要求，推导出的结果尽量宽泛，不在乎元组的长度和各位置的类型。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-keyword">const</span> tuple1 = [<span class="hljs-number">1</span>, <span class="hljs-string">&#x27;xfy&#x27;</span>] <span class="hljs-keyword">as</span> <span class="hljs-keyword">const</span>;
+<span class="hljs-comment">// tuple1: (string | number)[]</span>
+</code></pre>
+<p>有些时候我们可能希望更加严格一点，而不是当作数组来使用。当然可以使用类型断言来更加严格：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-keyword">const</span> tuple2 = [<span class="hljs-number">1</span>, <span class="hljs-string">&#x27;xfy&#x27;</span>] <span class="hljs-keyword">as</span> <span class="hljs-keyword">const</span>;
+<span class="hljs-comment">// tuple2: readonly [1, &quot;xfy&quot;]</span>
+</code></pre>
+<p>但有时候我们可能不想使用断言，或者不想标记为只读。这时候可以利用 TypeScript 推导剩余参数的类型的方式：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-keyword">const</span> tuple = &lt;T <span class="hljs-keyword">extends</span> unknown[]&gt;(...<span class="hljs-attr">ts</span>: T): <span class="hljs-function"><span class="hljs-params">T</span> =&gt;</span> {
+  <span class="hljs-keyword">return</span> ts;
+};
+<span class="hljs-keyword">const</span> myTuple = <span class="hljs-title hljs-function">tuple</span>(<span class="hljs-number">1</span>, <span class="hljs-string">&#x27;xfy&#x27;</span>);
+<span class="hljs-comment">// myTuple: [number, string]</span>
+</code></pre>
+<p>这个函数返回传入的参数，神奇之处全在类型中。当代码中使用到了大量的元组时，而又不想全部断言时，可以尝试这种技术。</p>
+<h4 id="用户定义的类型防护措施">用户定义的类型防护措施</h4>
+<p>TypeScript 支持类型的细化。但它不不是任何条件都有用的：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">isString</span>(<span class="hljs-params">str: unknown</span>): <span class="hljs-built_in">boolean</span> {
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> str === <span class="hljs-string">&#x27;string&#x27;</span>;
+}
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-title hljs-function">isString</span>(<span class="hljs-string">&#x27;123&#x27;</span>)); <span class="hljs-comment">// true</span>
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-title hljs-function">isString</span>(<span class="hljs-number">123</span>)); <span class="hljs-comment">// false</span>
+
+<span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">parseInput</span>(<span class="hljs-params">input: <span class="hljs-built_in">string</span> | <span class="hljs-built_in">number</span></span>) {
+  <span class="hljs-keyword">if</span> (<span class="hljs-title hljs-function">isString</span>(input)) {
+    input.<span class="hljs-title hljs-function">toUpperCase</span>(); <span class="hljs-comment">// Property &#x27;toUpperCase&#x27; does not exist on type &#x27;number&#x27;.</span>
+  }
+}
+</code></pre>
+<p>在这种情况下，类型细化就不再为我们工作了。类型细化的能力有限，只能细化当前作用域中变量的类型，一旦离开作用域，类型细化能力不会随之转移到新作用域中。在新的函数内，TypeScript 只知道<code>isString</code>返回一个布尔值。</p>
+<p><code>isString</code>返回的确实是一个布尔值，但我们要让类型检查器知道，当返回是真值时，表明其参数是一个字符串。为此，这里需要使用用户定义的类型防护措施：</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">isString</span>(<span class="hljs-params">str: unknown</span>): str is <span class="hljs-built_in">string</span> {
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> str === <span class="hljs-string">&#x27;string&#x27;</span>;
+}
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-title hljs-function">isString</span>(<span class="hljs-string">&#x27;123&#x27;</span>)); <span class="hljs-comment">// true</span>
+<span class="hljs-variable hljs-language">console</span>.<span class="hljs-title hljs-function">log</span>(<span class="hljs-title hljs-function">isString</span>(<span class="hljs-number">123</span>)); <span class="hljs-comment">// false</span>
+
+<span class="hljs-keyword">function</span> <span class="hljs-title hljs-function">parseInput</span>(<span class="hljs-params">input: <span class="hljs-built_in">string</span> | <span class="hljs-built_in">number</span></span>) {
+  <span class="hljs-keyword">if</span> (<span class="hljs-title hljs-function">isString</span>(input)) {
+    input.<span class="hljs-title hljs-function">toUpperCase</span>(); <span class="hljs-comment">// worked!</span>
+  }
+}
+</code></pre>
+<p>类型防护措施是 TypeScript 内置的特性，is 运算符就起这个作用。如果函数细化了参数的类型，而且返回一个布尔值，我们可以使用用户定义的类型防护措施确保类型的细化能在作用域之间转移。用户定义的类型防护措施只限于一个参数，但是不限定于简单的类型。</p>
+<h3 id="条件类型">条件类型</h3>
+<p>TypeScript 提供了和条件运算类似的方式来运算类型。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-keyword">type</span> <span class="hljs-title hljs-class">IsString</span>&lt;T&gt; = T <span class="hljs-keyword">extends</span> <span class="hljs-built_in">string</span> ? <span class="hljs-literal">true</span> : <span class="hljs-literal">false</span>;
+
+<span class="hljs-keyword">type</span> A = <span class="hljs-title hljs-class">IsString</span>&lt;<span class="hljs-built_in">string</span>&gt;; <span class="hljs-comment">// true</span>
+<span class="hljs-keyword">type</span> B = <span class="hljs-title hljs-class">IsString</span>&lt;<span class="hljs-built_in">number</span>&gt;; <span class="hljs-comment">// false</span>
+</code></pre>
+<h4 id="infer-关键字">infer 关键字</h4>
+<p>条件类型的另一个更强大的特新故事可以在条件中声明泛型。这个声明方式不是使用尖括号<code>&lt;&gt;</code>，而是使用 infer 关键字。</p>
+<p>这里的意思是：当泛型 T 继承自另一个泛型 U 组成的数组时，返回 U 类型。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-keyword">type</span> <span class="hljs-title hljs-class">SomeArr</span>&lt;T&gt; = T <span class="hljs-keyword">extends</span> (infer U)[] ? U : T;
+<span class="hljs-keyword">type</span> C = <span class="hljs-title hljs-class">SomeArr</span>&lt;<span class="hljs-built_in">string</span>[]&gt;; <span class="hljs-comment">// string</span>
+<span class="hljs-keyword">type</span> D = <span class="hljs-title hljs-class">SomeArr</span>&lt;<span class="hljs-built_in">number</span>[]&gt;; <span class="hljs-comment">// number</span>
+</code></pre>
+<p>这还不是最强大的地方，对于数组来说我们可以使用键入运算符<code>[]</code>。更强大的地方在于它还可以获取到函数参数类型：</p>
+<p>这里的意思是：当泛型 F 继承自一个接收两个参数的函数，并且两个参数中的第二个参数为泛型 U 类型时，返回对应的 U 类型。</p>
+<pre><button type="button" class="chakra-button css-19bp9bt">COPY</button><code class="hljs language-ts"><span class="hljs-keyword">type</span> <span class="hljs-title hljs-class">SecondArg</span>&lt;F&gt; = F <span class="hljs-keyword">extends</span> (<span class="hljs-attr">argA</span>: <span class="hljs-built_in">any</span>, <span class="hljs-attr">argB</span>: infer U) =&gt; <span class="hljs-built_in">any</span> ? U : <span class="hljs-built_in">never</span>;
+
+<span class="hljs-keyword">type</span> F = <span class="hljs-keyword">typeof</span> <span class="hljs-title hljs-class">Array</span>[<span class="hljs-string">&#x27;prototype&#x27;</span>][<span class="hljs-string">&#x27;slice&#x27;</span>]; <span class="hljs-comment">// F = (start?: number, end?: number) =&gt; any[]</span>
+<span class="hljs-keyword">type</span> <span class="hljs-title hljs-class">Arg</span> = <span class="hljs-title hljs-class">SecondArg</span>&lt;F&gt;; <span class="hljs-comment">// Arg = number</span>
+</code></pre>
+<p>可见<code>[].slice</code>的第二个参数是 number 类型，而且在编译时便可知晓这一点。Java 能做到吗？</p>
+<blockquote>
+<p>↑《Programming TypeScript》中文版 6.5.2 章原话。</p>
+</blockquote>
+<h2 id="异步">异步</h2>
+<h3 id="事件发射器">事件发射器</h3></section></article></div><style data-emotion="css 1i6v8fa">.css-1i6v8fa{min-height:346px;}@media screen and (min-width: 30em){.css-1i6v8fa{min-height:350px;}}</style><div class="css-1i6v8fa"></div><style data-emotion="css 3ydw18">.css-3ydw18{height:3px;width:50px;background:var(--chakra-colors-gray-500);border-radius:var(--chakra-radii-xl);margin-top:2.5rem;}</style><div class="css-3ydw18"></div><style data-emotion="css 1lwvw50">.css-1lwvw50{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-flex-flow:column;-webkit-flex-flow:column;-ms-flex-flow:column;flex-flow:column;padding-top:1.5rem;padding-bottom:1.5rem;}</style><footer class="css-1lwvw50"><style data-emotion="css yld109">.css-yld109{color:var(--chakra-colors-gray-600);font-weight:var(--chakra-fontWeights-bold);margin-bottom:0.5rem;}</style><p class="chakra-text css-yld109">©<!-- -->2022<!-- --> 小肥羊</p><style data-emotion="css 3eyczr">.css-3eyczr{color:var(--chakra-colors-gray-400);font-size:small;}</style><p class="chakra-text css-3eyczr">Powered by Next.js ❤️ Chakra UI</p></footer></div><style data-emotion="css kl7qz4">.css-kl7qz4{display:none;position:-webkit-sticky;position:sticky;top:3rem;margin-top:3rem;}@media screen and (min-width: 30em){.css-kl7qz4{display:none;}}@media screen and (min-width: 48em){.css-kl7qz4{display:none;}}@media screen and (min-width: 62em){.css-kl7qz4{display:block;}}</style><div class="css-kl7qz4"><h2 id="table-of-contents">Table of contents</h2>
+<ul>
+<li>
+<p><style data-emotion="css wox0k7">.css-wox0k7{transition-property:var(--chakra-transition-property-common);transition-duration:var(--chakra-transition-duration-fast);transition-timing-function:var(--chakra-transition-easing-ease-out);cursor:pointer;-webkit-text-decoration:none;text-decoration:none;outline:2px solid transparent;outline-offset:2px;color:inherit;display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}.css-wox0k7:hover,.css-wox0k7[data-hover]{-webkit-text-decoration:underline;text-decoration:underline;}.css-wox0k7:focus,.css-wox0k7[data-focus]{box-shadow:var(--chakra-shadows-outline);}</style><a class="chakra-link css-wox0k7" href="#%E5%87%BD%E6%95%B0">函数</a></p>
+<ul>
+<li><a class="chakra-link css-wox0k7" href="#%E9%87%8D%E8%BD%BD">重载</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E5%A4%9A%E6%80%81">多态</a></li>
+</ul>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#%E7%B1%BB">类</a></p>
+<ul>
+<li><a class="chakra-link css-wox0k7" href="#%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95">基本语法</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E4%BB%A5-this-%E4%BD%9C%E4%B8%BA%E8%BF%94%E5%9B%9E%E7%B1%BB%E5%9E%8B">以 this 作为返回类型</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E6%8E%A5%E5%8F%A3">接口</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E5%AE%9E%E7%8E%B0">实现</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E6%8E%A5%E5%8F%A3%E8%BF%98%E6%98%AF%E6%8A%BD%E8%B1%A1%E7%B1%BB">接口还是抽象类</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E7%B1%BB%E6%98%AF%E7%BB%93%E6%9E%84%E5%8C%96%E7%B1%BB%E5%9E%8B">类是结构化类型</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E7%B1%BB%E6%97%A2%E5%A3%B0%E6%98%8E%E5%80%BC%E4%B9%9F%E5%A3%B0%E6%98%8E%E7%B1%BB%E5%9E%8B">类既声明值也声明类型</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E6%A8%A1%E6%8B%9F-final-%E7%B1%BB">模拟 final 类</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F">工厂模式</a></li>
+</ul>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#%E7%B1%BB%E5%9E%8B%E8%BF%9B%E9%98%B6">类型进阶</a></p>
+<ul>
+<li><a class="chakra-link css-wox0k7" href="#%E8%B6%85%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%AD%90%E7%B1%BB%E5%9E%8B">超类型和子类型</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E5%87%BD%E6%95%B0%E5%9E%8B%E5%8F%98">函数型变</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E5%8F%AF%E8%B5%8B%E5%80%BC%E6%80%A7">可赋值性</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E7%B1%BB%E5%9E%8B%E6%8B%93%E5%AE%BD">类型拓宽</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E5%AF%B9%E8%B1%A1%E7%B1%BB%E5%9E%8B%E8%BF%9B%E9%98%B6">对象类型进阶</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E5%87%BD%E6%95%B0%E7%B1%BB%E5%9E%8B%E8%BF%9B%E9%98%B6">函数类型进阶</a></li>
+<li><a class="chakra-link css-wox0k7" href="#%E6%9D%A1%E4%BB%B6%E7%B1%BB%E5%9E%8B">条件类型</a></li>
+</ul>
+</li>
+<li>
+<p><a class="chakra-link css-wox0k7" href="#%E5%BC%82%E6%AD%A5">异步</a></p>
+<ul>
+<li><a class="chakra-link css-wox0k7" href="#%E4%BA%8B%E4%BB%B6%E5%8F%91%E5%B0%84%E5%99%A8">事件发射器</a></li>
+</ul>
+</li>
+</ul></div></div><span></span></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"postData":{"id":"programming-typescript","content":"\n\u003e 《Programming TypeScript》笔记。\n\n## 函数\n\n### 重载\n\n重载函数：有多个调用签名的函数。\n\n在多数编程语言中，声明函数时一旦指定了特定的参数和返回类型，就只能使用相应的参数调用参数。但 JavaScript 是一门动态语言，势必需要以多种方式调用一个函数的方法。不仅如此，而且有时输出的类型取决于参数的类型。\n\nTypeScript 也支持动态重载函数声明，而且函数的输出类型却决于输入类型。\n\n一个普通的函数类型注解：\n\n```ts\ntype Reserve = {\n  (from: Date, to: Date, destination: string): string;\n};\n\nconst reserve: Reserve = (from,toOrDest, destination) =\u003e {\n  const cost = Math.floor(Math.random() * (998 - 199) + 198);\n  return `To ${destination} need ${cost} ${from.toLocaleString()}`\n};\nconsole.log(reserve(new Date(), new Date(), 'bali'));\n```\n\n函数的重载需要在注解时定义多个类型，在函数声明时需要手动组合两个签名：\n\n```ts\ntype Reserve = {\n  (from: Date, to: Date, destination: string): string;\n  (from: Date, destination: string): string;\n};\n\nconst reserve: Reserve = (\n  // 参数需要手动在注解并组合两个签名\n  from: Date,\n  toOrDest: Date | string,\n  destination?: string\n) =\u003e {\n  const cost = Math.floor(Math.random() * (998 - 199) + 198);\n  if (toOrDest instanceof Date \u0026\u0026 destination !== undefined) {\n    return `To ${destination} need ${cost} ${from.toLocaleString()} ${toOrDest.toLocaleString()}`;\n  } else {\n    return `To ${toOrDest} need ${cost} ${from.toLocaleString()}`;\n  }\n};\nconsole.log(reserve(new Date(), new Date(), 'bali'));\nconsole.log(reserve(new Date(), 'bali'));\n```\n\n### 多态\n\n使用具体类型的前提是明确知道需要什么类型，并且想确认传入的确实是那个类型。但是，有时事先并不知道需要什么类型，不想限制函数只能接受某个类型。\n\n这种情况可以使用函数泛型（generic type）参数。\n\n\u003e 在类型层面施加约束的占位类型，也称多态类型参数。\n\n例如我们重写一个简单的数组 filter 方法，在我们老朋友 JavaScript 中，这是一个很基本的函数。\n\n```js\nconst filter = (arr, fn) =\u003e {\n  let result = [];\n  for (const i of arr) {\n    if (fn(i)) {\n      result.push(i);\n    }\n  }\n  return result;\n};\n```\n\n但在 TypeScript 中，为了类型保护我们就需要为其添加类型注解。而这个函数的特点就是他可以（需要）接受多种类型的参数，且函数的返回值也是跟着参数的类型变化的。\n\n也许利用重载为其注解所有类型也是可以的：\n\n```ts\ntype Filter = {\n  (arr: number[], fn: (item: number) =\u003e boolean): number[];\n  (arr: string[], fn: (item: string) =\u003e boolean): string[];\n};\n```\n\n但是如果遇到了对象数组呢：\n\n```ts\ntype Filter = {\n  (arr: number[], fn: (item: number) =\u003e boolean): number[];\n  (arr: string[], fn: (item: string) =\u003e boolean): string[];\n  (arr: Object[], fn: (item: Object) =\u003e boolean): Object[];\n};\n```\n\nObject 无法描述对象结构，它可以代表所有类似对象的结构。\n\n这时候就需要使用泛型了：\n\n```ts\ntype Filter = {\n  \u003cT\u003e(arr: T[], fn: (item: T) =\u003e boolean): T[];\n};\n```\n\n这里泛型的意思是：filter 函数使用一个泛型参数 T，在事先我们不知道其具体的类型。TypeScript 从传入的 arr 参数种推导出 T 的类型。调用 filter 时，T 的类型被推导出后，将把 T 出现的每一处替换为推导出的类型。T 就像是一个占位类型，类型检查器会根据上下文填充具体的类型。T 把 Filter 的类型参数化了，因此才称其为泛型参数。\n\n#### 泛型作用域\n\n泛型声明的位置不仅限定了泛型的作用域，还决定了 TypeScript 什么时候为泛型绑定具体的类型。\n\n例如之前 Filter 函数的类型：\n\n```ts\ntype Filter = {\n  \u003cT\u003e(arr: T[], fn: (item: T) =\u003e boolean): T[];\n};\nconst filter:Filter = (arr, fn) // ...\n```\n\n`\u003cT\u003e`在调用签名中声明（位于签名开始的括号前），TypeScript 将在调用 Filter 类型的函数时为 T 绑定具体类型。\n\n而如果把 T 写在类型别名上，TypeScript 则要求在使用 Filter 时显式绑定类型：\n\n```ts\ntype Filter\u003cT\u003e = {\n  (arr: T[], fn: (item: T) =\u003e boolean): T[];\n};\nconst filter:Filter\u003cnumber\u003e = (arr, fn) // ...\n```\n\n一般来说，TypeScript 在使用泛型时为泛型绑定具体类：对函数来说，在调用函数时；对类来说，在实例化类时；对类型别名和接口来说，在使用别名和接口时。\n\n#### 函数泛型的多种写法\n\n```ts\ntype Filter = {\n  \u003cT\u003e(arr: T[], fn: (item: T) =\u003e boolean): T[];\n};\nconst filter: Filter = (arr, fn); // ...\n\ntype Filter\u003cT\u003e = {\n  (arr: T[], fn: (item: T) =\u003e boolean): T[];\n};\nconst filter:Filter\u003cnumber\u003e = (arr, fn) // ...\n\ntype Filter = \u003cT\u003e(arr: T[], fn: (item: T) =\u003e boolean) =\u003e T[];\nconst filter: Filter = (arr, fn); // ...\n\ntype Filter\u003cT\u003e = (arr: T[], fn: (item: T) =\u003e boolean) =\u003e T[];\nconst filter:Filter\u003cnumber\u003e = (arr, fn) // ...\n```\n\n#### 约束受限多态\n\n施加一个类型约束很简单，语法有点类似于子类继承：\n\n```ts\nfunction test\u003cT extends Filter\u003e { //... }\n```\n\n当然，也可以有多个约束，这时候就要使用到交集了：\n\n```ts\nfunction test\u003cT extends Filter \u0026 Map\u003e { //... }\n```\n\n除此之外还能借助受限的多态来模拟变长参数函数（可接受任意个参数的函数），例如之前一直困扰我的防抖函数：\n\n```ts\ntype Debounce = {\n  \u003cT extends unknown[]\u003e(fn: (...arg: T) =\u003e void | unknown, ms: number): (\n    this: unknown,\n    ...arg: T\n  ) =\u003e void | unknown;\n};\n\nconst debounce: Debounce = (fn, ms) =\u003e {\n  let timer = 0;\n  return function (...arg) {\n    if (timer) clearTimeout(timer);\n    timer = setTimeout(() =\u003e {\n      fn.apply(this, arg);\n    }, ms);\n  };\n};\n```\n\n`\u003cT extends unknown[]\u003e`表示 T 是`unknown[]`的子类型，即 T 是任意类型的数组或元组。\n\n## 类\n\n类是组织和规划代码的方式，是封装的基本单位。众所周知，JavaScript 的类是语法上的，在 ES6 时支持了 class 关键字。TypeScript 的类大量的借用了 C# 的理论，支持属性初始化语句、多态、装饰器和接口等。\n\n### 基本语法\n\npublic 或 private 关键字在 constructor 中将为我们创建对应的属性：\n\n```ts\nclass Person {\n  constructor(public name: string, public age: number) {}\n}\n\nconst xfy = new Person('xfy', 18);\nconsole.log(xfy);\n\nclass alotherPerson extends Person {\n  protected static country: number;\n  constructor(\n    name: string,\n    age: number,\n    public sex: string,\n    private nickname: string\n  ) {\n    super(name, age);\n  }\n}\nconst dfy = new alotherPerson('dfy', 18, 'female', 'xfy');\nconsole.log(dfy);\n```\n\n### 以 this 作为返回类型\n\nthis 可以用作值，也可以用作类型。对类来说，this 类型还可以用于注解方法的返回类型。\n\n例如我们需要实现一个简单的 Set 数据结构，他有一个 add 方法，每次返回的就是一个 Set 实例。我们可以直接注解为 Set 类。\n\n```ts\nclass MySet {\n  has(value: number):boolean {}\n  add(value: number): MySet {}\n}\n```\n\n但这样的缺点就是，当子类需要继承自父类时，子类的同名方法需要重新注解为返回对应的子类：\n\n```ts\nclass MyOtherSet extends MySet {\n  add(value: number): MyOtherSet {}\n}\n```\n\n这样在拓展其他类时，要把返回的 this 的每个方法的签名覆盖掉，就显得十分麻烦。如果只是为了让类型检查器满意，这样做就失去了继承基类的意义。\n\n正确的方法是将 this 作为注解的返回类型，把相关工作交给 TypeScript：\n\n```ts\nclass MySet {\n  has(value: number): boolean {}\n  add(value: number): this {}\n}\n\nclass MyOtherSet extends MySet {\n  add(value: number): this {}\n}\n```\n\n### 接口\n\n类经常被当作接口使用。\n\n接口是一种命名类型的方式，它和类型别名类似，不过二者还有一些细微的差别：\n\n第一，类型别名更为通用，右边可以是任何类型，包括类型表达式；而接口声明中，右边必须为结构。\n\n```ts\ntype A = number;\ntype B = A | string;\n```\n\n第二个区别是，扩展接口时，TypeScript 将检查扩展的接口是否可赋值给被扩展的接口。\n\n```ts\ninterface Animal {\n  good(x: string): string;\n}\ninterface Dog extends Animal {\n  good(x: number): void;\n}\n```\n\n而使用类型别名使用交集运算符`\u0026`来扩展时，TypeScript 将尽自己所能，把扩展和被扩展的类型组合在一起，最终是重载冲突的签名。\n\n```ts\ntype C = {\n  (x: string): string;\n};\ntype D = C \u0026 {\n  (x: number): string;\n};\n\nconst ef: D = (x) =\u003e {\n  return 'xfy';\n};\nef('123');\n```\n\n第三个区别是，同一作用域中多个同名接口将自动合并；而同一作用域中的多个类型别名将导致编译时错误。这个特性称之为声明合并。\n\n### 实现\n\n可以为类添加类型层面约束。\n\n```ts\ninterface Animal {\n  eat(food: string): void;\n  sleep(hours: number): void;\n}\n\nclass Cat implements Animal {\n  constructor(public name: string) {}\n  eat(food: string) {\n    console.log(`eating ${food}`);\n  }\n  sleep(hours: number) {\n    console.log(`slept for ${hours} hours`);\n  }\n}\nconst myCat = new Cat('xfy');\nmyCat.sleep(10);\n```\n\n### 接口还是抽象类\n\nTypeScript 可以使用`abstract`关键字来实现抽象类，实现接口其实于抽象类差不多。区别是，接口更通用，更轻量，而抽象类的作用更具体，功能更丰富。\n\n接口是对结构建模的方式。在值层面可表示对象、数组、函数、类或类的实例。接口不生成 JavaScript 代码，只存在于编译时。\n\n抽象类只能对类建模，而且生成运行时代码，即 JavaScript 类。抽象类可以有构造方法，可以提供默认实现，还能为属性和方法设置访问修饰符。这些在接口都中做不到。\n\n具体使用哪一个，取决于实际用途。如果多个类共用一个实现，使用抽象类。如果需要一种轻量的方式表示“这个类是 T 型”，使用接口。\n\n### 类是结构化类型\n\nTypeScript 根据类的结构来比较类，与类的名称无关。类与其他类是否兼容，要看结构。\n\n```ts\nclass Cat {\n  sleep(hours: number) {}\n}\nclass Dog {\n  sleep(hours: number) {}\n}\nconst checkCat = (animal: Cat) =\u003e {\n  animal.sleep(10);\n};\n\n/* 这里传入狗狗也是可以的 */\ncheckCat(new Dog());\n```\n\n### 类既声明值也声明类型\n\n类和枚举比较特殊，它们即在类型命名中生成类型，也在值命名空间中生成值。\n\n```ts\nclass G {}\n// 声明值的同时也声明了类型\nlet g: G = new G();\n\nenum H {\n  J,\n  K,\n}\nlet h: H = H.J;\n```\n\n### 模拟 final 类\n\n在某些面向对象的语言中，可以使用 final 关键字来吧类标记为不可拓展，或者把方法标记为不可覆盖。\n\n在 TypeScript 中可以使用私有的 constructor 来轻松的模拟 final 类：\n\n```ts\nclass Message {\n  private constructor(private msg: string) {}\n}\n// Cannot extend a class 'Message'. Class constructor is marked as private.\nclass NewMessage extends Message {}\n```\n\n但将 constructor 标记为 private 后，同时也不能使用 new 来实例化类了。我们仅仅需要不能拓展即可，可以简单修改一下使其能够实例化：\n\n```ts\nclass Message {\n  private constructor(private msg: string) {}\n  static create(msg: string) {\n    return new Message(msg);\n  }\n}\n\n// Constructor of class 'Message' is private and only accessible within the class declaration.\nnew Message('test');\n// Ok\nMessage.create('test');\n```\n\n如果将 private 换成 protect 之后，就实现了完全相反的效果。由于 protect 可以被子类所使用，所有可以拓展。而外部无法使用，所以就无法实例化该类。\n\n```ts\nclass Message {\n  protected constructor(protected msg: string) {}\n}\n\nclass NewMessage extends Message {}\n```\n\n### 工厂模式\n\n工厂模式是创建某种类型的对象的一种方式，这种方式把创建哪种具体对象给创建该对象的工厂决定。\n\n这里实现了一个创建 Shoe 的工厂，Shoe 对象有一个`crarete()`方法，它根据传入的值来决定创建哪个鞋子。同时参数 type 使用了并集而不是 string 来进一步保证类型的安全。\n\n```ts\ntype Shoe = {\n  purpose: string;\n};\nclass Boot implements Shoe {\n  purpose = 'woodcutting';\n}\nclass BalletFlat implements Shoe {\n  purpose = 'dancing';\n}\nclass Sneaker implements Shoe {\n  purpose = 'walking';\n}\n\nconst Shoe = {\n  crarete(type: 'boot' | 'balletflat' | 'sneaker'): Shoe {\n    switch (type) {\n      case 'boot':\n        return new Boot();\n      case 'balletflat':\n        return new BalletFlat();\n      case 'sneaker':\n        return new Sneaker();\n    }\n  },\n};\n\nconst myShoe = Shoe.crarete('sneaker');\nconsole.log(myShoe.purpose);\n```\n\n当然也可以牺牲一点抽象性，使用函数重载来明确返回类型：\n\n```ts\ntype Shoe = {\n  purpose: string;\n};\nclass Boot implements Shoe {\n  purpose = 'woodcutting';\n}\nclass BalletFlat implements Shoe {\n  purpose = 'dancing';\n}\nclass Sneaker implements Shoe {\n  purpose = 'walking';\n}\n\ntype CreateShoe = {\n  crarete(type: 'boot'): Boot;\n  crarete(type: 'balletflat'): BalletFlat;\n  crarete(type: 'sneaker'): Sneaker;\n};\n\nconst Shoe: CreateShoe = {\n  crarete(type: 'boot' | 'balletflat' | 'sneaker'): Shoe {\n    switch (type) {\n      case 'boot':\n        return new Boot();\n      case 'balletflat':\n        return new BalletFlat();\n      case 'sneaker':\n        return new Sneaker();\n    }\n  },\n};\n\nconst myShoe = Shoe.crarete('sneaker');\nconsole.log(myShoe.purpose);\n```\n\n## 类型进阶\n\nTypeScript 拥有一流的类型系统支持强大的类型层面编程特性。不仅具有极强的表现力，易于使用，而且可以通过简介明了的方式声明类型约束和关系，并且多数时候能为我们自动推导类型。\n\n### 超类型和子类型\n\n如同类一样，类型也有超类型与其子类型。并且在需要超类型的地方都可以安全的使用其子类型。类型的关系很常见，例如：\n\n* Cat 类拓展自 Animal 类，那么 Cat 是 Animal 的子类型；\n* Array 是 Object 的子类型；\n* Tuple 是 Array 的子类型；\n* 所有类型都是 any 的子类型；\n* never 是所有类型的子类型；\n\n反过来也是同样的，Animal 就是 Cat 的超类型。\n\n### 函数型变\n\n如果 A 函数的参数数量小于或等于 B 函数的参数数量，且满足如下条件，那么函数 A 是函数 B 的子类型：\n\n1. 函数 A 的 this 类型未指定，或者 this 是函数 B this 的**超类型**；\n2. 函数 A 的各个参数的类型为函数 B 相应参数的**超类型**；\n3. 函数 A 的返回类型为函数 B 返回类型的**子类型**；\n\n仔细研究就会发现，虽然函数 A 是函数 B 的子类型，但是它的 this 和参数缺都是函数 B 的超类型。\n\n来看一个简单的示例，这里通过几个类之间的继承，很好的描述了函数之间的型变：\n\n```ts\nclass Animal {}\nclass Cat extends Animal {\n  miao() {}\n}\nclass Lion extends Cat {\n  wawu() {}\n}\n\nfunction miaomiao(cat: Cat) {\n  cat.miao();\n  return cat;\n}\n\n// 需要超类型的地方也可以使用子类型\nmiaomiao(new Animal());\nmiaomiao(new Cat());\nmiaomiao(new Lion());\n\n// 回调函数 fn 为超类型\nfunction clone(fn: (cat: Cat) =\u003e Cat): void {\n  const parent = new Cat();\n  const baby = fn(parent);\n  baby.miao();\n}\n\n// catToLion 即是回调函数 fn 的子类型\n// 满足返回值是其子类型\nfunction catToLion(c: Cat): Lion {\t\n  return new Lion();\n}\nclone(catToLion);\n\n// catToAnimal 返回值是其超类型，所以无法调用\nfunction catToAnimal(c: Cat): Animal {\n  return new Animal();\n}\nclone(catToAnimal);\n\n// animalToCat 即是回调函数 fn 的子类型\n// 满足参数是其超类型\nfunction animalToCat(a: Animal): Cat {\n  return new Cat();\n}\nclone(animalToCat);\n\n// animalToLion 参数是其子类型，所以无法调用\nfunction animalToLion(l: Lion): Cat {\n  return new Cat();\n}\nclone(animalToLion);\n```\n\n值得高兴的是，我们并不需要记诵这套规则。只需要了解一下就好了，剩下的 TypeScript 都帮我们做了（我们的老朋友，红色波浪线会告诉我们传递是否正确的）。\n\n### 可赋值性\n\n可赋值性之的就是判断需要 B 类型的地方是否可用 A 类型时 TypeScript 采用的规则。\n\n在非枚举类型来说，A 类型是否可赋值给 B 类型有两个规则：\n\n1. A 是 B 的子类型；\n2. A 是 any；\n\n也就是说能用到超类型的地方，都能可以用其子类型。\n\n对于枚举类型来说，也是有两个规则：\n\n1. A 是枚举 B 的成员；\n2. B 至少有一个成员是 number 类型，且 A 是数字；\n\n### 类型拓宽\n\nTypeScript 在一般情况下推导类型时会放宽要求，故意推导出一个更宽泛的类型，而不是限定为一个具体的类型。不过在使用`const`关键字声明标识符的时候会严格限定类型。\n\n```ts\n// a: string\nlet a = 'xfy';\n// b: 'xfy'\nconst b = 'xfy';\n```\n\n可以显式注解，防止类型拓宽。\n\n#### const 类型\n\nTypeScript 中有一个特殊的类型`const`类型，可以禁止类型拓宽并且还递归的将成员设置为`readonly`，不管嵌套有多深。这个类型作用与类型断言。\n\n```ts\nlet c = { x: 123 } as const;\n// d: { readonly x: 1; readonly y: { readonly z: 3; }; }\nlet d = { x: 1, y: { z: 3 } } as const;\n```\n\n#### 多余属性检查\n\nTypeScript 在检查一个对象是否可赋值给另一个对象时，也涉及到类型拓宽。\n\n传递一个对象字面量时，TypeScript 会对所有属性进行检查，也就是多余属性检查。\n\n```ts\ntype Option = {\n  baseUrl: string;\n  cacheSize?: number;\n};\n\nclass API {\n  constructor(option: Option) {}\n}\n\nnew API({\n  baseUrl: 'https://xfy.plus',\n  cacheSizee: 123, // 错误\n});\n```\n\n但多余属性检查在将对象赋值给一个变量时则不会详细检查：\n\n```ts\nlet option = {\n  baseUrl: 'https://xfy.plus',\n  cacheSizee: 123,\n};\nnew API(option);  // 没有错误\n```\n\n### 对象类型进阶\n\n对象是 JavaScript 语言的核心，为了以安全的方式描述和处理对象，TypeScript 提供了一系列方式。\n\n#### 对象类型运算符\n\n**键入运算符**\n\n键入运算符提供了类似与对象字面量的方式来对类型的访问，在对顶层类型做访问时，能提供更简便的方法：\n\n```ts\ntype APIResponse = {\n  user: {\n    userId: number;\n    frientList: {\n      count: number;\n      friends: {\n        firstName: string;\n        lastName: string;\n      }[];\n    };\n  };\n};\ntype FriendList = APIResponse['user']['frientList'];\n```\n\n**`keyof`运算符**\n\n与`Object.keys`类似，不过`keyof`取的是作为类型的键。\n\n```ts\nconst Obj = {\n  a: 1,\n  name: 'xfy',\n};\n\ntype PickOne = {\n  // T 是一个对象，K 是 T 中的一个键\n  \u003cT extends object, K extends keyof T\u003e(obj: T, key: K): T[K];\n};\n\nconst pickOne: PickOne = (obj, key) =\u003e {\n  return obj[key];\n};\n\nconst t1 = pickOne(Obj, 'a');\n```\n\n#### 映射类型\n\nTypeScript 还提供了一种更强大的方式，即映射类型（mapped type）。一个对象最多有一个映射类型\n\n```ts\nconst nextDay: { [key in Day]: string } = {\n  Mon: 'Thu',\n};\n```\n\n内置的映射类型\n\n* `Record\u003cKeys, Values\u003e`：键的的类型为 Keys、值的类型为 Values 的对象。\n* `Partial\u003cObject\u003e`：把 Object 中的每个字段都标记为可选的。\n* `Required\u003cObject\u003e`：把 Object 中的每个字段都标记为必须的。\n* `Readonly\u003cObject\u003e`：把 Object 中的每个字段都标记为只读的。\n* `Pick\u003cObject, Keys\u003e`：返回 Object 的子类型，只包含指定的 Keys。\n\n### 函数类型进阶\n\n函数类型常用的几种高级技术。\n\n#### 改善数组的类型推导\n\nTypeScript 在推导元组类型的时候会放宽要求，推导出的结果尽量宽泛，不在乎元组的长度和各位置的类型。\n\n```ts\nconst tuple1 = [1, 'xfy'] as const;\n// tuple1: (string | number)[]\n```\n\n有些时候我们可能希望更加严格一点，而不是当作数组来使用。当然可以使用类型断言来更加严格：\n\n```ts\nconst tuple2 = [1, 'xfy'] as const;\n// tuple2: readonly [1, \"xfy\"]\n```\n\n但有时候我们可能不想使用断言，或者不想标记为只读。这时候可以利用 TypeScript 推导剩余参数的类型的方式：\n\n```ts\nconst tuple = \u003cT extends unknown[]\u003e(...ts: T): T =\u003e {\n  return ts;\n};\nconst myTuple = tuple(1, 'xfy');\n// myTuple: [number, string]\n```\n\n这个函数返回传入的参数，神奇之处全在类型中。当代码中使用到了大量的元组时，而又不想全部断言时，可以尝试这种技术。\n\n#### 用户定义的类型防护措施\n\nTypeScript 支持类型的细化。但它不不是任何条件都有用的：\n\n```ts\nfunction isString(str: unknown): boolean {\n  return typeof str === 'string';\n}\nconsole.log(isString('123')); // true\nconsole.log(isString(123)); // false\n\nfunction parseInput(input: string | number) {\n  if (isString(input)) {\n    input.toUpperCase(); // Property 'toUpperCase' does not exist on type 'number'.\n  }\n}\n```\n\n在这种情况下，类型细化就不再为我们工作了。类型细化的能力有限，只能细化当前作用域中变量的类型，一旦离开作用域，类型细化能力不会随之转移到新作用域中。在新的函数内，TypeScript 只知道`isString`返回一个布尔值。\n\n`isString`返回的确实是一个布尔值，但我们要让类型检查器知道，当返回是真值时，表明其参数是一个字符串。为此，这里需要使用用户定义的类型防护措施：\n\n```ts\nfunction isString(str: unknown): str is string {\n  return typeof str === 'string';\n}\nconsole.log(isString('123')); // true\nconsole.log(isString(123)); // false\n\nfunction parseInput(input: string | number) {\n  if (isString(input)) {\n    input.toUpperCase(); // worked!\n  }\n}\n```\n\n类型防护措施是 TypeScript 内置的特性，is 运算符就起这个作用。如果函数细化了参数的类型，而且返回一个布尔值，我们可以使用用户定义的类型防护措施确保类型的细化能在作用域之间转移。用户定义的类型防护措施只限于一个参数，但是不限定于简单的类型。\n\n### 条件类型\n\nTypeScript 提供了和条件运算类似的方式来运算类型。\n\n```ts\ntype IsString\u003cT\u003e = T extends string ? true : false;\n\ntype A = IsString\u003cstring\u003e; // true\ntype B = IsString\u003cnumber\u003e; // false\n```\n\n#### infer 关键字\n\n条件类型的另一个更强大的特新故事可以在条件中声明泛型。这个声明方式不是使用尖括号`\u003c\u003e`，而是使用 infer 关键字。\n\n这里的意思是：当泛型 T 继承自另一个泛型 U 组成的数组时，返回 U 类型。\n\n```ts\ntype SomeArr\u003cT\u003e = T extends (infer U)[] ? U : T;\ntype C = SomeArr\u003cstring[]\u003e; // string\ntype D = SomeArr\u003cnumber[]\u003e; // number\n```\n\n这还不是最强大的地方，对于数组来说我们可以使用键入运算符`[]`。更强大的地方在于它还可以获取到函数参数类型：\n\n这里的意思是：当泛型 F 继承自一个接收两个参数的函数，并且两个参数中的第二个参数为泛型 U 类型时，返回对应的 U 类型。\n\n```ts\ntype SecondArg\u003cF\u003e = F extends (argA: any, argB: infer U) =\u003e any ? U : never;\n\ntype F = typeof Array['prototype']['slice']; // F = (start?: number, end?: number) =\u003e any[]\ntype Arg = SecondArg\u003cF\u003e; // Arg = number\n```\n\n可见`[].slice`的第二个参数是 number 类型，而且在编译时便可知晓这一点。Java 能做到吗？\n\n\u003e ↑《Programming TypeScript》中文版 6.5.2 章原话。\n\n## 异步\n\n### 事件发射器\n\n","desc":"《Programming TypeScript》笔记。\n\n函数\n\n重载\n\n重载函数：有多个调用签名的函数。\n\n在多数编程语言中，声明函数时一旦指定了特定的参数和返回类型，就只能使用相应的参数调用参数。...","title":"TypeScript编程","date":"2021-05-20T21:03:19.000Z","tags":"TypeScript","categories":"笔记","url":"programming-typescript","index_img":"/images/TypeScript%E7%BC%96%E7%A8%8B/logo.webp"}},"__N_SSG":true},"page":"/p/[slug]","query":{"slug":"programming-typescript"},"buildId":"k6NIc4JfXUsE09z9QnALx","isFallback":false,"dynamicIds":[3419,6929,9125,2980,5106,1189],"gsp":true,"scriptLoader":[]}</script></body></html>

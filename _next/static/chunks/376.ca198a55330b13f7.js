@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[376],{376:function(a,b,c){c.r(b);var d=c(5893),e=c(8527);b.default=function(){return(0,d.jsx)(d.Fragment,{children:(0,d.jsx)(e.kC,{mt:"1rem",h:"10rem",justifyContent:"center",alignItems:"center",children:(0,d.jsx)(e.xv,{children:"Aw snap! No search results were found."})})})}}}])
